@@ -7,12 +7,31 @@ public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
   @SequenceGenerator(sequenceName = "s_customer", allocationSize = 1, name = "CUST_SEQ")
-  Long customerNo;
-  String customerId;
-  String customerName;
-  String address;
-  String mobile;
-  String identityNumber;
+  private Long customerNo;
+  private String customerId;
+  private String customerName;
+  private String email;
+  private String userPassword;
+  private String address;
+  private String mobile;
+  private String identityNumber;
+
+  public String getUserPassword() {
+    return userPassword;
+  }
+
+  public void setUserPassword(String userPassword) {
+    this.userPassword = userPassword;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
   String userImageName;
 
   public Long getCustomerNo() {
@@ -77,6 +96,8 @@ public class Customer {
         "customerNo=" + customerNo +
         ", customerId='" + customerId + '\'' +
         ", customerName='" + customerName + '\'' +
+        ", userPassword='" + userPassword + '\'' +
+        ", email='" + email + '\'' +
         ", address='" + address + '\'' +
         ", mobile='" + mobile + '\'' +
         ", identityNumber='" + identityNumber + '\'' +

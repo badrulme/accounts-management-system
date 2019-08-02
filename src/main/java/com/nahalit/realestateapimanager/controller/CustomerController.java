@@ -22,6 +22,11 @@ public class CustomerController {
     return new ResponseEntity<>(customerService.getAllCustomer(), HttpStatus.OK);
   }
 
+  @GetMapping("/get-customer")
+  public ResponseEntity<Customer> getCustomer(@RequestParam(value = "customerNo", required = false) Long customerNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(customerService.getCustomer(customerNo), HttpStatus.OK);
+  }
+
   @PostMapping("/add")
   public ResponseEntity<Customer> saveCustoemr(@Valid @RequestBody Customer customer) {
     return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED);

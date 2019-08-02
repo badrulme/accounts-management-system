@@ -1,7 +1,7 @@
 package com.nahalit.realestateapimanager.service;
 
 import com.nahalit.realestateapimanager.model.Users;
-import com.nahalit.realestateapimanager.repository.UserRepository;
+import com.nahalit.realestateapimanager.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
