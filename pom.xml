@@ -42,7 +42,29 @@
             <artifactId>ojdbc7</artifactId>
             <version>12.1.0</version>
         </dependency>
-
+        <!--Enabling Swager API-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.plugin</groupId>-->
+        <!--            <artifactId>spring-plugin-core</artifactId>-->
+        <!--            <version>1.2.0.RELEASE</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.springfox</groupId>-->
+        <!--            <artifactId>springfox-bean-validators</artifactId>-->
+        <!--            <version>2.9.2</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.springfox</groupId>-->
+        <!--            <artifactId>springfox-swagger2</artifactId>-->
+        <!--            <version>2.6.1</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.springfox</groupId>-->
+        <!--            <artifactId>springfox-swagger-ui</artifactId>-->
+        <!--            <version>2.6.1</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
         <!-- HikariCP connection pool -->
         <dependency>
             <groupId>com.zaxxer</groupId>
@@ -50,6 +72,10 @@
             <version>2.6.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

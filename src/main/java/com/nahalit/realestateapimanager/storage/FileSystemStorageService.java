@@ -2,11 +2,11 @@ package com.nahalit.realestateapimanager.storage;
 
 import com.nahalit.realestateapimanager.exception.StorageException;
 import com.nahalit.realestateapimanager.exception.StorageFileNotFoundException;
+import com.nahalit.realestateapimanager.utillibrary.UtillDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,72 +22,68 @@ import java.util.stream.Stream;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    private final Path rootLocation;
+  private final Path rootLocation;
 
-    @Autowired
-    public FileSystemStorageService(StorageProperties properties) {
-        this.rootLocation = Paths.get(properties.getLocation());
+  @Autowired
+  public FileSystemStorageService(StorageProperties properties) {
+    this.rootLocation = Paths.get(properties.getLocation());
+  }
+
+  @Override
+  public void store(MultipartFile file, String filename) {
+//    String filename = StringUtils.cleanPath(file.getOriginalFilename());
+    try {
+      if (file.isEmpty()) {
+        throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
+      }
+      if (filename.contains("..")) {
+        // This is a security check
+        throw new StorageException(
+            "Cannot store file with relative path outside current directory "
+                + file.getOriginalFilename());
+      }
+      try (InputStream inputStream = file.getInputStream()) {
+        Files.copy(inputStream, this.rootLocation.resolve(filename),
+            StandardCopyOption.REPLACE_EXISTING);
+      }
+    } catch (IOException e) {
+      throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
+    }
+  }
+
+  @Override
+  public Stream<Path> loadAll() {
+    try {
+      return Files.walk(this.rootLocation, 1)
+          .filter(path -> !path.equals(this.rootLocation))
+          .map(this.rootLocation::relativize);
+    } catch (IOException e) {
+      throw new StorageException("Failed to read stored files", e);
     }
 
-    @Override
-    public void store(MultipartFile file) {
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
-        try {
-            if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + filename);
-            }
-            if (filename.contains("..")) {
-                // This is a security check
-                throw new StorageException(
-                        "Cannot store file with relative path outside current directory "
-                                + filename);
-            }
-            try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, this.rootLocation.resolve(filename),
-                    StandardCopyOption.REPLACE_EXISTING);
-            }
-        }
-        catch (IOException e) {
-            throw new StorageException("Failed to store file " + filename, e);
-        }
+  }
+
+  @Override
+  public Path load(String filename) {
+    return rootLocation.resolve(filename);
+  }
+
+  @Override
+  public Resource loadAsResource(String filename) {
+    try {
+      Path file = load(filename);
+      Resource resource = new UrlResource(file.toUri());
+      if (resource.exists() || resource.isReadable()) {
+        return resource;
+      } else {
+        throw new StorageFileNotFoundException(
+            "Could not read file: " + filename);
+
+      }
+    } catch (MalformedURLException e) {
+      throw new StorageFileNotFoundException("Could not read file: " + filename, e);
     }
-
-    @Override
-    public Stream<Path> loadAll() {
-        try {
-            return Files.walk(this.rootLocation, 1)
-                .filter(path -> !path.equals(this.rootLocation))
-                .map(this.rootLocation::relativize);
-        }
-        catch (IOException e) {
-            throw new StorageException("Failed to read stored files", e);
-        }
-
-    }
-
-    @Override
-    public Path load(String filename) {
-        return rootLocation.resolve(filename);
-    }
-
-    @Override
-    public Resource loadAsResource(String filename) {
-        try {
-            Path file = load(filename);
-            Resource resource = new UrlResource(file.toUri());
-            if (resource.exists() || resource.isReadable()) {
-                return resource;
-            }
-            else {
-                throw new StorageFileNotFoundException(
-                        "Could not read file: " + filename);
-
-            }
-        }
-        catch (MalformedURLException e) {
-            throw new StorageFileNotFoundException("Could not read file: " + filename, e);
-        }
-    }
+  }
 
 //    @Override
 //    public void deleteAll() {

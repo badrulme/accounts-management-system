@@ -1,12 +1,9 @@
 package com.nahalit.realestateapimanager;
 
 import com.nahalit.realestateapimanager.storage.StorageProperties;
-import com.nahalit.realestateapimanager.storage.StorageService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
@@ -15,6 +12,16 @@ public class RealestateApiManagerApplication {
   public static void main(String[] args) {
     SpringApplication.run(RealestateApiManagerApplication.class, args);
   }
+
+//  @Bean
+//  public WebMvcConfigurer corsConfigurer() {
+//    return new WebMvcConfigurer() {
+//      @Override
+//      public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+//      }
+//    };
+//  }
 
 //  @Bean
 //  CommandLineRunner init(StorageService storageService) {
