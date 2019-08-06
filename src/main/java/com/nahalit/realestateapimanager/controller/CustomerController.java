@@ -3,6 +3,7 @@ package com.nahalit.realestateapimanager.controller;
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
 import com.nahalit.realestateapimanager.model.Customer;
 import com.nahalit.realestateapimanager.service.CustomerService;
+import com.nahalit.realestateapimanager.service.EmailService;
 import com.nahalit.realestateapimanager.storage.StorageService;
 import com.nahalit.realestateapimanager.utillibrary.UtillDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,15 @@ import java.util.List;
 @RequestMapping("api/rest/customer")
 @RestController
 public class CustomerController {
+
   private final CustomerService customerService;
-
   private final StorageService storageService;
+  private final EmailService emailService;
 
-  public CustomerController(CustomerService customerService, StorageService storageService) {
+  public CustomerController(CustomerService customerService, StorageService storageService, EmailService emailService) {
     this.customerService = customerService;
     this.storageService = storageService;
+    this.emailService = emailService;
   }
 
   @GetMapping("/")
@@ -51,7 +54,7 @@ public class CustomerController {
   }
 
   @PutMapping("/update")
-  public ResponseEntity<Customer> updateCustoemr(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, Customer customer) throws ResourceNotFoundException {
+  public ResponseEntity<Customer> updateCustoemr(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @RequestParam Customer customer) throws ResourceNotFoundException {
     if (customerPhoto != null) {
       if (customer.getUserImageName() != null) {
         storageService.store(customerPhoto, customer.getUserImageName());
@@ -71,5 +74,7 @@ public class CustomerController {
     customerService.deleteCustomer(customerNo);
     return new ResponseEntity<>("Customer Deleted Successfully", HttpStatus.OK);
   }
+
+
 }
 
