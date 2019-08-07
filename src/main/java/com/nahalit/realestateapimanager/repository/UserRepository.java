@@ -1,4 +1,4 @@
-package com.nahalit.realestateapimanager.dao;
+package com.nahalit.realestateapimanager.repository;
 
 import com.nahalit.realestateapimanager.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;

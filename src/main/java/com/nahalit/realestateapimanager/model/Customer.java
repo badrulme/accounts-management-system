@@ -11,28 +11,11 @@ public class Customer {
   private String customerId;
   private String customerName;
   private String email;
-  private String userPassword;
+  private String password;
   private String address;
   private String mobile;
   private String identityNumber;
-
-  public String getUserPassword() {
-    return userPassword;
-  }
-
-  public void setUserPassword(String userPassword) {
-    this.userPassword = userPassword;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  String userImageName;
+  private String customerImageName;
 
   public Long getCustomerNo() {
     return customerNo;
@@ -56,6 +39,22 @@ public class Customer {
 
   public void setCustomerName(String customerName) {
     this.customerName = customerName;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public String getAddress() {
@@ -82,12 +81,12 @@ public class Customer {
     this.identityNumber = identityNumber;
   }
 
-  public String getUserImageName() {
-    return userImageName;
+  public String getCustomerImageName() {
+    return customerImageName;
   }
 
-  public void setUserImageName(String userImageName) {
-    this.userImageName = userImageName;
+  public void setCustomerImageName(String customerImageName) {
+    this.customerImageName = customerImageName;
   }
 
   @Override
@@ -96,12 +95,12 @@ public class Customer {
         "customerNo=" + customerNo +
         ", customerId='" + customerId + '\'' +
         ", customerName='" + customerName + '\'' +
-        ", userPassword='" + userPassword + '\'' +
         ", email='" + email + '\'' +
+        ", password='" + password + '\'' +
         ", address='" + address + '\'' +
         ", mobile='" + mobile + '\'' +
         ", identityNumber='" + identityNumber + '\'' +
-        ", userImageName='" + userImageName + '\'' +
+        ", customerImageName='" + customerImageName + '\'' +
         '}';
   }
 }

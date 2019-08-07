@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @RequestMapping("/api/rest/email")
@@ -23,10 +24,10 @@ public class EmailController {
   }
 
   @PostMapping("/send-mail")
-  public void sendEMail(@Valid @RequestParam String[] sendTo, @RequestParam(required = false) String[] sendCC, @RequestParam(required = false) String[] sendBcc, @RequestParam String mailSubject, @RequestParam String messageBody) {
+  public void sendEMail(@Valid @RequestParam String[] sendTo, @RequestParam(required = false) String[] sendCC, @RequestParam(required = false) String[] sendBcc, @RequestParam String mailSubject, @RequestParam String messageBody, @RequestParam(required = false) boolean isHTML) {
     try {
-      emailService.sendEmail(sendTo, sendCC, sendBcc, mailSubject, messageBody);
-    } catch (MailException e) {
+      emailService.sendEmail(sendTo, sendCC, sendBcc, mailSubject, messageBody, isHTML);
+    } catch (MailException | MessagingException e) {
       logger.info("Error sending email: " + e.getMessage());
     }
   }
