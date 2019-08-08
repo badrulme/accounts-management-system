@@ -6,5 +6,7 @@ import java.util.Map;
 
 @Service
 public interface CustomerDao {
-   Map<String, Object> isCustomerLogin(String customerUsername, String password);
+  Map<String, Object> isCustomerLogin(String customerUsername, String password);
+
+  String forgotPasswordByMail(String email);
 }

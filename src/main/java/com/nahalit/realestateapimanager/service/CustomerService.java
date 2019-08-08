@@ -47,4 +47,8 @@ public class CustomerService {
   public Map<String, Object> customerLogin(String customerUsername, String password) {
     return customerDao.isCustomerLogin(customerUsername, password);
   }
+
+  public String forgotPasswordByMail(String email) {
+    return customerDao.forgotPasswordByMail(email);
+  }
 }

@@ -4,6 +4,7 @@ import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
 import com.nahalit.realestateapimanager.model.Customer;
 import com.nahalit.realestateapimanager.service.CustomerService;
 import com.nahalit.realestateapimanager.storage.StorageService;
+import com.nahalit.realestateapimanager.utillibrary.RandomString;
 import com.nahalit.realestateapimanager.utillibrary.UtillDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +40,7 @@ public class CustomerController {
   @PostMapping("/add")
   public ResponseEntity<Customer> saveCustoemr(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, Customer customer) {
     if (customerPhoto != null) {
-      UtillDate now = new UtillDate();
-      String nowTime = now.getFormatDateTimeForFile();
+      String nowTime = UtillDate.getNowTimeNameForFile();
       String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
 
       storageService.store(customerPhoto, filename);
@@ -55,8 +55,7 @@ public class CustomerController {
       if (customer.getCustomerImageName() != null) {
         storageService.store(customerPhoto, customer.getCustomerImageName());
       } else {
-        UtillDate now = new UtillDate();
-        String nowTime = now.getFormatDateTimeForFile();
+        String nowTime = UtillDate.getNowTimeNameForFile();
         String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
         storageService.store(customerPhoto, filename);
         customer.setCustomerImageName(filename);
@@ -74,6 +73,15 @@ public class CustomerController {
   @PostMapping("/login")
   public Map<String, Object> loginUser(@Valid @RequestParam String customerUsername, @RequestParam String password) {
     return customerService.customerLogin(customerUsername, password);
+  }
+
+  @PostMapping("/forgot-password")
+  public String forgotPassword(@Valid @RequestParam String forgotMailOrMobile) {
+    String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    if (forgotMailOrMobile.matches(regex)) {
+      return customerService.forgotPasswordByMail(forgotMailOrMobile);
+    } else
+      return "Not email: " + RandomString.randomAlphaNumeric(8);
   }
 }
 
