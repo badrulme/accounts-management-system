@@ -1,14 +1,26 @@
 package com.nahalit.realestateapimanager.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
+//@Table(name = "ReCustomer")
 @Entity
-public class Customer {
+public class ReCustomer {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-  @SequenceGenerator(sequenceName = "s_customer", allocationSize = 1, name = "CUST_SEQ")
+  @SequenceGenerator(sequenceName = "S_RE_CUSTOMER", allocationSize = 1, name = "CUST_SEQ")
   private Long customerNo;
   private String customerId;
+
+//
+//  @NotNull
+//  @Size(max = 65)
+//  @Column(name = "first_name")
+//@Email
+//@Column(unique = true)
+
   private String customerName;
   private String email;
   private String password;
@@ -16,6 +28,10 @@ public class Customer {
   private String mobile;
   private String identityNumber;
   private String customerImageName;
+  private Long ssCreator;
+  private Date ssCreatedOn;
+  private Long ssModifier;
+  private Date ssModifiedOn;
 
   public Long getCustomerNo() {
     return customerNo;
@@ -89,9 +105,41 @@ public class Customer {
     this.customerImageName = customerImageName;
   }
 
+  public Long getSsCreator() {
+    return ssCreator;
+  }
+
+  public void setSsCreator(Long ssCreator) {
+    this.ssCreator = ssCreator;
+  }
+
+  public Date getSsCreatedOn() {
+    return ssCreatedOn;
+  }
+
+  public void setSsCreatedOn(Date ssCreatedOn) {
+    this.ssCreatedOn = ssCreatedOn;
+  }
+
+  public Long getSsModifier() {
+    return ssModifier;
+  }
+
+  public void setSsModifier(Long ssModifier) {
+    this.ssModifier = ssModifier;
+  }
+
+  public Date getSsModifiedOn() {
+    return ssModifiedOn;
+  }
+
+  public void setSsModifiedOn(Date ssModifiedOn) {
+    this.ssModifiedOn = ssModifiedOn;
+  }
+
   @Override
   public String toString() {
-    return "Customer{" +
+    return "ReCustomer{" +
         "customerNo=" + customerNo +
         ", customerId='" + customerId + '\'' +
         ", customerName='" + customerName + '\'' +
@@ -101,6 +149,10 @@ public class Customer {
         ", mobile='" + mobile + '\'' +
         ", identityNumber='" + identityNumber + '\'' +
         ", customerImageName='" + customerImageName + '\'' +
+        ", ssCreator=" + ssCreator +
+        ", ssCreatedOn=" + ssCreatedOn +
+        ", ssModifier=" + ssModifier +
+        ", ssModifiedOn=" + ssModifiedOn +
         '}';
   }
 }

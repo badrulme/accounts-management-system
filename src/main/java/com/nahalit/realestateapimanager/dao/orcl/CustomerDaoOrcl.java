@@ -29,7 +29,7 @@ public class CustomerDaoOrcl implements CustomerDao {
     Map<String, Object> exceptionMessage = new HashMap<>();
 
     sql.append(" select CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_NAME,EMAIL,MOBILE");
-    sql.append("             from CUSTOMER");
+    sql.append("             from ReCustomer");
     sql.append("             where (UPPER(CUSTOMER_ID) = UPPER(:customerUsername) and PASSWORD = :password)");
     sql.append("                or (LOWER(EMAIL) = LOWER(:customerUsername) and PASSWORD = :password)");
 
@@ -48,7 +48,7 @@ public class CustomerDaoOrcl implements CustomerDao {
     params.put("EMAIL", email);
     params.put("NEWPASSWORD", randomPassword);
     try {
-      int executeStatus = db.update("UPDATE CUSTOMER SET FORGOT_PASSWORD_FROM_MAIL=:NEWPASSWORD WHERE EMAIL=:EMAIL", params);
+      int executeStatus = db.update(" UPDATE RE_CUSTOMER SET PASSWORD=:NEWPASSWORD WHERE EMAIL=:EMAIL", params);
       if (executeStatus == 1) {
         String[] sendTo = email.trim().split(" ");
         emailService.sendEmail(sendTo, null, null, "Forgot Your Password", "Your updated password: " + randomPassword, false);
@@ -60,5 +60,4 @@ public class CustomerDaoOrcl implements CustomerDao {
       return "User not found for this email " + email;
     }
   }
-
 }
