@@ -1,6 +1,6 @@
 package com.nahalit.realestateapimanager.dao.orcl;
 
-import com.nahalit.realestateapimanager.dao.CustomerDao;
+import com.nahalit.realestateapimanager.dao.RlCustomerDao;
 import com.nahalit.realestateapimanager.service.EmailService;
 import com.nahalit.realestateapimanager.utillibrary.RandomString;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class CustomerDaoOrcl implements CustomerDao {
+public class RlCustomerDaoOrcl implements RlCustomerDao {
   private final NamedParameterJdbcTemplate db;
   private final EmailService emailService;
 
-  public CustomerDaoOrcl(NamedParameterJdbcTemplate _db, EmailService emailService) {
+  public RlCustomerDaoOrcl(NamedParameterJdbcTemplate _db, EmailService emailService) {
     this.db = _db;
     this.emailService = emailService;
   }
@@ -29,7 +29,7 @@ public class CustomerDaoOrcl implements CustomerDao {
     Map<String, Object> exceptionMessage = new HashMap<>();
 
     sql.append(" select CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_NAME,EMAIL,MOBILE");
-    sql.append("             from ReCustomer");
+    sql.append("             from RlCustomer");
     sql.append("             where (UPPER(CUSTOMER_ID) = UPPER(:customerUsername) and PASSWORD = :password)");
     sql.append("                or (LOWER(EMAIL) = LOWER(:customerUsername) and PASSWORD = :password)");
 

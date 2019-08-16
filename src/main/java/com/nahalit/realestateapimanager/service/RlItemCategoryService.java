@@ -1,38 +1,36 @@
 package com.nahalit.realestateapimanager.service;
 
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
-import com.nahalit.realestateapimanager.model.ReCustomer;
-import com.nahalit.realestateapimanager.model.ReItemCategory;
-import com.nahalit.realestateapimanager.repository.ReItemCategoryRepository;
+import com.nahalit.realestateapimanager.model.RlItemCategory;
+import com.nahalit.realestateapimanager.repository.RlItemCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
-public class ReItemCategoryService {
-  private ReItemCategoryRepository reItemCategoryRepository;
+public class RlItemCategoryService {
+  private RlItemCategoryRepository reItemCategoryRepository;
 
   @Autowired
-  public ReItemCategoryService(ReItemCategoryRepository reItemCategoryRepository) {
+  public RlItemCategoryService(RlItemCategoryRepository reItemCategoryRepository) {
     this.reItemCategoryRepository = reItemCategoryRepository;
   }
 
-  public List<ReItemCategory> getAllItemCategory() {
+  public List<RlItemCategory> getAllItemCategory() {
     return this.reItemCategoryRepository.findAll();
   }
 
-  public ReItemCategory getItemCategory(Long categoryNo) throws ResourceNotFoundException {
+  public RlItemCategory getItemCategory(Long categoryNo) throws ResourceNotFoundException {
     return this.reItemCategoryRepository.findById(categoryNo).orElseThrow(() -> new ResourceNotFoundException("Item Category not found for this id:" + categoryNo));
   }
 
-  public ReItemCategory saveItemCategory(ReItemCategory reItemCategory) {
+  public RlItemCategory saveItemCategory(RlItemCategory reItemCategory) {
     return this.reItemCategoryRepository.save(reItemCategory);
   }
 
-  public ReItemCategory updateCategory(ReItemCategory reItemCategory) throws ResourceNotFoundException {
+  public RlItemCategory updateCategory(RlItemCategory reItemCategory) throws ResourceNotFoundException {
     this.reItemCategoryRepository.findById(reItemCategory.getCategoryNo()).orElseThrow(() -> new ResourceNotFoundException("Item Category not for this:" + reItemCategory.getCategoryNo()));
     return this.reItemCategoryRepository.save(reItemCategory);
   }

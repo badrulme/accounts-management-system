@@ -4,10 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 @Entity
-public class ReItemCategory {
+public class RlItemCategory {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAT_SEQ")
-  @SequenceGenerator(sequenceName = "S_RE_ITEM_CATEGORY", allocationSize = 1, name = "CAT_SEQ")
+  @SequenceGenerator(sequenceName = "S_RL_ITEM_CATEGORY", allocationSize = 1, name = "CAT_SEQ")
   private Long categoryNo;
   private String categoryId;
   @NotNull
@@ -75,7 +75,7 @@ public class ReItemCategory {
 
   @Override
   public String toString() {
-    return "ReItemCategory{" +
+    return "RlItemCategory{" +
         "categoryNo=" + categoryNo +
         ", categoryId='" + categoryId + '\'' +
         ", categoryName='" + categoryName + '\'' +

@@ -5,26 +5,28 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-//@Table(name = "ReCustomer")
+//@Table(name = "RlCustomer")
 @Entity
-public class ReCustomer {
+public class RlCustomer {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-  @SequenceGenerator(sequenceName = "S_RE_CUSTOMER", allocationSize = 1, name = "CUST_SEQ")
+  @SequenceGenerator(sequenceName = "S_RL_CUSTOMER", allocationSize = 1, name = "CUST_SEQ")
   private Long customerNo;
   private String customerId;
 
-//
+  //
 //  @NotNull
 //  @Size(max = 65)
 //  @Column(name = "first_name")
 //@Email
 //@Column(unique = true)
-
+  @NotNull
   private String customerName;
+  @NotNull
   private String email;
   private String password;
   private String address;
+  @NotNull
   private String mobile;
   private String identityNumber;
   private String customerImageName;
@@ -139,7 +141,7 @@ public class ReCustomer {
 
   @Override
   public String toString() {
-    return "ReCustomer{" +
+    return "RlCustomer{" +
         "customerNo=" + customerNo +
         ", customerId='" + customerId + '\'' +
         ", customerName='" + customerName + '\'' +
