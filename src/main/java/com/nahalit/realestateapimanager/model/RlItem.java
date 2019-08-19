@@ -12,9 +12,9 @@ public class RlItem extends RequiredFeild {
   private String itemId;
   private String title;
   private String descr;
-  @OneToMany(mappedBy = "rlItem",cascade = CascadeType.PERSIST)
-  private List<RlItemSlider> rlItemSlider;
 
+  @OneToMany(mappedBy = "rlItem",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+  private List<RlItemSlider> rlItemSlider;
 
   public Long getItemNo() {
     return itemNo;
