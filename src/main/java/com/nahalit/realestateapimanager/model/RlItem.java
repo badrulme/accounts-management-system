@@ -1,14 +1,18 @@
 package com.nahalit.realestateapimanager.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class RlItem {
+public class RlItem extends RequiredFeild {
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item")
+  @SequenceGenerator(sequenceName = "s_rl_item", allocationSize = 1, name = "rl_item")
   private Long itemNo;
   private String itemId;
   private String title;
   private String descr;
+  @OneToMany(mappedBy = "rlItem",cascade = CascadeType.PERSIST)
   private List<RlItemSlider> rlItemSlider;
 
 
@@ -55,11 +59,11 @@ public class RlItem {
   @Override
   public String toString() {
     return "RlItem{" +
-        "itemNo=" + itemNo +
-        ", itemId='" + itemId + '\'' +
-        ", title='" + title + '\'' +
-        ", descr='" + descr + '\'' +
-        ", rlItemSlider=" + rlItemSlider +
-        '}';
+            "itemNo=" + itemNo +
+            ", itemId='" + itemId + '\'' +
+            ", title='" + title + '\'' +
+            ", descr='" + descr + '\'' +
+            ", rlItemSlider=" + rlItemSlider +
+            '}';
   }
 }

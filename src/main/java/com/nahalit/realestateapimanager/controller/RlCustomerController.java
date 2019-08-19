@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("api/rest/re/customer")
+@RequestMapping("api/rest/rl/customer")
 @RestController
 public class RlCustomerController {
   private final RlCustomerService rlCustomerService;

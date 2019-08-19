@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequestMapping("api/rest/re/item-category")
+@RequestMapping("api/rest/rl/item-category")
 @RestController
 public class RlItemCategoryController {
   private final RlItemCategoryService reItemCategoryService;
