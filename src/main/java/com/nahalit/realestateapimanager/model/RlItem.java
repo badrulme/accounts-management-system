@@ -1,69 +1,71 @@
 package com.nahalit.realestateapimanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class RlItem extends RequiredFeild {
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item")
-  @SequenceGenerator(sequenceName = "s_rl_item", allocationSize = 1, name = "rl_item")
-  private Long itemNo;
-  private String itemId;
-  private String title;
-  private String descr;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item")
+    @SequenceGenerator(sequenceName = "s_rl_item", allocationSize = 1, name = "rl_item")
+    private Long itemNo;
+    private String itemId;
+    private String title;
+    private String descr;
 
-  @OneToMany(mappedBy = "rlItem",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-  private List<RlItemSlider> rlItemSlider;
+    @OneToMany(mappedBy = "rlItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RlItemSlider> rlItemSlider;
 
-  public Long getItemNo() {
-    return itemNo;
-  }
+    public Long getItemNo() {
+        return itemNo;
+    }
 
-  public void setItemNo(Long itemNo) {
-    this.itemNo = itemNo;
-  }
+    public void setItemNo(Long itemNo) {
+        this.itemNo = itemNo;
+    }
 
-  public String getItemId() {
-    return itemId;
-  }
+    public String getItemId() {
+        return itemId;
+    }
 
-  public void setItemId(String itemId) {
-    this.itemId = itemId;
-  }
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public String getDescr() {
-    return descr;
-  }
+    public String getDescr() {
+        return descr;
+    }
 
-  public void setDescr(String descr) {
-    this.descr = descr;
-  }
+    public void setDescr(String descr) {
+        this.descr = descr;
+    }
 
-  public List<RlItemSlider> getRlItemSlider() {
-    return rlItemSlider;
-  }
+    public List<RlItemSlider> getRlItemSlider() {
+        return rlItemSlider;
+    }
 
-  public void setRlItemSlider(List<RlItemSlider> rlItemSlider) {
-    this.rlItemSlider = rlItemSlider;
-  }
+    public void setRlItemSlider(List<RlItemSlider> rlItemSlider) {
+        this.rlItemSlider = rlItemSlider;
+    }
 
-  @Override
-  public String toString() {
-    return "RlItem{" +
-            "itemNo=" + itemNo +
-            ", itemId='" + itemId + '\'' +
-            ", title='" + title + '\'' +
-            ", descr='" + descr + '\'' +
-            ", rlItemSlider=" + rlItemSlider +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "RlItem{" +
+                "itemNo=" + itemNo +
+                ", itemId='" + itemId + '\'' +
+                ", title='" + title + '\'' +
+                ", descr='" + descr + '\'' +
+                ", rlItemSlider=" + rlItemSlider +
+                '}';
+    }
 }
