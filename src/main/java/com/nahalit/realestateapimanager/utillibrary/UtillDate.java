@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class UtillDate {
   public static String getNowTimeNameForFile() {
     LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMyyyyHHmmssmsns");
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMyyyyHHmmssms");
     String formatDateTimeForFile = now.format(format);
     return formatDateTimeForFile;
   }

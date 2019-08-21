@@ -38,27 +38,42 @@ public class RlCustomerController {
   }
 
   @PostMapping("/add")
-  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) {
+  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @Valid @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) throws InterruptedException {
     if (customerPhoto != null) {
       String nowTime = UtillDate.getNowTimeNameForFile();
-      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-
+      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
       storageService.store(customerPhoto, filename);
-      customer.setCustomerImageName(filename);
+      customer.setCustomerPictureName(filename);
+    }
+    if (nomineePhoto != null) {
+      String nowTime = UtillDate.getNowTimeNameForFile();
+      String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
+      storageService.store(nomineePhoto, filename);
+      customer.setNomineePictureName(filename);
     }
     return new ResponseEntity<>(rlCustomerService.saveCustomer(customer), HttpStatus.CREATED);
   }
 
   @PutMapping("/update")
-  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ResourceNotFoundException {
+  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) throws ResourceNotFoundException, InterruptedException {
     if (customerPhoto != null) {
-      if (customer.getCustomerImageName() != null) {
-        storageService.store(customerPhoto, customer.getCustomerImageName());
+      if (customer.getCustomerPictureName() != null) {
+        storageService.store(customerPhoto, customer.getCustomerPictureName());
       } else {
         String nowTime = UtillDate.getNowTimeNameForFile();
-        String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+        String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
         storageService.store(customerPhoto, filename);
-        customer.setCustomerImageName(filename);
+        customer.setCustomerPictureName(filename);
+      }
+    }
+    if (nomineePhoto != null) {
+      if (customer.getNomineePictureName() != null) {
+        storageService.store(nomineePhoto, customer.getNomineePictureName());
+      } else {
+        String nowTime = UtillDate.getNowTimeNameForFile();
+        String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
+        storageService.store(nomineePhoto, filename);
+        customer.setCustomerPictureName(filename);
       }
     }
     return new ResponseEntity<>(rlCustomerService.updateCustomer(customer), HttpStatus.ACCEPTED);

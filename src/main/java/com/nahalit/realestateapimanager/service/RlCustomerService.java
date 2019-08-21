@@ -5,6 +5,7 @@ import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
 import com.nahalit.realestateapimanager.model.RlCustomer;
 import com.nahalit.realestateapimanager.repository.RlCustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class RlCustomerService {
   }
 
   public List<RlCustomer> getAllCustomer() {
-    return this.customerRepository.findAll();
+    return this.customerRepository.findAll(Sort.by("customerNo").ascending());
   }
 
   public RlCustomer getCustomer(Long customerNo) throws ResourceNotFoundException {
