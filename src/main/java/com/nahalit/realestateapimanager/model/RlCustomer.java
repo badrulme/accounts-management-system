@@ -3,327 +3,326 @@ package com.nahalit.realestateapimanager.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 //@Table(name = "RlCustomer")
 @Entity
 public class RlCustomer {
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
-  @SequenceGenerator(sequenceName = "S_RL_CUSTOMER", allocationSize = 1, name = "CUST_SEQ")
-  private Long customerNo;
-  @Column(unique = true)
-  private String customerId;
-  //  @Size(max = 65)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
+    @SequenceGenerator(sequenceName = "S_RL_CUSTOMER", allocationSize = 1, name = "CUST_SEQ")
+    private Long customerNo;
+    @Column(unique = true)
+    private String customerId;
+    //  @Size(max = 65)
 //  @Column(name = "first_name")
 //@Email
-  @NotNull
-  private String customerName;
-  private String fatherName;
-  private String motherName;
-  private String spouseName;
-  private String permanetAddress;
-  private String presentAddress;
-  private Date dob;
-  private String religion;
-  private String identityNumber;
-  private String nationality;
-  private String telephone;
-  @NotNull
-  private String mobile;
-  @Email
-  private String email;
-  private String contactPerson;
-  private String profession;
-  private String designation;
-  private String officeAddress;
-  private String customerPictureName;
-  private String nomineeName;
-  private String nomineeFatherName;
-  private String nomineeMotherName;
-  private String relationWithApplicants;
-  private String nomineePresentAddress;
-  private String nomineePermanentAddress;
-  private String nomineeMobile;
-  @Email
-  private String nomineeEmail;
-  private String nomineePictureName;
-  private String password;
-  private Long ssCreator;
-  private Date ssCreatedOn;
-  private Long ssModifier;
-  private Date ssModifiedOn;
-
-  public Long getCustomerNo() {
-    return customerNo;
-  }
-
-  public void setCustomerNo(Long customerNo) {
-    this.customerNo = customerNo;
-  }
-
-  public String getCustomerId() {
-    return customerId;
-  }
-
-  public void setCustomerId(String customerId) {
-    this.customerId = customerId;
-  }
-
-  public String getCustomerName() {
-    return customerName;
-  }
-
-  public void setCustomerName(String customerName) {
-    this.customerName = customerName;
-  }
-
-  public String getFatherName() {
-    return fatherName;
-  }
-
-  public void setFatherName(String fatherName) {
-    this.fatherName = fatherName;
-  }
-
-  public String getMotherName() {
-    return motherName;
-  }
-
-  public void setMotherName(String motherName) {
-    this.motherName = motherName;
-  }
-
-  public String getSpouseName() {
-    return spouseName;
-  }
-
-  public void setSpouseName(String spouseName) {
-    this.spouseName = spouseName;
-  }
-
-  public String getPermanetAddress() {
-    return permanetAddress;
-  }
-
-  public void setPermanetAddress(String permanetAddress) {
-    this.permanetAddress = permanetAddress;
-  }
-
-  public String getPresentAddress() {
-    return presentAddress;
-  }
-
-  public void setPresentAddress(String presentAddress) {
-    this.presentAddress = presentAddress;
-  }
-
-  public Date getDob() {
-    return dob;
-  }
+    @NotNull
+    private String customerName;
+    private String fatherName;
+    private String motherName;
+    private String spouseName;
+    private String permanetAddress;
+    private String presentAddress;
+    private Date dob;
+    private String religion;
+    private String nid;
+    private String nationality;
+    private String telephone;
+    private String mobile;
+    @Email
+    private String email;
+    private String contactPerson;
+    private String profession;
+    private String designation;
+    private String officeAddress;
+    private String customerPictureName;
+    private String nomineeName;
+    private String nomineeFatherName;
+    private String nomineeMotherName;
+    private String relationWithApplicants;
+    private String nomineePresentAddress;
+    private String nomineePermanentAddress;
+    private String nomineeMobile;
+    @Email
+    private String nomineeEmail;
+    private String nomineePictureName;
+    private String password;
+    private Long ssCreator;
+    private Date ssCreatedOn;
+    private Long ssModifier;
+    private Date ssModifiedOn;
+
+    public Long getCustomerNo() {
+        return customerNo;
+    }
+
+    public void setCustomerNo(Long customerNo) {
+        this.customerNo = customerNo;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
+    public String getMotherName() {
+        return motherName;
+    }
+
+    public void setMotherName(String motherName) {
+        this.motherName = motherName;
+    }
+
+    public String getSpouseName() {
+        return spouseName;
+    }
+
+    public void setSpouseName(String spouseName) {
+        this.spouseName = spouseName;
+    }
+
+    public String getPermanetAddress() {
+        return permanetAddress;
+    }
+
+    public void setPermanetAddress(String permanetAddress) {
+        this.permanetAddress = permanetAddress;
+    }
+
+    public String getPresentAddress() {
+        return presentAddress;
+    }
+
+    public void setPresentAddress(String presentAddress) {
+        this.presentAddress = presentAddress;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
 
-  public void setDob(Date dob) {
-    this.dob = dob;
-  }
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
 
-  public String getReligion() {
-    return religion;
-  }
+    public String getReligion() {
+        return religion;
+    }
 
-  public void setReligion(String religion) {
-    this.religion = religion;
-  }
+    public void setReligion(String religion) {
+        this.religion = religion;
+    }
 
-  public String getIdentityNumber() {
-    return identityNumber;
-  }
 
-  public void setIdentityNumber(String identityNumber) {
-    this.identityNumber = identityNumber;
-  }
+    public String getNid() {
+        return nid;
+    }
 
-  public String getNationality() {
-    return nationality;
-  }
+    public void setNid(String nid) {
+        this.nid = nid;
+    }
 
-  public void setNationality(String nationality) {
-    this.nationality = nationality;
-  }
+    public String getNationality() {
+        return nationality;
+    }
 
-  public String getTelephone() {
-    return telephone;
-  }
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
 
-  public void setTelephone(String telephone) {
-    this.telephone = telephone;
-  }
+    public String getTelephone() {
+        return telephone;
+    }
 
-  public String getMobile() {
-    return mobile;
-  }
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-  public void setMobile(String mobile) {
-    this.mobile = mobile;
-  }
+    public String getMobile() {
+        return mobile;
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public String getContactPerson() {
-    return contactPerson;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-  public void setContactPerson(String contactPerson) {
-    this.contactPerson = contactPerson;
-  }
+    public String getContactPerson() {
+        return contactPerson;
+    }
 
-  public String getProfession() {
-    return profession;
-  }
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
 
-  public void setProfession(String profession) {
-    this.profession = profession;
-  }
+    public String getProfession() {
+        return profession;
+    }
 
-  public String getDesignation() {
-    return designation;
-  }
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
 
-  public void setDesignation(String designation) {
-    this.designation = designation;
-  }
+    public String getDesignation() {
+        return designation;
+    }
 
-  public String getOfficeAddress() {
-    return officeAddress;
-  }
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
 
-  public void setOfficeAddress(String officeAddress) {
-    this.officeAddress = officeAddress;
-  }
+    public String getOfficeAddress() {
+        return officeAddress;
+    }
 
-  public String getCustomerPictureName() {
-    return customerPictureName;
-  }
+    public void setOfficeAddress(String officeAddress) {
+        this.officeAddress = officeAddress;
+    }
 
-  public void setCustomerPictureName(String customerPictureName) {
-    this.customerPictureName = customerPictureName;
-  }
+    public String getCustomerPictureName() {
+        return customerPictureName;
+    }
 
-  public String getNomineeName() {
-    return nomineeName;
-  }
+    public void setCustomerPictureName(String customerPictureName) {
+        this.customerPictureName = customerPictureName;
+    }
 
-  public void setNomineeName(String nomineeName) {
-    this.nomineeName = nomineeName;
-  }
+    public String getNomineeName() {
+        return nomineeName;
+    }
 
-  public String getNomineeFatherName() {
-    return nomineeFatherName;
-  }
+    public void setNomineeName(String nomineeName) {
+        this.nomineeName = nomineeName;
+    }
 
-  public void setNomineeFatherName(String nomineeFatherName) {
-    this.nomineeFatherName = nomineeFatherName;
-  }
+    public String getNomineeFatherName() {
+        return nomineeFatherName;
+    }
 
-  public String getNomineeMotherName() {
-    return nomineeMotherName;
-  }
+    public void setNomineeFatherName(String nomineeFatherName) {
+        this.nomineeFatherName = nomineeFatherName;
+    }
 
-  public void setNomineeMotherName(String nomineeMotherName) {
-    this.nomineeMotherName = nomineeMotherName;
-  }
+    public String getNomineeMotherName() {
+        return nomineeMotherName;
+    }
 
-  public String getRelationWithApplicants() {
-    return relationWithApplicants;
-  }
+    public void setNomineeMotherName(String nomineeMotherName) {
+        this.nomineeMotherName = nomineeMotherName;
+    }
 
-  public void setRelationWithApplicants(String relationWithApplicants) {
-    this.relationWithApplicants = relationWithApplicants;
-  }
+    public String getRelationWithApplicants() {
+        return relationWithApplicants;
+    }
 
-  public String getNomineePresentAddress() {
-    return nomineePresentAddress;
-  }
+    public void setRelationWithApplicants(String relationWithApplicants) {
+        this.relationWithApplicants = relationWithApplicants;
+    }
 
-  public void setNomineePresentAddress(String nomineePresentAddress) {
-    this.nomineePresentAddress = nomineePresentAddress;
-  }
+    public String getNomineePresentAddress() {
+        return nomineePresentAddress;
+    }
 
-  public String getNomineePermanentAddress() {
-    return nomineePermanentAddress;
-  }
+    public void setNomineePresentAddress(String nomineePresentAddress) {
+        this.nomineePresentAddress = nomineePresentAddress;
+    }
 
-  public void setNomineePermanentAddress(String nomineePermanentAddress) {
-    this.nomineePermanentAddress = nomineePermanentAddress;
-  }
+    public String getNomineePermanentAddress() {
+        return nomineePermanentAddress;
+    }
 
-  public String getNomineeMobile() {
-    return nomineeMobile;
-  }
+    public void setNomineePermanentAddress(String nomineePermanentAddress) {
+        this.nomineePermanentAddress = nomineePermanentAddress;
+    }
 
-  public void setNomineeMobile(String nomineeMobile) {
-    this.nomineeMobile = nomineeMobile;
-  }
+    public String getNomineeMobile() {
+        return nomineeMobile;
+    }
 
-  public String getNomineeEmail() {
-    return nomineeEmail;
-  }
+    public void setNomineeMobile(String nomineeMobile) {
+        this.nomineeMobile = nomineeMobile;
+    }
 
-  public void setNomineeEmail(String nomineeEmail) {
-    this.nomineeEmail = nomineeEmail;
-  }
+    public String getNomineeEmail() {
+        return nomineeEmail;
+    }
 
-  public String getNomineePictureName() {
-    return nomineePictureName;
-  }
+    public void setNomineeEmail(String nomineeEmail) {
+        this.nomineeEmail = nomineeEmail;
+    }
 
-  public void setNomineePictureName(String nomineePictureName) {
-    this.nomineePictureName = nomineePictureName;
-  }
+    public String getNomineePictureName() {
+        return nomineePictureName;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public void setNomineePictureName(String nomineePictureName) {
+        this.nomineePictureName = nomineePictureName;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public Long getSsCreator() {
-    return ssCreator;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public void setSsCreator(Long ssCreator) {
-    this.ssCreator = ssCreator;
-  }
+    public Long getSsCreator() {
+        return ssCreator;
+    }
 
-  public Date getSsCreatedOn() {
-    return ssCreatedOn;
-  }
+    public void setSsCreator(Long ssCreator) {
+        this.ssCreator = ssCreator;
+    }
 
-  public void setSsCreatedOn(Date ssCreatedOn) {
-    this.ssCreatedOn = ssCreatedOn;
-  }
+    public Date getSsCreatedOn() {
+        return ssCreatedOn;
+    }
 
-  public Long getSsModifier() {
-    return ssModifier;
-  }
+    public void setSsCreatedOn(Date ssCreatedOn) {
+        this.ssCreatedOn = ssCreatedOn;
+    }
 
-  public void setSsModifier(Long ssModifier) {
-    this.ssModifier = ssModifier;
-  }
+    public Long getSsModifier() {
+        return ssModifier;
+    }
 
-  public Date getSsModifiedOn() {
-    return ssModifiedOn;
-  }
+    public void setSsModifier(Long ssModifier) {
+        this.ssModifier = ssModifier;
+    }
 
-  public void setSsModifiedOn(Date ssModifiedOn) {
-    this.ssModifiedOn = ssModifiedOn;
-  }
+    public Date getSsModifiedOn() {
+        return ssModifiedOn;
+    }
+
+    public void setSsModifiedOn(Date ssModifiedOn) {
+        this.ssModifiedOn = ssModifiedOn;
+    }
 }
