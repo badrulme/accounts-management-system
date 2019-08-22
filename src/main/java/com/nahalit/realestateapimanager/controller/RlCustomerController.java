@@ -38,16 +38,16 @@ public class RlCustomerController {
   }
 
   @PostMapping("/add")
-  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @Valid @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) throws InterruptedException {
+  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @Valid @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) {
     if (customerPhoto != null) {
-      String nowTime = UtillDate.getNowTimeNameForFile();
-      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
+      String nowTime = UtillDate.getNowTimeNameForImage();
+      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
       storageService.store(customerPhoto, filename);
       customer.setCustomerPictureName(filename);
     }
     if (nomineePhoto != null) {
-      String nowTime = UtillDate.getNowTimeNameForFile();
-      String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
+      String nowTime = UtillDate.getNowTimeNameForImage();
+      String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
       storageService.store(nomineePhoto, filename);
       customer.setNomineePictureName(filename);
     }
@@ -55,13 +55,13 @@ public class RlCustomerController {
   }
 
   @PutMapping("/update")
-  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) throws ResourceNotFoundException, InterruptedException {
+  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) throws ResourceNotFoundException {
     if (customerPhoto != null) {
       if (customer.getCustomerPictureName() != null) {
         storageService.store(customerPhoto, customer.getCustomerPictureName());
       } else {
-        String nowTime = UtillDate.getNowTimeNameForFile();
-        String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
+        String nowTime = UtillDate.getNowTimeNameForImage();
+        String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
         storageService.store(customerPhoto, filename);
         customer.setCustomerPictureName(filename);
       }
@@ -70,8 +70,8 @@ public class RlCustomerController {
       if (customer.getNomineePictureName() != null) {
         storageService.store(nomineePhoto, customer.getNomineePictureName());
       } else {
-        String nowTime = UtillDate.getNowTimeNameForFile();
-        String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", "img_" + nowTime + "$2");
+        String nowTime = UtillDate.getNowTimeNameForImage();
+        String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
         storageService.store(nomineePhoto, filename);
         customer.setCustomerPictureName(filename);
       }

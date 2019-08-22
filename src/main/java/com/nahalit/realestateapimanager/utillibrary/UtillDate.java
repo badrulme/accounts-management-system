@@ -6,8 +6,15 @@ import java.time.format.DateTimeFormatter;
 public class UtillDate {
   public static String getNowTimeNameForFile() {
     LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMyyyyHHmmssms");
-    String formatDateTimeForFile = now.format(format);
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMyyHHmm");
+    String formatDateTimeForFile = "file_" + now.format(format) + RandomString.randomAlphaNumeric(4);
     return formatDateTimeForFile;
+  }
+
+  public static String getNowTimeNameForImage() {
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMyyHHmm");
+    String formatDateTimeForImage = "img_" + now.format(format) + RandomString.randomAlphaNumeric(4);
+    return formatDateTimeForImage;
   }
 }

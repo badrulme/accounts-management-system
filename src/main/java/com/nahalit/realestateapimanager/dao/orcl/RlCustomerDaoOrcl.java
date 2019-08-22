@@ -48,7 +48,7 @@ public class RlCustomerDaoOrcl implements RlCustomerDao {
     params.put("EMAIL", email);
     params.put("NEWPASSWORD", randomPassword);
     try {
-      int executeStatus = db.update(" UPDATE RE_CUSTOMER SET PASSWORD=:NEWPASSWORD WHERE EMAIL=:EMAIL", params);
+      int executeStatus = db.update("UPDATE RL_CUSTOMER SET PASSWORD=:NEWPASSWORD WHERE EMAIL=:EMAIL", params);
       if (executeStatus == 1) {
         String[] sendTo = email.trim().split(" ");
         emailService.sendEmail(sendTo, null, null, "Forgot Your Password", "Your updated password: " + randomPassword, false);
