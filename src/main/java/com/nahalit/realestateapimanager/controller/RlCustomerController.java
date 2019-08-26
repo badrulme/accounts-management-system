@@ -38,24 +38,18 @@ public class RlCustomerController {
   }
 
   @PostMapping("/add")
-  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @Valid @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) {
+  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) {
     if (customerPhoto != null) {
       String nowTime = UtillDate.getNowTimeNameForImage();
       String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
       storageService.store(customerPhoto, filename);
       customer.setCustomerPictureName(filename);
     }
-    if (nomineePhoto != null) {
-      String nowTime = UtillDate.getNowTimeNameForImage();
-      String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-      storageService.store(nomineePhoto, filename);
-      customer.setNomineePictureName(filename);
-    }
     return new ResponseEntity<>(rlCustomerService.saveCustomer(customer), HttpStatus.CREATED);
   }
 
   @PutMapping("/update")
-  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, @RequestParam(value = "nomineePhoto", required = false) MultipartFile nomineePhoto, RlCustomer customer) throws ResourceNotFoundException {
+  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ResourceNotFoundException {
     if (customerPhoto != null) {
       if (customer.getCustomerPictureName() != null) {
         storageService.store(customerPhoto, customer.getCustomerPictureName());
@@ -63,16 +57,6 @@ public class RlCustomerController {
         String nowTime = UtillDate.getNowTimeNameForImage();
         String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
         storageService.store(customerPhoto, filename);
-        customer.setCustomerPictureName(filename);
-      }
-    }
-    if (nomineePhoto != null) {
-      if (customer.getNomineePictureName() != null) {
-        storageService.store(nomineePhoto, customer.getNomineePictureName());
-      } else {
-        String nowTime = UtillDate.getNowTimeNameForImage();
-        String filename = StringUtils.cleanPath(nomineePhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-        storageService.store(nomineePhoto, filename);
         customer.setCustomerPictureName(filename);
       }
     }
