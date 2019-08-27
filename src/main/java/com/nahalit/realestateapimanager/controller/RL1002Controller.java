@@ -2,7 +2,7 @@ package com.nahalit.realestateapimanager.controller;
 
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
 import com.nahalit.realestateapimanager.model.RlCustomer;
-import com.nahalit.realestateapimanager.service.RlCustomerService;
+import com.nahalit.realestateapimanager.service.RL1002Service;
 import com.nahalit.realestateapimanager.storage.StorageService;
 import com.nahalit.realestateapimanager.utillibrary.RandomString;
 import com.nahalit.realestateapimanager.utillibrary.UtillDate;
@@ -18,23 +18,23 @@ import java.util.Map;
 
 @RequestMapping("api/rest/rl/customer")
 @RestController
-public class RlCustomerController {
-  private final RlCustomerService rlCustomerService;
+public class RL1002Controller {
+  private final RL1002Service RL1002Service;
   private final StorageService storageService;
 
-  public RlCustomerController(RlCustomerService rlCustomerService, StorageService storageService) {
-    this.rlCustomerService = rlCustomerService;
+  public RL1002Controller(RL1002Service RL1002Service, StorageService storageService) {
+    this.RL1002Service = RL1002Service;
     this.storageService = storageService;
   }
 
   @GetMapping("/")
   public ResponseEntity<List<RlCustomer>> getAllCustomer() {
-    return new ResponseEntity<>(rlCustomerService.getAllCustomer(), HttpStatus.OK);
+    return new ResponseEntity<>(RL1002Service.getAllCustomer(), HttpStatus.OK);
   }
 
   @GetMapping("/get-customer")
   public ResponseEntity<RlCustomer> getCustomer(@RequestParam(value = "customerNo", required = false) Long customerNo) throws ResourceNotFoundException {
-    return new ResponseEntity<>(rlCustomerService.getCustomer(customerNo), HttpStatus.OK);
+    return new ResponseEntity<>(RL1002Service.getCustomer(customerNo), HttpStatus.OK);
   }
 
   @PostMapping("/add")
@@ -45,7 +45,7 @@ public class RlCustomerController {
       storageService.store(customerPhoto, filename);
       customer.setCustomerPictureName(filename);
     }
-    return new ResponseEntity<>(rlCustomerService.saveCustomer(customer), HttpStatus.CREATED);
+    return new ResponseEntity<>(RL1002Service.saveCustomer(customer), HttpStatus.CREATED);
   }
 
   @PutMapping("/update")
@@ -60,25 +60,25 @@ public class RlCustomerController {
         customer.setCustomerPictureName(filename);
       }
     }
-    return new ResponseEntity<>(rlCustomerService.updateCustomer(customer), HttpStatus.ACCEPTED);
+    return new ResponseEntity<>(RL1002Service.updateCustomer(customer), HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping("/delete")
   public ResponseEntity<String> deleteCustoemr(@RequestParam Long customerNo) throws ResourceNotFoundException {
-    rlCustomerService.deleteCustomer(customerNo);
+    RL1002Service.deleteCustomer(customerNo);
     return new ResponseEntity<>("Customer Deleted Successfully", HttpStatus.OK);
   }
 
   @PostMapping("/login")
   public Map<String, Object> loginUser(@Valid @RequestParam String customerUsername, @RequestParam String password) {
-    return rlCustomerService.customerLogin(customerUsername, password);
+    return RL1002Service.customerLogin(customerUsername, password);
   }
 
   @PostMapping("/forgot-password")
   public String forgotPassword(@Valid @RequestParam String forgotMailOrMobile) {
     String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
     if (forgotMailOrMobile.matches(regex)) {
-      return rlCustomerService.forgotPasswordByMail(forgotMailOrMobile);
+      return RL1002Service.forgotPasswordByMail(forgotMailOrMobile);
     } else
       return "Not email: " + RandomString.randomAlphaNumeric(8);
   }

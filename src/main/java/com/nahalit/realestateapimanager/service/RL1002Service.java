@@ -1,6 +1,6 @@
 package com.nahalit.realestateapimanager.service;
 
-import com.nahalit.realestateapimanager.dao.RlCustomerDao;
+import com.nahalit.realestateapimanager.dao.RL1002Dao;
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
 import com.nahalit.realestateapimanager.model.RlCustomer;
 import com.nahalit.realestateapimanager.repository.RlCustomerRepository;
@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class RlCustomerService {
+public class RL1002Service {
 
   private RlCustomerRepository customerRepository;
-  private RlCustomerDao rlCustomerDao;
+  private RL1002Dao RL1002Dao;
 
   @Autowired
-  public RlCustomerService(RlCustomerRepository customerRepository, RlCustomerDao rlCustomerDao) {
+  public RL1002Service(RlCustomerRepository customerRepository, RL1002Dao RL1002Dao) {
     this.customerRepository = customerRepository;
-    this.rlCustomerDao = rlCustomerDao;
+    this.RL1002Dao = RL1002Dao;
   }
 
   public List<RlCustomer> getAllCustomer() {
@@ -46,10 +46,10 @@ public class RlCustomerService {
   }
 
   public Map<String, Object> customerLogin(String customerUsername, String password) {
-    return rlCustomerDao.isCustomerLogin(customerUsername, password);
+    return RL1002Dao.isCustomerLogin(customerUsername, password);
   }
 
   public String forgotPasswordByMail(String email) {
-    return rlCustomerDao.forgotPasswordByMail(email);
+    return RL1002Dao.forgotPasswordByMail(email);
   }
 }

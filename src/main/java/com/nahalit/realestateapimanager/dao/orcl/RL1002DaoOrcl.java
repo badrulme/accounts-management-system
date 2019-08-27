@@ -1,6 +1,6 @@
 package com.nahalit.realestateapimanager.dao.orcl;
 
-import com.nahalit.realestateapimanager.dao.RlCustomerDao;
+import com.nahalit.realestateapimanager.dao.RL1002Dao;
 import com.nahalit.realestateapimanager.service.EmailService;
 import com.nahalit.realestateapimanager.utillibrary.RandomString;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class RlCustomerDaoOrcl implements RlCustomerDao {
+public class RL1002DaoOrcl implements RL1002Dao {
   private final NamedParameterJdbcTemplate db;
   private final EmailService emailService;
 
-  public RlCustomerDaoOrcl(NamedParameterJdbcTemplate _db, EmailService emailService) {
+  public RL1002DaoOrcl(NamedParameterJdbcTemplate _db, EmailService emailService) {
     this.db = _db;
     this.emailService = emailService;
   }

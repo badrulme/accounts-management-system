@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RlItemService {
+public class RL1004Service {
     private final RlItemRepository rlItemRepository;
 
     @Autowired
-    public RlItemService(RlItemRepository rlItemRepository) {
+    public RL1004Service(RlItemRepository rlItemRepository) {
         this.rlItemRepository = rlItemRepository;
     }
 

@@ -1,9 +1,7 @@
 package com.nahalit.realestateapimanager.controller;
 
 import com.nahalit.realestateapimanager.model.RlItem;
-import com.nahalit.realestateapimanager.model.RlItemCategory;
-import com.nahalit.realestateapimanager.service.RlItemService;
-import oracle.jdbc.proxy.annotation.Post;
+import com.nahalit.realestateapimanager.service.RL1004Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,23 +14,23 @@ import java.util.List;
 
 @RequestMapping("api/rest/rl/item")
 @RestController
-public class RlItemController {
+public class RL1004Controller {
 
-    private final RlItemService rlItemService;
+    private final RL1004Service RL1004Service;
 
     @Autowired
-    public RlItemController(RlItemService rlItemService) {
-        this.rlItemService = rlItemService;
+    public RL1004Controller(RL1004Service RL1004Service) {
+        this.RL1004Service = RL1004Service;
     }
 
     @GetMapping("/")
     public ResponseEntity<List<RlItem>> getAllItem() {
-        return new ResponseEntity<>(this.rlItemService.getAllItem(), HttpStatus.OK);
+        return new ResponseEntity<>(this.RL1004Service.getAllItem(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<RlItem> saveItem(RlItem rlItem) {
-        return new ResponseEntity<>(this.rlItemService.saveRlItem(rlItem), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.RL1004Service.saveRlItem(rlItem), HttpStatus.CREATED);
     }
 
 }
