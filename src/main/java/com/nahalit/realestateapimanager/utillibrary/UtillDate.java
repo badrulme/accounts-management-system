@@ -7,14 +7,14 @@ public class UtillDate {
   public static String getNowTimeNameForFile() {
     LocalDateTime now = LocalDateTime.now();
     DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMyyHHmm");
-    String formatDateTimeForFile = "file_" + now.format(format) + RandomString.randomAlphaNumeric(4);
+    String formatDateTimeForFile = "file_" + now.format(format) + RandomString.randomAlphaNumeric(6);
     return formatDateTimeForFile;
   }
 
   public static String getNowTimeNameForImage() {
     LocalDateTime now = LocalDateTime.now();
     DateTimeFormatter format = DateTimeFormatter.ofPattern("ddMMyyHHmm");
-    String formatDateTimeForImage = "img_" + now.format(format) + RandomString.randomAlphaNumeric(4);
+    String formatDateTimeForImage = "img_" + now.format(format) + RandomString.randomAlphaNumeric(6);
     return formatDateTimeForImage;
   }
 }

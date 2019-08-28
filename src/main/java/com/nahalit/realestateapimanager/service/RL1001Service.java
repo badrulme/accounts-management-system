@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
-public class RlItemCategoryService {
+public class RL1001Service {
   private RlItemCategoryRepository reItemCategoryRepository;
 
   @Autowired
-  public RlItemCategoryService(RlItemCategoryRepository reItemCategoryRepository) {
+  public RL1001Service(RlItemCategoryRepository reItemCategoryRepository) {
     this.reItemCategoryRepository = reItemCategoryRepository;
   }
 

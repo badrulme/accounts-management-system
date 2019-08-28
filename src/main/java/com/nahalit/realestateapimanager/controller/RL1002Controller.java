@@ -70,7 +70,7 @@ public class RL1002Controller {
   }
 
   @PostMapping("/login")
-  public Map<String, Object> loginUser(@Valid @RequestParam String customerUsername, @RequestParam String password) {
+  public Map<String, Object> loginCustomer(@Valid @RequestParam String customerUsername, @RequestParam String password) {
     return RL1002Service.customerLogin(customerUsername, password);
   }
 
