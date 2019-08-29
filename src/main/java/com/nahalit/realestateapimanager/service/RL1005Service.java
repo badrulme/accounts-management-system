@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
-public class RL1004Service {
+public class RL1005Service {
   private final RlItemRepository rlItemRepository;
   private final RlItemVideoRepository rlItemVideoRepository;
   private final RlItemInstallmentRepository rlItemInstallmentRepository;
 
   @Autowired
-  public RL1004Service(RlItemRepository rlItemRepository, RlItemVideoRepository rlItemVideoRepository, RlItemInstallmentRepository rlItemInstallmentRepository) {
+  public RL1005Service(RlItemRepository rlItemRepository, RlItemVideoRepository rlItemVideoRepository, RlItemInstallmentRepository rlItemInstallmentRepository) {
     this.rlItemRepository = rlItemRepository;
     this.rlItemVideoRepository = rlItemVideoRepository;
     this.rlItemInstallmentRepository = rlItemInstallmentRepository;
