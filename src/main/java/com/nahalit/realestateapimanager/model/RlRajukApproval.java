@@ -5,41 +5,41 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-public class RlItemCategory {
+public class RlRajukApproval {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAT_SEQ")
-    @SequenceGenerator(sequenceName = "S_RL_ITEM_CATEGORY", allocationSize = 1, name = "CAT_SEQ")
-    private Long categoryNo;
-    private String categoryId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_RAJUK")
+    @SequenceGenerator(sequenceName = "S_RL_RAJUK_APPROVAL", allocationSize = 1, name = "RL_RAJUK")
+    private Long approvalNo;
     @NotNull
-    private String categoryName;
+    private String approvalId;
+    private String descr;
     private Long ssCreator;
     private Date ssCreatedOn;
     private Long ssModifier;
     private Date ssModifiedOn;
 
-    public Long getCategoryNo() {
-        return categoryNo;
+    public Long getApprovalNo() {
+        return approvalNo;
     }
 
-    public void setCategoryNo(Long categoryNo) {
-        this.categoryNo = categoryNo;
+    public void setApprovalNo(Long approvalNo) {
+        this.approvalNo = approvalNo;
     }
 
-    public String getCategoryId() {
-        return categoryId;
+    public String getApprovalId() {
+        return approvalId;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setApprovalId(String approvalId) {
+        this.approvalId = approvalId;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getDescr() {
+        return descr;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 
     public Long getSsCreator() {

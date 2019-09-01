@@ -1,7 +1,7 @@
 package com.nahalit.realestateapimanager.controller;
 
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
-import com.nahalit.realestateapimanager.model.RlItemCategory;
+import com.nahalit.realestateapimanager.model.RlRajukApproval;
 import com.nahalit.realestateapimanager.service.RL1001Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,36 +13,36 @@ import java.util.List;
 @RequestMapping("api/rest/rl/configuration")
 @RestController
 public class RL1001Controller {
-  private final RL1001Service reItemCategoryService;
+  private final RL1001Service rl1001Service;
 
-  public RL1001Controller(RL1001Service reItemCategoryService) {
-    this.reItemCategoryService = reItemCategoryService;
+  public RL1001Controller(RL1001Service rl1001Service) {
+    this.rl1001Service = rl1001Service;
   }
 
-  // Item Category Controller
-  @GetMapping("/category/")
-  public ResponseEntity<List<RlItemCategory>> getAllCategory() {
-    return new ResponseEntity<>(reItemCategoryService.getAllItemCategory(), HttpStatus.OK);
+  // RL Rajuk Approval Controller
+  @GetMapping("/rajuk-approval/")
+  public ResponseEntity<List<RlRajukApproval>> getAllRajukApproval() {
+    return new ResponseEntity<>(rl1001Service.getAllRajukApproval(), HttpStatus.OK);
   }
 
-  @GetMapping("/category/get-item-category")
-  public ResponseEntity<RlItemCategory> getItemCategory(@Valid @RequestParam("categoryNo") Long categoryNo) throws ResourceNotFoundException {
-    return new ResponseEntity<>(reItemCategoryService.getItemCategory(categoryNo), HttpStatus.OK);
+  @GetMapping("/rajuk-approval/get-item-category")
+  public ResponseEntity<RlRajukApproval> getRajukApproval(@Valid @RequestParam("approvalNo") Long approvalNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(rl1001Service.getRajukApproval(approvalNo), HttpStatus.OK);
   }
 
-  @PostMapping("/category/add")
-  public ResponseEntity<RlItemCategory> saveItemCategory(RlItemCategory reItemCategory) {
-    return new ResponseEntity<>(reItemCategoryService.saveItemCategory(reItemCategory), HttpStatus.CREATED);
+  @PostMapping("/rajuk-approval/add")
+  public ResponseEntity<RlRajukApproval> saveRajukApproval(RlRajukApproval rlRajukApproval) {
+    return new ResponseEntity<>(rl1001Service.saveRajukApproval(rlRajukApproval), HttpStatus.CREATED);
   }
 
-  @PutMapping("/category/update")
-  public ResponseEntity<RlItemCategory> updateItemCategory(RlItemCategory reItemCategory) throws ResourceNotFoundException {
-    return new ResponseEntity<>(reItemCategoryService.updateCategory(reItemCategory), HttpStatus.ACCEPTED);
+  @PutMapping("/rajuk-approval/update")
+  public ResponseEntity<RlRajukApproval> updateRajukApproval(RlRajukApproval rlRajukApproval) throws ResourceNotFoundException {
+    return new ResponseEntity<>(rl1001Service.updateRajukApproval(rlRajukApproval), HttpStatus.ACCEPTED);
   }
 
-  @DeleteMapping("/category/delete")
-  public ResponseEntity<String> deleteCategory(@RequestParam Long categoryNo) {
-    this.reItemCategoryService.deleteCategory(categoryNo);
-    return new ResponseEntity<>("Item Category Deleted Successfully.", HttpStatus.OK);
+  @DeleteMapping("/rajuk-approval/delete")
+  public ResponseEntity<String> deleteRajukApproval(@RequestParam Long approvalNo) {
+    this.rl1001Service.deleteRajukApproval(approvalNo);
+    return new ResponseEntity<>("Rajuk Approval Deleted Successfully.", HttpStatus.OK);
   }
 }

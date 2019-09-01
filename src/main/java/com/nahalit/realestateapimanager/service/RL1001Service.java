@@ -1,8 +1,8 @@
 package com.nahalit.realestateapimanager.service;
 
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
-import com.nahalit.realestateapimanager.model.RlItemCategory;
-import com.nahalit.realestateapimanager.repository.RlItemCategoryRepository;
+import com.nahalit.realestateapimanager.model.RlRajukApproval;
+import com.nahalit.realestateapimanager.repository.RlRajukApprovalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,32 +11,34 @@ import java.util.concurrent.RejectedExecutionException;
 
 @Service
 public class RL1001Service {
-  private RlItemCategoryRepository reItemCategoryRepository;
+    private RlRajukApprovalRepository rlRajukApprovalRepository;
 
-  @Autowired
-  public RL1001Service(RlItemCategoryRepository reItemCategoryRepository) {
-    this.reItemCategoryRepository = reItemCategoryRepository;
-  }
+    @Autowired
+    public RL1001Service(RlRajukApprovalRepository rlRajukApprovalRepository) {
+        this.rlRajukApprovalRepository = rlRajukApprovalRepository;
+    }
 
-  public List<RlItemCategory> getAllItemCategory() {
-    return this.reItemCategoryRepository.findAll();
-  }
 
-  public RlItemCategory getItemCategory(Long categoryNo) throws ResourceNotFoundException {
-    return this.reItemCategoryRepository.findById(categoryNo).orElseThrow(() -> new ResourceNotFoundException("Item Category not found for this id:" + categoryNo));
-  }
+    // RL Rajuk Approval
+    public List<RlRajukApproval> getAllRajukApproval() {
+        return this.rlRajukApprovalRepository.findAll();
+    }
 
-  public RlItemCategory saveItemCategory(RlItemCategory reItemCategory) {
-    return this.reItemCategoryRepository.save(reItemCategory);
-  }
+    public RlRajukApproval getRajukApproval(Long approvalNo) throws ResourceNotFoundException {
+        return this.rlRajukApprovalRepository.findById(approvalNo).orElseThrow(() -> new ResourceNotFoundException("Rajuk Approval not found for this id:" + approvalNo));
+    }
 
-  public RlItemCategory updateCategory(RlItemCategory reItemCategory) throws ResourceNotFoundException {
-    this.reItemCategoryRepository.findById(reItemCategory.getCategoryNo()).orElseThrow(() -> new ResourceNotFoundException("Item Category not for this:" + reItemCategory.getCategoryNo()));
-    return this.reItemCategoryRepository.save(reItemCategory);
-  }
+    public RlRajukApproval saveRajukApproval(RlRajukApproval rlRajukApproval) {
+        return this.rlRajukApprovalRepository.save(rlRajukApproval);
+    }
 
-  public void deleteCategory(Long categoryNo) {
-    this.reItemCategoryRepository.findById(categoryNo).orElseThrow(() -> new RejectedExecutionException("Item Category not found for this id: " + categoryNo));
-    this.reItemCategoryRepository.deleteById(categoryNo);
-  }
+    public RlRajukApproval updateRajukApproval(RlRajukApproval rlRajukApproval) throws ResourceNotFoundException {
+        this.rlRajukApprovalRepository.findById(rlRajukApproval.getApprovalNo()).orElseThrow(() -> new ResourceNotFoundException("Rajuk Approval not for this:" + rlRajukApproval.getApprovalNo()));
+        return this.rlRajukApprovalRepository.save(rlRajukApproval);
+    }
+
+    public void deleteRajukApproval(Long approvalNo) {
+        this.rlRajukApprovalRepository.findById(approvalNo).orElseThrow(() -> new RejectedExecutionException("Rajuk Approval not found for this id: " + approvalNo));
+        this.rlRajukApprovalRepository.deleteById(approvalNo);
+    }
 }

@@ -16,6 +16,9 @@ public class RlItemInstallment {
     private Long ssModifier;
     private Date ssModifiedOn;
 
+    public RlItemInstallment() {
+    }
+
     public Long getInstallmentNo() {
         return installmentNo;
     }

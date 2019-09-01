@@ -1,6 +1,6 @@
 package com.nahalit.realestateapimanager.repository;
 
-import com.nahalit.realestateapimanager.model.RlItemInstallment;
+import com.nahalit.realestateapimanager.model.RlProject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RlItemInstallmentRepository extends JpaRepository<RlItemInstallment, Long> {
-    @Query("SELECT I FROM RlItemInstallment I where ITEM_NO=:ITEM_NO")
-    List<RlItemInstallment> findAllByItemNo(@Param("ITEM_NO") Long ITEM_NO);
+public interface RlProjectRepository extends JpaRepository<RlProject, Long> {
+    @Query("SELECT p FROM RlProject p WHERE PROJECT_TYPE = :PROJECT_TYPE")
+    List<RlProject> findByProjectCategory(@Param("PROJECT_TYPE") Long PROJECT_TYPE);
 }

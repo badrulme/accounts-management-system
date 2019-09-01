@@ -15,69 +15,36 @@ import java.util.concurrent.RejectedExecutionException;
 
 @Service
 public class RL1005Service {
-  private final RlItemRepository rlItemRepository;
-  private final RlItemVideoRepository rlItemVideoRepository;
-  private final RlItemInstallmentRepository rlItemInstallmentRepository;
+    private final RlItemRepository rlItemRepository;
 
-  @Autowired
-  public RL1005Service(RlItemRepository rlItemRepository, RlItemVideoRepository rlItemVideoRepository, RlItemInstallmentRepository rlItemInstallmentRepository) {
-    this.rlItemRepository = rlItemRepository;
-    this.rlItemVideoRepository = rlItemVideoRepository;
-    this.rlItemInstallmentRepository = rlItemInstallmentRepository;
-  }
+    @Autowired
+    public RL1005Service(RlItemRepository rlItemRepository) {
+        this.rlItemRepository = rlItemRepository;
+    }
 
-  public List<RlItem> getAllItem() {
-    return this.rlItemRepository.findAll();
-  }
+    // RL Item For Apartment
+    public List<RlItem> getAllApItem() {
+        return this.rlItemRepository.findAllByItemType(2L);
+    }
 
-  public RlItem saveRlItem(RlItem rlItem) {
-    return this.rlItemRepository.save(rlItem);
-  }
+    public RlItem getApItem(Long itemNo) {
+        return this.rlItemRepository.findItemByIdAndType(itemNo, 2L);
+    }
 
-  // RL Item Video Service
-  public List<RlItemVideo> getAllRlItemVideo() {
-    return this.rlItemVideoRepository.findAll();
-  }
+    public RlItem saveApRlItem(RlItem rlItem) {
+        rlItem.setItemType(2L);
+        return this.rlItemRepository.save(rlItem);
+    }
 
-  public RlItemVideo getRlItemVideo(Long videoNo) throws ResourceNotFoundException {
-    return this.rlItemVideoRepository.findById(videoNo).orElseThrow(() -> new ResourceNotFoundException("Item Video not found for this id:" + videoNo));
-  }
+    public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException {
+        this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Item not for this id:" + rlItem.getItemNo()));
+        return this.rlItemRepository.save(rlItem);
+    }
 
-  public RlItemVideo saveRlItemVideo(RlItemVideo reRlItemVideo) {
-    return this.rlItemVideoRepository.save(reRlItemVideo);
-  }
-
-  public RlItemVideo updateRlItemVideo(RlItemVideo reRlItemVideo) throws ResourceNotFoundException {
-    this.rlItemVideoRepository.findById(reRlItemVideo.getVideoNo()).orElseThrow(() -> new ResourceNotFoundException("Item Video not for this:" + reRlItemVideo.getVideoNo()));
-    return this.rlItemVideoRepository.save(reRlItemVideo);
-  }
-
-  public void deleteRlItemVideo(Long videoNo) {
-    this.rlItemVideoRepository.findById(videoNo).orElseThrow(() -> new RejectedExecutionException("Item Video not found for this id: " + videoNo));
-    this.rlItemVideoRepository.deleteById(videoNo);
-  }
-
-  // RL Item Installment Service
-  public List<RlItemInstallment> getAllRlItemInstallment() {
-    return this.rlItemInstallmentRepository.findAll();
-  }
-
-  public RlItemInstallment getRlItemInstallment(Long installmentNo) throws ResourceNotFoundException {
-    return this.rlItemInstallmentRepository.findById(installmentNo).orElseThrow(() -> new ResourceNotFoundException("Item Installment not found for this id:" + installmentNo));
-  }
-
-  public RlItemInstallment saveRlItemInstallment(RlItemInstallment reRlItemInstallment) {
-    return this.rlItemInstallmentRepository.save(reRlItemInstallment);
-  }
-
-  public RlItemInstallment updateRlItemInstallment(RlItemInstallment reRlItemInstallment) throws ResourceNotFoundException {
-    this.rlItemInstallmentRepository.findById(reRlItemInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Item Installment not for this:" + reRlItemInstallment.getInstallmentNo()));
-    return this.rlItemInstallmentRepository.save(reRlItemInstallment);
-  }
+    public void deleteApRlItem(Long itemNo) {
+        this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Apartment Item not found for this id: " + itemNo));
+        this.rlItemRepository.deleteById(itemNo);
+    }
 
 
-  public void deleteRlItemInstallment(Long installmentNo) {
-    this.rlItemInstallmentRepository.findById(installmentNo).orElseThrow(() -> new RejectedExecutionException("Item Installment not found for this id: " + installmentNo));
-    this.rlItemInstallmentRepository.deleteById(installmentNo);
-  }
 }
