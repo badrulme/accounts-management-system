@@ -14,11 +14,12 @@ import java.util.concurrent.RejectedExecutionException;
 @Service
 public class RL1001Service {
   private RlRajukApprovalRepository rlRajukApprovalRepository;
-  private RlFacingRepository rlFacingRepository;
+  private  RlFacingRepository rlFacingRepository;
 
   @Autowired
-  public RL1001Service(RlRajukApprovalRepository rlRajukApprovalRepository) {
+  public RL1001Service(RlRajukApprovalRepository rlRajukApprovalRepository, RlFacingRepository rlFacingRepository) {
     this.rlRajukApprovalRepository = rlRajukApprovalRepository;
+    this.rlFacingRepository = rlFacingRepository;
   }
 
   // RL Rajuk Approval

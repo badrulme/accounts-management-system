@@ -7,7 +7,7 @@ import java.util.Date;
 public class RlFacing {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item_facing")
-  @SequenceGenerator(sequenceName = "s_rl_item_facing", allocationSize = 1, name = "rl_item_facing")
+  @SequenceGenerator(sequenceName = "s_rl_facing", allocationSize = 1, name = "rl_item_facing")
   private Long facingNo;
   private String facingName;
   private Long ssCreator;
