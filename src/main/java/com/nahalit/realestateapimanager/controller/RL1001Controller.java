@@ -1,6 +1,7 @@
 package com.nahalit.realestateapimanager.controller;
 
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
+import com.nahalit.realestateapimanager.model.RlFacing;
 import com.nahalit.realestateapimanager.model.RlRajukApproval;
 import com.nahalit.realestateapimanager.service.RL1001Service;
 import org.springframework.http.HttpStatus;
@@ -44,5 +45,32 @@ public class RL1001Controller {
   public ResponseEntity<String> deleteRajukApproval(@RequestParam Long approvalNo) {
     this.rl1001Service.deleteRajukApproval(approvalNo);
     return new ResponseEntity<>("Rajuk Approval Deleted Successfully.", HttpStatus.OK);
+  }
+
+  // RL Facing Setup Controller
+  @GetMapping("/facing/")
+  public ResponseEntity<List<RlFacing>> getAllfacing() {
+    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
+  }
+
+  @GetMapping("/facing/get-item-category")
+  public ResponseEntity<RlFacing> getFacing(@Valid @RequestParam("facingNo") Long facingNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(rl1001Service.getFacing(facingNo), HttpStatus.OK);
+  }
+
+  @PostMapping("/facing/add")
+  public ResponseEntity<RlFacing> saveFacing(RlFacing rlFacing) {
+    return new ResponseEntity<>(rl1001Service.saveFacing(rlFacing), HttpStatus.CREATED);
+  }
+
+  @PutMapping("/facing/update")
+  public ResponseEntity<RlFacing> updateFacing(RlFacing rlFacing) throws ResourceNotFoundException {
+    return new ResponseEntity<>(rl1001Service.updateFacing(rlFacing), HttpStatus.ACCEPTED);
+  }
+
+  @DeleteMapping("/facing/delete")
+  public ResponseEntity<String> deleteFacing(@RequestParam Long facingNo) {
+    this.rl1001Service.deleteFacing(facingNo);
+    return new ResponseEntity<>("Facing Deleted Successfully.", HttpStatus.OK);
   }
 }
