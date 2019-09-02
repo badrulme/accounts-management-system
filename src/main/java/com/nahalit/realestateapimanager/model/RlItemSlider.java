@@ -3,6 +3,7 @@ package com.nahalit.realestateapimanager.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -12,16 +13,24 @@ public class RlItemSlider {
     @SequenceGenerator(sequenceName = "s_rl_item_slider", allocationSize = 1, name = "rl_item_slider")
     private Long sliderNo;
     private String imageName;
-
-    //    private Long itemNo;, referencedColumnName = "itemNo"
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_no")
-    @JsonBackReference
-    private RlItem rlItem;
+    @NotNull
+    private Long itemNo;
+    //    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "item_no")
+//    @JsonBackReference
+//    private RlItem rlItem;
     private Long ssCreator;
     private Date ssCreatedOn;
     private Long ssModifier;
     private Date ssModifiedOn;
+
+    public Long getItemNo() {
+        return itemNo;
+    }
+
+    public void setItemNo(Long itemNo) {
+        this.itemNo = itemNo;
+    }
 
     public Long getSliderNo() {
         return sliderNo;
@@ -37,14 +46,6 @@ public class RlItemSlider {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
-    }
-
-    public RlItem getRlItem() {
-        return rlItem;
-    }
-
-    public void setRlItem(RlItem rlItem) {
-        this.rlItem = rlItem;
     }
 
     public Long getSsCreator() {
