@@ -5,6 +5,7 @@ import com.nahalit.realestateapimanager.model.RlItemVideo;
 import com.nahalit.realestateapimanager.repository.RlItemVideoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
 
@@ -42,8 +43,24 @@ public class RlItemVideoService {
         return this.rlItemVideoRepository.save(reRlItemVideo);
     }
 
+    public List<RlItemVideo> updateRlItemVideoList(List<RlItemVideo> reRlItemVideos) throws ResourceNotFoundException {
+        List<RlItemVideo> saveList = new ArrayList<>();
+        for (RlItemVideo reRlItemVideo : reRlItemVideos) {
+            this.rlItemVideoRepository.findById(reRlItemVideo.getVideoNo()).orElseThrow(() -> new ResourceNotFoundException("Item Video not for this:" + reRlItemVideo.getVideoNo()));
+            saveList.add(this.rlItemVideoRepository.save(reRlItemVideo));
+        }
+        return saveList;
+    }
+
     public void deleteRlItemVideo(Long videoNo) {
         this.rlItemVideoRepository.findById(videoNo).orElseThrow(() -> new RejectedExecutionException("Item Video not found for this id: " + videoNo));
         this.rlItemVideoRepository.deleteById(videoNo);
+    }
+
+    public void deleteRlItemVideoList(List<RlItemVideo> reRlItemVideos) {
+        for (RlItemVideo rlItemVideo : reRlItemVideos) {
+            this.rlItemVideoRepository.findById(rlItemVideo.getVideoNo()).orElseThrow(() -> new RejectedExecutionException("Item Video not found for this id: " + rlItemVideo.getVideoNo()));
+            this.rlItemVideoRepository.deleteById(rlItemVideo.getVideoNo());
+        }
     }
 }

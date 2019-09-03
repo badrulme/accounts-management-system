@@ -17,10 +17,12 @@ public class RlItemInstallmentController {
 
 
     private final RlItemInstallmentService rlItemInstallmentService;
+
     @Autowired
     public RlItemInstallmentController(RlItemInstallmentService rlItemInstallmentService) {
         this.rlItemInstallmentService = rlItemInstallmentService;
     }
+
     // RL Item Installment Controller
     @GetMapping("/")
     public ResponseEntity<List<RlItemInstallment>> getAllInstallment() {
@@ -52,9 +54,20 @@ public class RlItemInstallmentController {
         return new ResponseEntity<>(rlItemInstallmentService.updateRlItemInstallment(reItemInstallment), HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/update-list")
+    public ResponseEntity<List<RlItemInstallment>> updateItemInstallmentList(@RequestBody List<RlItemInstallment> reItemInstallments) throws ResourceNotFoundException {
+        return new ResponseEntity<>(rlItemInstallmentService.updateRlItemInstallmentList(reItemInstallments), HttpStatus.ACCEPTED);
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteInstallment(@RequestParam Long installmentNo) {
         this.rlItemInstallmentService.deleteRlItemInstallment(installmentNo);
+        return new ResponseEntity<>("Item Installment Deleted Successfully.", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-list")
+    public ResponseEntity<String> deleteInstallment(@RequestBody List<RlItemInstallment> rlItemInstallments) {
+        this.rlItemInstallmentService.deleteRlItemInstallmentList(rlItemInstallments);
         return new ResponseEntity<>("Item Installment Deleted Successfully.", HttpStatus.OK);
     }
 }

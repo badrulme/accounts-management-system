@@ -50,9 +50,20 @@ public class RlItemVideoController {
         return new ResponseEntity<>(this.rlItemVideoService.updateRlItemVideo(reItemVideo), HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/update-list")
+    public ResponseEntity<List<RlItemVideo>> updateItemVideoList(@RequestBody List<RlItemVideo> reItemVideos) throws ResourceNotFoundException {
+        return new ResponseEntity<>(this.rlItemVideoService.updateRlItemVideoList(reItemVideos), HttpStatus.ACCEPTED);
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteVideo(@RequestParam Long installmentNo) {
         this.rlItemVideoService.deleteRlItemVideo(installmentNo);
+        return new ResponseEntity<>("Item Video Deleted Successfully.", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-list")
+    public ResponseEntity<String> deleteVideoList(@RequestBody List<RlItemVideo> reItemVideos) {
+        this.rlItemVideoService.deleteRlItemVideoList(reItemVideos);
         return new ResponseEntity<>("Item Video Deleted Successfully.", HttpStatus.OK);
     }
 }

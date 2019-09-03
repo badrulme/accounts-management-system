@@ -30,13 +30,13 @@ public class RL1004Controller {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlProject> saveLandProject(RlProject rlProject) {
+    public ResponseEntity<RlProject> saveLandProject(@RequestBody RlProject rlProject) {
         return new ResponseEntity<>(rl1004Service.saveRlProject(rlProject), HttpStatus.CREATED);
     }
 
 
     @PutMapping("/update")
-    public ResponseEntity<RlProject> updateLandProject(RlProject rlProject) throws ResourceNotFoundException {
+    public ResponseEntity<RlProject> updateLandProject(@RequestBody RlProject rlProject) throws ResourceNotFoundException {
         return new ResponseEntity<>(rl1004Service.updateRlProject(rlProject), HttpStatus.ACCEPTED);
     }
 

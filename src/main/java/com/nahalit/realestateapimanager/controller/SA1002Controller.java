@@ -19,7 +19,7 @@ public class SA1002Controller {
     }
 
     @GetMapping("/user-menu")
-    public List getUserMenu(@Valid @RequestParam(value = "menuId", required = false) String menuId, @Valid @RequestParam(value = "submenuType", required = false) String submenuType, @Valid @RequestParam String empNo) {
-        return sa1002Service.getUserMenu(menuId, submenuType, empNo);
+    public List getUserMenu(@Valid @RequestParam(value = "menuId", required = false) String menuId,@Valid @RequestParam(value = "submenuId", required = false) String submenuId, @Valid @RequestParam(value = "submenuType", required = false) String submenuType, @Valid @RequestParam String empNo) {
+        return sa1002Service.getUserMenu(menuId, submenuType, empNo,submenuId);
     }
 }

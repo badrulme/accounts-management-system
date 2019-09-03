@@ -20,32 +20,6 @@ public class RL1001Controller {
     this.rl1001Service = rl1001Service;
   }
 
-  // RL Rajuk Approval Controller
-  @GetMapping("/rajuk-approval/")
-  public ResponseEntity<List<RlRajukApproval>> getAllRajukApproval() {
-    return new ResponseEntity<>(rl1001Service.getAllRajukApproval(), HttpStatus.OK);
-  }
-
-  @GetMapping("/rajuk-approval/get-item-category")
-  public ResponseEntity<RlRajukApproval> getRajukApproval(@Valid @RequestParam("approvalNo") Long approvalNo) throws ResourceNotFoundException {
-    return new ResponseEntity<>(rl1001Service.getRajukApproval(approvalNo), HttpStatus.OK);
-  }
-
-  @PostMapping("/rajuk-approval/add")
-  public ResponseEntity<RlRajukApproval> saveRajukApproval(RlRajukApproval rlRajukApproval) {
-    return new ResponseEntity<>(rl1001Service.saveRajukApproval(rlRajukApproval), HttpStatus.CREATED);
-  }
-
-  @PutMapping("/rajuk-approval/update")
-  public ResponseEntity<RlRajukApproval> updateRajukApproval(RlRajukApproval rlRajukApproval) throws ResourceNotFoundException {
-    return new ResponseEntity<>(rl1001Service.updateRajukApproval(rlRajukApproval), HttpStatus.ACCEPTED);
-  }
-
-  @DeleteMapping("/rajuk-approval/delete")
-  public ResponseEntity<String> deleteRajukApproval(@RequestParam Long approvalNo) {
-    this.rl1001Service.deleteRajukApproval(approvalNo);
-    return new ResponseEntity<>("Rajuk Approval Deleted Successfully.", HttpStatus.OK);
-  }
 
   // RL Facing Setup Controller
   @GetMapping("/facing/")
@@ -59,12 +33,12 @@ public class RL1001Controller {
   }
 
   @PostMapping("/facing/add")
-  public ResponseEntity<RlFacing> saveFacing(RlFacing rlFacing) {
+  public ResponseEntity<RlFacing> saveFacing(@RequestBody RlFacing rlFacing) {
     return new ResponseEntity<>(rl1001Service.saveFacing(rlFacing), HttpStatus.CREATED);
   }
 
   @PutMapping("/facing/update")
-  public ResponseEntity<RlFacing> updateFacing(RlFacing rlFacing) throws ResourceNotFoundException {
+  public ResponseEntity<RlFacing> updateFacing(@RequestBody RlFacing rlFacing) throws ResourceNotFoundException {
     return new ResponseEntity<>(rl1001Service.updateFacing(rlFacing), HttpStatus.ACCEPTED);
   }
 

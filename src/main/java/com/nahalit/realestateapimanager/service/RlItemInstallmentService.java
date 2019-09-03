@@ -5,6 +5,7 @@ import com.nahalit.realestateapimanager.model.RlItemInstallment;
 import com.nahalit.realestateapimanager.repository.RlItemInstallmentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
 
@@ -37,13 +38,29 @@ public class RlItemInstallmentService {
         return this.rlItemInstallmentRepository.saveAll(rlItemInstallments);
     }
 
-    public RlItemInstallment updateRlItemInstallment(RlItemInstallment reRlItemInstallment) throws ResourceNotFoundException {
-        this.rlItemInstallmentRepository.findById(reRlItemInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Item Installment not for this:" + reRlItemInstallment.getInstallmentNo()));
-        return this.rlItemInstallmentRepository.save(reRlItemInstallment);
+    public RlItemInstallment updateRlItemInstallment(RlItemInstallment RlItemInstallment) throws ResourceNotFoundException {
+        this.rlItemInstallmentRepository.findById(RlItemInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Item Installment not for this:" + RlItemInstallment.getInstallmentNo()));
+        return this.rlItemInstallmentRepository.save(RlItemInstallment);
+    }
+
+    public List<RlItemInstallment> updateRlItemInstallmentList(List<RlItemInstallment> rlItemInstallments) throws ResourceNotFoundException {
+        List<RlItemInstallment> saveList = new ArrayList<>();
+        for (RlItemInstallment rlItemInstallment : rlItemInstallments) {
+            this.rlItemInstallmentRepository.findById(rlItemInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Item Installment not for this:" + rlItemInstallment.getInstallmentNo()));
+            saveList.add(this.rlItemInstallmentRepository.save(rlItemInstallment));
+        }
+        return saveList;
     }
 
     public void deleteRlItemInstallment(Long installmentNo) {
         this.rlItemInstallmentRepository.findById(installmentNo).orElseThrow(() -> new RejectedExecutionException("Item Installment not found for this id: " + installmentNo));
         this.rlItemInstallmentRepository.deleteById(installmentNo);
+    }
+
+    public void deleteRlItemInstallmentList(List<RlItemInstallment> rlItemInstallments) {
+        for (RlItemInstallment rlItemInstallment : rlItemInstallments) {
+            this.rlItemInstallmentRepository.findById(rlItemInstallment.getInstallmentNo()).orElseThrow(() -> new RejectedExecutionException("Item Installment not found for this id: " + rlItemInstallment.getInstallmentNo()));
+            this.rlItemInstallmentRepository.deleteById(rlItemInstallment.getInstallmentNo());
+        }
     }
 }
