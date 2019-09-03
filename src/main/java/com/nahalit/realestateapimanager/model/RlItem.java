@@ -12,7 +12,6 @@ public class RlItem {
   private String itemId;
   private Long projectNo;
   private Long plotType;
-  private Long approvalNo;
   private Long roadSize;
   private Long facingNo;
   private String blockName;
@@ -69,14 +68,6 @@ public class RlItem {
 
   public void setPlotType(Long plotType) {
     this.plotType = plotType;
-  }
-
-  public Long getApprovalNo() {
-    return approvalNo;
-  }
-
-  public void setApprovalNo(Long approvalNo) {
-    this.approvalNo = approvalNo;
   }
 
   public Long getRoadSize() {
