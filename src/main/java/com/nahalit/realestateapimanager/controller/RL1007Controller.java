@@ -31,7 +31,7 @@ public class RL1007Controller {
         return new ResponseEntity<>(this.rl1007Service.getAllLandItem(), HttpStatus.OK);
     }
     @GetMapping("/get-item")
-    public ResponseEntity<RlItem> getAPItem(@RequestParam Long itemNo){
+    public ResponseEntity<RlItem> getALandtem(@RequestParam Long itemNo){
         return new ResponseEntity<>(this.rl1007Service.getApItem(itemNo),HttpStatus.OK);
     }
 

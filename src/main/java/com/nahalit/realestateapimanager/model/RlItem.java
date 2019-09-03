@@ -13,25 +13,25 @@ public class RlItem {
   private Long projectNo;
   private Long plotType;
   private Long approvalNo;
-  private int roadSize;
+  private Long roadSize;
   private Long facingNo;
   private String blockName;
-  private int plotSize;
+  private Long plotSize;
   private double price;
   private double totalPrice;
   private double flatSize;
-  private int flatPlaceofStorid;
-  private int flatNo;
-  private int numberOfLift;
+  private Long flatPlaceofStorid;
+  private Long flatNo;
+  private Long numberOfLift;
   private String decorationCondition;
-  private int bedRoom;
-  private int livingAndDining;
-  private int kitchen;
-  private int varanda;
-  private int toilets;
-  private int swimmingPool;
-  private int gym;
-  private int parkingFlag;
+  private Long bedRoom;
+  private Long livingAndDining;
+  private Long kitchen;
+  private Long varanda;
+  private Long toilets;
+  private Long swimmingPool;
+  private Long gym;
+  private Long parkingFlag;
   private double parkingPrice;
   private Long itemType;
   private Date ssCreatedOn;
@@ -79,11 +79,11 @@ public class RlItem {
     this.approvalNo = approvalNo;
   }
 
-  public int getRoadSize() {
+  public Long getRoadSize() {
     return roadSize;
   }
 
-  public void setRoadSize(int roadSize) {
+  public void setRoadSize(Long roadSize) {
     this.roadSize = roadSize;
   }
 
@@ -99,23 +99,15 @@ public class RlItem {
     return blockName;
   }
 
-  public Long getItemType() {
-    return itemType;
-  }
-
-  public void setItemType(Long itemType) {
-    this.itemType = itemType;
-  }
-
   public void setBlockName(String blockName) {
     this.blockName = blockName;
   }
 
-  public int getPlotSize() {
+  public Long getPlotSize() {
     return plotSize;
   }
 
-  public void setPlotSize(int plotSize) {
+  public void setPlotSize(Long plotSize) {
     this.plotSize = plotSize;
   }
 
@@ -143,27 +135,27 @@ public class RlItem {
     this.flatSize = flatSize;
   }
 
-  public int getFlatPlaceofStorid() {
+  public Long getFlatPlaceofStorid() {
     return flatPlaceofStorid;
   }
 
-  public void setFlatPlaceofStorid(int flatPlaceofStorid) {
+  public void setFlatPlaceofStorid(Long flatPlaceofStorid) {
     this.flatPlaceofStorid = flatPlaceofStorid;
   }
 
-  public int getFlatNo() {
+  public Long getFlatNo() {
     return flatNo;
   }
 
-  public void setFlatNo(int flatNo) {
+  public void setFlatNo(Long flatNo) {
     this.flatNo = flatNo;
   }
 
-  public int getNumberOfLift() {
+  public Long getNumberOfLift() {
     return numberOfLift;
   }
 
-  public void setNumberOfLift(int numberOfLift) {
+  public void setNumberOfLift(Long numberOfLift) {
     this.numberOfLift = numberOfLift;
   }
 
@@ -175,67 +167,67 @@ public class RlItem {
     this.decorationCondition = decorationCondition;
   }
 
-  public int getBedRoom() {
+  public Long getBedRoom() {
     return bedRoom;
   }
 
-  public void setBedRoom(int bedRoom) {
+  public void setBedRoom(Long bedRoom) {
     this.bedRoom = bedRoom;
   }
 
-  public int getLivingAndDining() {
+  public Long getLivingAndDining() {
     return livingAndDining;
   }
 
-  public void setLivingAndDining(int livingAndDining) {
+  public void setLivingAndDining(Long livingAndDining) {
     this.livingAndDining = livingAndDining;
   }
 
-  public int getKitchen() {
+  public Long getKitchen() {
     return kitchen;
   }
 
-  public void setKitchen(int kitchen) {
+  public void setKitchen(Long kitchen) {
     this.kitchen = kitchen;
   }
 
-  public int getVaranda() {
+  public Long getVaranda() {
     return varanda;
   }
 
-  public void setVaranda(int varanda) {
+  public void setVaranda(Long varanda) {
     this.varanda = varanda;
   }
 
-  public int getToilets() {
+  public Long getToilets() {
     return toilets;
   }
 
-  public void setToilets(int toilets) {
+  public void setToilets(Long toilets) {
     this.toilets = toilets;
   }
 
-  public int getSwimmingPool() {
+  public Long getSwimmingPool() {
     return swimmingPool;
   }
 
-  public void setSwimmingPool(int swimmingPool) {
+  public void setSwimmingPool(Long swimmingPool) {
     this.swimmingPool = swimmingPool;
   }
 
-  public int getGym() {
+  public Long getGym() {
     return gym;
   }
 
-  public void setGym(int gym) {
+  public void setGym(Long gym) {
     this.gym = gym;
   }
 
-  public int getParkingFlag() {
+  public Long getParkingFlag() {
     return parkingFlag;
   }
 
-  public void setParkingFlag(int parkingFlag) {
+  public void setParkingFlag(Long parkingFlag) {
     this.parkingFlag = parkingFlag;
   }
 
@@ -245,6 +237,14 @@ public class RlItem {
 
   public void setParkingPrice(double parkingPrice) {
     this.parkingPrice = parkingPrice;
+  }
+
+  public Long getItemType() {
+    return itemType;
+  }
+
+  public void setItemType(Long itemType) {
+    this.itemType = itemType;
   }
 
   public Date getSsCreatedOn() {

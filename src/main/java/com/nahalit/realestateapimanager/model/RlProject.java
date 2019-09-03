@@ -15,17 +15,17 @@ public class RlProject {
   private String descr;
   private Long approvalNo;
   private String projectLocation;
-  private int plotSize;
+  private Long plotSize;
   private String blockNameFrom;
   private String blockNameTo;
-  private int landArea;
-  private int noOfStoried;
-  private int noOfLift;
+  private Long landArea;
+  private Long noOfStoried;
+  private Long noOfLift;
   private Long facingNo;
-  private int noOfFlat;
-  private int carParking;
+  private Long noOfFlat;
+  private Long carParking;
   private Date handOverTime;
-  private int openSpace;
+  private Long openSpace;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
@@ -87,11 +87,11 @@ public class RlProject {
     this.projectLocation = projectLocation;
   }
 
-  public int getPlotSize() {
+  public Long getPlotSize() {
     return plotSize;
   }
 
-  public void setPlotSize(int plotSize) {
+  public void setPlotSize(Long plotSize) {
     this.plotSize = plotSize;
   }
 
@@ -111,27 +111,27 @@ public class RlProject {
     this.blockNameTo = blockNameTo;
   }
 
-  public int getLandArea() {
+  public Long getLandArea() {
     return landArea;
   }
 
-  public void setLandArea(int landArea) {
+  public void setLandArea(Long landArea) {
     this.landArea = landArea;
   }
 
-  public int getNoOfStoried() {
+  public Long getNoOfStoried() {
     return noOfStoried;
   }
 
-  public void setNoOfStoried(int noOfStoried) {
+  public void setNoOfStoried(Long noOfStoried) {
     this.noOfStoried = noOfStoried;
   }
 
-  public int getNoOfLift() {
+  public Long getNoOfLift() {
     return noOfLift;
   }
 
-  public void setNoOfLift(int noOfLift) {
+  public void setNoOfLift(Long noOfLift) {
     this.noOfLift = noOfLift;
   }
 
@@ -143,19 +143,19 @@ public class RlProject {
     this.facingNo = facingNo;
   }
 
-  public int getNoOfFlat() {
+  public Long getNoOfFlat() {
     return noOfFlat;
   }
 
-  public void setNoOfFlat(int noOfFlat) {
+  public void setNoOfFlat(Long noOfFlat) {
     this.noOfFlat = noOfFlat;
   }
 
-  public int getCarParking() {
+  public Long getCarParking() {
     return carParking;
   }
 
-  public void setCarParking(int carParking) {
+  public void setCarParking(Long carParking) {
     this.carParking = carParking;
   }
 
@@ -167,11 +167,11 @@ public class RlProject {
     this.handOverTime = handOverTime;
   }
 
-  public int getOpenSpace() {
+  public Long getOpenSpace() {
     return openSpace;
   }
 
-  public void setOpenSpace(int openSpace) {
+  public void setOpenSpace(Long openSpace) {
     this.openSpace = openSpace;
   }
 

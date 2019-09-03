@@ -66,7 +66,7 @@ public class RlItemInstallmentController {
     }
 
     @DeleteMapping("/delete-list")
-    public ResponseEntity<String> deleteInstallment(@RequestBody List<RlItemInstallment> rlItemInstallments) {
+    public ResponseEntity<String> deleteInstallmentList(@RequestBody List<RlItemInstallment> rlItemInstallments) {
         this.rlItemInstallmentService.deleteRlItemInstallmentList(rlItemInstallments);
         return new ResponseEntity<>("Item Installment Deleted Successfully.", HttpStatus.OK);
     }

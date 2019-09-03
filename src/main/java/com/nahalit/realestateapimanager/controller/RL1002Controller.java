@@ -2,7 +2,9 @@ package com.nahalit.realestateapimanager.controller;
 
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
 import com.nahalit.realestateapimanager.model.RlCustomer;
+import com.nahalit.realestateapimanager.model.SaLookupdtl;
 import com.nahalit.realestateapimanager.service.RL1002Service;
+import com.nahalit.realestateapimanager.service.SA1004Service;
 import com.nahalit.realestateapimanager.storage.StorageService;
 import com.nahalit.realestateapimanager.utillibrary.RandomString;
 import com.nahalit.realestateapimanager.utillibrary.UtillDate;
@@ -21,10 +23,12 @@ import java.util.Map;
 public class RL1002Controller {
   private final RL1002Service RL1002Service;
   private final StorageService storageService;
+  private final SA1004Service sa1004Service;
 
-  public RL1002Controller(RL1002Service RL1002Service, StorageService storageService) {
+  public RL1002Controller(RL1002Service RL1002Service, StorageService storageService, SA1004Service sa1004Service) {
     this.RL1002Service = RL1002Service;
     this.storageService = storageService;
+    this.sa1004Service = sa1004Service;
   }
 
   @GetMapping("/")
@@ -81,6 +85,13 @@ public class RL1002Controller {
       return RL1002Service.forgotPasswordByMail(forgotMailOrMobile);
     } else
       return "Not email: " + RandomString.randomAlphaNumeric(8);
+  }
+
+
+  // Profession Info
+  @GetMapping("/get-profession")
+  public ResponseEntity<List<SaLookupdtl>> getProfession() {
+    return new ResponseEntity<>(sa1004Service.getAllLookupdtlList(7003L), HttpStatus.OK);
   }
 }
 

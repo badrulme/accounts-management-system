@@ -52,4 +52,5 @@ public class RL1002Service {
   public String forgotPasswordByMail(String email) {
     return RL1002Dao.forgotPasswordByMail(email);
   }
+
 }
