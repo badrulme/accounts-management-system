@@ -10,8 +10,8 @@
     </parent>
     <groupId>com.nahalit.realestate</groupId>
     <artifactId>realestate-api-manager</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>realestate-api-manager</name>
+    <version>1.5</version>
+    <name>Nahal mini ERP</name>
     <description>Real Estate API Manager</description>
 
     <properties>
