@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/item/video")
@@ -36,7 +37,7 @@ public class RlItemVideoController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlItemVideo> saveItemVideo(@RequestBody RlItemVideo reItemVideo) {
+    public ResponseEntity<RlItemVideo> saveItemVideo(@RequestBody RlItemVideo reItemVideo) throws ParseException {
         return new ResponseEntity<>(this.rlItemVideoService.saveRlItemVideo(reItemVideo), HttpStatus.CREATED);
     }
 
@@ -46,12 +47,12 @@ public class RlItemVideoController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<RlItemVideo> updateItemVideo(@RequestBody RlItemVideo reItemVideo) throws ResourceNotFoundException {
+    public ResponseEntity<RlItemVideo> updateItemVideo(@RequestBody RlItemVideo reItemVideo) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(this.rlItemVideoService.updateRlItemVideo(reItemVideo), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/update-list")
-    public ResponseEntity<List<RlItemVideo>> updateItemVideoList(@RequestBody List<RlItemVideo> reItemVideos) throws ResourceNotFoundException {
+    public ResponseEntity<List<RlItemVideo>> updateItemVideoList(@RequestBody List<RlItemVideo> reItemVideos) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(this.rlItemVideoService.updateRlItemVideoList(reItemVideos), HttpStatus.ACCEPTED);
     }
 

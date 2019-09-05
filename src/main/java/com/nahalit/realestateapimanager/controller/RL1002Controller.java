@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +43,7 @@ public class RL1002Controller {
   }
 
   @PostMapping("/add")
-  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) {
+  public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ParseException {
     if (customerPhoto != null) {
       String nowTime = UtillDate.getNowTimeNameForImage();
       String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
@@ -53,7 +54,7 @@ public class RL1002Controller {
   }
 
   @PutMapping("/update")
-  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ResourceNotFoundException {
+  public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ResourceNotFoundException, ParseException {
     if (customerPhoto != null) {
       if (customer.getCustomerPictureName() != null) {
         storageService.store(customerPhoto, customer.getCustomerPictureName());

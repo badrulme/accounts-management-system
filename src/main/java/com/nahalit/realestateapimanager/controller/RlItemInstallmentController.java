@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/item/installment")
@@ -40,7 +41,7 @@ public class RlItemInstallmentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlItemInstallment> saveItemInstallment(@RequestBody RlItemInstallment reItemInstallment) {
+    public ResponseEntity<RlItemInstallment> saveItemInstallment(@RequestBody RlItemInstallment reItemInstallment) throws ParseException {
         return new ResponseEntity<>(rlItemInstallmentService.saveRlItemInstallment(reItemInstallment), HttpStatus.CREATED);
     }
 
@@ -50,12 +51,12 @@ public class RlItemInstallmentController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<RlItemInstallment> updateItemInstallment(@RequestBody RlItemInstallment reItemInstallment) throws ResourceNotFoundException {
+    public ResponseEntity<RlItemInstallment> updateItemInstallment(@RequestBody RlItemInstallment reItemInstallment) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(rlItemInstallmentService.updateRlItemInstallment(reItemInstallment), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/update-list")
-    public ResponseEntity<List<RlItemInstallment>> updateItemInstallmentList(@RequestBody List<RlItemInstallment> reItemInstallments) throws ResourceNotFoundException {
+    public ResponseEntity<List<RlItemInstallment>> updateItemInstallmentList(@RequestBody List<RlItemInstallment> reItemInstallments) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(rlItemInstallmentService.updateRlItemInstallmentList(reItemInstallments), HttpStatus.ACCEPTED);
     }
 

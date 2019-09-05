@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/item/ap")
@@ -38,12 +39,12 @@ public class RL1005Controller {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlItem> saveItem(@RequestBody RlItem rlItem) {
+    public ResponseEntity<RlItem> saveItem(@RequestBody RlItem rlItem) throws ParseException {
         return new ResponseEntity<>(this.rL1005Service.saveApRlItem(rlItem), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<RlItem> updateItem(@RequestBody RlItem reItem) throws ResourceNotFoundException {
+    public ResponseEntity<RlItem> updateItem(@RequestBody RlItem reItem) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(rL1005Service.updateApRlItem(reItem), HttpStatus.ACCEPTED);
     }
 

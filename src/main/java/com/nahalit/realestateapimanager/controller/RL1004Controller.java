@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/project/land")
@@ -31,13 +32,13 @@ public class RL1004Controller {
   }
 
   @PostMapping("/add")
-  public ResponseEntity<RlProject> saveLandProject(@RequestBody RlProject rlProject) {
+  public ResponseEntity<RlProject> saveLandProject(@RequestBody RlProject rlProject) throws ParseException {
     return new ResponseEntity<>(rl1004Service.saveRlProject(rlProject), HttpStatus.CREATED);
   }
 
 
   @PutMapping("/update")
-  public ResponseEntity<RlProject> updateLandProject(@RequestBody RlProject rlProject) throws ResourceNotFoundException {
+  public ResponseEntity<RlProject> updateLandProject(@RequestBody RlProject rlProject) throws ResourceNotFoundException, ParseException {
     return new ResponseEntity<>(rl1004Service.updateRlProject(rlProject), HttpStatus.ACCEPTED);
   }
 
@@ -64,7 +65,7 @@ public class RL1004Controller {
   }
 
   @PostMapping("/size/add")
-  public ResponseEntity<RlItemSize> saveItemSize(@RequestBody RlItemSize rlItemSize) {
+  public ResponseEntity<RlItemSize> saveItemSize(@RequestBody RlItemSize rlItemSize) throws ParseException {
     return new ResponseEntity<>(this.rl1004Service.saveItemSize(rlItemSize), HttpStatus.CREATED);
   }
 
@@ -74,12 +75,12 @@ public class RL1004Controller {
   }
 
   @PutMapping("/size/update")
-  public ResponseEntity<RlItemSize> updateItemSize(@RequestBody RlItemSize rlItemSize) {
+  public ResponseEntity<RlItemSize> updateItemSize(@RequestBody RlItemSize rlItemSize) throws ParseException {
     return new ResponseEntity<>(this.rl1004Service.updateItemSize(rlItemSize), HttpStatus.ACCEPTED);
   }
 
   @PutMapping("/size/update-list")
-  public ResponseEntity<List<RlItemSize>> updateItemSizeList(@RequestBody List<RlItemSize> rlItemSizes) {
+  public ResponseEntity<List<RlItemSize>> updateItemSizeList(@RequestBody List<RlItemSize> rlItemSizes) throws ParseException {
     return new ResponseEntity<>(this.rl1004Service.updateItemSizeList(rlItemSizes), HttpStatus.ACCEPTED);
   }
 

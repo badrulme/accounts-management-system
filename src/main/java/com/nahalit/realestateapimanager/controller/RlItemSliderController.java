@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/item/slider")
@@ -42,7 +43,7 @@ public class RlItemSliderController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlItemSlider> saveItemSlider(@RequestParam MultipartFile multipartFile, RlItemSlider rlItemSlider) {
+    public ResponseEntity<RlItemSlider> saveItemSlider(@RequestParam MultipartFile multipartFile, RlItemSlider rlItemSlider) throws ParseException {
         if (multipartFile != null) {
             String nowTime = UtillDate.getNowTimeNameForImage();
             String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");

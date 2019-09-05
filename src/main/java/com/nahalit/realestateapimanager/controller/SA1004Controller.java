@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/setting")
@@ -32,12 +33,12 @@ public class SA1004Controller {
   }
 
   @PostMapping("/lookup/add")
-  public ResponseEntity<SaLookup> saveLookup(@RequestBody SaLookup saLookup) {
+  public ResponseEntity<SaLookup> saveLookup(@RequestBody SaLookup saLookup) throws ParseException {
     return new ResponseEntity<>(this.sa1004Service.saveLookup(saLookup), HttpStatus.CREATED);
   }
 
   @PutMapping("/lookup/update")
-  public ResponseEntity<SaLookup> updateLookup(@RequestBody SaLookup saLookup) throws ResourceNotFoundException {
+  public ResponseEntity<SaLookup> updateLookup(@RequestBody SaLookup saLookup) throws ResourceNotFoundException, ParseException {
     return new ResponseEntity<>(this.sa1004Service.updateLookup(saLookup), HttpStatus.ACCEPTED);
   }
 
@@ -64,7 +65,7 @@ public class SA1004Controller {
   }
 
   @PostMapping("/lookupdtl/add")
-  public ResponseEntity<SaLookupdtl> saveLookupdtl(@RequestBody SaLookupdtl saLookupdtl) {
+  public ResponseEntity<SaLookupdtl> saveLookupdtl(@RequestBody SaLookupdtl saLookupdtl) throws ParseException {
     return new ResponseEntity<>(this.sa1004Service.saveLookupdtl(saLookupdtl), HttpStatus.CREATED);
   }
 
@@ -74,12 +75,12 @@ public class SA1004Controller {
   }
 
   @PutMapping("/lookupdtl/update")
-  public ResponseEntity<SaLookupdtl> updateLookupdtl(@RequestBody SaLookupdtl saLookupdtl) throws ResourceNotFoundException {
+  public ResponseEntity<SaLookupdtl> updateLookupdtl(@RequestBody SaLookupdtl saLookupdtl) throws ResourceNotFoundException, ParseException {
     return new ResponseEntity<>(this.sa1004Service.updateLookupdtl(saLookupdtl), HttpStatus.ACCEPTED);
   }
 
   @PutMapping("/lookupdtl/update-list")
-  public ResponseEntity<List<SaLookupdtl>> updateLookupdtlList(@RequestBody List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException {
+  public ResponseEntity<List<SaLookupdtl>> updateLookupdtlList(@RequestBody List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException, ParseException {
     return new ResponseEntity<>(this.sa1004Service.updateLookupdtlList(saLookupdtls), HttpStatus.ACCEPTED);
   }
 

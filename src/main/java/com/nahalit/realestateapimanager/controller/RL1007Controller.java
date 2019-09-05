@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/item/land")
@@ -36,12 +37,12 @@ public class RL1007Controller {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlItem> saveLandItem(@RequestBody RlItem rlItem) {
+    public ResponseEntity<RlItem> saveLandItem(@RequestBody RlItem rlItem) throws ParseException {
         return new ResponseEntity<>(this.rl1007Service.saveLandRlItem(rlItem), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<RlItem> updateLandItem(@RequestBody RlItem reItem) throws ResourceNotFoundException {
+    public ResponseEntity<RlItem> updateLandItem(@RequestBody RlItem reItem) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(rl1007Service.updateLandRlItem(reItem), HttpStatus.ACCEPTED);
     }
 

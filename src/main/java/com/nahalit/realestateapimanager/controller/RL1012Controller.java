@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/configuration/rajuk-approval")
@@ -33,12 +34,12 @@ public class RL1012Controller {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlRajukApproval> saveRajukApproval(@RequestBody RlRajukApproval rlRajukApproval) {
+    public ResponseEntity<RlRajukApproval> saveRajukApproval(@RequestBody RlRajukApproval rlRajukApproval) throws ParseException {
         return new ResponseEntity<>(rl1012Service.saveRajukApproval(rlRajukApproval), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<RlRajukApproval> updateRajukApproval(@RequestBody RlRajukApproval rlRajukApproval) throws ResourceNotFoundException {
+    public ResponseEntity<RlRajukApproval> updateRajukApproval(@RequestBody RlRajukApproval rlRajukApproval) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(rl1012Service.updateRajukApproval(rlRajukApproval), HttpStatus.ACCEPTED);
     }
 

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/project/ap")
@@ -32,13 +33,13 @@ public class RL1003Controller {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlProject> saveApProject(@RequestBody RlProject rlProject) {
+    public ResponseEntity<RlProject> saveApProject(@RequestBody RlProject rlProject) throws ParseException {
         return new ResponseEntity<>(rl1003Service.saveRlProject(rlProject), HttpStatus.CREATED);
     }
 
 
     @PutMapping("/update")
-    public ResponseEntity<RlProject> updateApProject(@RequestBody RlProject rlProject) throws ResourceNotFoundException {
+    public ResponseEntity<RlProject> updateApProject(@RequestBody RlProject rlProject) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(rl1003Service.updateRlProject(rlProject), HttpStatus.ACCEPTED);
     }
 
