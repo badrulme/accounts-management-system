@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/configuration")
@@ -33,12 +34,12 @@ public class RL1001Controller {
   }
 
   @PostMapping("/facing/add")
-  public ResponseEntity<RlFacing> saveFacing(@RequestBody RlFacing rlFacing) {
+  public ResponseEntity<RlFacing> saveFacing(@RequestBody RlFacing rlFacing) throws ParseException {
     return new ResponseEntity<>(rl1001Service.saveFacing(rlFacing), HttpStatus.CREATED);
   }
 
   @PutMapping("/facing/update")
-  public ResponseEntity<RlFacing> updateFacing(@RequestBody RlFacing rlFacing) throws ResourceNotFoundException {
+  public ResponseEntity<RlFacing> updateFacing(@RequestBody RlFacing rlFacing) throws ResourceNotFoundException, ParseException {
     return new ResponseEntity<>(rl1001Service.updateFacing(rlFacing), HttpStatus.ACCEPTED);
   }
 

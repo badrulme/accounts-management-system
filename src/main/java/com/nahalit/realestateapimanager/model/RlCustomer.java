@@ -33,7 +33,7 @@ public class RlCustomer {
   @Email
   private String email;
   private String contactPerson;
-  private String profession;
+  private Long profession_no;
   private String designation;
   private String officeAddress;
   private String customerPictureName;
@@ -182,12 +182,12 @@ public class RlCustomer {
     this.contactPerson = contactPerson;
   }
 
-  public String getProfession() {
-    return profession;
+  public Long getProfession_no() {
+    return profession_no;
   }
 
-  public void setProfession(String profession) {
-    this.profession = profession;
+  public void setProfession_no(Long profession_no) {
+    this.profession_no = profession_no;
   }
 
   public String getDesignation() {
@@ -253,4 +253,5 @@ public class RlCustomer {
   public void setSsModifiedOn(Date ssModifiedOn) {
     this.ssModifiedOn = ssModifiedOn;
   }
+
 }

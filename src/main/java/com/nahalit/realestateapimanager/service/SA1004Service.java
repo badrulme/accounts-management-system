@@ -5,8 +5,10 @@ import com.nahalit.realestateapimanager.model.SaLookup;
 import com.nahalit.realestateapimanager.model.SaLookupdtl;
 import com.nahalit.realestateapimanager.repository.SaLookupRepository;
 import com.nahalit.realestateapimanager.repository.SaLookupdtlRepository;
+import com.nahalit.realestateapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +31,16 @@ public class SA1004Service {
     return saLookupRepository.findById(lookupNo).orElseThrow(() -> new ResourceNotFoundException("Lopokup Not found for this id: " + lookupNo));
   }
 
-  public SaLookup saveLookup(SaLookup saLookup) {
+  public SaLookup saveLookup(SaLookup saLookup) throws ParseException {
+    saLookup.setSsCreatedOn(UtillDate.getDateTime());
+    saLookup.setSsModifiedOn(null);
     return saLookupRepository.save(saLookup);
   }
 
-  public SaLookup updateLookup(SaLookup saLookup) throws ResourceNotFoundException {
-    this.saLookupRepository.findById(saLookup.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookup not found for this id: " + saLookup.getLookupNo()));
+  public SaLookup updateLookup(SaLookup saLookup) throws ResourceNotFoundException, ParseException {
+    SaLookup oldData = this.saLookupRepository.findById(saLookup.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookup not found for this id: " + saLookup.getLookupNo()));
+    saLookup.setSsCreatedOn(oldData.getSsCreatedOn());
+    saLookup.setSsModifiedOn(UtillDate.getDateTime());
     return saLookupRepository.save(saLookup);
   }
 
@@ -57,23 +63,39 @@ public class SA1004Service {
   }
 
 
-  public SaLookupdtl saveLookupdtl(SaLookupdtl saLookupdtl) {
+  public SaLookupdtl saveLookupdtl(SaLookupdtl saLookupdtl) throws ParseException {
+    saLookupdtl.setSsCreatedOn(UtillDate.getDateTime());
+    saLookupdtl.setSsModifiedOn(null);
     return saLookupdtlRepository.save(saLookupdtl);
   }
 
   public List<SaLookupdtl> saveLookupdtlList(List<SaLookupdtl> saLookupdtls) {
-    return saLookupdtlRepository.saveAll(saLookupdtls);
+    List<SaLookupdtl> saLookupdtlList = new ArrayList<>();
+    saLookupdtls.forEach(saLookupdtl -> {
+      try {
+        saLookupdtl.setSsCreatedOn(UtillDate.getDateTime());
+        saLookupdtl.setSsModifiedOn(null);
+        saLookupdtlList.add(this.saLookupdtlRepository.save(saLookupdtl));
+      } catch (ParseException e) {
+      }
+
+    });
+    return saLookupdtlList;
   }
 
-  public SaLookupdtl updateLookupdtl(SaLookupdtl saLookupdtl) throws ResourceNotFoundException {
-    this.saLookupdtlRepository.findById(saLookupdtl.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
+  public SaLookupdtl updateLookupdtl(SaLookupdtl saLookupdtl) throws ResourceNotFoundException, ParseException {
+    SaLookupdtl oldData = this.saLookupdtlRepository.findById(saLookupdtl.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
+    saLookupdtl.setSsCreatedOn(oldData.getSsCreatedOn());
+    saLookupdtl.setSsModifiedOn(UtillDate.getDateTime());
     return saLookupdtlRepository.save(saLookupdtl);
   }
 
-  public List<SaLookupdtl> updateLookupdtlList(List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException {
+  public List<SaLookupdtl> updateLookupdtlList(List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException, ParseException {
     List<SaLookupdtl> saveData = new ArrayList<>();
     for (SaLookupdtl saLookupdtl : saLookupdtls) {
-      this.saLookupdtlRepository.findById(saLookupdtl.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
+      SaLookupdtl oldData = this.saLookupdtlRepository.findById(saLookupdtl.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
+      saLookupdtl.setSsCreatedOn(oldData.getSsCreatedOn());
+      saLookupdtl.setSsModifiedOn(UtillDate.getDateTime());
       saveData.add(saLookupdtlRepository.save(saLookupdtl));
     }
     return saveData;

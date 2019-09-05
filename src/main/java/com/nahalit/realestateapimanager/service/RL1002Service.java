@@ -4,10 +4,12 @@ import com.nahalit.realestateapimanager.dao.RL1002Dao;
 import com.nahalit.realestateapimanager.exception.ResourceNotFoundException;
 import com.nahalit.realestateapimanager.model.RlCustomer;
 import com.nahalit.realestateapimanager.repository.RlCustomerRepository;
+import com.nahalit.realestateapimanager.utillibrary.UtillDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -31,12 +33,16 @@ public class RL1002Service {
     return this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
   }
 
-  public RlCustomer saveCustomer(RlCustomer customer) {
+  public RlCustomer saveCustomer(RlCustomer customer) throws ParseException {
+    customer.setSsCreatedOn(UtillDate.getDateTime());
+    customer.setSsModifiedOn(null);
     return this.customerRepository.save(customer);
   }
 
-  public RlCustomer updateCustomer(RlCustomer customer) throws ResourceNotFoundException {
-    this.customerRepository.findById(customer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customer.getCustomerNo()));
+  public RlCustomer updateCustomer(RlCustomer customer) throws ResourceNotFoundException, ParseException {
+    RlCustomer oldData = this.customerRepository.findById(customer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customer.getCustomerNo()));
+    customer.setSsCreatedOn(oldData.getSsCreatedOn());
+    customer.setSsModifiedOn(UtillDate.getDateTime());
     return this.customerRepository.save(customer);
   }
 
