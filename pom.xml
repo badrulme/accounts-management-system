@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nahalit.realestate</groupId>
-    <artifactId>realestate-api-manager</artifactId>
+    <artifactId>nahalerp-api-manager</artifactId>
     <version>1.5</version>
     <name>Nahal mini ERP</name>
-    <description>Real Estate API Manager</description>
+    <description>Nahal mini ERP API Manager</description>
 
     <properties>
         <java.version>1.8</java.version>

@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
-@RequestMapping("api/rest/rl/configuration/rajuk-approval")
+@RequestMapping("api/rest/rl/rajuk-approval")
 @Controller
 public class RL1012Controller {
 

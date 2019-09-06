@@ -1,6 +1,7 @@
 package com.nahalit.nahalapimanager;
 
 import com.nahalit.nahalapimanager.apiconfig.AppConfig;
+import com.nahalit.nahalapimanager.interceptor.AuthInterceptor;
 import com.nahalit.nahalapimanager.storage.StorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -52,14 +53,14 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
 //    };
 //  }
 
-//    @Autowired
-//    private AuthInterceptor authInterceptor;
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//
-//        registry.addInterceptor(authInterceptor)
-//                .addPathPatterns(AppConfig.FILTERRING_PATH_PATTERNS)
-//                .excludePathPatterns(Arrays.asList(AppConfig.NONFILTERRING_PATH_PATTERNS));
-//    }
+    @Autowired
+    private AuthInterceptor authInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        registry.addInterceptor(authInterceptor)
+                .addPathPatterns(AppConfig.FILTERRING_PATH_PATTERNS)
+                .excludePathPatterns(Arrays.asList(AppConfig.NONFILTERRING_PATH_PATTERNS));
+    }
 }

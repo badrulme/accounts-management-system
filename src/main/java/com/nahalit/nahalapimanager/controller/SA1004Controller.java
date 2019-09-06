@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.List;
 
-@RequestMapping("api/rest/setting")
+@RequestMapping("api/rest/sa/setting")
 @Controller
 public class SA1004Controller {
   private SA1004Service sa1004Service;
