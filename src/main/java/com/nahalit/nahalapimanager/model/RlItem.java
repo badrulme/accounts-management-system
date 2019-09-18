@@ -33,6 +33,7 @@ public class RlItem {
   private Long parkingFlag;
   private double parkingPrice;
   private Long itemType;
+  private String flatType;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
@@ -132,6 +133,14 @@ public class RlItem {
 
   public void setFlatPlaceofStorid(Long flatPlaceofStorid) {
     this.flatPlaceofStorid = flatPlaceofStorid;
+  }
+
+  public String getFlatType() {
+    return flatType;
+  }
+
+  public void setFlatType(String flatType) {
+    this.flatType = flatType;
   }
 
   public Long getFlatNo() {
