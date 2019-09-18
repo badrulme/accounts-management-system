@@ -1,6 +1,7 @@
 package com.nahalit.nahalapimanager;
 
 import com.nahalit.nahalapimanager.apiconfig.AppConfig;
+import com.nahalit.nahalapimanager.interceptor.AuthInterceptor;
 import com.nahalit.nahalapimanager.storage.StorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
