@@ -86,7 +86,7 @@
             <version>0.6.0</version>
         </dependency>
 
-        <!--        thymeleaf-->
+        <!--thymeleaf-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
