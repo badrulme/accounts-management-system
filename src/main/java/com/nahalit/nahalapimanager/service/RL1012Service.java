@@ -4,6 +4,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlRajukApproval;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.repository.RlRajukApprovalRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -20,7 +21,7 @@ public class RL1012Service {
 
   // RL Rajuk Approval
   public List<RlRajukApproval> getAllRajukApproval() {
-    return this.rlRajukApprovalRepository.findAll();
+    return this.rlRajukApprovalRepository.findAll(Sort.by("approvalNo").ascending());
   }
 
   public RlRajukApproval getRajukApproval(Long approvalNo) throws ResourceNotFoundException {

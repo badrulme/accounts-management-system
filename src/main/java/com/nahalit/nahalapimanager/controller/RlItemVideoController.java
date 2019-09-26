@@ -27,8 +27,8 @@ public class RlItemVideoController {
     }
 
     @GetMapping("/get-item-video")
-    public ResponseEntity<RlItemVideo> getItemVideo(@Valid @RequestParam("videoNo") Long installmentNo) throws ResourceNotFoundException {
-        return new ResponseEntity<>(this.rlItemVideoService.getRlItemVideo(installmentNo), HttpStatus.OK);
+    public ResponseEntity<RlItemVideo> getItemVideo(@Valid @RequestParam("videoNo") Long videoNo) throws ResourceNotFoundException {
+        return new ResponseEntity<>(this.rlItemVideoService.getRlItemVideo(videoNo), HttpStatus.OK);
     }
 
     @GetMapping("/get-item-video-list")
@@ -57,8 +57,8 @@ public class RlItemVideoController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteVideo(@RequestParam Long installmentNo) {
-        this.rlItemVideoService.deleteRlItemVideo(installmentNo);
+    public ResponseEntity<String> deleteVideo(@RequestParam Long videoNo) {
+        this.rlItemVideoService.deleteRlItemVideo(videoNo);
         return new ResponseEntity<>("Item Video Deleted Successfully.", HttpStatus.OK);
     }
 

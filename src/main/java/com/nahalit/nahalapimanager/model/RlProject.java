@@ -26,6 +26,7 @@ public class RlProject {
   private Long carParking;
   private Date handOverTime;
   private Long openSpace;
+  private Long roadSizeNo;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
@@ -173,6 +174,14 @@ public class RlProject {
 
   public void setOpenSpace(Long openSpace) {
     this.openSpace = openSpace;
+  }
+
+  public Long getRoadSizeNo() {
+    return roadSizeNo;
+  }
+
+  public void setRoadSizeNo(Long roadSizeNo) {
+    this.roadSizeNo = roadSizeNo;
   }
 
   public Date getSsCreatedOn() {
