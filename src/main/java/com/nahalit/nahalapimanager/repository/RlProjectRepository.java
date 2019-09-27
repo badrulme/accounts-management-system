@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface RlProjectRepository extends JpaRepository<RlProject, Long> {
-    @Query("SELECT p FROM RlProject p WHERE PROJECT_TYPE = :PROJECT_TYPE")
-    List<RlProject> findByProjectCategory(@Param("PROJECT_TYPE") Long PROJECT_TYPE);
+    @Query("SELECT p FROM RlProject p WHERE PROJECT_TYPE_NO = :PROJECT_TYPE_NO")
+    List<RlProject> findByProjectCategory(@Param("PROJECT_TYPE_NO") Integer PROJECT_TYPE_NO);
 }

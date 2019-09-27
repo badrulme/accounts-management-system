@@ -11,7 +11,7 @@ public class RlProject {
   private Long projectNo;
   private String projectId;
   private String projectName;
-  private Long projectType;
+  private String projectType;
   private String descr;
   private Long approvalNo;
   private String projectLocation;
@@ -27,6 +27,7 @@ public class RlProject {
   private Date handOverTime;
   private Long openSpace;
   private Long roadSizeNo;
+  private Integer projectTypeNo;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
@@ -56,11 +57,11 @@ public class RlProject {
     this.projectName = projectName;
   }
 
-  public Long getProjectType() {
+  public String getProjectType() {
     return projectType;
   }
 
-  public void setProjectType(Long projectType) {
+  public void setProjectType(String projectType) {
     this.projectType = projectType;
   }
 
@@ -182,6 +183,14 @@ public class RlProject {
 
   public void setRoadSizeNo(Long roadSizeNo) {
     this.roadSizeNo = roadSizeNo;
+  }
+
+  public Integer getProjectTypeNo() {
+    return projectTypeNo;
+  }
+
+  public void setProjectTypeNo(Integer projectTypeNo) {
+    this.projectTypeNo = projectTypeNo;
   }
 
   public Date getSsCreatedOn() {

@@ -12,50 +12,52 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/project/slider")
 @RestController
 public class RlProjectSliderController {
-    private final RlProjectSliderService rlProjectSliderService;
-    private final StorageService storageService;
+  private final RlProjectSliderService rlProjectSliderService;
+  private final StorageService storageService;
 
-    public RlProjectSliderController(RlProjectSliderService rlProjectSliderService, StorageService storageService) {
-        this.rlProjectSliderService = rlProjectSliderService;
-        this.storageService = storageService;
-    }
+  public RlProjectSliderController(RlProjectSliderService rlProjectSliderService, StorageService storageService) {
+    this.rlProjectSliderService = rlProjectSliderService;
+    this.storageService = storageService;
+  }
 
-    // RL Item Slider Controller
-    @GetMapping("/")
-    public ResponseEntity<List<RlProjectSlider>> getAllRlProjectSlider() {
-        return new ResponseEntity<>(this.rlProjectSliderService.getAllRlProjectSlider(), HttpStatus.OK);
-    }
 
-    @GetMapping("/get-item-Slider")
-    public ResponseEntity<RlProjectSlider> getProjectSlider(@Valid @RequestParam("SliderNo") Long installmentNo) throws ResourceNotFoundException {
-        return new ResponseEntity<>(this.rlProjectSliderService.getRlProjectSlider(installmentNo), HttpStatus.OK);
-    }
+  // RL Item Slider Controller
+  @GetMapping("/")
+  public ResponseEntity<List<RlProjectSlider>> getAllRlProjectSlider() {
+    return new ResponseEntity<>(this.rlProjectSliderService.getAllRlProjectSlider(), HttpStatus.OK);
+  }
 
-    @GetMapping("/get-item-Slider-list")
-    public ResponseEntity<List<RlProjectSlider>> getAllRlProjectSliderList(@Valid @RequestParam Long itemNo) {
-        return new ResponseEntity<>(this.rlProjectSliderService.getRlProjectSliderList(itemNo), HttpStatus.OK);
-    }
+  @GetMapping("/get-project-slider")
+  public ResponseEntity<RlProjectSlider> getProjectSlider(@Valid @RequestParam("sliderNo") Long sliderNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rlProjectSliderService.getRlProjectSlider(sliderNo), HttpStatus.OK);
+  }
 
-    @PostMapping("/add")
-    public ResponseEntity<RlProjectSlider> saveProjectSlider(@RequestParam MultipartFile multipartFile, RlProjectSlider rlItemSlider) throws ParseException {
-        if (multipartFile != null) {
-            String nowTime = UtillDate.getNowTimeNameForImage();
-            String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-            storageService.store(multipartFile, filename);
-            rlItemSlider.setImageName(filename);
-        }
-        return new ResponseEntity<>(this.rlProjectSliderService.saveRlProjectSlider(rlItemSlider), HttpStatus.CREATED);
-    }
+  @GetMapping("/get-project-slider-list")
+  public ResponseEntity<List<RlProjectSlider>> getAllRlProjectSliderList(@Valid @RequestParam Long projectNo) {
+    return new ResponseEntity<>(this.rlProjectSliderService.getRlProjectSliderList(projectNo), HttpStatus.OK);
+  }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteProjectSlider(@RequestParam Long sliderNo) {
-        this.rlProjectSliderService.deleteRlProjectSlider(sliderNo);
-        return new ResponseEntity<>("Project Slider Deleted Successfully.", HttpStatus.OK);
+  @PostMapping("/add")
+  public ResponseEntity<RlProjectSlider> saveProjectSlider(@RequestParam MultipartFile multipartFile, RlProjectSlider rlItemSlider) throws ParseException {
+    if (multipartFile != null) {
+      String nowTime = UtillDate.getNowTimeNameForImage();
+      String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+      storageService.store(multipartFile, filename);
+      rlItemSlider.setImageName(filename);
     }
+    return new ResponseEntity<>(this.rlProjectSliderService.saveRlProjectSlider(rlItemSlider), HttpStatus.CREATED);
+  }
+
+  @DeleteMapping("/delete")
+  public ResponseEntity<String> deleteProjectSlider(@RequestParam Long sliderNo) throws IOException {
+    this.rlProjectSliderService.deleteRlProjectSlider(sliderNo);
+    return new ResponseEntity<>("Project Slider Deleted Successfully.", HttpStatus.OK);
+  }
 }

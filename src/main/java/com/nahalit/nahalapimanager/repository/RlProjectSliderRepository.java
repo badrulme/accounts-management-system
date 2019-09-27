@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface RlProjectSliderRepository extends JpaRepository<RlProjectSlider, Long> {
   @Query("SELECT S FROM RlProjectSlider S WHERE PROJECT_NO=:PROJECT_NO")
-  List<RlProjectSlider> findAllByItemNo(@Param("PROJECT_NO") Long PROJECT_NO);
+  List<RlProjectSlider> findAllByProjectNo(@Param("PROJECT_NO") Long PROJECT_NO);
 }

@@ -24,7 +24,7 @@ public class RL1004Service {
   // RL Land Project Service
   public List<RlProject> getAllProject() {
 //        return this.rlProjectRepository.findAll();
-    return this.rlProjectRepository.findByProjectCategory(1L);
+    return this.rlProjectRepository.findByProjectCategory(1);
   }
 
   public RlProject getProject(Long projectNo) throws ResourceNotFoundException {
@@ -34,7 +34,7 @@ public class RL1004Service {
   public RlProject saveRlProject(RlProject rlProject) throws ParseException {
     rlProject.setSsCreatedOn(UtillDate.getDateTime());
     rlProject.setSsModifiedOn(null);
-    rlProject.setProjectType(1L);
+    rlProject.setProjectTypeNo(1);
     return this.rlProjectRepository.save(rlProject);
   }
 

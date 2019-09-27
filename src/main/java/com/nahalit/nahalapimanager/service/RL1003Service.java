@@ -26,7 +26,7 @@ public class RL1003Service {
   // RL Apartment Project Service
   public List<RlProject> getAllProject() {
 //        return this.rlProjectRepository.findAll();
-    return this.rlProjectRepository.findByProjectCategory(2L);
+    return this.rlProjectRepository.findByProjectCategory(2);
   }
 
   public RlProject getProject(Long projectNo) throws ResourceNotFoundException {
@@ -34,7 +34,7 @@ public class RL1003Service {
   }
 
   public RlProject saveRlProject(RlProject rlProject) throws ParseException {
-    rlProject.setProjectType(2L);
+    rlProject.setProjectTypeNo(2);
     rlProject.setSsCreatedOn(UtillDate.getDateTime());
     rlProject.setSsModifiedOn(null);
     return this.rlProjectRepository.save(rlProject);
