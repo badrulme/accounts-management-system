@@ -14,37 +14,42 @@ import java.util.List;
 @RequestMapping("api/rest/rl/configuration")
 @RestController
 public class RL1001Controller {
-  private final RL1001Service rl1001Service;
+    private final RL1001Service rl1001Service;
 
-  public RL1001Controller(RL1001Service rl1001Service) {
-    this.rl1001Service = rl1001Service;
-  }
+    public RL1001Controller(RL1001Service rl1001Service) {
+        this.rl1001Service = rl1001Service;
+    }
 
 
-  // RL Facing Setup Controller
-  @GetMapping("/facing/")
-  public ResponseEntity<List<RlFacing>> getAllfacing() {
-    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
-  }
+    // RL Facing Setup Controller
+    @GetMapping("/facing/")
+    public ResponseEntity<List<RlFacing>> getAllfacing() {
+        return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
+    }
 
-  @GetMapping("/facing/get-item-category")
-  public ResponseEntity<RlFacing> getFacing(@Valid @RequestParam("facingNo") Long facingNo) throws ResourceNotFoundException {
-    return new ResponseEntity<>(rl1001Service.getFacing(facingNo), HttpStatus.OK);
-  }
+    @GetMapping("/facing/get-item-category")
+    public ResponseEntity<RlFacing> getFacing(@Valid @RequestParam("facingNo") Long facingNo) throws ResourceNotFoundException {
+        return new ResponseEntity<>(rl1001Service.getFacing(facingNo), HttpStatus.OK);
+    }
 
-  @PostMapping("/facing/add")
-  public ResponseEntity<RlFacing> saveFacing(@RequestBody RlFacing rlFacing) throws ParseException {
-    return new ResponseEntity<>(rl1001Service.saveFacing(rlFacing), HttpStatus.CREATED);
-  }
+    @PostMapping("/facing/add")
+    public ResponseEntity<RlFacing> saveFacing(@RequestBody RlFacing rlFacing) throws ParseException {
+        return new ResponseEntity<>(rl1001Service.saveFacing(rlFacing), HttpStatus.CREATED);
+    }
 
-  @PutMapping("/facing/update")
-  public ResponseEntity<RlFacing> updateFacing(@RequestBody RlFacing rlFacing) throws ResourceNotFoundException, ParseException {
-    return new ResponseEntity<>(rl1001Service.updateFacing(rlFacing), HttpStatus.ACCEPTED);
-  }
+    @PostMapping("/facing/add-list")
+    public ResponseEntity<List<RlFacing>> saveFacingList(@RequestBody List<RlFacing> rlFacingList)  {
+        return new ResponseEntity<>(rl1001Service.saveFacingList(rlFacingList), HttpStatus.CREATED);
+    }
 
-  @DeleteMapping("/facing/delete")
-  public ResponseEntity<String> deleteFacing(@RequestParam Long facingNo) {
-    this.rl1001Service.deleteFacing(facingNo);
-    return new ResponseEntity<>("Facing Deleted Successfully.", HttpStatus.OK);
-  }
+    @PutMapping("/facing/update")
+    public ResponseEntity<RlFacing> updateFacing(@RequestBody RlFacing rlFacing) throws ResourceNotFoundException, ParseException {
+        return new ResponseEntity<>(rl1001Service.updateFacing(rlFacing), HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/facing/delete")
+    public ResponseEntity<String> deleteFacing(@RequestParam Long facingNo) {
+        this.rl1001Service.deleteFacing(facingNo);
+        return new ResponseEntity<>("Facing Deleted Successfully.", HttpStatus.OK);
+    }
 }

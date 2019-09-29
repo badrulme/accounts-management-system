@@ -40,6 +40,7 @@ public class RL1005Service {
         RlProject rlProject = this.rlProjectRepository.findById(rlItem.getProjectNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Project not found for this id:" + rlItem.getProjectNo()));
         rlItem.setProjectType(rlProject.getProjectType());
         rlItem.setProjectLocation(rlProject.getProjectLocation());
+        rlItem.setProjectName(rlProject.getProjectName());
         // Get Rajuk Approval Details
         RlRajukApproval rlRajukApproval = this.rlRajukApprovalRepository.findById(rlProject.getApprovalNo()).orElseThrow(() -> new ResourceNotFoundException("Rajuk Approval not found for this id:" + rlProject.getApprovalNo()));
         rlItem.setApprovalId(rlRajukApproval.getApprovalId());

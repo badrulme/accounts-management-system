@@ -41,6 +41,8 @@ public class RlItem {
 
     // Non Databse Column
     @Transient
+    private String projectName;
+    @Transient
     private String projectType;
     @Transient
     private String projectLocation;
@@ -305,6 +307,14 @@ public class RlItem {
 
     public String getProjectLocation() {
         return projectLocation;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public void setProjectLocation(String projectLocation) {
