@@ -29,7 +29,7 @@ public class RL1005Controller {
     }
 
     @GetMapping("/get-item")
-    public ResponseEntity<RlItem> getAPItem(@RequestParam Long itemNo) {
+    public ResponseEntity<RlItem> getAPItem(@RequestParam Long itemNo) throws ResourceNotFoundException {
         return new ResponseEntity<>(this.rL1005Service.getApItem(itemNo), HttpStatus.OK);
     }
 

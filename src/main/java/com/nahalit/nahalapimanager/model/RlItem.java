@@ -5,277 +5,309 @@ import java.util.Date;
 
 @Entity
 public class RlItem {
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item")
-  @SequenceGenerator(sequenceName = "s_rl_item", allocationSize = 1, name = "rl_item")
-  private Long itemNo;
-  private String itemId;
-  private Long projectNo;
-  private Long plotType;
-  private Long roadSize;
-  private Long facingNo;
-  private String blockName;
-  private Long plotSize;
-  private double price;
-  private double totalPrice;
-  private double flatSize;
-  private Long flatPlaceofStorid;
-  private Long flatNo;
-  private Long numberOfLift;
-  private String decorationCondition;
-  private Long bedRoom;
-  private Long livingAndDining;
-  private Long kitchen;
-  private Long varanda;
-  private Long toilets;
-  private Long swimmingPool;
-  private Long gym;
-  private Long parkingFlag;
-  private double parkingPrice;
-  private Long itemType;
-  private String flatType;
-  private Date ssCreatedOn;
-  private Long ssCreator;
-  private Date ssModifiedOn;
-  private Long ssModifier;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item")
+    @SequenceGenerator(sequenceName = "s_rl_item", allocationSize = 1, name = "rl_item")
+    private Long itemNo;
+    private String itemId;
+    private Long projectNo;
+    private Long plotType;
+    private Long roadSize;
+    private Long facingNo;
+    private String blockName;
+    private Long plotSize;
+    private double price;
+    private double totalPrice;
+    private double flatSize;
+    private Long flatPlaceofStorid;
+    private Long flatNo;
+    private Long numberOfLift;
+    private String decorationCondition;
+    private Long bedRoom;
+    private Long livingAndDining;
+    private Long kitchen;
+    private Long varanda;
+    private Long toilets;
+    private Long swimmingPool;
+    private Long gym;
+    private Long parkingFlag;
+    private double parkingPrice;
+    private Long itemType;
+    private String flatType;
+    private Date ssCreatedOn;
+    private Long ssCreator;
+    private Date ssModifiedOn;
+    private Long ssModifier;
 
-  public Long getItemNo() {
-    return itemNo;
-  }
+    // Non Databse Column
+    @Transient
+    private String projectType;
+    @Transient
+    private String projectLocation;
+    @Transient
+    private String approvalId;
 
-  public void setItemNo(Long itemNo) {
-    this.itemNo = itemNo;
-  }
+    public Long getItemNo() {
+        return itemNo;
+    }
 
-  public String getItemId() {
-    return itemId;
-  }
+    public void setItemNo(Long itemNo) {
+        this.itemNo = itemNo;
+    }
 
-  public void setItemId(String itemId) {
-    this.itemId = itemId;
-  }
+    public String getItemId() {
+        return itemId;
+    }
 
-  public Long getProjectNo() {
-    return projectNo;
-  }
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
 
-  public void setProjectNo(Long projectNo) {
-    this.projectNo = projectNo;
-  }
+    public Long getProjectNo() {
+        return projectNo;
+    }
 
-  public Long getPlotType() {
-    return plotType;
-  }
+    public void setProjectNo(Long projectNo) {
+        this.projectNo = projectNo;
+    }
 
-  public void setPlotType(Long plotType) {
-    this.plotType = plotType;
-  }
+    public Long getPlotType() {
+        return plotType;
+    }
 
-  public Long getRoadSize() {
-    return roadSize;
-  }
+    public void setPlotType(Long plotType) {
+        this.plotType = plotType;
+    }
 
-  public void setRoadSize(Long roadSize) {
-    this.roadSize = roadSize;
-  }
+    public Long getRoadSize() {
+        return roadSize;
+    }
 
-  public Long getFacingNo() {
-    return facingNo;
-  }
+    public void setRoadSize(Long roadSize) {
+        this.roadSize = roadSize;
+    }
 
-  public void setFacingNo(Long facingNo) {
-    this.facingNo = facingNo;
-  }
+    public Long getFacingNo() {
+        return facingNo;
+    }
 
-  public String getBlockName() {
-    return blockName;
-  }
+    public void setFacingNo(Long facingNo) {
+        this.facingNo = facingNo;
+    }
 
-  public void setBlockName(String blockName) {
-    this.blockName = blockName;
-  }
+    public String getBlockName() {
+        return blockName;
+    }
 
-  public Long getPlotSize() {
-    return plotSize;
-  }
+    public void setBlockName(String blockName) {
+        this.blockName = blockName;
+    }
 
-  public void setPlotSize(Long plotSize) {
-    this.plotSize = plotSize;
-  }
+    public Long getPlotSize() {
+        return plotSize;
+    }
 
-  public double getPrice() {
-    return price;
-  }
+    public void setPlotSize(Long plotSize) {
+        this.plotSize = plotSize;
+    }
 
-  public void setPrice(double price) {
-    this.price = price;
-  }
+    public double getPrice() {
+        return price;
+    }
 
-  public double getTotalPrice() {
-    return totalPrice;
-  }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-  public void setTotalPrice(double totalPrice) {
-    this.totalPrice = totalPrice;
-  }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
-  public double getFlatSize() {
-    return flatSize;
-  }
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
-  public void setFlatSize(double flatSize) {
-    this.flatSize = flatSize;
-  }
+    public double getFlatSize() {
+        return flatSize;
+    }
 
-  public Long getFlatPlaceofStorid() {
-    return flatPlaceofStorid;
-  }
+    public void setFlatSize(double flatSize) {
+        this.flatSize = flatSize;
+    }
 
-  public void setFlatPlaceofStorid(Long flatPlaceofStorid) {
-    this.flatPlaceofStorid = flatPlaceofStorid;
-  }
+    public Long getFlatPlaceofStorid() {
+        return flatPlaceofStorid;
+    }
 
-  public String getFlatType() {
-    return flatType;
-  }
+    public void setFlatPlaceofStorid(Long flatPlaceofStorid) {
+        this.flatPlaceofStorid = flatPlaceofStorid;
+    }
 
-  public void setFlatType(String flatType) {
-    this.flatType = flatType;
-  }
+    public String getFlatType() {
+        return flatType;
+    }
 
-  public Long getFlatNo() {
-    return flatNo;
-  }
+    public void setFlatType(String flatType) {
+        this.flatType = flatType;
+    }
 
-  public void setFlatNo(Long flatNo) {
-    this.flatNo = flatNo;
-  }
+    public Long getFlatNo() {
+        return flatNo;
+    }
 
-  public Long getNumberOfLift() {
-    return numberOfLift;
-  }
+    public void setFlatNo(Long flatNo) {
+        this.flatNo = flatNo;
+    }
 
-  public void setNumberOfLift(Long numberOfLift) {
-    this.numberOfLift = numberOfLift;
-  }
+    public Long getNumberOfLift() {
+        return numberOfLift;
+    }
 
-  public String getDecorationCondition() {
-    return decorationCondition;
-  }
+    public void setNumberOfLift(Long numberOfLift) {
+        this.numberOfLift = numberOfLift;
+    }
 
-  public void setDecorationCondition(String decorationCondition) {
-    this.decorationCondition = decorationCondition;
-  }
+    public String getDecorationCondition() {
+        return decorationCondition;
+    }
 
-  public Long getBedRoom() {
-    return bedRoom;
-  }
+    public void setDecorationCondition(String decorationCondition) {
+        this.decorationCondition = decorationCondition;
+    }
 
-  public void setBedRoom(Long bedRoom) {
-    this.bedRoom = bedRoom;
-  }
+    public Long getBedRoom() {
+        return bedRoom;
+    }
 
-  public Long getLivingAndDining() {
-    return livingAndDining;
-  }
+    public void setBedRoom(Long bedRoom) {
+        this.bedRoom = bedRoom;
+    }
 
-  public void setLivingAndDining(Long livingAndDining) {
-    this.livingAndDining = livingAndDining;
-  }
+    public Long getLivingAndDining() {
+        return livingAndDining;
+    }
 
-  public Long getKitchen() {
-    return kitchen;
-  }
+    public void setLivingAndDining(Long livingAndDining) {
+        this.livingAndDining = livingAndDining;
+    }
 
-  public void setKitchen(Long kitchen) {
-    this.kitchen = kitchen;
-  }
+    public Long getKitchen() {
+        return kitchen;
+    }
 
-  public Long getVaranda() {
-    return varanda;
-  }
+    public void setKitchen(Long kitchen) {
+        this.kitchen = kitchen;
+    }
 
-  public void setVaranda(Long varanda) {
-    this.varanda = varanda;
-  }
+    public Long getVaranda() {
+        return varanda;
+    }
 
-  public Long getToilets() {
-    return toilets;
-  }
+    public void setVaranda(Long varanda) {
+        this.varanda = varanda;
+    }
 
-  public void setToilets(Long toilets) {
-    this.toilets = toilets;
-  }
+    public Long getToilets() {
+        return toilets;
+    }
 
-  public Long getSwimmingPool() {
-    return swimmingPool;
-  }
+    public void setToilets(Long toilets) {
+        this.toilets = toilets;
+    }
 
-  public void setSwimmingPool(Long swimmingPool) {
-    this.swimmingPool = swimmingPool;
-  }
+    public Long getSwimmingPool() {
+        return swimmingPool;
+    }
 
-  public Long getGym() {
-    return gym;
-  }
+    public void setSwimmingPool(Long swimmingPool) {
+        this.swimmingPool = swimmingPool;
+    }
 
-  public void setGym(Long gym) {
-    this.gym = gym;
-  }
+    public Long getGym() {
+        return gym;
+    }
 
-  public Long getParkingFlag() {
-    return parkingFlag;
-  }
+    public void setGym(Long gym) {
+        this.gym = gym;
+    }
 
-  public void setParkingFlag(Long parkingFlag) {
-    this.parkingFlag = parkingFlag;
-  }
+    public Long getParkingFlag() {
+        return parkingFlag;
+    }
 
-  public double getParkingPrice() {
-    return parkingPrice;
-  }
+    public void setParkingFlag(Long parkingFlag) {
+        this.parkingFlag = parkingFlag;
+    }
 
-  public void setParkingPrice(double parkingPrice) {
-    this.parkingPrice = parkingPrice;
-  }
+    public double getParkingPrice() {
+        return parkingPrice;
+    }
 
-  public Long getItemType() {
-    return itemType;
-  }
+    public void setParkingPrice(double parkingPrice) {
+        this.parkingPrice = parkingPrice;
+    }
 
-  public void setItemType(Long itemType) {
-    this.itemType = itemType;
-  }
+    public Long getItemType() {
+        return itemType;
+    }
 
-  public Date getSsCreatedOn() {
-    return ssCreatedOn;
-  }
+    public void setItemType(Long itemType) {
+        this.itemType = itemType;
+    }
 
-  public void setSsCreatedOn(Date ssCreatedOn) {
-    this.ssCreatedOn = ssCreatedOn;
-  }
+    public Date getSsCreatedOn() {
+        return ssCreatedOn;
+    }
 
-  public Long getSsCreator() {
-    return ssCreator;
-  }
+    public void setSsCreatedOn(Date ssCreatedOn) {
+        this.ssCreatedOn = ssCreatedOn;
+    }
 
-  public void setSsCreator(Long ssCreator) {
-    this.ssCreator = ssCreator;
-  }
+    public Long getSsCreator() {
+        return ssCreator;
+    }
 
-  public Date getSsModifiedOn() {
-    return ssModifiedOn;
-  }
+    public void setSsCreator(Long ssCreator) {
+        this.ssCreator = ssCreator;
+    }
 
-  public void setSsModifiedOn(Date ssModifiedOn) {
-    this.ssModifiedOn = ssModifiedOn;
-  }
+    public Date getSsModifiedOn() {
+        return ssModifiedOn;
+    }
 
-  public Long getSsModifier() {
-    return ssModifier;
-  }
+    public void setSsModifiedOn(Date ssModifiedOn) {
+        this.ssModifiedOn = ssModifiedOn;
+    }
 
-  public void setSsModifier(Long ssModifier) {
-    this.ssModifier = ssModifier;
-  }
+    public Long getSsModifier() {
+        return ssModifier;
+    }
+
+    public void setSsModifier(Long ssModifier) {
+        this.ssModifier = ssModifier;
+    }
+
+    public String getProjectType() {
+        return projectType;
+    }
+
+    public void setProjectType(String projectType) {
+        this.projectType = projectType;
+    }
+
+    public String getApprovalId() {
+        return approvalId;
+    }
+
+    public void setApprovalId(String approvalId) {
+        this.approvalId = approvalId;
+    }
+
+    public String getProjectLocation() {
+        return projectLocation;
+    }
+
+    public void setProjectLocation(String projectLocation) {
+        this.projectLocation = projectLocation;
+    }
 }

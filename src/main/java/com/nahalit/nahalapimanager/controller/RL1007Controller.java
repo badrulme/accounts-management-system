@@ -29,8 +29,8 @@ public class RL1007Controller {
         return new ResponseEntity<>(this.rl1007Service.getAllLandItem(), HttpStatus.OK);
     }
     @GetMapping("/get-item")
-    public ResponseEntity<RlItem> getALandtem(@RequestParam Long itemNo){
-        return new ResponseEntity<>(this.rl1007Service.getApItem(itemNo),HttpStatus.OK);
+    public ResponseEntity<RlItem> getALandtem(@RequestParam Long itemNo) throws ResourceNotFoundException {
+        return new ResponseEntity<>(this.rl1007Service.getLandItem(itemNo),HttpStatus.OK);
     }
 
     @PostMapping("/add")
