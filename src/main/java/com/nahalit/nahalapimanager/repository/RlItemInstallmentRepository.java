@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface RlItemInstallmentRepository extends JpaRepository<RlItemInstallment, Long> {
-    @Query("SELECT I FROM RlItemInstallment I where ITEM_NO=:ITEM_NO")
+    @Query("SELECT I FROM RlItemInstallment I where ITEM_NO=:ITEM_NO ORDER BY INSTALLMENT_AMOUNT")
     List<RlItemInstallment> findAllByItemNo(@Param("ITEM_NO") Long ITEM_NO);
 }

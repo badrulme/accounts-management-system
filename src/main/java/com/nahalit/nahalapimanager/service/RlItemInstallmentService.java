@@ -44,7 +44,7 @@ public class RlItemInstallmentService {
       try {
         rlItemInstallment.setSsCreatedOn(UtillDate.getDateTime());
         rlItemInstallment.setSsModifiedOn(null);
-        this.rlItemInstallmentRepository.save(rlItemInstallment);
+        rlItemInstallmentList.add(this.rlItemInstallmentRepository.save(rlItemInstallment));
       } catch (ParseException e) {
       }
     });
