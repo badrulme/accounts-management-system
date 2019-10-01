@@ -15,39 +15,44 @@ import java.util.List;
 @RestController
 public class RL1005Controller {
 
-    private final RL1005Service rL1005Service;
+  private final RL1005Service rL1005Service;
 
-    @Autowired
-    public RL1005Controller(RL1005Service RL1005Service) {
-        this.rL1005Service = RL1005Service;
-    }
+  @Autowired
+  public RL1005Controller(RL1005Service RL1005Service) {
+    this.rL1005Service = RL1005Service;
+  }
 
-    // RL Item Controller
-    @GetMapping("/")
-    public ResponseEntity<List<RlItem>> getAllItem() {
-        return new ResponseEntity<>(this.rL1005Service.getAllApItem(), HttpStatus.OK);
-    }
+  // RL Item Controller
+  @GetMapping("/")
+  public ResponseEntity<List<RlItem>> getAllItem() {
+    return new ResponseEntity<>(this.rL1005Service.getAllApItem(), HttpStatus.OK);
+  }
 
-    @GetMapping("/get-item")
-    public ResponseEntity<RlItem> getAPItem(@RequestParam Long itemNo) throws ResourceNotFoundException {
-        return new ResponseEntity<>(this.rL1005Service.getApItem(itemNo), HttpStatus.OK);
-    }
+  @GetMapping("/get-item-ref")
+  public ResponseEntity<List> getApItemRef(@RequestParam(required = false) Long itemNo) {
+    return new ResponseEntity<>(this.rL1005Service.getApItemRef(itemNo), HttpStatus.OK);
+  }
 
-    @PostMapping("/add")
-    public ResponseEntity<RlItem> saveItem(@RequestBody RlItem rlItem) throws ParseException {
-        return new ResponseEntity<>(this.rL1005Service.saveApRlItem(rlItem), HttpStatus.CREATED);
-    }
+  @GetMapping("/get-item")
+  public ResponseEntity<RlItem> getAPItem(@RequestParam Long itemNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rL1005Service.getApItem(itemNo), HttpStatus.OK);
+  }
 
-    @PutMapping("/update")
-    public ResponseEntity<RlItem> updateItem(@RequestBody RlItem reItem) throws ResourceNotFoundException, ParseException {
-        return new ResponseEntity<>(rL1005Service.updateApRlItem(reItem), HttpStatus.ACCEPTED);
-    }
+  @PostMapping("/add")
+  public ResponseEntity<RlItem> saveItem(@RequestBody RlItem rlItem) throws ParseException {
+    return new ResponseEntity<>(this.rL1005Service.saveApRlItem(rlItem), HttpStatus.CREATED);
+  }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteItem(@RequestParam Long itemNo) {
-        this.rL1005Service.deleteApRlItem(itemNo);
-        return new ResponseEntity<>("Land Item Deleted Successfully.", HttpStatus.OK);
-    }
+  @PutMapping("/update")
+  public ResponseEntity<RlItem> updateItem(@RequestBody RlItem reItem) throws ResourceNotFoundException, ParseException {
+    return new ResponseEntity<>(rL1005Service.updateApRlItem(reItem), HttpStatus.ACCEPTED);
+  }
+
+  @DeleteMapping("/delete")
+  public ResponseEntity<String> deleteItem(@RequestParam Long itemNo) {
+    this.rL1005Service.deleteApRlItem(itemNo);
+    return new ResponseEntity<>("Land Item Deleted Successfully.", HttpStatus.OK);
+  }
 
 
 }

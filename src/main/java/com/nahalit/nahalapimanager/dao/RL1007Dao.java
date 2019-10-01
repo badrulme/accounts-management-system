@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RL1003Dao {
-   List getAllProjectRef(Long projectNo);
+public interface RL1007Dao {
+  List getAllItemRef(Long itemNo);
 }

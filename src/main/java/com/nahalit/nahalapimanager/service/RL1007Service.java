@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.RL1007Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlProject;
 import com.nahalit.nahalapimanager.model.RlRajukApproval;
@@ -8,6 +9,7 @@ import com.nahalit.nahalapimanager.repository.RlProjectRepository;
 import com.nahalit.nahalapimanager.repository.RlRajukApprovalRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.model.RlItem;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -19,16 +21,22 @@ public class RL1007Service {
     private final RlItemRepository rlItemRepository;
     private final RlProjectRepository rlProjectRepository;
     private final RlRajukApprovalRepository rlRajukApprovalRepository;
+    private final RL1007Dao rl1007Dao;
 
-    public RL1007Service(RlItemRepository rlItemRepository, RlProjectRepository rlProjectRepository, RlRajukApprovalRepository rlRajukApprovalRepository) {
+    public RL1007Service(RlItemRepository rlItemRepository, RlProjectRepository rlProjectRepository, RlRajukApprovalRepository rlRajukApprovalRepository, @Qualifier("RL1007Dao") RL1007Dao rl1007Dao) {
         this.rlItemRepository = rlItemRepository;
         this.rlProjectRepository = rlProjectRepository;
         this.rlRajukApprovalRepository = rlRajukApprovalRepository;
+        this.rl1007Dao = rl1007Dao;
     }
 
     // RL Item For Land
     public List<RlItem> getAllLandItem() {
         return this.rlItemRepository.findAllByItemType(1L);
+    }
+
+    public List getApItemRef(Long itemNo) {
+        return this.rl1007Dao.getAllItemRef(itemNo);
     }
 
     public RlItem saveLandRlItem(RlItem rlItem) throws ParseException {

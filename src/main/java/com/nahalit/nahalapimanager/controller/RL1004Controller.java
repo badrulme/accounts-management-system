@@ -31,6 +31,11 @@ public class RL1004Controller {
     return new ResponseEntity<>(rl1004Service.getProject(projectNo), HttpStatus.OK);
   }
 
+  @GetMapping("/get-project-ref")
+  public ResponseEntity<List> getAllProjectRef(@RequestParam(required = false) Long projectNo){
+    return new ResponseEntity<>(this.rl1004Service.getAllProjectRef(projectNo),HttpStatus.OK);
+  }
+
   @PostMapping("/add")
   public ResponseEntity<RlProject> saveLandProject(@RequestBody RlProject rlProject) throws ParseException {
     return new ResponseEntity<>(rl1004Service.saveRlProject(rlProject), HttpStatus.CREATED);

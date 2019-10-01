@@ -1,17 +1,18 @@
 package com.nahalit.nahalapimanager.dao.orcl;
 
-import com.nahalit.nahalapimanager.dao.RL1003Dao;
+import com.nahalit.nahalapimanager.dao.RL1004Dao;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Repository
-public class RL1003DaoOrcl implements RL1003Dao {
+public class RL1004DaoOrcl implements RL1004Dao {
   private final NamedParameterJdbcTemplate db;
 
-  public RL1003DaoOrcl(NamedParameterJdbcTemplate db) {
+  public RL1004DaoOrcl(NamedParameterJdbcTemplate db) {
     this.db = db;
   }
 
@@ -20,7 +21,7 @@ public class RL1003DaoOrcl implements RL1003Dao {
     sql.append(" SELECT P.*,A.APPROVAL_ID");
     sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A");
     sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+)");
-    sql.append(" AND P.PROJECT_TYPE_NO=2");
+    sql.append(" AND P.PROJECT_TYPE_NO=1");
     sql.append(" AND P.PROJECT_NO=NVL(:PROJECT_NO,P.PROJECT_NO)");
 
     Map<String, Long> params = new HashMap<>();

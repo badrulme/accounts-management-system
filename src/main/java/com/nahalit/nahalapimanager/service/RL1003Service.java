@@ -1,11 +1,15 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.RL1003Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlItemSize;
 import com.nahalit.nahalapimanager.model.RlProject;
 import com.nahalit.nahalapimanager.repository.RlItemSizeRepository;
 import com.nahalit.nahalapimanager.repository.RlProjectRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
+import com.sun.org.apache.regexp.internal.RE;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -17,16 +21,22 @@ import java.util.concurrent.RejectedExecutionException;
 public class RL1003Service {
   private final RlProjectRepository rlProjectRepository;
   private final RlItemSizeRepository rlItemSizeRepository;
+  private final RL1003Dao rl1003Dao;
 
-  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository) {
+  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository, @Qualifier("RL1003Dao") RL1003Dao rl1003Dao) {
     this.rlProjectRepository = rlProjectRepository;
     this.rlItemSizeRepository = rlItemSizeRepository;
+    this.rl1003Dao = rl1003Dao;
   }
 
   // RL Apartment Project Service
   public List<RlProject> getAllProject() {
 //        return this.rlProjectRepository.findAll();
     return this.rlProjectRepository.findByProjectCategory(2);
+  }
+
+  public List getAllProjectRef(Long projectNo){
+    return this.rl1003Dao.getAllProjectRef(projectNo);
   }
 
   public RlProject getProject(Long projectNo) throws ResourceNotFoundException {

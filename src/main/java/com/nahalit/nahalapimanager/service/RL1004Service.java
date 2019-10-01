@@ -1,30 +1,35 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.RL1004Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
-import com.nahalit.nahalapimanager.model.RlItemSize;
 import com.nahalit.nahalapimanager.model.RlProject;
-import com.nahalit.nahalapimanager.repository.RlItemSizeRepository;
 import com.nahalit.nahalapimanager.repository.RlProjectRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
 public class RL1004Service {
   private final RlProjectRepository rlProjectRepository;
+  private final RL1004Dao rl1004Dao;
 
-  public RL1004Service(RlProjectRepository rlProjectRepository) {
+  public RL1004Service(RlProjectRepository rlProjectRepository, @Qualifier("RL1004Dao") RL1004Dao rl1004Dao) {
     this.rlProjectRepository = rlProjectRepository;
+    this.rl1004Dao = rl1004Dao;
   }
 
   // RL Land Project Service
   public List<RlProject> getAllProject() {
 //        return this.rlProjectRepository.findAll();
     return this.rlProjectRepository.findByProjectCategory(1);
+  }
+
+  public List getAllProjectRef(Long projectNo){
+    return this.rl1004Dao.getAllProjectRef(projectNo);
   }
 
   public RlProject getProject(Long projectNo) throws ResourceNotFoundException {

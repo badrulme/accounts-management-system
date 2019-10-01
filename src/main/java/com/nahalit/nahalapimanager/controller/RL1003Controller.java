@@ -26,6 +26,11 @@ public class RL1003Controller {
     return new ResponseEntity<>(rl1003Service.getAllProject(), HttpStatus.OK);
   }
 
+  @GetMapping("/get-project-ref")
+  public ResponseEntity<List> getAllProjectRef(@RequestParam(required = false) Long projectNo){
+    return new ResponseEntity<>(this.rl1003Service.getAllProjectRef(projectNo),HttpStatus.OK);
+  }
+
   @GetMapping("/get-project")
   public ResponseEntity<RlProject> getApProject(@Valid @RequestParam("projectNo") Long projectNo) throws ResourceNotFoundException {
     return new ResponseEntity<>(rl1003Service.getProject(projectNo), HttpStatus.OK);
