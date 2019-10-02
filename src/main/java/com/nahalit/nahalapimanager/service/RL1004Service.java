@@ -5,7 +5,6 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlProject;
 import com.nahalit.nahalapimanager.repository.RlProjectRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -17,7 +16,8 @@ public class RL1004Service {
   private final RlProjectRepository rlProjectRepository;
   private final RL1004Dao rl1004Dao;
 
-  public RL1004Service(RlProjectRepository rlProjectRepository, @Qualifier("RL1004Dao") RL1004Dao rl1004Dao) {
+
+  public RL1004Service(RlProjectRepository rlProjectRepository, RL1004Dao rl1004Dao) {
     this.rlProjectRepository = rlProjectRepository;
     this.rl1004Dao = rl1004Dao;
   }

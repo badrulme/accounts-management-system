@@ -10,7 +10,6 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlItem;
 import com.nahalit.nahalapimanager.repository.RlItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -25,10 +24,13 @@ public class RL1005Service {
   private final RL1005Dao rl1005Dao;
 
   @Autowired
-  public RL1005Service(RlItemRepository rlItemRepository, RlProjectRepository rlProjectRepository, RlRajukApprovalRepository rlRajukApprovalRepository, @Qualifier("RL1005Dao") RL1005Dao rl1005Dao) {
+  public RL1005Service(RlItemRepository rlItemRepository, RlProjectRepository rlProjectRepository,
+                       RlRajukApprovalRepository rlRajukApprovalRepository,
+                       RL1005Dao rl1005Dao) {
     this.rlItemRepository = rlItemRepository;
     this.rlProjectRepository = rlProjectRepository;
     this.rlRajukApprovalRepository = rlRajukApprovalRepository;
+
     this.rl1005Dao = rl1005Dao;
   }
 
@@ -43,16 +45,9 @@ public class RL1005Service {
 
 
   public RlItem getApItem(Long itemNo) throws ResourceNotFoundException {
-    RlItem rlItem = this.rlItemRepository.findItemByIdAndType(itemNo, 2L);
-    // Get Project Details
-    RlProject rlProject = this.rlProjectRepository.findById(rlItem.getProjectNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Project not found for this id:" + rlItem.getProjectNo()));
-    rlItem.setProjectType(rlProject.getProjectType());
-    rlItem.setProjectLocation(rlProject.getProjectLocation());
-    rlItem.setProjectName(rlProject.getProjectName());
-    // Get Rajuk Approval Details
-    RlRajukApproval rlRajukApproval = this.rlRajukApprovalRepository.findById(rlProject.getApprovalNo()).orElseThrow(() -> new ResourceNotFoundException("Rajuk Approval not found for this id:" + rlProject.getApprovalNo()));
-    rlItem.setApprovalId(rlRajukApproval.getApprovalId());
-    return rlItem;
+    return this.rlItemRepository.findItemByIdAndType(itemNo, 2L);
+
+
   }
 
   public RlItem saveApRlItem(RlItem rlItem) throws ParseException {

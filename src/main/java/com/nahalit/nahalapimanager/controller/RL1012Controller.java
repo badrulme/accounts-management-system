@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.List;
 
 @RequestMapping("api/rest/rl/rajuk-approval")
-@Controller
+@RestController
 public class RL1012Controller {
 
     private final RL1012Service rl1012Service;

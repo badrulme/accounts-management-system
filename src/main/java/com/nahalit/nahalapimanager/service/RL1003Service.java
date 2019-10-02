@@ -7,9 +7,6 @@ import com.nahalit.nahalapimanager.model.RlProject;
 import com.nahalit.nahalapimanager.repository.RlItemSizeRepository;
 import com.nahalit.nahalapimanager.repository.RlProjectRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
-import com.sun.org.apache.regexp.internal.RE;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -23,7 +20,7 @@ public class RL1003Service {
   private final RlItemSizeRepository rlItemSizeRepository;
   private final RL1003Dao rl1003Dao;
 
-  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository, @Qualifier("RL1003Dao") RL1003Dao rl1003Dao) {
+  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository, RL1003Dao rl1003Dao) {
     this.rlProjectRepository = rlProjectRepository;
     this.rlItemSizeRepository = rlItemSizeRepository;
     this.rl1003Dao = rl1003Dao;

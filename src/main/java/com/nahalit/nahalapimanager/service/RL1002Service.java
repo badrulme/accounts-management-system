@@ -5,7 +5,6 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlCustomer;
 import com.nahalit.nahalapimanager.repository.RlCustomerRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +16,11 @@ import java.util.Map;
 public class RL1002Service {
 
   private RlCustomerRepository customerRepository;
-  private com.nahalit.nahalapimanager.dao.RL1002Dao RL1002Dao;
+  private RL1002Dao rl1002Dao;
 
-  @Autowired
-  public RL1002Service(RlCustomerRepository customerRepository, RL1002Dao RL1002Dao) {
+  public RL1002Service(RlCustomerRepository customerRepository,RL1002Dao rl1002Dao) {
     this.customerRepository = customerRepository;
-    this.RL1002Dao = RL1002Dao;
+    this.rl1002Dao = rl1002Dao;
   }
 
   public List<RlCustomer> getAllCustomer() {
@@ -52,11 +50,11 @@ public class RL1002Service {
   }
 
   public Map<String, Object> customerLogin(String customerUsername, String password) {
-    return RL1002Dao.isCustomerLogin(customerUsername, password);
+    return rl1002Dao.isCustomerLogin(customerUsername, password);
   }
 
   public String forgotPasswordByMail(String email) {
-    return RL1002Dao.forgotPasswordByMail(email);
+    return rl1002Dao.forgotPasswordByMail(email);
   }
 
 }
