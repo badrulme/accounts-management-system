@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class RlItemSliderController {
     }
 
     @GetMapping("/get-item-Slider")
-    public ResponseEntity<RlItemSlider> getItemSlider(@Valid @RequestParam("SliderNo") Long installmentNo) throws ResourceNotFoundException {
-        return new ResponseEntity<>(this.rlItemSliderService.getRlItemSlider(installmentNo), HttpStatus.OK);
+    public ResponseEntity<RlItemSlider> getItemSlider(@Valid @RequestParam("sliderNo") Long sliderNo) throws ResourceNotFoundException {
+        return new ResponseEntity<>(this.rlItemSliderService.getRlItemSlider(sliderNo), HttpStatus.OK);
     }
 
     @GetMapping("/get-item-Slider-list")
@@ -54,7 +55,8 @@ public class RlItemSliderController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteSlider(@RequestParam Long sliderNo) {
+    public ResponseEntity<String> deleteSlider(@RequestParam Long sliderNo) throws IOException {
+
         this.rlItemSliderService.deleteRlItemSlider(sliderNo);
         return new ResponseEntity<>("Item Slider Deleted Successfully.", HttpStatus.OK);
     }

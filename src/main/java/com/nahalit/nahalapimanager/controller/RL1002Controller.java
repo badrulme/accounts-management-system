@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +70,7 @@ public class RL1002Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<String> deleteCustoemr(@RequestParam Long customerNo) throws ResourceNotFoundException {
+  public ResponseEntity<String> deleteCustoemr(@RequestParam Long customerNo) throws ResourceNotFoundException, IOException {
     RL1002Service.deleteCustomer(customerNo);
     return new ResponseEntity<>("Customer Deleted Successfully", HttpStatus.OK);
   }

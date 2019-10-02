@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/contact/")
 @RestController
@@ -32,22 +33,21 @@ public class RlContactController {
   }
 
 
-
   @PostMapping("/add")
-  public ResponseEntity<RlContact> saveContact(@RequestBody RlContact reItemContact) throws ParseException {
+  public ResponseEntity<RlContact> saveContact(@RequestBody RlContact reItemContact)  {
     return new ResponseEntity<>(this.rlContactService.saveRlContact(reItemContact), HttpStatus.CREATED);
   }
 
 
   @PutMapping("/update")
-  public ResponseEntity<RlContact> updateContact(@RequestBody RlContact reItemContact) throws ResourceNotFoundException, ParseException {
+  public ResponseEntity<RlContact> updateContact(@RequestBody RlContact reItemContact)  {
     return new ResponseEntity<>(this.rlContactService.updateRlContact(reItemContact), HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<String> deleteContact(@RequestParam Long contactNo) {
-    this.rlContactService.deleteRlContact(contactNo);
-    return new ResponseEntity<>("Item Contact Deleted Successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleteContact(@RequestParam Long contactNo) {
+
+    return new ResponseEntity<>(this.rlContactService.deleteRlContact(contactNo), HttpStatus.OK);
   }
 
 }

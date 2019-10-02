@@ -6,8 +6,11 @@ import com.nahalit.nahalapimanager.repository.RlContactRepository;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
+
 @Service
 public class RlContactService {
   private final RlContactRepository rlContactRepository;
@@ -24,19 +27,22 @@ public class RlContactService {
   public RlContact getRlContact(Long contactNo) throws ResourceNotFoundException {
     return this.rlContactRepository.findById(contactNo).orElseThrow(() -> new ResourceNotFoundException("Item Contact not found for this id:" + contactNo));
   }
-  
 
-  public RlContact saveRlContact(RlContact rlContact) throws ParseException {
+
+  public RlContact saveRlContact(RlContact rlContact) {
     return this.rlContactRepository.save(rlContact);
   }
-  
-  public RlContact updateRlContact(RlContact reRlContact) throws ResourceNotFoundException, ParseException {
+
+  public RlContact updateRlContact(RlContact reRlContact) {
     return this.rlContactRepository.save(reRlContact);
   }
 
 
-  public void deleteRlContact(Long contactNo) {
+  public Map deleteRlContact(Long contactNo) {
     this.rlContactRepository.findById(contactNo).orElseThrow(() -> new RejectedExecutionException("Item Contact not found for this id: " + contactNo));
     this.rlContactRepository.deleteById(contactNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Item Contact Deleted Successfully.");
+    return deleteMessage;
   }
 }

@@ -4,10 +4,12 @@ import com.nahalit.nahalapimanager.dao.RL1002Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlCustomer;
 import com.nahalit.nahalapimanager.repository.RlCustomerRepository;
+import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +18,12 @@ import java.util.Map;
 public class RL1002Service {
 
   private RlCustomerRepository customerRepository;
+  private StorageService storageService;
   private RL1002Dao rl1002Dao;
 
-  public RL1002Service(RlCustomerRepository customerRepository,RL1002Dao rl1002Dao) {
+  public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao) {
     this.customerRepository = customerRepository;
+    this.storageService = storageService;
     this.rl1002Dao = rl1002Dao;
   }
 
@@ -44,8 +48,9 @@ public class RL1002Service {
     return this.customerRepository.save(customer);
   }
 
-  public void deleteCustomer(Long customerNo) throws ResourceNotFoundException {
-    this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
+  public void deleteCustomer(Long customerNo) throws ResourceNotFoundException, IOException {
+    RlCustomer rlCustomer = this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
+    storageService.deleteFile(rlCustomer.getCustomerPictureName());
     this.customerRepository.deleteById(customerNo);
   }
 
