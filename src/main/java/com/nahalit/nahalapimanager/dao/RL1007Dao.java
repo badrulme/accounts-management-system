@@ -30,7 +30,7 @@ public class RL1007Dao {
     sql.append("      RL_RAJUK_APPROVAL A");
     sql.append(" WHERE I.PROJECT_NO = P.PROJECT_NO(+)");
     sql.append("   AND P.APPROVAL_NO=A.APPROVAL_NO(+)");
-    sql.append("   AND I.ITEM_TYPE = 1");
+    sql.append("   AND I.ITEM_TYPE_NO = 1");
     sql.append("   AND I.ITEM_NO = NVL(:ITEM_NO,I.ITEM_NO)");
 
     Map<String, Long> params = new HashMap<>();

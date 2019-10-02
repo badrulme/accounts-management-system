@@ -10,9 +10,9 @@ import java.util.List;
 
 @Repository
 public interface RlItemRepository extends JpaRepository<RlItem, Long> {
-    @Query("SELECT I FROM RlItem I WHERE ITEM_TYPE=:ITEM_TYPE")
-    List<RlItem> findAllByItemType(@Param("ITEM_TYPE") Long ITEM_TYPE);
+    @Query("SELECT I FROM RlItem I WHERE ITEM_TYPE_NO=:ITEM_TYPE_NO")
+    List<RlItem> findAllByItemType(@Param("ITEM_TYPE_NO") Long ITEM_TYPE_NO);
 
-    @Query("SELECT I FROM RlItem  I WHERE ITEM_NO=:ITEM_NO AND ITEM_TYPE=:ITEM_TYPE")
-    RlItem findItemByIdAndType(@Param("ITEM_NO") Long ITEM_NO, @Param("ITEM_TYPE") Long ITEM_TYPE);
+    @Query("SELECT I FROM RlItem  I WHERE ITEM_NO=:ITEM_NO AND ITEM_TYPE_NO=:ITEM_TYPE_NO")
+    RlItem findItemByIdAndType(@Param("ITEM_NO") Long ITEM_NO, @Param("ITEM_TYPE_NO") Long ITEM_TYPE_NO);
 }

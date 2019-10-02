@@ -34,7 +34,7 @@ public class RlItem {
   private Long gym;
   private Long parkingFlag;
   private double parkingPrice;
-  private Long itemType;
+  private Long itemTypeNo;
   private String flatType;
   private Integer itemInventoryFlag;
   private Integer inactiveFlag;
@@ -261,11 +261,11 @@ public class RlItem {
   }
 
   public Long getItemType() {
-    return itemType;
+    return itemTypeNo;
   }
 
   public void setItemType(Long itemType) {
-    this.itemType = itemType;
+    this.itemTypeNo = itemType;
   }
 
   public Date getSsCreatedOn() {
