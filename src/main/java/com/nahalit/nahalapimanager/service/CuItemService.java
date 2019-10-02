@@ -4,6 +4,7 @@ import com.nahalit.nahalapimanager.dao.CuItemDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CuItemService {
@@ -15,6 +16,10 @@ public class CuItemService {
 
   public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation) {
     return this.cuItemDao.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation);
+  }
+
+  public Map getItemDetails(Long itemNo) {
+    return this.cuItemDao.getItemDetails(itemNo);
   }
 
 }

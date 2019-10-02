@@ -15,7 +15,7 @@ public class RL1007Dao {
     this.db = db;
   }
 
-  public List getAllItemRef(Long itemNo) {
+  public Map getAllItemRef(Long itemNo) {
 
     StringBuilder sql = new StringBuilder();
     sql.append(" SELECT I.*,");
@@ -36,7 +36,7 @@ public class RL1007Dao {
     Map<String, Long> params = new HashMap<>();
     params.put("ITEM_NO", itemNo);
 
-    return db.queryForList(sql.toString(), params);
+    return db.queryForMap(sql.toString(), params);
 
   }
 }

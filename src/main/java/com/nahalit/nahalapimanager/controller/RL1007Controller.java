@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/item/land")
 @RestController
@@ -33,7 +34,7 @@ public class RL1007Controller {
   }
 
   @GetMapping("/get-item-ref")
-  public ResponseEntity<List> getlandItemRef(@RequestParam(required = false) Long itemNo) {
+  public ResponseEntity<Map> getlandItemRef(@RequestParam(required = false) Long itemNo) {
     return new ResponseEntity<>(this.rl1007Service.getApItemRef(itemNo), HttpStatus.OK);
   }
 

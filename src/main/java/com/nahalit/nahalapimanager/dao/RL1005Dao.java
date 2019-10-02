@@ -14,7 +14,7 @@ public class RL1005Dao {
   public RL1005Dao(NamedParameterJdbcTemplate db) {
     this.db = db;
   }
-  public List getAllItemRef(Long itemNo) {
+  public Map getAllItemRef(Long itemNo) {
 
     StringBuilder sql = new StringBuilder();
     sql.append(" SELECT I.*,");
@@ -30,12 +30,12 @@ public class RL1005Dao {
     sql.append(" WHERE I.PROJECT_NO = P.PROJECT_NO(+)");
     sql.append("   AND P.APPROVAL_NO=A.APPROVAL_NO(+)");
     sql.append("   AND I.ITEM_TYPE_NO = 2");
-    sql.append("   AND I.ITEM_NO = NVL(:ITEM_NO,I.ITEM_NO)");
+    sql.append("   AND I.ITEM_NO = :ITEM_NO");
 
     Map<String, Long> params = new HashMap<>();
     params.put("ITEM_NO", itemNo);
 
-    return db.queryForList(sql.toString(), params);
+    return db.queryForMap(sql.toString(), params);
   }
 
 

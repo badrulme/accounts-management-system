@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/cu/item")
 @RestController
@@ -30,5 +31,10 @@ public class CuItemController {
                                           @RequestParam(required = false) String sizeTo,
                                           @RequestParam(required = false) String projectLocation) {
     return new ResponseEntity<>(this.cuItemService.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation), HttpStatus.OK);
+  }
+
+  @GetMapping("/details")
+  public ResponseEntity<Map>getItemDetails(@RequestParam Long itemNo){
+return new ResponseEntity<>(this.cuItemService.getItemDetails(itemNo),HttpStatus.OK);
   }
 }

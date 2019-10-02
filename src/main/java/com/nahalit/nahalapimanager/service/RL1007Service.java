@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -34,7 +35,7 @@ public class RL1007Service {
     return this.rlItemRepository.findAllByItemType(1L);
   }
 
-  public List getApItemRef(Long itemNo) {
+  public Map getApItemRef(Long itemNo) {
     return this.rl1007Dao.getAllItemRef(itemNo);
   }
 
@@ -45,7 +46,7 @@ public class RL1007Service {
     return this.rlItemRepository.save(rlItem);
   }
 
-  public RlItem getLandItem(Long itemNo) throws ResourceNotFoundException {
+  public RlItem getLandItem(Long itemNo) {
     return this.rlItemRepository.findItemByIdAndType(itemNo, 1L);
   }
 
