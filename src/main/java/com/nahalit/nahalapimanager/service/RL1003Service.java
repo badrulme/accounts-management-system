@@ -28,17 +28,16 @@ public class RL1003Service {
   }
 
   // RL Apartment Project Service
-  public List<RlProject> getAllProject() {
-//        return this.rlProjectRepository.findAll();
-    return this.rlProjectRepository.findByProjectCategory(2);
-  }
-
-  public List getAllProjectRef(Long projectNo){
+  public List getAllProject(Long projectNo) throws ResourceNotFoundException {
+    if (projectNo != null) {
+      this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
+    }
     return this.rl1003Dao.getAllProjectRef(projectNo);
   }
 
-  public RlProject getProject(Long projectNo) throws ResourceNotFoundException {
-    return this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Apartment Project not found for this id:" + projectNo));
+  public Object getProject(Long projectNo) throws ResourceNotFoundException {
+    this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Apartment Project not found for this id:" + projectNo));
+    return rl1003Dao.getProjectRef(projectNo);
   }
 
   public RlProject saveRlProject(RlProject rlProject) throws ParseException {

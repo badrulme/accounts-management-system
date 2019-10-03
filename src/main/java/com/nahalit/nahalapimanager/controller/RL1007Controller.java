@@ -2,7 +2,6 @@ package com.nahalit.nahalapimanager.controller;
 
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlItem;
-import com.nahalit.nahalapimanager.service.RL1005Service;
 import com.nahalit.nahalapimanager.service.RL1007Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("api/rest/rl/item/land")
 @RestController
@@ -24,18 +22,13 @@ public class RL1007Controller {
 
   // RL Item Controller
   @GetMapping("/")
-  public ResponseEntity<List<RlItem>> getAllLandItem() {
-    return new ResponseEntity<>(this.rl1007Service.getAllLandItem(), HttpStatus.OK);
+  public ResponseEntity<List> getAllLandItem(@RequestParam(value = "itemNo", required = false) Long itemNo) {
+    return new ResponseEntity<>(this.rl1007Service.getAllLandItem(itemNo), HttpStatus.OK);
   }
 
   @GetMapping("/get-item")
-  public ResponseEntity<RlItem> getALandtem(@RequestParam Long itemNo) throws ResourceNotFoundException {
+  public ResponseEntity<Object> getALandItem(@RequestParam Long itemNo) {
     return new ResponseEntity<>(this.rl1007Service.getLandItem(itemNo), HttpStatus.OK);
-  }
-
-  @GetMapping("/get-item-ref")
-  public ResponseEntity<Map> getlandItemRef(@RequestParam(required = false) Long itemNo) {
-    return new ResponseEntity<>(this.rl1007Service.getApItemRef(itemNo), HttpStatus.OK);
   }
 
   @PostMapping("/add")

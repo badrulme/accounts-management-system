@@ -23,17 +23,16 @@ public class RL1004Service {
   }
 
   // RL Land Project Service
-  public List<RlProject> getAllProject() {
-//        return this.rlProjectRepository.findAll();
-    return this.rlProjectRepository.findByProjectCategory(1);
-  }
-
-  public List getAllProjectRef(Long projectNo){
+  public List getAllProject(Long projectNo) throws ResourceNotFoundException {
+    if (projectNo != null) {
+      this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
+    }
     return this.rl1004Dao.getAllProjectRef(projectNo);
   }
 
-  public RlProject getProject(Long projectNo) throws ResourceNotFoundException {
-    return this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
+  public Object getProject(Long projectNo) throws ResourceNotFoundException {
+    this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
+    return rl1004Dao.getProjectRef(projectNo);
   }
 
   public RlProject saveRlProject(RlProject rlProject) throws ParseException {

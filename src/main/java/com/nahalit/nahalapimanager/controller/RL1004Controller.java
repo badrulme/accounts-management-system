@@ -22,18 +22,13 @@ public class RL1004Controller {
   }
 
   @GetMapping("/")
-  public ResponseEntity<List<RlProject>> getAllLandProject() {
-    return new ResponseEntity<>(rl1004Service.getAllProject(), HttpStatus.OK);
+  public ResponseEntity<List> getAllLandProject(@Valid @RequestParam(value = "projectNo", required = false) Long projectNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(rl1004Service.getAllProject(projectNo), HttpStatus.OK);
   }
 
   @GetMapping("/get-project")
-  public ResponseEntity<RlProject> getLandProject(@Valid @RequestParam("projectNo") Long projectNo) throws ResourceNotFoundException {
+  public ResponseEntity<Object> getLandProject(@Valid @RequestParam("projectNo") Long projectNo) throws ResourceNotFoundException {
     return new ResponseEntity<>(rl1004Service.getProject(projectNo), HttpStatus.OK);
-  }
-
-  @GetMapping("/get-project-ref")
-  public ResponseEntity<List> getAllProjectRef(@RequestParam(required = false) Long projectNo){
-    return new ResponseEntity<>(this.rl1004Service.getAllProjectRef(projectNo),HttpStatus.OK);
   }
 
   @PostMapping("/add")

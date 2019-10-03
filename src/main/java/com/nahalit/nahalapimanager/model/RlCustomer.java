@@ -22,7 +22,7 @@ public class RlCustomer {
     private String fatherName;
     private String motherName;
     private String spouseName;
-    private String permanetAddress;
+    private String permanentAddress;
     private String presentAddress;
     private Date dob;
     private String religion;
@@ -103,11 +103,11 @@ public class RlCustomer {
     }
 
     public String getPermanetAddress() {
-        return permanetAddress;
+        return permanentAddress;
     }
 
     public void setPermanetAddress(String permanetAddress) {
-        this.permanetAddress = permanetAddress;
+        this.permanentAddress = permanetAddress;
     }
 
     public String getPresentAddress() {

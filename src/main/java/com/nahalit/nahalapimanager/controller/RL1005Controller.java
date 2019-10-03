@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.controller;
 
+import com.nahalit.nahalapimanager.dao.RL1005Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlItem;
 import com.nahalit.nahalapimanager.service.RL1005Service;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("api/rest/rl/item/ap")
 @RestController
@@ -25,17 +25,12 @@ public class RL1005Controller {
 
   // RL Item Controller
   @GetMapping("/")
-  public ResponseEntity<List<RlItem>> getAllItem() {
-    return new ResponseEntity<>(this.rL1005Service.getAllApItem(), HttpStatus.OK);
-  }
-
-  @GetMapping("/get-item-ref")
-  public ResponseEntity<Map> getApItemRef(@RequestParam(required = false) Long itemNo) {
-    return new ResponseEntity<>(this.rL1005Service.getApItemRef(itemNo), HttpStatus.OK);
+  public ResponseEntity<List> getAllItem(@RequestParam(value = "itemNo", required = false) Long itemNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rL1005Service.getAllApItem(itemNo), HttpStatus.OK);
   }
 
   @GetMapping("/get-item")
-  public ResponseEntity<RlItem> getAPItem(@RequestParam Long itemNo) throws ResourceNotFoundException {
+  public ResponseEntity<Object> getAPItem(@RequestParam Long itemNo) {
     return new ResponseEntity<>(this.rL1005Service.getApItem(itemNo), HttpStatus.OK);
   }
 

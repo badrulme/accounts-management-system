@@ -31,23 +31,22 @@ public class RL1007Service {
   }
 
   // RL Item For Land
-  public List<RlItem> getAllLandItem() {
-    return this.rlItemRepository.findAllByItemType(1L);
-  }
-
-  public Map getApItemRef(Long itemNo) {
+  public List getAllLandItem(Long itemNo) {
+//    return this.rlItemRepository.findAllByItemType(1L);
     return this.rl1007Dao.getAllItemRef(itemNo);
   }
+
+  public Object getLandItem(Long itemNo) {
+//    return this.rlItemRepository.findItemByIdAndType(itemNo, 1L);
+    return this.rl1007Dao.getItemRef(itemNo);
+  }
+
 
   public RlItem saveLandRlItem(RlItem rlItem) throws ParseException {
     rlItem.setSsCreatedOn(UtillDate.getDateTime());
     rlItem.setSsModifiedOn(null);
     rlItem.setItemType(1L);
     return this.rlItemRepository.save(rlItem);
-  }
-
-  public RlItem getLandItem(Long itemNo) {
-    return this.rlItemRepository.findItemByIdAndType(itemNo, 1L);
   }
 
 

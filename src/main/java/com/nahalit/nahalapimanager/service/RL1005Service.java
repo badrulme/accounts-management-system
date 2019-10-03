@@ -36,18 +36,18 @@ public class RL1005Service {
   }
 
   // RL Item For Apartment
-  public List<RlItem> getAllApItem() {
-    return this.rlItemRepository.findAllByItemType(2L);
-  }
-
-  public Map getApItemRef(Long itemNo) {
+  public List getAllApItem(Long itemNo) throws ResourceNotFoundException {
+//    return this.rlItemRepository.findAllByItemType(2L);
+    if (itemNo != null) {
+      this.rlProjectRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
+    }
     return this.rl1005Dao.getAllItemRef(itemNo);
   }
 
 
-  public RlItem getApItem(Long itemNo)  {
-    return this.rlItemRepository.findItemByIdAndType(itemNo, 2L);
-
+  public Object getApItem(Long itemNo) {
+//    return this.rlItemRepository.findItemByIdAndType(itemNo, 2L);
+    return this.rl1005Dao.getItemRef(itemNo);
 
   }
 

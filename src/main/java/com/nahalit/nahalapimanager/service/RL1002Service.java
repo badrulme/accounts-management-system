@@ -3,6 +3,7 @@ package com.nahalit.nahalapimanager.service;
 import com.nahalit.nahalapimanager.dao.RL1002Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlCustomer;
+import com.nahalit.nahalapimanager.model.SaLookupdtl;
 import com.nahalit.nahalapimanager.repository.RlCustomerRepository;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
