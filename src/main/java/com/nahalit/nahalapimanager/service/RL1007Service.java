@@ -51,14 +51,21 @@ public class RL1007Service {
 
 
   public RlItem updateLandRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException {
-    RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Item not for this:" + rlItem.getItemNo()));
+    RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Land Item not for this:" + rlItem.getItemNo()));
     rlItem.setSsCreatedOn(oldData.getSsCreatedOn());
     rlItem.setSsModifiedOn(UtillDate.getDateTime());
     return this.rlItemRepository.save(rlItem);
   }
 
   public void deleteLandRlItem(Long itemNo) {
-    this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Apartment Item not found for this id: " + itemNo));
+    this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Land Item not found for this id: " + itemNo));
     this.rlItemRepository.deleteById(itemNo);
+  }
+
+  public List getFeatureProperty(Long itemNo) throws ResourceNotFoundException {
+    if (itemNo != null) {
+      this.rlProjectRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Land item not found for this id:" + itemNo));
+    }
+    return this.rl1007Dao.getFeatureProperty(itemNo);
   }
 }

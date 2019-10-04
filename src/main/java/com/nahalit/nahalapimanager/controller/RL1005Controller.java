@@ -50,5 +50,8 @@ public class RL1005Controller {
     return new ResponseEntity<>("Land Item Deleted Successfully.", HttpStatus.OK);
   }
 
-
+  @GetMapping("get-featured-item")
+  public ResponseEntity<List> getApFeatureProperty(@RequestParam Long itemNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rL1005Service.getFeatureProperty(itemNo), HttpStatus.OK);
+  }
 }

@@ -37,7 +37,6 @@ public class RL1005Service {
 
   // RL Item For Apartment
   public List getAllApItem(Long itemNo) throws ResourceNotFoundException {
-//    return this.rlItemRepository.findAllByItemType(2L);
     if (itemNo != null) {
       this.rlProjectRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
     }
@@ -46,7 +45,6 @@ public class RL1005Service {
 
 
   public Object getApItem(Long itemNo) {
-//    return this.rlItemRepository.findItemByIdAndType(itemNo, 2L);
     return this.rl1005Dao.getItemRef(itemNo);
 
   }
@@ -71,6 +69,11 @@ public class RL1005Service {
     this.rlItemRepository.deleteById(itemNo);
   }
 
-
+  public List getFeatureProperty(Long itemNo) throws ResourceNotFoundException {
+    if (itemNo != null) {
+      this.rlProjectRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
+    }
+    return this.rl1005Dao.getFeatureProperty(itemNo);
+  }
 }
 

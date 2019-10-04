@@ -46,4 +46,9 @@ public class RL1007Controller {
     this.rl1007Service.deleteLandRlItem(itemNo);
     return new ResponseEntity<>("Land Item Deleted Successfully.", HttpStatus.OK);
   }
+
+  @GetMapping("get-featured-item")
+  public ResponseEntity<List> getLandFeatureProperty(@RequestParam Long itemNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rl1007Service.getFeatureProperty(itemNo), HttpStatus.OK);
+  }
 }
