@@ -5,6 +5,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlCustomer;
 import com.nahalit.nahalapimanager.model.SaLookupdtl;
 import com.nahalit.nahalapimanager.repository.RlCustomerRepository;
+import com.nahalit.nahalapimanager.repository.SaLookupdtlRepository;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.data.domain.Sort;
@@ -21,11 +22,13 @@ public class RL1002Service {
   private RlCustomerRepository customerRepository;
   private StorageService storageService;
   private RL1002Dao rl1002Dao;
+  private SaLookupdtlRepository saLookupdtlRepository;
 
-  public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao) {
+  public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao, SaLookupdtlRepository saLookupdtlRepository) {
     this.customerRepository = customerRepository;
     this.storageService = storageService;
     this.rl1002Dao = rl1002Dao;
+    this.saLookupdtlRepository = saLookupdtlRepository;
   }
 
   public List<RlCustomer> getAllCustomer() {
@@ -62,5 +65,4 @@ public class RL1002Service {
   public String forgotPasswordByMail(String email) {
     return rl1002Dao.forgotPasswordByMail(email);
   }
-
 }
