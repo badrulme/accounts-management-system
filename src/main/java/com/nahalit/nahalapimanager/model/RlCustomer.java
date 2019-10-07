@@ -24,7 +24,7 @@ public class RlCustomer {
     private String spouseName;
     private String permanentAddress;
     private String presentAddress;
-    private Date dob;
+//    private Date dob;
     private String religion;
     private String nid;
     private String nationality;
@@ -118,13 +118,13 @@ public class RlCustomer {
         this.presentAddress = presentAddress;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
+//    public Date getDob() {
+//        return dob;
+//    }
+//
+//    public void setDob(Date dob) {
+//        this.dob = dob;
+//    }
 
     public String getReligion() {
         return religion;
