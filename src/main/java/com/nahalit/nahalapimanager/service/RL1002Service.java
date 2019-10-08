@@ -10,6 +10,8 @@ import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -39,14 +41,31 @@ public class RL1002Service {
     return this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
   }
 
-  public RlCustomer saveCustomer(RlCustomer customer) throws ParseException {
+  public RlCustomer saveCustomer(RlCustomer customer, MultipartFile customerPhoto) throws ParseException {
+    if (customerPhoto != null) {
+      String nowTime = UtillDate.getNowTimeNameForImage();
+      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+      storageService.store(customerPhoto, filename);
+      customer.setCustomerPictureName(filename);
+    }
     customer.setSsCreatedOn(UtillDate.getDateTime());
     customer.setSsModifiedOn(null);
     return this.customerRepository.save(customer);
   }
 
-  public RlCustomer updateCustomer(RlCustomer customer) throws ResourceNotFoundException, ParseException {
+  public RlCustomer updateCustomer(RlCustomer customer, MultipartFile customerPhoto) throws ResourceNotFoundException, ParseException {
     RlCustomer oldData = this.customerRepository.findById(customer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customer.getCustomerNo()));
+    if (customerPhoto != null) {
+      if (customer.getCustomerPictureName().length() > 0) {
+        String filename = StringUtils.cleanPath(customer.getCustomerPictureName());
+        storageService.store(customerPhoto, filename);
+      } else {
+        String nowTime = UtillDate.getNowTimeNameForImage();
+        String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+        storageService.store(customerPhoto, filename);
+        customer.setCustomerPictureName(filename);
+      }
+    }
     customer.setSsCreatedOn(oldData.getSsCreatedOn());
     customer.setSsModifiedOn(UtillDate.getDateTime());
     return this.customerRepository.save(customer);
