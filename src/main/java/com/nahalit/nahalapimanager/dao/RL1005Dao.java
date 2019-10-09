@@ -186,7 +186,7 @@ public class RL1005Dao {
     sql.append("               RL_PROJECT P,");
     sql.append("               RL_RAJUK_APPROVAL A");
     sql.append("          WHERE I.PROJECT_NO = P.PROJECT_NO");
-    sql.append("            AND P.APPROVAL_NO = A.APPROVAL_NO(+)");
+    sql.append("            AND P.APPROVAL_NO = A.APPROVAL_NO");
     sql.append("            AND I.ITEM_TYPE_NO = 2");
     sql.append("            AND NVL(I.INACTIVE_FLAG, 0) = 0");
     sql.append("            AND NVL(I.ITEM_INVENTORY_FLAG, 0) = 0");

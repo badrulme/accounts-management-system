@@ -47,18 +47,18 @@ public class RL1002Controller {
 
   @PostMapping("/add")
   public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ParseException {
-    return new ResponseEntity<>(rL1002Service.saveCustomer(customer,customerPhoto), HttpStatus.CREATED);
+    return new ResponseEntity<>(rL1002Service.saveCustomer(customer, customerPhoto), HttpStatus.CREATED);
   }
 
   @PutMapping("/update")
   public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ResourceNotFoundException, ParseException {
-    return new ResponseEntity<>(rL1002Service.updateCustomer(customer,customerPhoto), HttpStatus.ACCEPTED);
+    return new ResponseEntity<>(rL1002Service.updateCustomer(customer, customerPhoto), HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<String> deleteCustoemr(@RequestParam Long customerNo) throws ResourceNotFoundException, IOException {
-    rL1002Service.deleteCustomer(customerNo);
-    return new ResponseEntity<>("Customer Deleted Successfully", HttpStatus.OK);
+  public ResponseEntity<Map> deleteCustoemr(@RequestParam Long customerNo) throws ResourceNotFoundException, IOException {
+//    rL1002Service.deleteCustomer(customerNo);
+    return new ResponseEntity<>(rL1002Service.deleteCustomer(customerNo), HttpStatus.OK);
   }
 
   @PostMapping("/login")

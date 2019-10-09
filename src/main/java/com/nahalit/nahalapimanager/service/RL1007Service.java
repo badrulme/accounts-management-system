@@ -64,7 +64,7 @@ public class RL1007Service {
 
   public List getFeatureProperty(Long itemNo) throws ResourceNotFoundException {
     if (itemNo != null) {
-      this.rlProjectRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Land item not found for this id:" + itemNo));
+      this.rlItemRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Land item not found for this id:" + itemNo));
     }
     return this.rl1007Dao.getFeatureProperty(itemNo);
   }

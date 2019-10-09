@@ -43,7 +43,9 @@ public class RlItemSliderService {
 
   public void deleteRlItemSlider(Long sliderNo) throws IOException {
     RlItemSlider rlItemSlider=  this.rlItemSliderRepository.findById(sliderNo).orElseThrow(() -> new RejectedExecutionException("Item Slider not found for this id: " + sliderNo));
-    storageService.deleteFile(rlItemSlider.getImageName());
+   try {
+     storageService.deleteFile(rlItemSlider.getImageName());
+   }catch (Exception e){}
     this.rlItemSliderRepository.deleteById(sliderNo);
   }
 }

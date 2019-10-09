@@ -1,6 +1,7 @@
 package com.nahalit.nahalapimanager.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class RlContact {
@@ -13,6 +14,7 @@ public class RlContact {
   private String cpEmail;
   private String cpMobile;
   private String cpComments;
+  private Date contactDate;
 
   public Long getContactNo() {
     return contactNo;
@@ -60,5 +62,13 @@ public class RlContact {
 
   public void setCpComments(String cpComments) {
     this.cpComments = cpComments;
+  }
+
+  public Date getContactDate() {
+    return contactDate;
+  }
+
+  public void setContactDate(Date contactDate) {
+    this.contactDate = contactDate;
   }
 }
