@@ -45,7 +45,7 @@ public class RL1007Service {
   public RlItem saveLandRlItem(RlItem rlItem) throws ParseException {
     rlItem.setSsCreatedOn(UtillDate.getDateTime());
     rlItem.setSsModifiedOn(null);
-    rlItem.setItemType(1L);
+    rlItem.setItemTypeNo(1L);
     return this.rlItemRepository.save(rlItem);
   }
 

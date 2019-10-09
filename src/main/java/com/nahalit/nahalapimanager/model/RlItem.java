@@ -43,7 +43,6 @@ public class RlItem {
   private Date ssModifiedOn;
   private Long ssModifier;
 
-
   public Long getItemNo() {
     return itemNo;
   }
@@ -58,6 +57,22 @@ public class RlItem {
 
   public void setItemId(String itemId) {
     this.itemId = itemId;
+  }
+
+  public String getItemName() {
+    return itemName;
+  }
+
+  public void setItemName(String itemName) {
+    this.itemName = itemName;
+  }
+
+  public String getDescr() {
+    return descr;
+  }
+
+  public void setDescr(String descr) {
+    this.descr = descr;
   }
 
   public Long getProjectNo() {
@@ -120,14 +135,6 @@ public class RlItem {
     return totalPrice;
   }
 
-  public Integer getInactiveFlag() {
-    return inactiveFlag;
-  }
-
-  public void setInactiveFlag(Integer inactiveFlag) {
-    this.inactiveFlag = inactiveFlag;
-  }
-
   public void setTotalPrice(double totalPrice) {
     this.totalPrice = totalPrice;
   }
@@ -148,28 +155,12 @@ public class RlItem {
     this.flatPlaceofStorid = flatPlaceofStorid;
   }
 
-  public String getFlatType() {
-    return flatType;
-  }
-
-  public void setFlatType(String flatType) {
-    this.flatType = flatType;
-  }
-
   public Long getFlatNo() {
     return flatNo;
   }
 
   public void setFlatNo(Long flatNo) {
     this.flatNo = flatNo;
-  }
-
-  public Integer getItemInventoryFlag() {
-    return itemInventoryFlag;
-  }
-
-  public void setItemInventoryFlag(Integer itemInventoryFlag) {
-    this.itemInventoryFlag = itemInventoryFlag;
   }
 
   public Long getNumberOfLift() {
@@ -260,12 +251,36 @@ public class RlItem {
     this.parkingPrice = parkingPrice;
   }
 
-  public Long getItemType() {
+  public Long getItemTypeNo() {
     return itemTypeNo;
   }
 
-  public void setItemType(Long itemType) {
-    this.itemTypeNo = itemType;
+  public void setItemTypeNo(Long itemTypeNo) {
+    this.itemTypeNo = itemTypeNo;
+  }
+
+  public String getFlatType() {
+    return flatType;
+  }
+
+  public void setFlatType(String flatType) {
+    this.flatType = flatType;
+  }
+
+  public Integer getItemInventoryFlag() {
+    return itemInventoryFlag;
+  }
+
+  public void setItemInventoryFlag(Integer itemInventoryFlag) {
+    this.itemInventoryFlag = itemInventoryFlag;
+  }
+
+  public Integer getInactiveFlag() {
+    return inactiveFlag;
+  }
+
+  public void setInactiveFlag(Integer inactiveFlag) {
+    this.inactiveFlag = inactiveFlag;
   }
 
   public Date getSsCreatedOn() {
@@ -298,21 +313,5 @@ public class RlItem {
 
   public void setSsModifier(Long ssModifier) {
     this.ssModifier = ssModifier;
-  }
-
-  public String getItemName() {
-    return itemName;
-  }
-
-  public void setItemName(String itemName) {
-    this.itemName = itemName;
-  }
-
-  public String getDescr() {
-    return descr;
-  }
-
-  public void setDescr(String descr) {
-    this.descr = descr;
   }
 }

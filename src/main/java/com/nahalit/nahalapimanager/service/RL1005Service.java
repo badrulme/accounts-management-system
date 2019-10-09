@@ -52,7 +52,7 @@ public class RL1005Service {
   public RlItem saveApRlItem(RlItem rlItem) throws ParseException {
     rlItem.setSsCreatedOn(UtillDate.getDateTime());
     rlItem.setSsModifiedOn(null);
-    rlItem.setItemType(2L);
+    rlItem.setItemTypeNo(2L);
     return this.rlItemRepository.save(rlItem);
   }
 

@@ -24,7 +24,7 @@ public class RlContact {
     this.contactNo = contactNo;
   }
 
-  public Long getItemNo() {
+  public Long r() {
     return itemNo;
   }
 
