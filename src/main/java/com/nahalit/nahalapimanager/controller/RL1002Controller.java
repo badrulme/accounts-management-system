@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,28 +47,11 @@ public class RL1002Controller {
 
   @PostMapping("/add")
   public ResponseEntity<RlCustomer> saveCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ParseException {
-//    if (customerPhoto != null) {
-//      String nowTime = UtillDate.getNowTimeNameForImage();
-//      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-//      storageService.store(customerPhoto, filename);
-//      customer.setCustomerPictureName(filename);
-//    }
     return new ResponseEntity<>(rL1002Service.saveCustomer(customer,customerPhoto), HttpStatus.CREATED);
   }
 
   @PutMapping("/update")
   public ResponseEntity<RlCustomer> updateCustomer(@Valid @RequestParam(value = "customerPhoto", required = false) MultipartFile customerPhoto, RlCustomer customer) throws ResourceNotFoundException, ParseException {
-//    if (customerPhoto != null) {
-//      if (customer.getCustomerPictureName().length()>0) {
-//        String filename = StringUtils.cleanPath(customer.getCustomerPictureName());
-//        storageService.store(customerPhoto, filename);
-//      } else {
-//        String nowTime = UtillDate.getNowTimeNameForImage();
-//        String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-//        storageService.store(customerPhoto, filename);
-//        customer.setCustomerPictureName(filename);
-//      }
-//    }
     return new ResponseEntity<>(rL1002Service.updateCustomer(customer,customerPhoto), HttpStatus.ACCEPTED);
   }
 
