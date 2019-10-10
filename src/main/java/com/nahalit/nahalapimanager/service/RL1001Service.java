@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -48,10 +50,14 @@ public class RL1001Service {
         return this.rlFacingRepository.save(rlFacing);
     }
 
-    public void deleteFacing(Long facingNo) {
+    public Map deleteFacing(Long facingNo) {
+
         this.rlFacingRepository.findById(facingNo).orElseThrow(() -> new RejectedExecutionException("Facing not found for this id: " + facingNo));
 
         this.rlFacingRepository.deleteById(facingNo);
+        Map<String, String> deleteMessage = new HashMap<>();
+        deleteMessage.put("deleteStatus", "Facing Deleted Successfully");
+        return deleteMessage;
     }
 
 }

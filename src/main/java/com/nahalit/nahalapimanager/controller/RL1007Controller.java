@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/item/land")
 @RestController
@@ -42,9 +43,8 @@ public class RL1007Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<String> deleteLandItem(@RequestParam Long itemNo) {
-    this.rl1007Service.deleteLandRlItem(itemNo);
-    return new ResponseEntity<>("Land Item Deleted Successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleteLandItem(@RequestParam Long itemNo) {
+    return new ResponseEntity<>(this.rl1007Service.deleteLandRlItem(itemNo), HttpStatus.OK);
   }
 
   @GetMapping("get-featured-item")

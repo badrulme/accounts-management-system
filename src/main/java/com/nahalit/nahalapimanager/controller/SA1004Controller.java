@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/sa/setting")
 @Controller
@@ -43,9 +44,8 @@ public class SA1004Controller {
   }
 
   @DeleteMapping("/lookup/delete")
-  public ResponseEntity<String> deleLookup(@RequestParam Long lookupNo) throws ResourceNotFoundException {
-    this.sa1004Service.deleteLookup(lookupNo);
-    return new ResponseEntity<>("Lookup deleted successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleLookup(@RequestParam Long lookupNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.sa1004Service.deleteLookup(lookupNo), HttpStatus.OK);
   }
 
   // Lookup DTL information
@@ -85,14 +85,12 @@ public class SA1004Controller {
   }
 
   @DeleteMapping("/lookupdtl/delete")
-  public ResponseEntity<String> deleLookupdtl(@RequestParam Long lookupNo) throws ResourceNotFoundException {
-    this.sa1004Service.deleteLookupdtl(lookupNo);
-    return new ResponseEntity<>("Lookupdtl deleted successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleLookupdtl(@RequestParam Long lookupNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>( this.sa1004Service.deleteLookupdtl(lookupNo), HttpStatus.OK);
   }
 
   @DeleteMapping("/lookupdtl/delete-list")
-  public ResponseEntity<String> deleLookupdtlList(@RequestBody List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException {
-    this.sa1004Service.deleteLookupdtlList(saLookupdtls);
-    return new ResponseEntity<>("Lookupdtl deleted successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleLookupdtlList(@RequestBody List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.sa1004Service.deleteLookupdtlList(saLookupdtls), HttpStatus.OK);
   }
 }

@@ -18,14 +18,6 @@ public class RlProjectSlider {
   private Long ssModifier;
   private Date ssModifiedOn;
 
-  public Long getProjectNo() {
-    return projectNo;
-  }
-
-  public void setProjectNo(Long projectNo) {
-    this.projectNo = projectNo;
-  }
-
   public Long getSliderNo() {
     return sliderNo;
   }
@@ -40,6 +32,14 @@ public class RlProjectSlider {
 
   public void setImageName(String imageName) {
     this.imageName = imageName;
+  }
+
+  public Long getProjectNo() {
+    return projectNo;
+  }
+
+  public void setProjectNo(Long projectNo) {
+    this.projectNo = projectNo;
   }
 
   public Long getSsCreator() {

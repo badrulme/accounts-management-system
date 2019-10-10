@@ -24,14 +24,6 @@ public class RlItemSlider {
     private Long ssModifier;
     private Date ssModifiedOn;
 
-    public Long getItemNo() {
-        return itemNo;
-    }
-
-    public void setItemNo(Long itemNo) {
-        this.itemNo = itemNo;
-    }
-
     public Long getSliderNo() {
         return sliderNo;
     }
@@ -46,6 +38,14 @@ public class RlItemSlider {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    public Long getItemNo() {
+        return itemNo;
+    }
+
+    public void setItemNo(Long itemNo) {
+        this.itemNo = itemNo;
     }
 
     public Long getSsCreator() {

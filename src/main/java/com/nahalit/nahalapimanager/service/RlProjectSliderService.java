@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -41,11 +43,15 @@ public class RlProjectSliderService {
     return this.rlProjectSliderRepository.save(reRlProjectSlider);
   }
 
-  public void deleteRlProjectSlider(Long SliderNo) throws IOException {
-    RlProjectSlider rlProjectSlider = this.rlProjectSliderRepository.findById(SliderNo).orElseThrow(() -> new RejectedExecutionException("Project Slider not found for this id: " + SliderNo));
+  public Map deleteRlProjectSlider(Long sliderNo) throws IOException {
+    RlProjectSlider rlProjectSlider = this.rlProjectSliderRepository.findById(sliderNo).orElseThrow(() -> new RejectedExecutionException("Project Slider not found for this id: " + sliderNo));
     try {
       storageService.deleteFile(rlProjectSlider.getImageName());
-    }catch (Exception e){}
-    this.rlProjectSliderRepository.deleteById(SliderNo);
+    } catch (Exception e) {
+    }
+    this.rlProjectSliderRepository.deleteById(sliderNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 }

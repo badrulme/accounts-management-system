@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -54,9 +56,13 @@ public class RL1003Service {
     return this.rlProjectRepository.save(rlProject);
   }
 
-  public void deleteRlProject(Long projectNo) {
+  public Map deleteRlProject(Long projectNo) {
     this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new RejectedExecutionException("Apartment Project not found for this id: " + projectNo));
     this.rlProjectRepository.deleteById(projectNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Apartment Project Deleted Successfully");
+    return deleteMessage;
+
   }
 
   // Flat Type Wise Size setup
@@ -109,15 +115,22 @@ public class RL1003Service {
     return saveList;
   }
 
-  public void deleteItemSize(Long sizeNo) {
+  public Map deleteItemSize(Long sizeNo) {
     this.rlItemSizeRepository.findById(sizeNo).orElseThrow(() -> new RejectedExecutionException("Item size not found for this id: " + sizeNo));
     this.rlItemSizeRepository.deleteById(sizeNo);
+
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 
-  public void deleteItemSizeList(List<RlItemSize> rlItemSizes) {
+  public Map deleteItemSizeList(List<RlItemSize> rlItemSizes) {
     for (RlItemSize rlItemSize : rlItemSizes) {
       this.rlItemSizeRepository.findById(rlItemSize.getSizeNo()).orElseThrow(() -> new RejectedExecutionException("Item size not found for this id: " + rlItemSize.getSizeNo()));
       this.rlItemSizeRepository.deleteById(rlItemSize.getSizeNo());
     }
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 }

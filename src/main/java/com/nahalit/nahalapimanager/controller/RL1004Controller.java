@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/project/land")
 @RestController
@@ -43,8 +44,7 @@ public class RL1004Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<String> deleteLandProject(@RequestParam Long projectNo) {
-    this.rl1004Service.deleteRlProject(projectNo);
-    return new ResponseEntity<>("Land Project Deleted Successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleteLandProject(@RequestParam Long projectNo) {
+    return new ResponseEntity<>(this.rl1004Service.deleteRlProject(projectNo), HttpStatus.OK);
   }
 }

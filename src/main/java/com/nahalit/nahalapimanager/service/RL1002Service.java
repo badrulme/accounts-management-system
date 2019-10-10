@@ -15,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,8 +80,8 @@ public class RL1002Service {
       storageService.deleteFile(rlCustomer.getCustomerPictureName());
     } catch (Exception e) {
     }
-    Map<String, String> deleteMessage = new HashMap<>();
     this.customerRepository.deleteById(customerNo);
+    Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Customer Deleted Successfully");
     return deleteMessage;
   }

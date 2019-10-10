@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/item/slider")
 @RestController
@@ -55,9 +56,7 @@ public class RlItemSliderController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteSlider(@RequestParam Long sliderNo) throws IOException {
-
-        this.rlItemSliderService.deleteRlItemSlider(sliderNo);
-        return new ResponseEntity<>("Item Slider Deleted Successfully.", HttpStatus.OK);
+    public ResponseEntity<Map> deleteSlider(@RequestParam Long sliderNo) throws IOException {
+        return new ResponseEntity<>(this.rlItemSliderService.deleteRlItemSlider(sliderNo), HttpStatus.OK);
     }
 }

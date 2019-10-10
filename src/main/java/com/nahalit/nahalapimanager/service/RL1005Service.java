@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
@@ -64,9 +65,12 @@ public class RL1005Service {
     return this.rlItemRepository.save(rlItem);
   }
 
-  public void deleteApRlItem(Long itemNo) {
+  public Map deleteApRlItem(Long itemNo) {
     this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Apartment Item not found for this id: " + itemNo));
     this.rlItemRepository.deleteById(itemNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 
   public List getFeatureProperty(Long itemNo) throws ResourceNotFoundException {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/item/ap")
 @RestController
@@ -45,9 +46,8 @@ public class RL1005Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<String> deleteItem(@RequestParam Long itemNo) {
-    this.rL1005Service.deleteApRlItem(itemNo);
-    return new ResponseEntity<>("Land Item Deleted Successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleteItem(@RequestParam Long itemNo) {
+    return new ResponseEntity<>(this.rL1005Service.deleteApRlItem(itemNo), HttpStatus.OK);
   }
 
   @GetMapping("get-featured-item")

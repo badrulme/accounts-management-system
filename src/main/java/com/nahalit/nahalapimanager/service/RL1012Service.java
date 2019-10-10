@@ -7,7 +7,9 @@ import com.nahalit.nahalapimanager.repository.RlRajukApprovalRepository;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -40,9 +42,11 @@ public class RL1012Service {
     return this.rlRajukApprovalRepository.save(rlRajukApproval);
   }
 
-  public void deleteRajukApproval(Long approvalNo) {
+  public Map deleteRajukApproval(Long approvalNo) {
     this.rlRajukApprovalRepository.findById(approvalNo).orElseThrow(() -> new RejectedExecutionException("Rajuk Approval not found for this id: " + approvalNo));
     this.rlRajukApprovalRepository.deleteById(approvalNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
-
 }

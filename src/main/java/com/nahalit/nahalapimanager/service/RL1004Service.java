@@ -8,7 +8,9 @@ import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -49,8 +51,12 @@ public class RL1004Service {
     return this.rlProjectRepository.save(rlProject);
   }
 
-  public void deleteRlProject(Long projectNo) {
+  public Map deleteRlProject(Long projectNo) {
     this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new RejectedExecutionException("Land Project not found for this id: " + projectNo));
     this.rlProjectRepository.deleteById(projectNo);
+
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 }

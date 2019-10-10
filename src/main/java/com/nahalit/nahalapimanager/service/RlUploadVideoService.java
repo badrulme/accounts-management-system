@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -73,15 +75,21 @@ public class RlUploadVideoService {
     return saveList;
   }
 
-  public void deleteRlItemVideo(Long videoNo) {
+  public Map deleteRlItemVideo(Long videoNo) {
     this.rlItemVideoRepository.findById(videoNo).orElseThrow(() -> new RejectedExecutionException("Item Video not found for this id: " + videoNo));
     this.rlItemVideoRepository.deleteById(videoNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 
-  public void deleteRlItemVideoList(List<RlUploadVideo> reRlItemVideos) {
+  public Map deleteRlItemVideoList(List<RlUploadVideo> reRlItemVideos) {
     for (RlUploadVideo rlItemVideo : reRlItemVideos) {
       this.rlItemVideoRepository.findById(rlItemVideo.getVideoNo()).orElseThrow(() -> new RejectedExecutionException("Item Video not found for this id: " + rlItemVideo.getVideoNo()));
       this.rlItemVideoRepository.deleteById(rlItemVideo.getVideoNo());
     }
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 }

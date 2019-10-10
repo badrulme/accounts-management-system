@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SA1004Service {
@@ -44,9 +46,12 @@ public class SA1004Service {
     return saLookupRepository.save(saLookup);
   }
 
-  public void deleteLookup(Long lookupNo) throws ResourceNotFoundException {
+  public Map deleteLookup(Long lookupNo) throws ResourceNotFoundException {
     this.saLookupRepository.findById(lookupNo).orElseThrow(() -> new ResourceNotFoundException("Lookup not found for this id: " + lookupNo));
     this.saLookupRepository.deleteById((lookupNo));
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 
   // SA Lookup DTL Information
@@ -101,15 +106,21 @@ public class SA1004Service {
     return saveData;
   }
 
-  public void deleteLookupdtl(Long lookupdtlNo) throws ResourceNotFoundException {
+  public Map deleteLookupdtl(Long lookupdtlNo) throws ResourceNotFoundException {
     this.saLookupRepository.findById(lookupdtlNo).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + lookupdtlNo));
     this.saLookupdtlRepository.deleteById(lookupdtlNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 
-  public void deleteLookupdtlList(List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException {
+  public Map deleteLookupdtlList(List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException {
     for (SaLookupdtl saLookupdtl : saLookupdtls) {
       this.saLookupRepository.findById(saLookupdtl.getLookupdtlNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
       this.saLookupdtlRepository.deleteById(saLookupdtl.getLookupdtlNo());
     }
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 }

@@ -57,7 +57,6 @@ public class RL1002Controller {
 
   @DeleteMapping("/delete")
   public ResponseEntity<Map> deleteCustoemr(@RequestParam Long customerNo) throws ResourceNotFoundException, IOException {
-//    rL1002Service.deleteCustomer(customerNo);
     return new ResponseEntity<>(rL1002Service.deleteCustomer(customerNo), HttpStatus.OK);
   }
 

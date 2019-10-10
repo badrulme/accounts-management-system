@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/video")
 @RestController
@@ -61,14 +62,13 @@ public class RlUploadVideoController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteVideo(@RequestParam Long videoNo) {
-        this.rlItemVideoService.deleteRlItemVideo(videoNo);
-        return new ResponseEntity<>("Item Video Deleted Successfully.", HttpStatus.OK);
+    public ResponseEntity<Map> deleteVideo(@RequestParam Long videoNo) {
+        return new ResponseEntity<>(this.rlItemVideoService.deleteRlItemVideo(videoNo), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-list")
-    public ResponseEntity<String> deleteVideoList(@RequestBody List<RlUploadVideo> reItemVideos) {
-        this.rlItemVideoService.deleteRlItemVideoList(reItemVideos);
-        return new ResponseEntity<>("Item Video Deleted Successfully.", HttpStatus.OK);
+    public ResponseEntity<Map> deleteVideoList(@RequestBody List<RlUploadVideo> reItemVideos) {
+
+        return new ResponseEntity<>(this.rlItemVideoService.deleteRlItemVideoList(reItemVideos), HttpStatus.OK);
     }
 }

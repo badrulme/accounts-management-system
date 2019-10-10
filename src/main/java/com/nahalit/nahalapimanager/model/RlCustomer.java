@@ -102,12 +102,12 @@ public class RlCustomer {
     this.spouseName = spouseName;
   }
 
-  public String getPermanetAddress() {
+  public String getPermanentAddress() {
     return permanentAddress;
   }
 
-  public void setPermanetAddress(String permanetAddress) {
-    this.permanentAddress = permanetAddress;
+  public void setPermanentAddress(String permanentAddress) {
+    this.permanentAddress = permanentAddress;
   }
 
   public String getPresentAddress() {
@@ -132,14 +132,6 @@ public class RlCustomer {
 
   public void setReligion(String religion) {
     this.religion = religion;
-  }
-
-  public String getCpMobile() {
-    return cpMobile;
-  }
-
-  public void setCpMobile(String cpMobile) {
-    this.cpMobile = cpMobile;
   }
 
   public String getNid() {
@@ -172,6 +164,14 @@ public class RlCustomer {
 
   public void setMobile(String mobile) {
     this.mobile = mobile;
+  }
+
+  public String getCpMobile() {
+    return cpMobile;
+  }
+
+  public void setCpMobile(String cpMobile) {
+    this.cpMobile = cpMobile;
   }
 
   public String getEmail() {
@@ -261,5 +261,4 @@ public class RlCustomer {
   public void setSsModifiedOn(Date ssModifiedOn) {
     this.ssModifiedOn = ssModifiedOn;
   }
-
 }

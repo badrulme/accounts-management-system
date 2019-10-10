@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("api/rest/rl/project/ap")
 @RestController
@@ -43,9 +44,8 @@ public class RL1003Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<String> deleteApProject(@RequestParam Long projectNo) {
-    this.rl1003Service.deleteRlProject(projectNo);
-    return new ResponseEntity<>("Apartment Project Deleted Successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleteApProject(@RequestParam Long projectNo) {
+    return new ResponseEntity<>(this.rl1003Service.deleteRlProject(projectNo), HttpStatus.OK);
   }
 
   // Flat Type Wise Size setup
@@ -85,14 +85,12 @@ public class RL1003Controller {
   }
 
   @DeleteMapping("/size/delete")
-  public ResponseEntity<String> deleteItemSize(@RequestParam Long sizeNo) {
-    this.rl1003Service.deleteItemSize(sizeNo);
-    return new ResponseEntity<>("Item size deleted successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleteItemSize(@RequestParam Long sizeNo) {
+    return new ResponseEntity<>(this.rl1003Service.deleteItemSize(sizeNo), HttpStatus.OK);
   }
 
   @DeleteMapping("/size/delete-list")
-  public ResponseEntity<String> deleteItemSizeList(@RequestBody List<RlItemSize> rlItemSizes) {
-    this.rl1003Service.deleteItemSizeList(rlItemSizes);
-    return new ResponseEntity<>("Item size deleted successfully.", HttpStatus.OK);
+  public ResponseEntity<Map> deleteItemSizeList(@RequestBody List<RlItemSize> rlItemSizes) {
+    return new ResponseEntity<>(this.rl1003Service.deleteItemSizeList(rlItemSizes), HttpStatus.OK);
   }
 }

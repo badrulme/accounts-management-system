@@ -12,6 +12,7 @@ import com.nahalit.nahalapimanager.model.RlItem;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
@@ -57,9 +58,12 @@ public class RL1007Service {
     return this.rlItemRepository.save(rlItem);
   }
 
-  public void deleteLandRlItem(Long itemNo) {
+  public Map deleteLandRlItem(Long itemNo) {
     this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Land Item not found for this id: " + itemNo));
     this.rlItemRepository.deleteById(itemNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 
   public List getFeatureProperty(Long itemNo) throws ResourceNotFoundException {

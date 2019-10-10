@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
@@ -69,15 +71,21 @@ public class RlItemInstallmentService {
     return saveList;
   }
 
-  public void deleteRlItemInstallment(Long installmentNo) {
+  public Map deleteRlItemInstallment(Long installmentNo) {
     this.rlItemInstallmentRepository.findById(installmentNo).orElseThrow(() -> new RejectedExecutionException("Item Installment not found for this id: " + installmentNo));
     this.rlItemInstallmentRepository.deleteById(installmentNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 
-  public void deleteRlItemInstallmentList(List<RlItemInstallment> rlItemInstallments) {
+  public Map deleteRlItemInstallmentList(List<RlItemInstallment> rlItemInstallments) {
     for (RlItemInstallment rlItemInstallment : rlItemInstallments) {
       this.rlItemInstallmentRepository.findById(rlItemInstallment.getInstallmentNo()).orElseThrow(() -> new RejectedExecutionException("Item Installment not found for this id: " + rlItemInstallment.getInstallmentNo()));
       this.rlItemInstallmentRepository.deleteById(rlItemInstallment.getInstallmentNo());
     }
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
 }
