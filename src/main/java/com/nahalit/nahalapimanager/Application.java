@@ -40,10 +40,7 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
 //        };
 //    }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
-    }
+
 
 //  @Bean
 //  CommandLineRunner init(StorageService storageService) {
@@ -53,14 +50,19 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
 //    };
 //  }
 
-//    @Autowired
-//    private AuthInterceptor authInterceptor;
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//
-//        registry.addInterceptor(authInterceptor)
-//                .addPathPatterns(AppConfig.FILTERRING_PATH_PATTERNS)
-//                .excludePathPatterns(Arrays.asList(AppConfig.NONFILTERRING_PATH_PATTERNS));
-//    }
+    @Autowired
+    private AuthInterceptor authInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        registry.addInterceptor(authInterceptor)
+                .addPathPatterns(AppConfig.FILTERRING_PATH_PATTERNS)
+                .excludePathPatterns(Arrays.asList(AppConfig.NONFILTERRING_PATH_PATTERNS));
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+    }
 }

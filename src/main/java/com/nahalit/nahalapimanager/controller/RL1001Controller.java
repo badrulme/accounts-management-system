@@ -1,9 +1,11 @@
 package com.nahalit.nahalapimanager.controller;
 
+import com.nahalit.nahalapimanager.AppResponse;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlFacing;
 import com.nahalit.nahalapimanager.service.RL1001Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +14,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("api/rest/rl/configuration")
+@RequestMapping(value = {"api/rest/rl/configuration"},consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 @RestController
 public class RL1001Controller {
   private final RL1001Service rl1001Service;
@@ -23,10 +25,20 @@ public class RL1001Controller {
 
 
   // RL Facing Setup Controller
+//  @GetMapping("/facing/")
+//  public ResponseEntity<List<RlFacing>> getAllfacing() {
+//    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
+//  }
+//  @GetMapping("/facing/")
+//  public ResponseEntity<List<RlFacing>> getAllfacing() {
+//    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
+//  }
+
   @GetMapping("/facing/")
-  public ResponseEntity<List<RlFacing>> getAllfacing() {
-    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
+  public AppResponse getAllfacing() {
+    return AppResponse.build(HttpStatus.OK).body(rl1001Service.getAllFacing());
   }
+
 
   @GetMapping("/facing/get-item-category")
   public ResponseEntity<RlFacing> getFacing(@Valid @RequestParam("facingNo") Long facingNo) throws ResourceNotFoundException {

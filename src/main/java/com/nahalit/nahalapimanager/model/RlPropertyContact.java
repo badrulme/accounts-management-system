@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class RlContact {
+public class RlPropertyContact {
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_CONTACT")
-  @SequenceGenerator(sequenceName = "S_RL_CONTACT", allocationSize = 1, name = "RL_CONTACT")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_PROPERTY_CONTACT")
+  @SequenceGenerator(sequenceName = "S_RL_PROPERTY_CONTACT", allocationSize = 1, name = "RL_PROPERTY_CONTACT")
   private Long contactNo;
   private Long itemNo;
   private String cpName;
