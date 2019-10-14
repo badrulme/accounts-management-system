@@ -16,13 +16,5 @@ public class RLCommonController {
     this.rlCommonService = rlCommonService;
   }
 
-  @PostMapping("/upload-file")
-  public String uploadItemPhoto(@Valid @RequestParam MultipartFile itemPhoto) {
-    if (itemPhoto != null) {
-      return this.rlCommonService.uploadFile(itemPhoto);
-    } else {
-      return "Image Upload Failed";
-    }
-  }
 
 }

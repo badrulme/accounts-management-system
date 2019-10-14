@@ -14,21 +14,5 @@ public class RLCommonService {
     this.storageService = storageService;
   }
 
-  public String uploadFile(MultipartFile multipartFile) {
-    if (multipartFile != null) {
-      String nowTime = UtillDate.getNowTimeNameForImage();
-      String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-      storageService.store(multipartFile, filename);
-      return filename;
-    }
-    return "File Upload Failed";
-  }
 
-  public String deleteFile(String fileName) {
-    try {
-      storageService.deleteFile(fileName);
-    } catch (Exception e) {
-    }
-    return "File Delete Failed";
-  }
 }

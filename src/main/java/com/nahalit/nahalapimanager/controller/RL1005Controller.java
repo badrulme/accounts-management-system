@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class RL1005Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<Map> deleteItem(@RequestParam Long itemNo) {
+  public ResponseEntity<Map> deleteItem(@RequestParam Long itemNo) throws IOException {
     return new ResponseEntity<>(this.rL1005Service.deleteApRlItem(itemNo), HttpStatus.OK);
   }
 

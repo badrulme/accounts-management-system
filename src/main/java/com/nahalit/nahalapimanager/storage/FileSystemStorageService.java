@@ -16,6 +16,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 @Service
@@ -85,9 +87,13 @@ public class FileSystemStorageService implements StorageService {
   }
 
   @Override
-  public void deleteFile(String filename) throws IOException {
+  public Map<String,String> deleteFile(String filename) throws IOException {
     FileSystemUtils.deleteRecursively(rootLocation.resolve(filename));
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
   }
+
 //    @Override
 //    public void deleteAll() {
 //        FileSystemUtils.deleteRecursively(rootLocation.toFile());
