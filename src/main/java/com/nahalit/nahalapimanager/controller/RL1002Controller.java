@@ -26,13 +26,10 @@ import java.util.Map;
 @RestController
 public class RL1002Controller {
   private final RL1002Service rL1002Service;
-  private final StorageService storageService;
-  private final SA1004Service sa1004Service;
 
-  public RL1002Controller(RL1002Service rL1002Service, StorageService storageService, SA1004Service sa1004Service) {
+
+  public RL1002Controller(RL1002Service rL1002Service) {
     this.rL1002Service = rL1002Service;
-    this.storageService = storageService;
-    this.sa1004Service = sa1004Service;
   }
 
   @GetMapping("/")

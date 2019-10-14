@@ -37,7 +37,19 @@ public class RlItem {
   private Long itemTypeNo;
   private String flatType;
   private Integer itemInventoryFlag;
+  private Integer numberOfBalcony;
   private Integer inactiveFlag;
+  private Integer securityFlag;
+  private Integer cctvFlag;
+  private Integer conferenceHallFlag;
+  private Integer heatingFlag;
+  private Integer coolingFlag;
+  private Integer builtYear;
+  private Integer discountAmount;
+  private Integer internetFlag;
+  private Integer cableTvFlag;
+  private String itemBrandPhoto;
+
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
@@ -71,6 +83,14 @@ public class RlItem {
     return descr;
   }
 
+  public String getItemBrandPhoto() {
+    return itemBrandPhoto;
+  }
+
+  public void setItemBrandPhoto(String itemBrandPhoto) {
+    this.itemBrandPhoto = itemBrandPhoto;
+  }
+
   public void setDescr(String descr) {
     this.descr = descr;
   }
@@ -101,6 +121,14 @@ public class RlItem {
 
   public Long getFacingNo() {
     return facingNo;
+  }
+
+  public Integer getNumberOfBalcony() {
+    return numberOfBalcony;
+  }
+
+  public void setNumberOfBalcony(Integer numberOfBalcony) {
+    this.numberOfBalcony = numberOfBalcony;
   }
 
   public void setFacingNo(Long facingNo) {
@@ -281,6 +309,78 @@ public class RlItem {
 
   public void setInactiveFlag(Integer inactiveFlag) {
     this.inactiveFlag = inactiveFlag;
+  }
+
+  public Integer getSecurityFlag() {
+    return securityFlag;
+  }
+
+  public void setSecurityFlag(Integer securityFlag) {
+    this.securityFlag = securityFlag;
+  }
+
+  public Integer getCctvFlag() {
+    return cctvFlag;
+  }
+
+  public void setCctvFlag(Integer cctvFlag) {
+    this.cctvFlag = cctvFlag;
+  }
+
+  public Integer getConferenceHallFlag() {
+    return conferenceHallFlag;
+  }
+
+  public void setConferenceHallFlag(Integer conferenceHallFlag) {
+    this.conferenceHallFlag = conferenceHallFlag;
+  }
+
+  public Integer getHeatingFlag() {
+    return heatingFlag;
+  }
+
+  public void setHeatingFlag(Integer heatingFlag) {
+    this.heatingFlag = heatingFlag;
+  }
+
+  public Integer getCoolingFlag() {
+    return coolingFlag;
+  }
+
+  public void setCoolingFlag(Integer coolingFlag) {
+    this.coolingFlag = coolingFlag;
+  }
+
+  public Integer getBuiltYear() {
+    return builtYear;
+  }
+
+  public void setBuiltYear(Integer builtYear) {
+    this.builtYear = builtYear;
+  }
+
+  public Integer getDiscountAmount() {
+    return discountAmount;
+  }
+
+  public void setDiscountAmount(Integer discountAmount) {
+    this.discountAmount = discountAmount;
+  }
+
+  public Integer getInternetFlag() {
+    return internetFlag;
+  }
+
+  public void setInternetFlag(Integer internetFlag) {
+    this.internetFlag = internetFlag;
+  }
+
+  public Integer getCableTvFlag() {
+    return cableTvFlag;
+  }
+
+  public void setCableTvFlag(Integer cableTvFlag) {
+    this.cableTvFlag = cableTvFlag;
   }
 
   public Date getSsCreatedOn() {

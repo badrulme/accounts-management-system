@@ -17,10 +17,12 @@ import java.util.concurrent.RejectedExecutionException;
 public class RL1001Service {
 
     private RlFacingRepository rlFacingRepository;
+    private AuthService authService;
 
     @Autowired
-    public RL1001Service(RlFacingRepository rlFacingRepository) {
+    public RL1001Service(RlFacingRepository rlFacingRepository, AuthService authService) {
         this.rlFacingRepository = rlFacingRepository;
+        this.authService = authService;
     }
 
 
@@ -36,6 +38,7 @@ public class RL1001Service {
     public RlFacing saveFacing(RlFacing rlFacing) throws ParseException {
         rlFacing.setSsCreatedOn(UtillDate.getDateTime());
         rlFacing.setSsModifiedOn(null);
+        rlFacing.setSsCreator(authService.getUserNo());
         return this.rlFacingRepository.save(rlFacing);
     }
 

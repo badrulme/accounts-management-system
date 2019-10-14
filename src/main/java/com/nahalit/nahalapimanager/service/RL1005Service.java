@@ -21,25 +21,19 @@ import java.util.concurrent.RejectedExecutionException;
 @Service
 public class RL1005Service {
   private final RlItemRepository rlItemRepository;
-  private final RlProjectRepository rlProjectRepository;
-  private final RlRajukApprovalRepository rlRajukApprovalRepository;
   private final RL1005Dao rl1005Dao;
+  private final RLCommonService rlCommonService;
 
-  @Autowired
-  public RL1005Service(RlItemRepository rlItemRepository, RlProjectRepository rlProjectRepository,
-                       RlRajukApprovalRepository rlRajukApprovalRepository,
-                       RL1005Dao rl1005Dao) {
+  public RL1005Service(RlItemRepository rlItemRepository, RL1005Dao rl1005Dao, RLCommonService rlCommonService) {
     this.rlItemRepository = rlItemRepository;
-    this.rlProjectRepository = rlProjectRepository;
-    this.rlRajukApprovalRepository = rlRajukApprovalRepository;
-
     this.rl1005Dao = rl1005Dao;
+    this.rlCommonService = rlCommonService;
   }
 
   // RL Item For Apartment
   public List getAllApItem(Long itemNo) throws ResourceNotFoundException {
     if (itemNo != null) {
-      this.rlProjectRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
+      this.rlItemRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
     }
     return this.rl1005Dao.getAllItemRef(itemNo);
   }
@@ -66,7 +60,8 @@ public class RL1005Service {
   }
 
   public Map deleteApRlItem(Long itemNo) {
-    this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Apartment Item not found for this id: " + itemNo));
+    RlItem rlItem = this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Apartment Item not found for this id: " + itemNo));
+    this.rlCommonService.deleteFile(rlItem.getItemBrandPhoto());
     this.rlItemRepository.deleteById(itemNo);
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Deleted Successfully");
@@ -76,6 +71,7 @@ public class RL1005Service {
   public List getFeatureProperty(Long itemNo) throws ResourceNotFoundException {
     if (itemNo != null) {
       this.rlItemRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
+
     }
     return this.rl1005Dao.getFeatureProperty(itemNo);
   }

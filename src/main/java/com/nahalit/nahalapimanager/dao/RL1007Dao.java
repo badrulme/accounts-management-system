@@ -54,6 +54,15 @@ public class RL1007Dao {
     sql.append(" I.ITEM_NAME \"itemName\",");
     sql.append(" I.DESCR \"descr\",");
     sql.append(" I.INACTIVE_FLAG \"inactiveFlag\",");
+    sql.append(" i.CCTV_FLAG \"cctvFlag\",");
+    sql.append(" i.CONFERENCE_HALL_FLAG \"conferenceHallFlag\",");
+    sql.append(" i.HEATING_FLAG \"heatingFlag\",");
+    sql.append(" i.COOLING_FLAG \"coolingFlag\",");
+    sql.append(" i.NUMBER_OF_BALCONY \"numberOfBalcony\",");
+    sql.append(" i.BUILT_YEAR \"builtYear\",");
+    sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
+    sql.append(" i.INTERNET_FLAG \"internetFlag\",");
+    sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append("        P.PROJECT_ID \"projectId\",");
     sql.append("        P.PROJECT_LOCATION \"projectLocation\",");
     sql.append("        P.PROJECT_TYPE \"projectType\",");
@@ -114,7 +123,18 @@ public class RL1007Dao {
     sql.append(" I.ITEM_NAME \"itemName\",");
     sql.append(" I.DESCR \"descr\",");
     sql.append(" I.INACTIVE_FLAG \"inactiveFlag\",");
+    sql.append(" i.CCTV_FLAG \"cctvFlag\",");
+    sql.append(" i.CONFERENCE_HALL_FLAG \"conferenceHallFlag\",");
+    sql.append(" i.HEATING_FLAG \"heatingFlag\",");
+    sql.append(" i.COOLING_FLAG \"coolingFlag\",");
+    sql.append(" i.NUMBER_OF_BALCONY \"numberOfBalcony\",");
+    sql.append(" i.BUILT_YEAR \"builtYear\",");
+    sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
+    sql.append(" i.INTERNET_FLAG \"internetFlag\",");
+    sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append("        P.PROJECT_ID \"projectId\",");
+    sql.append("        P.BLOCK_NAME_FROM \"blockNameFrom\",");
+    sql.append("        P.BLOCK_NAME_TO \"blockNameTo\",");
     sql.append("        P.PROJECT_LOCATION \"projectLocation\",");
     sql.append("        P.PROJECT_TYPE \"projectType\",");
     sql.append("        DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
@@ -174,6 +194,15 @@ public class RL1007Dao {
     sql.append("                 I.ITEM_NAME                              \"itemName\",");
     sql.append("                 I.DESCR                                  \"descr\",");
     sql.append("                 I.INACTIVE_FLAG                          \"inactiveFlag\",");
+    sql.append(" i.CCTV_FLAG \"cctvFlag\",");
+    sql.append(" i.CONFERENCE_HALL_FLAG \"conferenceHallFlag\",");
+    sql.append(" i.HEATING_FLAG \"heatingFlag\",");
+    sql.append(" i.COOLING_FLAG \"coolingFlag\",");
+    sql.append(" i.NUMBER_OF_BALCONY \"numberOfBalcony\",");
+    sql.append(" i.BUILT_YEAR \"builtYear\",");
+    sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
+    sql.append(" i.INTERNET_FLAG \"internetFlag\",");
+    sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append("                 P.PROJECT_ID                             \"projectId\",");
     sql.append("                 P.PROJECT_LOCATION                       \"projectLocation\",");
     sql.append("                 P.PROJECT_TYPE                           \"projectType\",");
@@ -190,9 +219,10 @@ public class RL1007Dao {
     sql.append("            AND I.ITEM_TYPE_NO = 1");
     sql.append("            AND NVL(I.INACTIVE_FLAG, 0) = 0");
     sql.append("            AND NVL(I.ITEM_INVENTORY_FLAG, 0) = 0");
+    sql.append("            AND I.ITEM_NO<>:ITEM_NO");
     sql.append("            AND I.PROJECT_NO = (SELECT PROJECT_NO FROM RL_ITEM WHERE ITEM_NO = :ITEM_NO)");
     sql.append("      )");
-    sql.append(" WHERE SL <= (SELECT DECODE(NVL(DISPLAY_FEATURE_LIST_NUMBER, SL), 0, SL) FROM RL_CONFIG)");
+    sql.append(" WHERE SL <= (SELECT NVL(DISPLAY_FEATURE_LIST_NUMBER, SL) FROM RL_CONFIG)");
 
 
     Map<String, Long> params = new HashMap<>();

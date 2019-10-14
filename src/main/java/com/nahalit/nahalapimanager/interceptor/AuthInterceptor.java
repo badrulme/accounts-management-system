@@ -37,12 +37,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     }
 
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
-            throws Exception {
-        System.out.println("this is interceptor, postHandle method");
+           {
+//        System.out.println("this is interceptor, postHandle method");
     }
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("this is interceptor, afterCompletion method");
+//        System.out.println("this is interceptor, afterCompletion method");
     }
 
 }

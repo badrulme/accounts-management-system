@@ -10,6 +10,7 @@ import com.nahalit.nahalapimanager.repository.RlRajukApprovalRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.model.RlItem;
 import org.springframework.stereotype.Service;
+import sun.dc.pr.PRError;
 
 import java.text.ParseException;
 import java.util.HashMap;
@@ -20,14 +21,12 @@ import java.util.concurrent.RejectedExecutionException;
 @Service
 public class RL1007Service {
   private final RlItemRepository rlItemRepository;
-  private final RlProjectRepository rlProjectRepository;
-  private final RlRajukApprovalRepository rlRajukApprovalRepository;
+  private final RLCommonService rlCommonService;
   private final RL1007Dao rl1007Dao;
 
-  public RL1007Service(RlItemRepository rlItemRepository, RlProjectRepository rlProjectRepository, RlRajukApprovalRepository rlRajukApprovalRepository, RL1007Dao rl1007Dao) {
+  public RL1007Service(RlItemRepository rlItemRepository, RLCommonService rlCommonService, RL1007Dao rl1007Dao) {
     this.rlItemRepository = rlItemRepository;
-    this.rlProjectRepository = rlProjectRepository;
-    this.rlRajukApprovalRepository = rlRajukApprovalRepository;
+    this.rlCommonService = rlCommonService;
     this.rl1007Dao = rl1007Dao;
   }
 
@@ -59,8 +58,9 @@ public class RL1007Service {
   }
 
   public Map deleteLandRlItem(Long itemNo) {
-    this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Land Item not found for this id: " + itemNo));
+  RlItem rlItem=  this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Land Item not found for this id: " + itemNo));
     this.rlItemRepository.deleteById(itemNo);
+    this.rlCommonService.deleteFile(rlItem.getItemBrandPhoto());
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Deleted Successfully");
     return deleteMessage;

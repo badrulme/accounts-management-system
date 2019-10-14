@@ -55,23 +55,28 @@ public class RL1002Service {
     return this.customerRepository.save(customer);
   }
 
-  public RlCustomer updateCustomer(RlCustomer customer, MultipartFile customerPhoto) throws ResourceNotFoundException, ParseException {
-    RlCustomer oldData = this.customerRepository.findById(customer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customer.getCustomerNo()));
+  public RlCustomer updateCustomer(RlCustomer rlCustomer, MultipartFile customerPhoto) throws ResourceNotFoundException, ParseException {
+    RlCustomer oldData = this.customerRepository.findById(rlCustomer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + rlCustomer.getCustomerNo()));
     if (customerPhoto != null) {
-      if (customer.getCustomerPictureName().length() > 0) {
-        String filename = StringUtils.cleanPath(customer.getCustomerPictureName());
-        storageService.store(customerPhoto, filename);
-      } else {
+      if (rlCustomer.getCustomerPictureName().length() > 0) {
+//        String filename = StringUtils.cleanPath(customer.getCustomerPictureName());
+//        storageService.store(customerPhoto, filename);
+        try {
+          storageService.deleteFile(rlCustomer.getCustomerPictureName());
+        } catch (Exception e) {
+        }
+      }
+
         String nowTime = UtillDate.getNowTimeNameForImage();
         String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
         storageService.store(customerPhoto, filename);
-        customer.setCustomerPictureName(filename);
-      }
-    }
-    customer.setSsCreatedOn(oldData.getSsCreatedOn());
-    customer.setSsModifiedOn(UtillDate.getDateTime());
+        rlCustomer.setCustomerPictureName(filename);
 
-    return this.customerRepository.save(customer);
+    }
+    rlCustomer.setSsCreatedOn(oldData.getSsCreatedOn());
+    rlCustomer.setSsModifiedOn(UtillDate.getDateTime());
+
+    return this.customerRepository.save(rlCustomer);
   }
 
   public Map deleteCustomer(Long customerNo) throws ResourceNotFoundException, IOException {

@@ -14,7 +14,8 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(value = {"api/rest/rl/configuration"},consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+
+@RequestMapping(value = {"api/rest/rl/configuration"})
 @RestController
 public class RL1001Controller {
   private final RL1001Service rl1001Service;
@@ -23,22 +24,11 @@ public class RL1001Controller {
     this.rl1001Service = rl1001Service;
   }
 
-
   // RL Facing Setup Controller
-//  @GetMapping("/facing/")
-//  public ResponseEntity<List<RlFacing>> getAllfacing() {
-//    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
-//  }
-//  @GetMapping("/facing/")
-//  public ResponseEntity<List<RlFacing>> getAllfacing() {
-//    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
-//  }
-
   @GetMapping("/facing/")
-  public AppResponse getAllfacing() {
-    return AppResponse.build(HttpStatus.OK).body(rl1001Service.getAllFacing());
+  public ResponseEntity<List<RlFacing>> getAllfacing() {
+    return new ResponseEntity<>(rl1001Service.getAllFacing(), HttpStatus.OK);
   }
-
 
   @GetMapping("/facing/get-item-category")
   public ResponseEntity<RlFacing> getFacing(@Valid @RequestParam("facingNo") Long facingNo) throws ResourceNotFoundException {

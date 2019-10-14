@@ -33,7 +33,7 @@ public class RlUploadVideoController {
     }
 
     @GetMapping("/get-item-video-list")
-    public ResponseEntity<List<RlUploadVideo>> getAllRlItemVideoList(@Valid @RequestParam Long itemNo) {
+    public ResponseEntity<List<RlUploadVideo>> getAllRlItemVideoList(@Valid @RequestParam("itemNo") Long itemNo) {
         return new ResponseEntity<>(this.rlItemVideoService.getRlItemVideoList(itemNo), HttpStatus.OK);
     }
     @GetMapping("/get-project-video-list")
