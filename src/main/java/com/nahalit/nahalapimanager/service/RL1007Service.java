@@ -7,8 +7,6 @@ import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.model.RlItem;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -47,7 +45,7 @@ public class RL1007Service {
     return this.rlItemRepository.save(rlItem);
   }
 
-  @Transactional
+
   public RlItem updateLandRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
     RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Land Item not for this:" + rlItem.getItemNo()));
     if (oldData.getItemBrandPhoto() != rlItem.getItemBrandPhoto()) {

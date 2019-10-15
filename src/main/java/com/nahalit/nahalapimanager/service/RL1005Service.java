@@ -1,19 +1,12 @@
 package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.dao.RL1005Dao;
-import com.nahalit.nahalapimanager.model.RlProject;
-import com.nahalit.nahalapimanager.model.RlRajukApproval;
-import com.nahalit.nahalapimanager.repository.RlProjectRepository;
-import com.nahalit.nahalapimanager.repository.RlRajukApprovalRepository;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlItem;
 import com.nahalit.nahalapimanager.repository.RlItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -53,7 +46,6 @@ public class RL1005Service {
         rlItem.setItemTypeNo(2L);
         return this.rlItemRepository.save(rlItem);
     }
-@Transactional
     public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
         RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Item not found for this id:" + rlItem.getItemNo()));
         if(oldData.getItemBrandPhoto()!= rlItem.getItemBrandPhoto()){
