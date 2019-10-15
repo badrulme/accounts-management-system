@@ -42,7 +42,7 @@ public class RL1005Controller {
   }
 
   @PutMapping("/update")
-  public ResponseEntity<RlItem> updateItem(@RequestBody RlItem reItem) throws ResourceNotFoundException, ParseException {
+  public ResponseEntity<RlItem> updateItem(@RequestBody RlItem reItem) throws ResourceNotFoundException, ParseException, IOException {
     return new ResponseEntity<>(rL1005Service.updateApRlItem(reItem), HttpStatus.ACCEPTED);
   }
 

@@ -38,6 +38,7 @@ public class RlCustomer {
   private String designation;
   private String officeAddress;
   private String customerPictureName;
+  private Integer companyNo;
   //    private String nomineeName;
 //    private String nomineeFatherName;
 //    private String nomineeMotherName;
@@ -68,6 +69,14 @@ public class RlCustomer {
 
   public void setCustomerId(String customerId) {
     this.customerId = customerId;
+  }
+
+  public Integer getCompanyNo() {
+    return companyNo;
+  }
+
+  public void setCompanyNo(Integer companyNo) {
+    this.companyNo = companyNo;
   }
 
   public String getCustomerName() {

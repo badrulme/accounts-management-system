@@ -13,6 +13,7 @@ import com.nahalit.nahalapimanager.repository.RlItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -52,10 +53,12 @@ public class RL1005Service {
         rlItem.setItemTypeNo(2L);
         return this.rlItemRepository.save(rlItem);
     }
-
-    public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException {
-
+@Transactional
+    public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
         RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Item not found for this id:" + rlItem.getItemNo()));
+        if(oldData.getItemBrandPhoto()!= rlItem.getItemBrandPhoto()){
+            this.storageService.deleteFile(oldData.getItemBrandPhoto());
+        }
         rlItem.setSsCreatedOn(oldData.getSsCreatedOn());
         rlItem.setSsModifiedOn(UtillDate.getDateTime());
         return this.rlItemRepository.save(rlItem);
@@ -63,7 +66,9 @@ public class RL1005Service {
 
     public Map deleteApRlItem(Long itemNo) throws IOException {
         RlItem rlItem = this.rlItemRepository.findById(itemNo).orElseThrow(() -> new RejectedExecutionException("Apartment Item not found for this id: " + itemNo));
-        this.storageService.deleteFile(rlItem.getItemBrandPhoto());
+        if(rlItem.getItemBrandPhoto()!=null){
+            this.storageService.deleteFile(rlItem.getItemBrandPhoto());
+        }
         this.rlItemRepository.deleteById(itemNo);
         Map<String, String> deleteMessage = new HashMap<>();
         deleteMessage.put("deleteStatus", "Deleted Successfully");

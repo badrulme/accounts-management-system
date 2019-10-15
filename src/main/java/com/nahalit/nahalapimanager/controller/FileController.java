@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 @RequestMapping("/api/rest/files")
@@ -50,19 +52,21 @@ public class FileController {
     }
 
     @DeleteMapping("/delete-file")
-    public Map deleteFile(String fileName) throws IOException {
-        return storageService.deleteFile(fileName);
+    public ResponseEntity<Map> deleteFile(String fileName) throws IOException {
+        return new ResponseEntity<>(storageService.deleteFile(fileName),HttpStatus.OK);
     }
 
     @PostMapping("/upload-file")
-    public String uploadFile(@Valid @RequestParam MultipartFile multipartFile) {
+    public ResponseEntity<Map> uploadFile(@Valid @RequestParam MultipartFile multipartFile) {
         if (multipartFile != null) {
             String nowTime = UtillDate.getNowTimeNameForFile();
             String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
             storageService.store(multipartFile, filename);
-            return filename;
+            Map<String,String>fileName= new HashMap<>();
+            fileName.put("fileName",filename);
+            return new ResponseEntity<>(fileName, HttpStatus.OK) ;
         } else {
-            return "File Upload Failed";
+            return null;
         }
     }
 

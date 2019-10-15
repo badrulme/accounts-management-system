@@ -25,13 +25,11 @@ public class RL1002Service {
   private RlCustomerRepository customerRepository;
   private StorageService storageService;
   private RL1002Dao rl1002Dao;
-  private SaLookupdtlRepository saLookupdtlRepository;
 
-  public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao, SaLookupdtlRepository saLookupdtlRepository) {
+  public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao) {
     this.customerRepository = customerRepository;
     this.storageService = storageService;
     this.rl1002Dao = rl1002Dao;
-    this.saLookupdtlRepository = saLookupdtlRepository;
   }
 
   public List<RlCustomer> getAllCustomer() {
@@ -67,10 +65,10 @@ public class RL1002Service {
         }
       }
 
-        String nowTime = UtillDate.getNowTimeNameForImage();
-        String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-        storageService.store(customerPhoto, filename);
-        rlCustomer.setCustomerPictureName(filename);
+      String nowTime = UtillDate.getNowTimeNameForImage();
+      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+      storageService.store(customerPhoto, filename);
+      rlCustomer.setCustomerPictureName(filename);
 
     }
     rlCustomer.setSsCreatedOn(oldData.getSsCreatedOn());
@@ -94,6 +92,8 @@ public class RL1002Service {
   public Map<String, Object> customerLogin(String customerUsername, String password) {
     return rl1002Dao.isCustomerLogin(customerUsername, password);
   }
+
+
 
   public String forgotPasswordByMail(String email) {
     return rl1002Dao.forgotPasswordByMail(email);

@@ -80,7 +80,8 @@ public class CuItemDao {
         sql.append(" DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
         sql.append("        'Residential Cum Commercial') \"projectTypeName\",");
         sql.append(" A.APPROVAL_ID \"approvalId\",");
-        sql.append(" P.PROJECT_NAME \"projectName\"");
+        sql.append(" P.PROJECT_NAME \"projectName\",");
+        sql.append(" T.TYPE_NAME \"itemTypeName\"");
         sql.append(" FROM RL_ITEM I,");
         sql.append("      RL_ITEM_TYPE T,");
         sql.append("      RL_PROJECT P,");
@@ -168,12 +169,15 @@ public class CuItemDao {
         sql.append(" DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
         sql.append("        'Residential Cum Commercial') \"projectTypeName\",");
         sql.append(" A.APPROVAL_ID \"approvalId\",");
-        sql.append(" P.PROJECT_NAME \"projectName\"");
+        sql.append(" P.PROJECT_NAME \"projectName\",");
+        sql.append(" T.TYPE_NAME \"itemTypeName\"");
         sql.append(" FROM RL_ITEM I,");
+        sql.append("      RL_ITEM_TYPE T,");
         sql.append("      RL_PROJECT P,");
         sql.append("      RL_RAJUK_APPROVAL A");
         sql.append(" WHERE I.PROJECT_NO = P.PROJECT_NO(+)");
         sql.append("   AND P.APPROVAL_NO=A.APPROVAL_NO(+)");
+        sql.append("   AND I.ITEM_TYPE_NO=T.TYPE_NO");
 //        sql.append("   AND I.ITEM_TYPE_NO = 2");
         sql.append("   AND I.ITEM_NO = :ITEM_NO");
 

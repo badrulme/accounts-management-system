@@ -25,10 +25,10 @@ import java.util.Map;
 @RestController(value = "coreAuthController")
 @RequestMapping(value = {"/core/auth"}, method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 public class AuthController {
-  private @Autowired
-  HttpServletRequest request;
-  private @Autowired
-  HttpServletResponse response;
+//  private @Autowired
+//  HttpServletRequest request;
+//  private @Autowired
+//  HttpServletResponse response;
 
   @Autowired
   AuthRepo authRepo;
@@ -45,17 +45,17 @@ public class AuthController {
 //  }
   @RequestMapping("/login")
   public AppResponse login(
-      @RequestParam(value = KEY.USER_NAME) String userName,
-      @RequestParam(value = KEY.PASSWORD) String password,
-      @RequestParam(value = KEY.COMPANY_NO) Long companyNo) {
+      @RequestParam String userName,
+      @RequestParam String password,
+      @RequestParam Long companyNo) {
 
     User user = authRepo.findUser(userName, password, companyNo);
     if (user != null) {
       user.setPASSWORD(null);
       String token = Jwts.builder()
           .setId(user.getSESSION_KEY())
-//          .setIssuer(String.valueOf(user.getUSER_NO()))
           .setIssuer(String.valueOf(user.getEMP_NO()))
+          .setSubject("erpUser")
           .setAudience(String.valueOf(user.getCOMPANY_NO()))
           .setIssuedAt(Calendar.getInstance().getTime())
           .setNotBefore(Calendar.getInstance().getTime())

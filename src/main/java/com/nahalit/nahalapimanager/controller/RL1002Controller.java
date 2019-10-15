@@ -1,5 +1,7 @@
 package com.nahalit.nahalapimanager.controller;
 
+import com.nahalit.nahalapimanager.AppResponse;
+import com.nahalit.nahalapimanager.apiconfig.AppConfig;
 import com.nahalit.nahalapimanager.model.RlCustomer;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.SaLookupdtl;
@@ -8,6 +10,8 @@ import com.nahalit.nahalapimanager.service.SA1004Service;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.RandomString;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -18,9 +22,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequestMapping("api/rest/rl/customer")
 @RestController
@@ -53,14 +55,16 @@ public class RL1002Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<Map> deleteCustoemr(@RequestParam Long customerNo) throws ResourceNotFoundException, IOException {
+  public ResponseEntity<Map> deleteCustomer(@RequestParam Long customerNo) throws ResourceNotFoundException, IOException {
     return new ResponseEntity<>(rL1002Service.deleteCustomer(customerNo), HttpStatus.OK);
   }
 
-  @PostMapping("/login")
-  public Map<String, Object> loginCustomer(@Valid @RequestParam String customerUsername, @RequestParam String password) {
-    return rL1002Service.customerLogin(customerUsername, password);
-  }
+//  @PostMapping("/auth/login")
+//  public Map<String, Object> loginCustomer(@Valid @RequestParam String customerId,@RequestParam String email,@RequestParam String mobile, @RequestParam String password) {
+//    return rL1002Service.customerLogin(customerId, password);
+//  }
+
+
 
   @PostMapping("/forgot-password")
   public String forgotPassword(@Valid @RequestParam String forgotMailOrMobile) {

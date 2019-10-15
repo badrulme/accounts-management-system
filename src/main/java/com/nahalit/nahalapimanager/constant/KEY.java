@@ -15,6 +15,7 @@ public class KEY {
     public static final String SESSION_COMPANY_NO = "SESSION_COMPANY_NO";
     public static final String SESSION_USER_NO = "SESSION_USER_NO";
     public static final String SESSION_EMP_NO = "SESSION_EMP_NO";
+    public static final String SESSION_CUSTOMER_NO = "SESSION_CUSTOMER_NO";
     public static final String SESSION_USER_TYPE = "SESSION_USER_TYPE";
     public static final String SESSION_NO = "SESSION_NO";
 
