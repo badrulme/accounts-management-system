@@ -43,6 +43,7 @@ public class RL1004Dao {
       sql.append(" P.SS_MODIFIER \"ssModifier\",");
       sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
       sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
+      sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
       sql.append(" A.APPROVAL_ID \"approvalId\"");
       sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A");
       sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+)");
@@ -83,6 +84,7 @@ public class RL1004Dao {
       sql.append(" P.SS_MODIFIER \"ssModifier\",");
       sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
       sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
+      sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
       sql.append(" A.APPROVAL_ID \"approvalId\"");
       sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A");
       sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+)");

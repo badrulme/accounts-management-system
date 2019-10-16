@@ -87,11 +87,18 @@ public class FileSystemStorageService implements StorageService {
   }
 
   @Override
-  public Map<String,String> deleteFile(String filename) throws IOException {
-    FileSystemUtils.deleteRecursively(rootLocation.resolve(filename));
-    Map<String, String> deleteMessage = new HashMap<>();
-    deleteMessage.put("deleteStatus", "Deleted Successfully");
-    return deleteMessage;
+  public Map<String, String> deleteFile(String filename) {
+    if (filename != null) {
+      try {
+
+        FileSystemUtils.deleteRecursively(rootLocation.resolve(filename));
+        Map<String, String> deleteMessage = new HashMap<>();
+        deleteMessage.put("deleteStatus", "Deleted Successfully");
+        return deleteMessage;
+      } catch (Exception e) {
+      }
+    }
+    return null;
   }
 
 //    @Override

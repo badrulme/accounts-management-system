@@ -1,6 +1,7 @@
 package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.dao.RL1007Dao;
+import com.nahalit.nahalapimanager.dao.RLItemDao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.repository.RlItemRepository;
 import com.nahalit.nahalapimanager.storage.StorageService;
@@ -21,22 +22,27 @@ public class RL1007Service {
   private final RlItemRepository rlItemRepository;
   private final StorageService storageService;
   private final RL1007Dao rl1007Dao;
+  private final RLItemDao rlItemDao;
 
-  public RL1007Service(RlItemRepository rlItemRepository, StorageService storageService, RL1007Dao rl1007Dao) {
+  public RL1007Service(RlItemRepository rlItemRepository, StorageService storageService, RL1007Dao rl1007Dao, RLItemDao rlItemDao) {
     this.rlItemRepository = rlItemRepository;
     this.storageService = storageService;
     this.rl1007Dao = rl1007Dao;
+    this.rlItemDao = rlItemDao;
   }
 
   // RL Item For Land
-  public List getAllLandItem(Long itemNo) {
+  public List getAllLandItem(String itemNo) throws ResourceNotFoundException {
 //    return this.rlItemRepository.findAllByItemType(1L);
-    return this.rl1007Dao.getAllItemRef(itemNo);
+    if (itemNo != null) {
+      this.rlItemRepository.findById(Long.parseLong(itemNo)).orElseThrow(() -> new ResourceNotFoundException("Plot item not found for this id:" + itemNo));
+    }
+    return this.rlItemDao.getAllItemRef(itemNo, "1");
   }
 
-  public Object getLandItem(Long itemNo) {
+  public Object getLandItem(String itemNo) {
 //    return this.rlItemRepository.findItemByIdAndType(itemNo, 1L);
-    return this.rl1007Dao.getItemRef(itemNo);
+    return this.rlItemDao.getItemDetails(itemNo);
   }
 
 
@@ -47,10 +53,9 @@ public class RL1007Service {
     return this.rlItemRepository.save(rlItem);
   }
 
-  @Transactional
   public RlItem updateLandRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
     RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Land Item not for this:" + rlItem.getItemNo()));
-    if (oldData.getItemBrandPhoto() != rlItem.getItemBrandPhoto()) {
+    if (oldData.getItemBrandPhoto() != null && rlItem.getItemBrandPhoto() != null && oldData.getItemBrandPhoto() != rlItem.getItemBrandPhoto()) {
       this.storageService.deleteFile(oldData.getItemBrandPhoto());
     }
     rlItem.setSsCreatedOn(oldData.getSsCreatedOn());
@@ -73,6 +78,6 @@ public class RL1007Service {
     if (itemNo != null) {
       this.rlItemRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Land item not found for this id:" + itemNo));
     }
-    return this.rl1007Dao.getFeatureProperty(itemNo);
+    return this.rlItemDao.getFeatureProperty(itemNo);
   }
 }

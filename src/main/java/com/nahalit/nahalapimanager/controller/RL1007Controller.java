@@ -24,12 +24,12 @@ public class RL1007Controller {
 
   // RL Item Controller
   @GetMapping("/")
-  public ResponseEntity<List> getAllLandItem(@RequestParam(value = "itemNo", required = false) Long itemNo) {
+  public ResponseEntity<List> getAllLandItem(@RequestParam(value = "itemNo", required = false) String itemNo) throws ResourceNotFoundException {
     return new ResponseEntity<>(this.rl1007Service.getAllLandItem(itemNo), HttpStatus.OK);
   }
 
   @GetMapping("/get-item")
-  public ResponseEntity<Object> getALandItem(@RequestParam Long itemNo) {
+  public ResponseEntity<Object> getALandItem(@RequestParam String itemNo) {
     return new ResponseEntity<>(this.rl1007Service.getLandItem(itemNo), HttpStatus.OK);
   }
 

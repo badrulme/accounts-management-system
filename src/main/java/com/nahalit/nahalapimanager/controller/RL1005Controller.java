@@ -27,12 +27,12 @@ public class RL1005Controller {
 
   // RL Item Controller
   @GetMapping("/")
-  public ResponseEntity<List> getAllItem(@RequestParam(value = "itemNo", required = false) Long itemNo) throws ResourceNotFoundException {
+  public ResponseEntity<List> getAllItem(@RequestParam(value = "itemNo", required = false) String itemNo) throws ResourceNotFoundException {
     return new ResponseEntity<>(this.rL1005Service.getAllApItem(itemNo), HttpStatus.OK);
   }
 
   @GetMapping("/get-item")
-  public ResponseEntity<Object> getAPItem(@RequestParam Long itemNo) {
+  public ResponseEntity<Object> getAPItem(@RequestParam String itemNo) {
     return new ResponseEntity<>(this.rL1005Service.getApItem(itemNo), HttpStatus.OK);
   }
 

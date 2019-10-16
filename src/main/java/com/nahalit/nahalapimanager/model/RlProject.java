@@ -28,6 +28,7 @@ public class RlProject {
   private Long openSpace;
   private Long roadSizeNo;
   private Integer projectTypeNo;
+  private String projectLayoutPhoto;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
@@ -91,6 +92,14 @@ public class RlProject {
 
   public Long getPlotSize() {
     return plotSize;
+  }
+
+  public String getProjectLayoutPhoto() {
+    return projectLayoutPhoto;
+  }
+
+  public void setProjectLayoutPhoto(String projectLayoutPhoto) {
+    this.projectLayoutPhoto = projectLayoutPhoto;
   }
 
   public void setPlotSize(Long plotSize) {

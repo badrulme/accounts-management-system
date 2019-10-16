@@ -28,7 +28,6 @@ public class RlItem {
   private Long bedRoom;
   private Long livingAndDining;
   private Long kitchen;
-  private Long varanda;
   private Long toilets;
   private Long swimmingPool;
   private Long gym;
@@ -229,14 +228,6 @@ public class RlItem {
 
   public void setKitchen(Long kitchen) {
     this.kitchen = kitchen;
-  }
-
-  public Long getVaranda() {
-    return varanda;
-  }
-
-  public void setVaranda(Long varanda) {
-    this.varanda = varanda;
   }
 
   public Long getToilets() {

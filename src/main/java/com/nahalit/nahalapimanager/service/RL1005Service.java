@@ -1,16 +1,12 @@
 package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.dao.RL1005Dao;
-import com.nahalit.nahalapimanager.model.RlProject;
-import com.nahalit.nahalapimanager.model.RlRajukApproval;
-import com.nahalit.nahalapimanager.repository.RlProjectRepository;
-import com.nahalit.nahalapimanager.repository.RlRajukApprovalRepository;
+import com.nahalit.nahalapimanager.dao.RLItemDao;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlItem;
 import com.nahalit.nahalapimanager.repository.RlItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,24 +22,26 @@ public class RL1005Service {
     private final RlItemRepository rlItemRepository;
     private final RL1005Dao rl1005Dao;
     private final StorageService storageService;
+    private final RLItemDao rlItemDao;
 
-    public RL1005Service(RlItemRepository rlItemRepository, RL1005Dao rl1005Dao, StorageService storageService) {
+    public RL1005Service(RlItemRepository rlItemRepository, RL1005Dao rl1005Dao, StorageService storageService, RLItemDao rlItemDao) {
         this.rlItemRepository = rlItemRepository;
         this.rl1005Dao = rl1005Dao;
         this.storageService = storageService;
+        this.rlItemDao = rlItemDao;
     }
 
     // RL Item For Apartment
-    public List getAllApItem(Long itemNo) throws ResourceNotFoundException {
+    public List getAllApItem(String itemNo) throws ResourceNotFoundException {
         if (itemNo != null) {
-            this.rlItemRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
+            this.rlItemRepository.findById(Long.parseLong(itemNo)).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
         }
-        return this.rl1005Dao.getAllItemRef(itemNo);
+        return this.rlItemDao.getAllItemRef(itemNo,"2");
     }
 
 
-    public Object getApItem(Long itemNo) {
-        return this.rl1005Dao.getItemRef(itemNo);
+    public Object getApItem(String itemNo) {
+        return this.rlItemDao.getItemDetails(itemNo);
 
     }
 
@@ -53,10 +51,10 @@ public class RL1005Service {
         rlItem.setItemTypeNo(2L);
         return this.rlItemRepository.save(rlItem);
     }
-@Transactional
+
     public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
         RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Item not found for this id:" + rlItem.getItemNo()));
-        if(oldData.getItemBrandPhoto()!= rlItem.getItemBrandPhoto()){
+        if(oldData.getItemBrandPhoto()!=null && rlItem.getItemBrandPhoto()!=null && oldData.getItemBrandPhoto()!= rlItem.getItemBrandPhoto()){
             this.storageService.deleteFile(oldData.getItemBrandPhoto());
         }
         rlItem.setSsCreatedOn(oldData.getSsCreatedOn());
@@ -80,7 +78,7 @@ public class RL1005Service {
             this.rlItemRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
 
         }
-        return this.rl1005Dao.getFeatureProperty(itemNo);
+        return this.rlItemDao.getFeatureProperty(itemNo);
     }
 }
 

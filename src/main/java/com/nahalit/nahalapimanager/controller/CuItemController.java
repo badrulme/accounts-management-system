@@ -35,7 +35,7 @@ public class CuItemController {
     }
 
     @GetMapping("/details")
-    public ResponseEntity<Map> getItemDetails(@RequestParam Long itemNo) {
+    public ResponseEntity<Map> getItemDetails(@RequestParam String itemNo) {
         return new ResponseEntity<>(this.cuItemService.getItemDetails(itemNo), HttpStatus.OK);
     }
 }
