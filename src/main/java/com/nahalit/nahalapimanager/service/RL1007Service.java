@@ -37,7 +37,7 @@ public class RL1007Service {
     if (itemNo != null) {
       this.rlItemRepository.findById(Long.parseLong(itemNo)).orElseThrow(() -> new ResourceNotFoundException("Plot item not found for this id:" + itemNo));
     }
-    return this.rlItemDao.getAllItemRef(itemNo, "1");
+    return this.rlItemDao.getAllItemRef(itemNo, "1",null);
   }
 
   public Object getLandItem(String itemNo) {

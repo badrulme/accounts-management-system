@@ -36,7 +36,7 @@ public class RL1005Service {
         if (itemNo != null) {
             this.rlItemRepository.findById(Long.parseLong(itemNo)).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
         }
-        return this.rlItemDao.getAllItemRef(itemNo,"2");
+        return this.rlItemDao.getAllItemRef(itemNo,"2",null);
     }
 
 
