@@ -48,7 +48,7 @@ public class RlItem {
   private Integer internetFlag;
   private Integer cableTvFlag;
   private String itemBrandPhoto;
-
+  private Double netPrice;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
@@ -144,6 +144,14 @@ public class RlItem {
 
   public Long getPlotSize() {
     return plotSize;
+  }
+
+  public Double getNetPrice() {
+    return netPrice;
+  }
+
+  public void setNetPrice(Double netPrice) {
+    this.netPrice = netPrice;
   }
 
   public void setPlotSize(Long plotSize) {
