@@ -241,7 +241,7 @@ public class RLItemDao {
     sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
     sql.append(" i.INTERNET_FLAG \"internetFlag\",");
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
-    sql.append(" i.netPrice \"netPrice\",");
+    sql.append(" i.net_Price \"netPrice\",");
     sql.append(" P.PROJECT_ID \"projectId\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
     sql.append(" P.PROJECT_TYPE \"projectType\",");
