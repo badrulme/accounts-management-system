@@ -28,7 +28,7 @@ public class RLClientCommonController {
 
   @PostMapping("/auth/login")
   public AppResponse loginCustomer(@Valid @RequestParam(required = false) String customerId, @RequestParam(required = false) String email, @RequestParam(required = false) String mobile, @RequestParam String password, @RequestParam String companyNo) {
-    RlCustomer rlCustomer = rlClientCommonService.customerAuthLogin(customerId, email, mobile, password);
+    RlCustomer rlCustomer = rlClientCommonService.customerAuthLogin(customerId, password);
     if (rlCustomer != null) {
       rlCustomer.setPassword(null);
       String token = Jwts.builder()
