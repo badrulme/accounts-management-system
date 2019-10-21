@@ -15,9 +15,9 @@ public class RLClientCommonService {
     this.rlCustomerRepository = rlCustomerRepository;
   }
 
-  public RlCustomer customerAuthLogin(String customerId, String email, String mobile, String password) {
+  public RlCustomer customerAuthLogin(String customerId, String password) {
     try {
-      return this.rlCustomerRepository.customerAuth(customerId, mobile, email, password);
+      return this.rlCustomerRepository.customerAuth(customerId,password);
     } catch (Exception e) {
       return null;
     }

@@ -8,17 +8,18 @@ import java.util.Map;
 
 @Service
 public class CuItemService {
-  private final RLItemDao rlItemDao;
+  private final RLItemDao RLItemDao;
 
-  public CuItemService(RLItemDao rlItemDao) {
-    this.rlItemDao = rlItemDao;
+  public CuItemService(RLItemDao RLItemDao) {
+    this.RLItemDao = RLItemDao;
   }
 
-  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation,String itemNoList) {
-    return this.rlItemDao.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation,itemNoList);
+  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation,String itemNoList,String projectNo) {
+    return this.RLItemDao.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation,itemNoList,projectNo);
   }
 
   public Map getItemDetails(String itemNo) {
-    return this.rlItemDao.getItemDetails(itemNo);
+    return this.RLItemDao.getItemDetails(itemNo);
   }
+
 }
