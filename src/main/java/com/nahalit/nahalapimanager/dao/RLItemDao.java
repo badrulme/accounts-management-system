@@ -63,6 +63,7 @@ public class RLItemDao {
         sql.append(" I.ITEM_INVENTORY_FLAG \"itemInventoryFlag\",");
         sql.append(" I.ITEM_NAME \"itemName\",");
         sql.append(" I.DESCR \"descr\",");
+        sql.append(" I.DESCR_BN \"descrBn\",");
         sql.append(" I.INACTIVE_FLAG \"inactiveFlag\",");
         sql.append(" i.CCTV_FLAG \"cctvFlag\",");
         sql.append(" i.CONFERENCE_HALL_FLAG \"conferenceHallFlag\",");
@@ -148,6 +149,7 @@ public class RLItemDao {
     sql.append(" I.ITEM_INVENTORY_FLAG \"itemInventoryFlag\",");
     sql.append(" I.ITEM_NAME \"itemName\",");
     sql.append(" I.DESCR \"descr\",");
+    sql.append(" I.DESCR_BN \"descrBn\",");
     sql.append(" I.INACTIVE_FLAG \"inactiveFlag\",");
     sql.append(" i.CCTV_FLAG \"cctvFlag\",");
     sql.append(" i.SECURITY_FLAG \"securityFlag\",");
@@ -157,6 +159,7 @@ public class RLItemDao {
     sql.append(" i.NUMBER_OF_BALCONY \"numberOfBalcony\",");
     sql.append(" i.BUILT_YEAR \"builtYear\",");
     sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
+    sql.append(" i.DISCOUNT_pct \"discountPct\",");
     sql.append(" i.INTERNET_FLAG \"internetFlag\",");
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append("        P.PROJECT_ID \"projectId\",");
@@ -222,6 +225,7 @@ public class RLItemDao {
         sql.append(" I.ITEM_INVENTORY_FLAG \"itemInventoryFlag\",");
         sql.append(" I.ITEM_NAME \"itemName\",");
         sql.append(" I.DESCR \"descr\",");
+        sql.append(" I.DESCR_BN \"descrBn\",");
         sql.append(" I.INACTIVE_FLAG \"inactiveFlag\",");
         sql.append(" i.SECURITY_FLAG \"securityFlag\",");
         sql.append(" i.CCTV_FLAG \"cctvFlag\",");
@@ -231,6 +235,7 @@ public class RLItemDao {
         sql.append(" i.NUMBER_OF_BALCONY \"numberOfBalcony\",");
         sql.append(" i.BUILT_YEAR \"builtYear\",");
         sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
+        sql.append(" i.DISCOUNT_pct \"discountPct\",");
         sql.append(" i.INTERNET_FLAG \"internetFlag\",");
         sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
         sql.append(" P.PROJECT_ID \"projectId\",");
@@ -295,6 +300,7 @@ public class RLItemDao {
         sql.append("                 I.ITEM_INVENTORY_FLAG                    \"itemInventoryFlag\",");
         sql.append("                 I.ITEM_NAME                              \"itemName\",");
         sql.append("                 I.DESCR                                  \"descr\",");
+        sql.append("                 I.DESCR_BN                                  \"descrBn\",");
         sql.append("                 I.INACTIVE_FLAG                          \"inactiveFlag\",");
         sql.append(" i.CCTV_FLAG \"cctvFlag\",");
         sql.append(" i.CONFERENCE_HALL_FLAG \"conferenceHallFlag\",");
@@ -303,6 +309,7 @@ public class RLItemDao {
         sql.append(" i.NUMBER_OF_BALCONY \"numberOfBalcony\",");
         sql.append(" i.BUILT_YEAR \"builtYear\",");
         sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
+        sql.append(" i.DISCOUNT_pct \"discountPct\",");
         sql.append(" i.INTERNET_FLAG \"internetFlag\",");
         sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
         sql.append("                 P.PROJECT_ID                             \"projectId\",");
