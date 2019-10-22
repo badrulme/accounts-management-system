@@ -233,6 +233,8 @@ public class RLItemDao {
     sql.append(" I.ITEM_BRAND_PHOTO \"itemBrandPhoto\",");
     sql.append(" I.ITEM_INVENTORY_FLAG \"itemInventoryFlag\",");
     sql.append(" I.ITEM_NAME \"itemName\",");
+    sql.append(" I.TERMS_AND_CONDITION \"termsAndCondition\",");
+    sql.append(" I.TERMS_AND_CONDITION_BN \"termsAndConditionBn\",");
     sql.append(" I.DESCR \"descr\",");
     sql.append(" I.DESCR_BN \"descrBn\",");
     sql.append(" I.INACTIVE_FLAG \"inactiveFlag\",");

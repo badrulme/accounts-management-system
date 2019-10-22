@@ -15,6 +15,7 @@ public class RlPropertyContact {
   private String cpMobile;
   private String cpComments;
   private Date contactDate;
+  private Integer readFlag;
 
   public Long getContactNo() {
     return contactNo;
@@ -30,6 +31,19 @@ public class RlPropertyContact {
 
   public void setItemNo(Long itemNo) {
     this.itemNo = itemNo;
+  }
+
+
+  public Long getItemNo() {
+    return itemNo;
+  }
+
+  public Integer getReadFlag() {
+    return readFlag;
+  }
+
+  public void setReadFlag(Integer readFlag) {
+    this.readFlag = readFlag;
   }
 
   public String getCpName() {

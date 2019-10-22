@@ -3,18 +3,20 @@ package com.nahalit.nahalapimanager.service;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlPropertyContact;
 import com.nahalit.nahalapimanager.repository.RlPropertyContactRepository;
+import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.RejectedExecutionException;
 
 @Service
-public class RlPropertyContactService {
+public class RL1018Service {
   private final RlPropertyContactRepository rlPropertyContactRepository;
 
-  public RlPropertyContactService(RlPropertyContactRepository rlPropertyContactRepository) {
+  public RL1018Service(RlPropertyContactRepository rlPropertyContactRepository) {
     this.rlPropertyContactRepository = rlPropertyContactRepository;
   }
 
@@ -28,7 +30,8 @@ public class RlPropertyContactService {
   }
 
 
-  public RlPropertyContact saveRlContact(RlPropertyContact rlPropertyContact) {
+  public RlPropertyContact saveRlContact(RlPropertyContact rlPropertyContact) throws ParseException {
+    rlPropertyContact.setContactDate(UtillDate.getDateTime());
     return this.rlPropertyContactRepository.save(rlPropertyContact);
   }
 
