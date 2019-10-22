@@ -15,7 +15,7 @@ public class RLItemDao {
     this.db = db;
   }
 
-  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList,String projectNo) {
+  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo) {
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_TYPE_NO", itemTypeNo);
     params.put("ITEM_NO", itemNo);
@@ -117,7 +117,7 @@ public class RLItemDao {
 
   }
 
-  public List getAllItemRef(String itemNo, String itemTypeNo,String projectNo) {
+  public List getAllItemRef(String itemNo, String itemTypeNo, String projectNo) {
 
     StringBuilder sql = new StringBuilder();
 
@@ -247,6 +247,7 @@ public class RLItemDao {
     sql.append(" i.DISCOUNT_PCT \"discountPct\",");
     sql.append(" i.INTERNET_FLAG \"internetFlag\",");
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
+    sql.append(" LISTAGG(INSTALLMENT_AMOUNT,',') WITHIN GROUP(ORDER BY N.ITEM_NO ) \"installmentNumber\",");
     sql.append(" i.net_Price \"netPrice\",");
     sql.append(" P.PROJECT_ID \"projectId\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
@@ -259,12 +260,68 @@ public class RLItemDao {
     sql.append(" FROM RL_ITEM I,");
     sql.append("      RL_ITEM_TYPE T,");
     sql.append("      RL_PROJECT P,");
+    sql.append("      RL_ITEM_INSTALLMENT N,");
     sql.append("      RL_RAJUK_APPROVAL A");
     sql.append(" WHERE I.PROJECT_NO = P.PROJECT_NO(+)");
     sql.append("   AND P.APPROVAL_NO=A.APPROVAL_NO(+)");
+    sql.append("   AND I.ITEM_NO=N.ITEM_NO(+)");
     sql.append("   AND I.ITEM_TYPE_NO=T.TYPE_NO");
 //        sql.append("   AND I.ITEM_TYPE_NO = 2");
     sql.append("   AND I.ITEM_NO = :ITEM_NO");
+    sql.append(" GROUP BY I.ITEM_NO,");
+    sql.append(" I.ITEM_ID,");
+    sql.append(" I.PROJECT_NO,");
+    sql.append(" I.PLOT_TYPE,");
+    sql.append(" I.ROAD_SIZE,");
+    sql.append(" I.FACING_NO,");
+    sql.append(" I.BLOCK_NAME,");
+    sql.append(" I.PLOT_SIZE,");
+    sql.append(" I.PRICE,");
+    sql.append(" I.TOTAL_PRICE,");
+    sql.append(" I.FLAT_SIZE,");
+    sql.append(" I.FLAT_PLACEOF_STORID,");
+    sql.append(" I.FLAT_NO,");
+    sql.append(" I.NUMBER_OF_LIFT,");
+    sql.append(" I.DECORATION_CONDITION,");
+    sql.append(" I.BED_ROOM,");
+    sql.append(" I.LIVING_AND_DINING,");
+    sql.append(" I.KITCHEN,");
+    sql.append(" I.TOILETS,");
+    sql.append(" I.SWIMMING_POOL,");
+    sql.append(" I.GYM,");
+    sql.append(" I.PARKING_FLAG,");
+    sql.append(" I.PARKING_PRICE,");
+    sql.append(" I.SS_CREATED_ON,");
+    sql.append(" I.SS_CREATOR,");
+    sql.append(" I.SS_MODIFIED_ON,");
+    sql.append(" I.SS_MODIFIER,");
+    sql.append(" I.ITEM_TYPE_NO,");
+    sql.append(" I.FLAT_TYPE,");
+    sql.append(" I.ITEM_BRAND_PHOTO,");
+    sql.append(" I.ITEM_INVENTORY_FLAG,");
+    sql.append(" I.ITEM_NAME,");
+    sql.append(" I.DESCR,");
+    sql.append(" I.DESCR_BN,");
+    sql.append(" I.INACTIVE_FLAG,");
+    sql.append(" i.SECURITY_FLAG,");
+    sql.append(" i.CCTV_FLAG,");
+    sql.append(" i.CONFERENCE_HALL_FLAG,");
+    sql.append(" i.HEATING_FLAG,");
+    sql.append(" i.COOLING_FLAG,");
+    sql.append(" i.NUMBER_OF_BALCONY,");
+    sql.append(" i.BUILT_YEAR,");
+    sql.append(" i.DISCOUNT_AMOUNT,");
+    sql.append(" i.DISCOUNT_PCT,");
+    sql.append(" i.INTERNET_FLAG,");
+    sql.append(" i.CABLE_TV_FLAG,");
+    sql.append(" i.net_Price,");
+    sql.append(" P.PROJECT_ID,");
+    sql.append(" P.PROJECT_LOCATION,");
+    sql.append(" P.PROJECT_TYPE,");
+    sql.append(" P.PROJECT_TYPE,");
+    sql.append(" A.APPROVAL_ID,");
+    sql.append(" P.PROJECT_NAME,");
+    sql.append(" T.TYPE_NAME");
 
 
     return db.queryForMap(sql.toString(), params);
