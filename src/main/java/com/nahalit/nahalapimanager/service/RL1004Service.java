@@ -1,6 +1,7 @@
 package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.dao.RL1004Dao;
+import com.nahalit.nahalapimanager.dao.RLProjectDao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlProject;
 import com.nahalit.nahalapimanager.repository.RlProjectRepository;
@@ -17,11 +18,13 @@ import java.util.concurrent.RejectedExecutionException;
 public class RL1004Service {
   private final RlProjectRepository rlProjectRepository;
   private final RL1004Dao rl1004Dao;
+  private final RLProjectDao rlProjectDao;
 
 
-  public RL1004Service(RlProjectRepository rlProjectRepository, RL1004Dao rl1004Dao) {
+  public RL1004Service(RlProjectRepository rlProjectRepository, RL1004Dao rl1004Dao, RLProjectDao rlProjectDao) {
     this.rlProjectRepository = rlProjectRepository;
     this.rl1004Dao = rl1004Dao;
+    this.rlProjectDao = rlProjectDao;
   }
 
   // RL Land Project Service
@@ -41,6 +44,7 @@ public class RL1004Service {
     rlProject.setSsCreatedOn(UtillDate.getDateTime());
     rlProject.setSsModifiedOn(null);
     rlProject.setProjectTypeNo(1);
+    rlProject.setProjectId(rlProjectDao.getProjectId("1"));
     return this.rlProjectRepository.save(rlProject);
   }
 

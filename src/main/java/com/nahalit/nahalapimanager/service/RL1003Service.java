@@ -1,6 +1,7 @@
 package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.dao.RL1003Dao;
+import com.nahalit.nahalapimanager.dao.RLProjectDao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlItemSize;
 import com.nahalit.nahalapimanager.model.RlProject;
@@ -22,11 +23,13 @@ public class RL1003Service {
   private final RlProjectRepository rlProjectRepository;
   private final RlItemSizeRepository rlItemSizeRepository;
   private final RL1003Dao rl1003Dao;
+  private final RLProjectDao rlProjectDao;
 
-  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository, @Qualifier("RL1003Dao") RL1003Dao rl1003Dao) {
+  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository, @Qualifier("RL1003Dao") RL1003Dao rl1003Dao, RLProjectDao rlProjectDao) {
     this.rlProjectRepository = rlProjectRepository;
     this.rlItemSizeRepository = rlItemSizeRepository;
     this.rl1003Dao = rl1003Dao;
+    this.rlProjectDao = rlProjectDao;
   }
 
   // RL Apartment Project Service
@@ -46,6 +49,7 @@ public class RL1003Service {
     rlProject.setProjectTypeNo(2);
     rlProject.setSsCreatedOn(UtillDate.getDateTime());
     rlProject.setSsModifiedOn(null);
+    rlProject.setProjectId(rlProjectDao.getProjectId("2"));
     return this.rlProjectRepository.save(rlProject);
   }
 

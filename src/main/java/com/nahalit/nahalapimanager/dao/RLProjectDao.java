@@ -15,6 +15,19 @@ public class RLProjectDao {
     this.db = db;
   }
 
+  public String getProjectId(String projectTypeNo) {
+    StringBuilder sql = new StringBuilder();
+    Map<String, String> params = new HashMap<>();
+    params.put("PROJECT_TYPE_NO", projectTypeNo);
+
+    sql.append(" SELECT 'LP' || LPAD(MAX(TO_NUMBER(SUBSTR(PROJECT_ID, 3))) + 1, 3, 0) ID");
+    sql.append(" FROM RL_PROJECT WHERE PROJECT_TYPE_NO=:PROJECT_TYPE_NO");
+
+    Map mapCustomerId = db.queryForMap(sql.toString(), params);
+
+    return mapCustomerId.get("ID").toString();
+  }
+
   public List getProjectList(String projectNo, String projectTypeNo) {
 
     StringBuilder sql = new StringBuilder();

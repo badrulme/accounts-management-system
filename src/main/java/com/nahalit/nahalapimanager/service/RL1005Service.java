@@ -49,6 +49,7 @@ public class RL1005Service {
         rlItem.setSsCreatedOn(UtillDate.getDateTime());
         rlItem.setSsModifiedOn(null);
         rlItem.setItemTypeNo(2L);
+        rlItem.setItemId(rlItemDao.getItemId("2"));
         return this.rlItemRepository.save(rlItem);
     }
 

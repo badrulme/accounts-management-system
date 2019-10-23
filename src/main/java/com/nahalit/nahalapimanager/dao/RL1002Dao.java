@@ -2,20 +2,35 @@ package com.nahalit.nahalapimanager.dao;
 
 import com.nahalit.nahalapimanager.service.EmailService;
 import com.nahalit.nahalapimanager.utillibrary.RandomString;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.awt.image.VolatileImage;
 import java.util.HashMap;
 import java.util.Map;
 
 @Repository
 public class RL1002Dao {
   private final NamedParameterJdbcTemplate db;
+  private final JdbcTemplate jdbcTemplate;
   private final EmailService emailService;
 
-  public RL1002Dao(NamedParameterJdbcTemplate db, EmailService emailService) {
+  public RL1002Dao(NamedParameterJdbcTemplate db, JdbcTemplate jdbcTemplate, EmailService emailService) {
     this.db = db;
+    this.jdbcTemplate = jdbcTemplate;
     this.emailService = emailService;
+  }
+
+  public String getCustomerId() {
+    StringBuilder sql = new StringBuilder();
+    Map<String, String> params = new HashMap<>();
+    sql.append(" SELECT 'CI' || LPAD(MAX(TO_NUMBER(SUBSTR(CUSTOMER_ID, 3))) + 1, 4, 0) ID");
+    sql.append(" FROM RL_CUSTOMER");
+
+    Map mapCustomerId = db.queryForMap(sql.toString(), params);
+
+    return mapCustomerId.get("ID").toString();
   }
 
   public Map<String, Object> isCustomerLogin(String customerUsername, String password) {

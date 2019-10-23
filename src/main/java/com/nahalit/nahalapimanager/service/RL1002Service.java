@@ -47,6 +47,7 @@ public class RL1002Service {
       storageService.store(customerPhoto, filename);
       customer.setCustomerPictureName(filename);
     }
+    customer.setCustomerId(rl1002Dao.getCustomerId());
     customer.setSsCreatedOn(UtillDate.getDateTime());
     customer.setSsModifiedOn(null);
 
@@ -92,7 +93,6 @@ public class RL1002Service {
   public Map<String, Object> customerLogin(String customerUsername, String password) {
     return rl1002Dao.isCustomerLogin(customerUsername, password);
   }
-
 
 
   public String forgotPasswordByMail(String email) {

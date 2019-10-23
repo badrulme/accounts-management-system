@@ -15,6 +15,25 @@ public class RLItemDao {
     this.db = db;
   }
 
+
+
+  public String getItemId(String projectNo) {
+    StringBuilder sql = new StringBuilder();
+    Map<String, String> params = new HashMap<>();
+    params.put("PROJECT_NO", projectNo);
+
+    sql.append(" SELECT MAX(SUBSTR(ITEM_ID, 7)) + 1 ID");
+    sql.append(" FROM RL_ITEM");
+    sql.append(" WHERE SUBSTR(ITEM_ID, 1, 5) = (");
+    sql.append("     SELECT SUBSTR(PROJECT_ID, 1, 7)");
+    sql.append("     FROM RL_PROJECT");
+    sql.append("     WHERE PROJECT_NO = :PROJECT_NO);");
+
+    Map mapCustomerId = db.queryForMap(sql.toString(), params);
+
+    return mapCustomerId.get("ID").toString();
+  }
+
   public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo) {
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_TYPE_NO", itemTypeNo);
@@ -313,6 +332,8 @@ public class RLItemDao {
     sql.append(" i.NUMBER_OF_BALCONY,");
     sql.append(" i.BUILT_YEAR,");
     sql.append(" i.DISCOUNT_AMOUNT,");
+    sql.append(" i.TERMS_AND_CONDITION,");
+    sql.append(" i.TERMS_AND_CONDITION_BN,");
     sql.append(" i.DISCOUNT_PCT,");
     sql.append(" i.INTERNET_FLAG,");
     sql.append(" i.CABLE_TV_FLAG,");
