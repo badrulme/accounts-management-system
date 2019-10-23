@@ -33,7 +33,7 @@ public class RlTrn {
     private String payorderNo;
     private String payMode;
     private String paidAmount;
-    private String webUserFlag;
+    private Integer webUserFlag;
     private Long ssCreator;
     private Date ssCreatedOn;
     private Long ssModifier;
@@ -247,11 +247,11 @@ public class RlTrn {
         this.paidAmount = paidAmount;
     }
 
-    public String getWebUserFlag() {
+    public Integer getWebUserFlag() {
         return webUserFlag;
     }
 
-    public void setWebUserFlag(String webUserFlag) {
+    public void setWebUserFlag(Integer webUserFlag) {
         this.webUserFlag = webUserFlag;
     }
 

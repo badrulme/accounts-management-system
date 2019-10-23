@@ -72,7 +72,7 @@ public class RlTrnNominee {
         return ssModifier;
     }
 
-    public void setSsModifier(Long ssModifier) {
+    public void setSsModifier(Long sModifier) {
         this.ssModifier = ssModifier;
     }
 
