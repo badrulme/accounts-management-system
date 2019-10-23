@@ -1,14 +1,15 @@
 package com.nahalit.nahalapimanager.service;
 
-import com.nahalit.nahalapimanager.dao.RL1004Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
-import com.nahalit.nahalapimanager.model.RlProject;
-import com.nahalit.nahalapimanager.repository.RlProjectRepository;
+import com.nahalit.nahalapimanager.model.RlTrn;
+import com.nahalit.nahalapimanager.model.RlTrnNominee;
+import com.nahalit.nahalapimanager.repository.RlTrnNomineeRepository;
 import com.nahalit.nahalapimanager.repository.RlTrnRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,47 +17,116 @@ import java.util.concurrent.RejectedExecutionException;
 
 @Service
 public class RL1019Service {
-  private final RlTrnRepository rlTrnRepository;
+    private final RlTrnRepository rlTrnRepository;
+    private final RlTrnNomineeRepository rlTrnNomineeRepository;
 
 
-  public RL1019Service(RlTrnRepository rlTrnRepository) {
-    this.rlTrnRepository = rlTrnRepository;
-  }
-
-  // RL Trn
-  public List getAllTransaction(String trnNo) throws ResourceNotFoundException {
-    if (trnNo != null) {
-      this.rlTrnRepository.findById(trnNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + trnNo));
+    public RL1019Service(RlTrnRepository rlTrnRepository, RlTrnNomineeRepository rlTrnNomineeRepository) {
+        this.rlTrnRepository = rlTrnRepository;
+        this.rlTrnNomineeRepository = rlTrnNomineeRepository;
     }
-//    return this.rl1004Dao.getAllProjectRef(projectNo);
-    return this.rlTrnRepository.findAll();
-  }
 
-//  public Object getProject(Long projectNo) throws ResourceNotFoundException {
+    // RL Trn
+    public List getAllTransaction(Long trnNo) throws ResourceNotFoundException {
+        if (trnNo != null) {
+            this.rlTrnRepository.findById(trnNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + trnNo));
+        }
+//    return this.rl1004Dao.getAllProjectRef(projectNo);
+        return this.rlTrnRepository.findAll();
+    }
+
+    //  public Object getProject(Long projectNo) throws ResourceNotFoundException {
 //    this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
 //    return rl1004Dao.getProjectRef(projectNo);
 //  }
 //
-//  public RlProject saveRlProject(RlProject rlProject) throws ParseException {
-//    rlProject.setSsCreatedOn(UtillDate.getDateTime());
-//    rlProject.setSsModifiedOn(null);
-//    rlProject.setProjectTypeNo(1);
-//    return this.rlProjectRepository.save(rlProject);
-//  }
-//
-//  public RlProject updateRlProject(RlProject rlProject) throws ResourceNotFoundException, ParseException {
-//    RlProject oldData = this.rlProjectRepository.findById(rlProject.getProjectNo()).orElseThrow(() -> new ResourceNotFoundException("Land Project not for this:" + rlProject.getProjectNo()));
-//    rlProject.setSsCreatedOn(oldData.getSsCreatedOn());
-//    rlProject.setSsModifiedOn(UtillDate.getDateTime());
-//    return this.rlProjectRepository.save(rlProject);
-//  }
+    public RlTrn saveRlTrn(RlTrn rlTrn) throws ParseException {
+        rlTrn.setSsCreatedOn(UtillDate.getDateTime());
+        rlTrn.setSsModifiedOn(null);
+        return this.rlTrnRepository.save(rlTrn);
+    }
 
-  public Map deleteRlTrn(String trnNo) {
-    this.rlTrnRepository.findById(trnNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + trnNo));
-    this.rlTrnRepository.deleteById(trnNo);
+    public RlTrn updateRlTrn(RlTrn rlTrn) throws ResourceNotFoundException, ParseException {
+        RlTrn oldData = this.rlTrnRepository.findById(rlTrn.getTrnNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this:" + rlTrn.getTrnNo()));
+        rlTrn.setSsCreatedOn(oldData.getSsCreatedOn());
+        rlTrn.setSsModifiedOn(UtillDate.getDateTime());
+        return this.rlTrnRepository.save(rlTrn);
+    }
 
-    Map<String, String> deleteMessage = new HashMap<>();
-    deleteMessage.put("deleteStatus", "Deleted Successfully");
-    return deleteMessage;
-  }
+    public Map deleteRlTrn(Long trnNo) {
+        this.rlTrnRepository.findById(trnNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + trnNo));
+        this.rlTrnRepository.deleteById(trnNo);
+
+        Map<String, String> deleteMessage = new HashMap<>();
+        deleteMessage.put("deleteStatus", "Deleted Successfully");
+        return deleteMessage;
+    }
+
+    // RL Nominee
+    public List<RlTrnNominee> getAllNominee() {
+        return this.rlTrnNomineeRepository.findAll();
+    }
+
+//    public RlTrnNominee getNominee(Long nomineeNo) {
+//        return this.rlTrnNomineeRepository.findById(nomineeNo);
+//    }
+
+    public List<RlTrnNominee> getNomineeByTrnNo(String trnNo) {
+        return this.rlTrnNomineeRepository.getNomineeByTrnNo(trnNo);
+    }
+
+    public RlTrnNominee saveRlTrnNominee(RlTrnNominee rlTrnNominee) throws ParseException {
+        rlTrnNominee.setSsCreatedOn(UtillDate.getDateTime());
+        rlTrnNominee.setSsModifiedOn(null);
+        return this.rlTrnNomineeRepository.save(rlTrnNominee);
+    }
+
+    public List<RlTrnNominee> saveRlTrnNomineeList(List<RlTrnNominee> rlTrnNominees) {
+        List<RlTrnNominee> rlTrnNomineeList = new ArrayList<>();
+        rlTrnNominees.forEach(rlTrnNominee -> {
+            try {
+                rlTrnNominee.setSsCreatedOn(UtillDate.getDateTime());
+                rlTrnNominee.setSsModifiedOn(null);
+                rlTrnNomineeList.add(this.rlTrnNomineeRepository.save(rlTrnNominee));
+            } catch (ParseException e) {
+            }
+        });
+        return rlTrnNomineeList;
+    }
+
+    public RlTrnNominee updateRlTrnNominee(RlTrnNominee rlTrnNominee) throws ResourceNotFoundException, ParseException {
+        RlTrnNominee oldData = this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + rlTrnNominee.getNomineeNo()));
+        rlTrnNominee.setSsCreatedOn(oldData.getSsCreatedOn());
+        rlTrnNominee.setSsModifiedOn(UtillDate.getDateTime());
+        return this.rlTrnNomineeRepository.save(rlTrnNominee);
+    }
+
+    public List<RlTrnNominee> updateRlTrnNomineeList(List<RlTrnNominee> rlTrnNominees) throws ResourceNotFoundException, ParseException {
+        List<RlTrnNominee> saveList = new ArrayList<>();
+        for (RlTrnNominee rlTrnNominee : rlTrnNominees) {
+            RlTrnNominee oldData = this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + rlTrnNominee.getNomineeNo()));
+            rlTrnNominee.setSsCreatedOn(oldData.getSsCreatedOn());
+            rlTrnNominee.setSsModifiedOn(UtillDate.getDateTime());
+            saveList.add(this.rlTrnNomineeRepository.save(rlTrnNominee));
+        }
+        return saveList;
+    }
+
+    public Map deleteRlTrnNominee(Long nomineeNo) {
+        this.rlTrnNomineeRepository.findById(nomineeNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + nomineeNo));
+        this.rlTrnNomineeRepository.deleteById(nomineeNo);
+        Map<String, String> deleteMessage = new HashMap<>();
+        deleteMessage.put("deleteStatus", "Deleted Successfully");
+        return deleteMessage;
+    }
+
+    public Map deleteRlTrnNomineeList(List<RlTrnNominee> rlTrnNominees) {
+        for (RlTrnNominee rlTrnNominee : rlTrnNominees) {
+            this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + rlTrnNominee.getNomineeNo()));
+            this.rlTrnNomineeRepository.deleteById(rlTrnNominee.getNomineeNo());
+        }
+        Map<String, String> deleteMessage = new HashMap<>();
+        deleteMessage.put("deleteStatus", "Deleted Successfully");
+        return deleteMessage;
+    }
 }
