@@ -34,6 +34,9 @@ public class RlTrn {
     private String payMode;
     private String paidAmount;
     private Integer webUserFlag;
+    private Integer approveFlag;
+    private Date approveDate;
+    private Long approveBy;
     private Long ssCreator;
     private Date ssCreatedOn;
     private Long ssModifier;
@@ -63,7 +66,31 @@ public class RlTrn {
     return refContactNo;
   }
 
-  public void setRefContactNo(String refContactNo) {
+    public Integer getApproveFlag() {
+        return approveFlag;
+    }
+
+    public void setApproveFlag(Integer approveFlag) {
+        this.approveFlag = approveFlag;
+    }
+
+    public Date getApproveDate() {
+        return approveDate;
+    }
+
+    public void setApproveDate(Date approveDate) {
+        this.approveDate = approveDate;
+    }
+
+    public Long getApproveBy() {
+        return approveBy;
+    }
+
+    public void setApproveBy(Long approveBy) {
+        this.approveBy = approveBy;
+    }
+
+    public void setRefContactNo(String refContactNo) {
     this.refContactNo = refContactNo;
   }
 
