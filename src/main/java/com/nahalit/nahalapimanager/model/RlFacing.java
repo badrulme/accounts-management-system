@@ -1,9 +1,16 @@
 package com.nahalit.nahalapimanager.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class RlFacing {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item_facing")
@@ -15,51 +22,4 @@ public class RlFacing {
   private Long ssModifier;
   private Date ssModifiedOn;
 
-  public Long getFacingNo() {
-    return facingNo;
-  }
-
-  public void setFacingNo(Long facingNo) {
-    this.facingNo = facingNo;
-  }
-
-  public String getFacingName() {
-    return facingName;
-  }
-
-  public void setFacingName(String facingName) {
-    this.facingName = facingName;
-  }
-
-  public Long getSsCreator() {
-    return ssCreator;
-  }
-
-  public void setSsCreator(Long ssCreator) {
-    this.ssCreator = ssCreator;
-  }
-
-  public Date getSsCreatedOn() {
-    return ssCreatedOn;
-  }
-
-  public void setSsCreatedOn(Date ssCreatedOn) {
-    this.ssCreatedOn = ssCreatedOn;
-  }
-
-  public Long getSsModifier() {
-    return ssModifier;
-  }
-
-  public void setSsModifier(Long ssModifier) {
-    this.ssModifier = ssModifier;
-  }
-
-  public Date getSsModifiedOn() {
-    return ssModifiedOn;
-  }
-
-  public void setSsModifiedOn(Date ssModifiedOn) {
-    this.ssModifiedOn = ssModifiedOn;
-  }
 }

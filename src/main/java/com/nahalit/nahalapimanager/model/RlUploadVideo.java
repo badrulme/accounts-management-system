@@ -1,8 +1,14 @@
 package com.nahalit.nahalapimanager.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class RlUploadVideo {
     @Id
@@ -18,75 +24,4 @@ public class RlUploadVideo {
     private Long ssModifier;
     private Date ssModifiedOn;
 
-    public Long getVideoNo() {
-        return videoNo;
-    }
-
-    public void setVideoNo(Long videoNo) {
-        this.videoNo = videoNo;
-    }
-
-    public String getVideoTitle() {
-        return videoTitle;
-    }
-
-    public void setVideoTitle(String videoTitle) {
-        this.videoTitle = videoTitle;
-    }
-
-  public String getYoutubeVideoLink() {
-    return youtubeVideoLink;
-  }
-
-  public void setYoutubeVideoLink(String youtubeVideoLink) {
-    this.youtubeVideoLink = youtubeVideoLink;
-  }
-
-  public Long getItemNo() {
-        return itemNo;
-    }
-
-    public void setItemNo(Long itemNo) {
-        this.itemNo = itemNo;
-    }
-
-    public Long getSsCreator() {
-        return ssCreator;
-    }
-
-    public void setSsCreator(Long ssCreator) {
-        this.ssCreator = ssCreator;
-    }
-
-    public Date getSsCreatedOn() {
-        return ssCreatedOn;
-    }
-
-    public void setSsCreatedOn(Date ssCreatedOn) {
-        this.ssCreatedOn = ssCreatedOn;
-    }
-
-    public Long getSsModifier() {
-        return ssModifier;
-    }
-
-    public void setSsModifier(Long ssModifier) {
-        this.ssModifier = ssModifier;
-    }
-
-    public Date getSsModifiedOn() {
-        return ssModifiedOn;
-    }
-
-    public void setSsModifiedOn(Date ssModifiedOn) {
-        this.ssModifiedOn = ssModifiedOn;
-    }
-
-    public Long getProjectNo() {
-        return projectNo;
-    }
-
-    public void setProjectNo(Long projectNo) {
-        this.projectNo = projectNo;
-    }
 }

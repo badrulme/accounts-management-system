@@ -24,8 +24,9 @@ public class RL1019Controller {
     return new ResponseEntity<>(this.rl1019Service.getAllTransaction(trnNo), HttpStatus.OK);
   }
 
+
   @DeleteMapping("/delete")
-  public ResponseEntity<Map> deleteRajukApproval(@RequestParam String trnNo) {
+  public ResponseEntity<Map> deleteTrn(@RequestParam String trnNo) {
     return new ResponseEntity<>(this.rl1019Service.deleteRlTrn(trnNo), HttpStatus.OK);
   }
 }

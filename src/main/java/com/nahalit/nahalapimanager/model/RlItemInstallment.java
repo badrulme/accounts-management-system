@@ -1,8 +1,15 @@
 package com.nahalit.nahalapimanager.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class RlItemInstallment {
     @Id
@@ -15,63 +22,4 @@ public class RlItemInstallment {
     private Date ssCreatedOn;
     private Long ssModifier;
     private Date ssModifiedOn;
-
-    public RlItemInstallment() {
-    }
-
-    public Long getInstallmentNo() {
-        return installmentNo;
-    }
-
-    public void setInstallmentNo(Long installmentNo) {
-        this.installmentNo = installmentNo;
-    }
-
-    public int getInstallmentAmount() {
-        return installmentAmount;
-    }
-
-    public void setInstallmentAmount(int installmentAmount) {
-        this.installmentAmount = installmentAmount;
-    }
-
-    public Long getItemNo() {
-        return itemNo;
-    }
-
-    public void setItemNo(Long itemNo) {
-        this.itemNo = itemNo;
-    }
-
-    public Long getSsCreator() {
-        return ssCreator;
-    }
-
-    public void setSsCreator(Long ssCreator) {
-        this.ssCreator = ssCreator;
-    }
-
-    public Date getSsCreatedOn() {
-        return ssCreatedOn;
-    }
-
-    public void setSsCreatedOn(Date ssCreatedOn) {
-        this.ssCreatedOn = ssCreatedOn;
-    }
-
-    public Long getSsModifier() {
-        return ssModifier;
-    }
-
-    public void setSsModifier(Long ssModifier) {
-        this.ssModifier = ssModifier;
-    }
-
-    public Date getSsModifiedOn() {
-        return ssModifiedOn;
-    }
-
-    public void setSsModifiedOn(Date ssModifiedOn) {
-        this.ssModifiedOn = ssModifiedOn;
-    }
 }
