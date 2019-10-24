@@ -65,11 +65,12 @@ public class RL1019Dao {
     sql.append("     RL_CUSTOMER C,");
     sql.append("     RL_ITEM I");
     sql.append(" WHERE T.CUSTOMER_NO= C.CUSTOMER_NO");
-    sql.append("   AND T.ITEM_NO=I.ITEM_NO");
+    sql.append("   AND T.ITEM_NO=I.ITEM_NO(+)");
     sql.append(" AND T.TRN_NO=NVL(:TRN_NO,T.TRN_NO)");
     sql.append(" AND T.CUSTOMER_NO = NVL(:CUSTOMER_NO,T.CUSTOMER_NO)");
-    sql.append(" AND T.ITEM_NO = NVL(:ITEM_NO,T.ITEM_NO)");
-    sql.append(" AND T.SS_CREATOR = NVL(:ITEM_NO,T.SS_CREATOR)");
+    sql.append(" order by t.trn_no");
+//    sql.append(" AND T.ITEM_NO = NVL(:ITEM_NO,T.ITEM_NO)");
+//    sql.append(" AND T.SS_CREATOR = NVL(:ITEM_NO,T.SS_CREATOR)");
 
     return db.queryForList(sql.toString(), params);
   }
@@ -122,7 +123,7 @@ public class RL1019Dao {
     sql.append("     RL_CUSTOMER C,");
     sql.append("     RL_ITEM I");
     sql.append(" WHERE T.CUSTOMER_NO= C.CUSTOMER_NO");
-    sql.append("   AND T.ITEM_NO=I.ITEM_NO");
+    sql.append("   AND T.ITEM_NO=I.ITEM_NO(+)");
     sql.append(" AND T.TRN_NO=:TRN_NO");
 
     return db.queryForMap(sql.toString(), params);
