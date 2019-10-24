@@ -4,6 +4,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlPropertyContact;
 import com.nahalit.nahalapimanager.repository.RlPropertyContactRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -22,7 +23,7 @@ public class RL1018Service {
 
   // RL Item Contact Service
   public List<RlPropertyContact> getAllRlContact() {
-    return this.rlPropertyContactRepository.findAll();
+    return this.rlPropertyContactRepository.findAll(Sort.by("contactNo").descending());
   }
 
   public RlPropertyContact getRlContact(Long contactNo) throws ResourceNotFoundException {

@@ -1,10 +1,14 @@
 package com.nahalit.nahalapimanager.service;
 
-import com.nahalit.nahalapimanager.dao.RL1019Dao;
+import com.nahalit.nahalapimanager.dao.RL1004Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
+import com.nahalit.nahalapimanager.model.RlProject;
+import com.nahalit.nahalapimanager.repository.RlProjectRepository;
 import com.nahalit.nahalapimanager.repository.RlTrnRepository;
+import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,12 +17,10 @@ import java.util.concurrent.RejectedExecutionException;
 @Service
 public class RL1019Service {
   private final RlTrnRepository rlTrnRepository;
-  private final RL1019Dao rl1019Dao;
 
 
-  public RL1019Service(RlTrnRepository rlTrnRepository, RL1019Dao rl1019Dao) {
+  public RL1019Service(RlTrnRepository rlTrnRepository) {
     this.rlTrnRepository = rlTrnRepository;
-    this.rl1019Dao = rl1019Dao;
   }
 
   // RL Trn
@@ -26,21 +28,9 @@ public class RL1019Service {
     if (trnNo != null) {
       this.rlTrnRepository.findById(trnNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + trnNo));
     }
+//    return this.rl1004Dao.getAllProjectRef(projectNo);
     return this.rlTrnRepository.findAll();
   }
-
-  public List getAllTrnRef(String trnNo, String customerNo, String itemNo, String ssCreartor) {
-    return this.rl1019Dao.getTrnList(trnNo, customerNo, itemNo, ssCreartor);
-  }
-
-
-//  public List getCustomerTrnList(Long customerNo) throws ResourceNotFoundException {
-////    if (trnNo != null) {
-////      this.rlTrnRepository.findById(trnNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + trnNo));
-////    }
-//    return this.rlTrnRepository.fin(customerNo);
-//  }
-
 
 //  public Object getProject(Long projectNo) throws ResourceNotFoundException {
 //    this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
