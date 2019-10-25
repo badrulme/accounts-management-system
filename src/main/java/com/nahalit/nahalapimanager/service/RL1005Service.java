@@ -55,7 +55,7 @@ public class RL1005Service {
 
     public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
         RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Item not found for this id:" + rlItem.getItemNo()));
-        if(oldData.getItemBrandPhoto()!=null && rlItem.getItemBrandPhoto()!=null && oldData.getItemBrandPhoto()!= rlItem.getItemBrandPhoto()){
+        if(oldData.getItemBrandPhoto()!=null && rlItem.getItemBrandPhoto()!=null && !oldData.getItemBrandPhoto().equalsIgnoreCase(rlItem.getItemBrandPhoto())){
             this.storageService.deleteFile(oldData.getItemBrandPhoto());
         }
         rlItem.setSsCreatedOn(oldData.getSsCreatedOn());

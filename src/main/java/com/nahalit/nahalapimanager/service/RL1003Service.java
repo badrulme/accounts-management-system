@@ -7,10 +7,12 @@ import com.nahalit.nahalapimanager.model.RlItemSize;
 import com.nahalit.nahalapimanager.model.RlProject;
 import com.nahalit.nahalapimanager.repository.RlItemSizeRepository;
 import com.nahalit.nahalapimanager.repository.RlProjectRepository;
+import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,12 +26,14 @@ public class RL1003Service {
   private final RlItemSizeRepository rlItemSizeRepository;
   private final RL1003Dao rl1003Dao;
   private final RLProjectDao rlProjectDao;
+  private final StorageService storageService;
 
-  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository, @Qualifier("RL1003Dao") RL1003Dao rl1003Dao, RLProjectDao rlProjectDao) {
+  public RL1003Service(RlProjectRepository rlProjectRepository, RlItemSizeRepository rlItemSizeRepository, @Qualifier("RL1003Dao") RL1003Dao rl1003Dao, RLProjectDao rlProjectDao, StorageService storageService) {
     this.rlProjectRepository = rlProjectRepository;
     this.rlItemSizeRepository = rlItemSizeRepository;
     this.rl1003Dao = rl1003Dao;
     this.rlProjectDao = rlProjectDao;
+    this.storageService = storageService;
   }
 
   // RL Apartment Project Service
@@ -53,8 +57,11 @@ public class RL1003Service {
     return this.rlProjectRepository.save(rlProject);
   }
 
-  public RlProject updateRlProject(RlProject rlProject) throws ResourceNotFoundException, ParseException {
+  public RlProject updateRlProject(RlProject rlProject) throws ResourceNotFoundException, ParseException, IOException {
     RlProject oldData = this.rlProjectRepository.findById(rlProject.getProjectNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Project not for this:" + rlProject.getProjectNo()));
+    if(oldData.getProjectLayoutPhoto()!=null && rlProject.getProjectLayoutPhoto()!=null && !oldData.getProjectLayoutPhoto().equalsIgnoreCase(rlProject.getProjectLayoutPhoto())){
+      this.storageService.deleteFile(oldData.getProjectLayoutPhoto());
+    }
     rlProject.setSsCreatedOn(oldData.getSsCreatedOn());
     rlProject.setSsModifiedOn(UtillDate.getDateTime());
     return this.rlProjectRepository.save(rlProject);

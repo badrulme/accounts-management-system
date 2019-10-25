@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class RL1004Controller {
 
 
   @PutMapping("/update")
-  public ResponseEntity<RlProject> updateLandProject(@RequestBody RlProject rlProject) throws ResourceNotFoundException, ParseException {
+  public ResponseEntity<RlProject> updateLandProject(@RequestBody RlProject rlProject) throws ResourceNotFoundException, ParseException, IOException {
     return new ResponseEntity<>(rl1004Service.updateRlProject(rlProject), HttpStatus.ACCEPTED);
   }
 

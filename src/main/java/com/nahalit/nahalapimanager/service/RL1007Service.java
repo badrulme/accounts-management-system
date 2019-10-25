@@ -37,7 +37,7 @@ public class RL1007Service {
     if (itemNo != null) {
       this.rlItemRepository.findById(Long.parseLong(itemNo)).orElseThrow(() -> new ResourceNotFoundException("Plot item not found for this id:" + itemNo));
     }
-    return this.rlItemDao.getAllItemRef(itemNo, "1",null);
+    return this.rlItemDao.getAllItemRef(itemNo, "1", null);
   }
 
   public Object getLandItem(String itemNo) {
@@ -56,7 +56,7 @@ public class RL1007Service {
 
   public RlItem updateLandRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
     RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Land Item not for this:" + rlItem.getItemNo()));
-    if (oldData.getItemBrandPhoto() != null && rlItem.getItemBrandPhoto() != null && oldData.getItemBrandPhoto() != rlItem.getItemBrandPhoto()) {
+    if (oldData.getItemBrandPhoto() != null && rlItem.getItemBrandPhoto() != null && !oldData.getItemBrandPhoto().equalsIgnoreCase(rlItem.getItemBrandPhoto())) {
       this.storageService.deleteFile(oldData.getItemBrandPhoto());
     }
     rlItem.setSsCreatedOn(oldData.getSsCreatedOn());
