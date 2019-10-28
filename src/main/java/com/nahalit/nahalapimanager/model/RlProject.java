@@ -35,6 +35,7 @@ public class RlProject {
   private Long roadSizeNo;
   private Integer projectTypeNo;
   private String projectLayoutPhoto;
+  private String projectStatus;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;

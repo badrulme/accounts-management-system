@@ -33,6 +33,7 @@ public class RL1018Service {
 
   public RlPropertyContact saveRlContact(RlPropertyContact rlPropertyContact) throws ParseException {
     rlPropertyContact.setContactDate(UtillDate.getDateTime());
+    rlPropertyContact.setReadFlag(0);
     return this.rlPropertyContactRepository.save(rlPropertyContact);
   }
 

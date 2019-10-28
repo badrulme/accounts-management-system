@@ -101,8 +101,9 @@ public class RLProjectDao {
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" A.APPROVAL_ID \"approvalId\"");
-    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A");
-    sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+)");
+    sql.append(" F.FACING_NAME \"facingName\"");
+    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A,RL_FACING F");
+    sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+) AND P.FACING_NO=F.FACING_NO(+)");
 //    sql.append(" AND P.PROJECT_TYPE_NO=2");
     sql.append(" AND P.PROJECT_NO=(:PROJECT_NO)");
 

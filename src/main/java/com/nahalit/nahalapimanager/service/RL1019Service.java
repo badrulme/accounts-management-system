@@ -52,15 +52,10 @@ public class RL1019Service {
     return this.rl1019Dao.getTrnDetails(trnNo);
   }
 
-
-  //  public Object getProject(Long projectNo) throws ResourceNotFoundException {
-//    this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
-//    return rl1004Dao.getProjectRef(projectNo);
-//  }
-//
   public RlTrn saveRlTrn(RlTrn rlTrn) throws ParseException {
     rlTrn.setSsCreatedOn(UtillDate.getDateTime());
     rlTrn.setSsModifiedOn(null);
+    rlTrn.setTrnId(rl1019Dao.getTrnId(rlTrn.getTrnDate().toString()));
     return this.rlTrnRepository.save(rlTrn);
   }
 

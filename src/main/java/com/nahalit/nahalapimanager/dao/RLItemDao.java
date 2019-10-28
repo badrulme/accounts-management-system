@@ -274,18 +274,20 @@ public class RLItemDao {
     sql.append("        'Residential Cum Commercial') \"projectTypeName\",");
     sql.append(" A.APPROVAL_ID \"approvalId\",");
     sql.append(" P.PROJECT_NAME \"projectName\",");
+    sql.append(" F.FACING_NAME \"facingName\",");
     sql.append(" T.TYPE_NAME \"itemTypeName\"");
     sql.append(" FROM RL_ITEM I,");
     sql.append("      RL_ITEM_TYPE T,");
     sql.append("      RL_PROJECT P,");
     sql.append("      RL_ITEM_INSTALLMENT N,");
+    sql.append("      RL_FACING F,");
     sql.append("      RL_RAJUK_APPROVAL A");
     sql.append(" WHERE I.PROJECT_NO = P.PROJECT_NO(+)");
     sql.append("   AND P.APPROVAL_NO=A.APPROVAL_NO(+)");
     sql.append("   AND I.ITEM_NO=N.ITEM_NO(+)");
     sql.append("   AND I.ITEM_TYPE_NO=T.TYPE_NO");
-//        sql.append("   AND I.ITEM_TYPE_NO = 2");
     sql.append("   AND I.ITEM_NO = :ITEM_NO");
+    sql.append("   AND I.FACING_NO = F.FACING_NO(+)");
     sql.append(" GROUP BY I.ITEM_NO,");
     sql.append(" I.ITEM_ID,");
     sql.append(" I.PROJECT_NO,");
@@ -341,6 +343,7 @@ public class RLItemDao {
     sql.append(" P.PROJECT_TYPE,");
     sql.append(" A.APPROVAL_ID,");
     sql.append(" P.PROJECT_NAME,");
+    sql.append(" F.FACING_NAME,");
     sql.append(" T.TYPE_NAME");
 
 

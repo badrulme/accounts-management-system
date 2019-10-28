@@ -15,6 +15,19 @@ public class RL1019Dao {
     this.db = db;
   }
 
+  public String getTrnId(String trnDate) {
+    StringBuilder sql = new StringBuilder();
+    Map<String, String> params = new HashMap<>();
+    params.put("TRN_DATE", trnDate);
+    sql.append(" SELECT MAX(substr(TRN_ID, 6)) + 1");
+    sql.append(" FROM RL_TRN T");
+    sql.append(" WHERE substr(TRN_ID, 4, 2) = TO_CHAR(:TRN_DATE, 'YY')");
+
+    Map mapId = db.queryForMap(sql.toString(), params);
+
+    return mapId.get("ID").toString();
+  }
+
   public List getTrnList(String trnNo, String customerNo, String itemNo, String ssCreartor) {
 
     Map<String, String> params = new HashMap();
