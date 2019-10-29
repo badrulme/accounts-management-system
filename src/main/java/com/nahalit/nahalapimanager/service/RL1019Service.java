@@ -55,7 +55,6 @@ public class RL1019Service {
   public RlTrn saveRlTrn(RlTrn rlTrn) throws ParseException {
     rlTrn.setSsCreatedOn(UtillDate.getDateTime());
     rlTrn.setSsModifiedOn(null);
-    rlTrn.setTrnId(rl1019Dao.getTrnId(rlTrn.getTrnDate().toString()));
     return this.rlTrnRepository.save(rlTrn);
   }
 

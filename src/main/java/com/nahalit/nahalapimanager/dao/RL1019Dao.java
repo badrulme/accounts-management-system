@@ -1,8 +1,11 @@
 package com.nahalit.nahalapimanager.dao;
 
+import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,19 +16,6 @@ public class RL1019Dao {
 
   public RL1019Dao(NamedParameterJdbcTemplate db) {
     this.db = db;
-  }
-
-  public String getTrnId(String trnDate) {
-    StringBuilder sql = new StringBuilder();
-    Map<String, String> params = new HashMap<>();
-    params.put("TRN_DATE", trnDate);
-    sql.append(" SELECT MAX(substr(TRN_ID, 6)) + 1");
-    sql.append(" FROM RL_TRN T");
-    sql.append(" WHERE substr(TRN_ID, 4, 2) = TO_CHAR(:TRN_DATE, 'YY')");
-
-    Map mapId = db.queryForMap(sql.toString(), params);
-
-    return mapId.get("ID").toString();
   }
 
   public List getTrnList(String trnNo, String customerNo, String itemNo, String ssCreartor) {

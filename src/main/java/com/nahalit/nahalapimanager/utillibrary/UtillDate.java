@@ -26,4 +26,5 @@ public class UtillDate {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm:ss a");
     return new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a").parse(now.format(format));
   }
+
 }

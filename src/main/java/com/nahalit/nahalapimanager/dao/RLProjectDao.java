@@ -56,10 +56,12 @@ public class RLProjectDao {
     sql.append(" P.SS_MODIFIER \"ssModifier\",");
     sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
+    sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" A.APPROVAL_ID \"approvalId\"");
-    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A");
+    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A, RL_PROJECT_TYPE Y");
     sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+)");
+    sql.append(" AND P.PROJECT_TYPE_NO=Y.TYPE_NO");
     sql.append(" AND P.PROJECT_TYPE_NO=NVL(:PROJECT_TYPE_NO,P.PROJECT_TYPE_NO)");
     sql.append(" AND P.PROJECT_NO=NVL(:PROJECT_NO,P.PROJECT_NO)");
 
@@ -101,10 +103,11 @@ public class RLProjectDao {
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" A.APPROVAL_ID \"approvalId\",");
+    sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" F.FACING_NAME \"facingName\"");
-    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A,RL_FACING F");
+    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A,RL_FACING F, RL_PROJECT_TYPE Y");
     sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+) AND P.FACING_NO=F.FACING_NO(+)");
-//    sql.append(" AND P.PROJECT_TYPE_NO=2");
+    sql.append(" AND P.PROJECT_TYPE_NO=Y.TYPE_NO");
     sql.append(" AND P.PROJECT_NO=(:PROJECT_NO)");
 
     Map<String, String> params = new HashMap<>();
