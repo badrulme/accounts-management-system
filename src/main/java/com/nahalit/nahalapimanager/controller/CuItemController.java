@@ -31,9 +31,10 @@ public class CuItemController {
                                             @RequestParam(required = false) String sizeTo,
                                             @RequestParam(required = false) String itemNoList,
                                             @RequestParam(required = false) String projectLocation,
-                                            @RequestParam(required = false) String projectNo
+                                            @RequestParam(required = false) String projectNo,
+                                            @RequestParam(required = false) String itemInventoryFlag
                                             ) {
-        return new ResponseEntity<>(this.cuItemService.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation, itemNoList,projectNo), HttpStatus.OK);
+        return new ResponseEntity<>(this.cuItemService.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation, itemNoList,projectNo,itemInventoryFlag), HttpStatus.OK);
     }
 
     @GetMapping("/details")

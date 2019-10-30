@@ -33,8 +33,8 @@ public class RL1019Dao {
     sql.append("     T.ITEM_NO \"itemNo\",");
     sql.append("     T.CUSTOMER_NO \"customerNo\",");
     sql.append("     T.TOTAL_PRICE \"totalPrice\",");
-    sql.append("     T.DISCOUNT_PCT \"discountPct\",");
-    sql.append("     T.DISCOUNT_AMOUNT \"discountAmount\",");
+    sql.append("     T.SPECIAL_DISCOUNT_PCT \"specialDiscountPct\",");
+    sql.append("     T.SPECIAL_DISCOUNT_AMT \"specialDiscountAmt\",");
     sql.append("     T.SETTLEMENT_PRICE \"settlementPrice\",");
     sql.append("     T.BOOKING_REF_PERSON \"bookingRefPerson\",");
     sql.append("     T.REF_CONTACT_NO \"refContactNo\",");
@@ -95,8 +95,8 @@ public class RL1019Dao {
     sql.append("     T.ITEM_NO \"itemNo\",");
     sql.append("     T.CUSTOMER_NO \"customerNo\",");
     sql.append("     T.TOTAL_PRICE \"totalPrice\",");
-    sql.append("     T.DISCOUNT_PCT \"discountPct\",");
-    sql.append("     T.DISCOUNT_AMOUNT \"discountAmount\",");
+    sql.append("     T.SPECIAL_DISCOUNT_PCT \"specialDiscountPct\",");
+    sql.append("     T.SPECIAL_DISCOUNT_AMT \"specialDiscountAmt\",");
     sql.append("     T.SETTLEMENT_PRICE \"settlementPrice\",");
     sql.append("     T.BOOKING_REF_PERSON \"bookingRefPerson\",");
     sql.append("     T.REF_CONTACT_NO \"refContactNo\",");

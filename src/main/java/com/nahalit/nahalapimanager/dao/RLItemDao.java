@@ -34,7 +34,7 @@ public class RLItemDao {
     return mapCustomerId.get("ID").toString();
   }
 
-  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo) {
+  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo,String itemInventoryFlag) {
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_TYPE_NO", itemTypeNo);
     params.put("ITEM_NO", itemNo);
@@ -47,6 +47,7 @@ public class RLItemDao {
     params.put("PROJECT_LOCATION", projectLocation);
     params.put("ITEM_NO_LIST", itemNoList);
     params.put("PROJECT_NO", projectNo);
+    params.put("ITEM_INVENTORY_FLAG", itemInventoryFlag);
 
     StringBuilder sql = new StringBuilder();
 
@@ -115,6 +116,7 @@ public class RLItemDao {
     sql.append("   AND I.ITEM_TYPE_NO = NVL(:ITEM_TYPE_NO, I.ITEM_TYPE_NO)");
     sql.append("   AND I.ITEM_NO = NVL(:ITEM_NO, I.ITEM_NO)");
     sql.append("   AND NVL(I.BED_ROOM, -9999) = NVL(:BED_ROOM, NVL(I.BED_ROOM, -9999))");
+    sql.append("   AND NVL(I.ITEM_INVENTORY_FLAG, 0) = NVL(:ITEM_INVENTORY_FLAG, NVL(I.ITEM_INVENTORY_FLAG, 0))");
     sql.append("   AND NVL(I.TOTAL_PRICE, -9999) BETWEEN NVL(:PRICE_FROM, NVL(I.TOTAL_PRICE, -9999))");
     sql.append("     AND NVL(:PRICE_TO, NVL(I.TOTAL_PRICE, -9999))");
     sql.append("   AND CASE");
