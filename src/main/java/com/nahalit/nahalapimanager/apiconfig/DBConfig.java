@@ -18,9 +18,9 @@ public class DBConfig {
   public DataSource mainDataSource() {
     HikariConfig config = new HikariConfig();
 
-    config.setJdbcUrl("jdbc:oracle:thin:@13.234.76.244:1521/xe");
-    config.setUsername("cmt");
-    config.setPassword("cmt");
+    config.setJdbcUrl("jdbc:oracle:thin:@13.250.99.248:1521/xe");
+    config.setUsername("bms");
+    config.setPassword("nahal123");
     config.setDriverClassName("oracle.jdbc.driver.OracleDriver");
     config.setConnectionTimeout(60000);
     config.setMaximumPoolSize(10);
