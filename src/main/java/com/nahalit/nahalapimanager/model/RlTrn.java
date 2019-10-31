@@ -21,8 +21,8 @@ public class RlTrn {
   private Long itemNo;
   private Long customerNo;
   private Double totalPrice;
-  private Double discountPct;
-  private Double discountAmount;
+  private Double specialDiscountPct;
+  private Double specialDiscountAmt;
   private Double settlementPrice;
   private String bookingRefPerson;
   private String refContactNo;
