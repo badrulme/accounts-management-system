@@ -43,8 +43,10 @@ public class SaCompany {
   private String ircNo;
   private String licenseNo;
   private String companyLogoWeburl;
+  private String companyLatestNews;
   private Integer groupFlag;
   private Integer activeStat;
+  private Long ssCompanyNo;
   private Long ssCreator;
   private Date ssCreatedOn;
   private Long ssModifier;
