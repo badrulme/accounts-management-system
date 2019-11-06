@@ -26,6 +26,7 @@ public class SaCompany {
   private String companyAdd2_Bangla;
   private String companyCountry;
   private String companyMobile;
+  private String companyPhone;
   private String companyFax;
   private String companyEmail;
   private String companyWebsite;
@@ -44,6 +45,7 @@ public class SaCompany {
   private String licenseNo;
   private String companyLogoWeburl;
   private String companyLatestNews;
+  private String officeTime;
   private Integer groupFlag;
   private Integer activeStat;
   private Long ssCompanyNo;

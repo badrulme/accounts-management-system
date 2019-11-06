@@ -1,8 +1,7 @@
 package com.nahalit.nahalapimanager.controller;
 
-import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
-import com.nahalit.nahalapimanager.model.RlProject;
 import com.nahalit.nahalapimanager.model.SaCompany;
+import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.service.SA1001Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
