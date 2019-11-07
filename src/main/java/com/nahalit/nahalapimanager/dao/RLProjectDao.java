@@ -57,6 +57,7 @@ public class RLProjectDao {
     sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
+    sql.append(" Y.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" A.APPROVAL_ID \"approvalId\"");
     sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A, RL_PROJECT_TYPE Y");
@@ -100,6 +101,7 @@ public class RLProjectDao {
     sql.append(" P.SS_MODIFIED_ON \"ssModifiedOn\",");
     sql.append(" P.SS_MODIFIER \"ssModifier\",");
     sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
+    sql.append(" Y.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" A.APPROVAL_ID \"approvalId\",");
