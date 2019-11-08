@@ -41,7 +41,8 @@ public class RL1004Service {
 
   public Object getProject(Long projectNo) throws ResourceNotFoundException {
     this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
-    return rl1004Dao.getProjectRef(projectNo);
+//    return rl1004Dao.getProjectRef(projectNo);
+    return rlProjectDao.getProjectDetails("" + projectNo);
   }
 
   public RlProject saveRlProject(RlProject rlProject) throws ParseException {

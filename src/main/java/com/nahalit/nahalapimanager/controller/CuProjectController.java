@@ -21,8 +21,12 @@ public class CuProjectController {
 @GetMapping("/")
   public ResponseEntity<List> getProjectList(
       @RequestParam(required = false) String projectNo,
-      @RequestParam(required = false) String projectTypeNo) {
-    return new ResponseEntity<>(this.cuProjectService.getProjectList(projectNo, projectTypeNo), HttpStatus.OK);
+      @RequestParam(required = false) String projectTypeNo,
+      @RequestParam(required = false) String projectType,
+      @RequestParam(required = false) String projectStatus,
+      @RequestParam(required = false) String projectRegion
+      ) {
+    return new ResponseEntity<>(this.cuProjectService.getProjectList(projectNo, projectTypeNo,projectType,projectStatus,projectRegion), HttpStatus.OK);
   }
   @GetMapping("/details")
   public ResponseEntity<Map> getProjectDetails(

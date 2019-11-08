@@ -36,6 +36,7 @@ public class RlProject {
   private Integer projectTypeNo;
   private String projectLayoutPhoto;
   private String projectStatus;
+  private String projectRegion;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;

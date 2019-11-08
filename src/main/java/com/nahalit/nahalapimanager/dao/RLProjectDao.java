@@ -28,7 +28,7 @@ public class RLProjectDao {
     return mapCustomerId.get("ID").toString();
   }
 
-  public List getProjectList(String projectNo, String projectTypeNo) {
+  public List getProjectList(String projectNo, String projectTypeNo, String projectType, String projectStatus,String projectRegion) {
 
     StringBuilder sql = new StringBuilder();
 
@@ -56,19 +56,26 @@ public class RLProjectDao {
     sql.append(" P.SS_MODIFIER \"ssModifier\",");
     sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
+    sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
-    sql.append(" Y.project_status \"projectStatus\",");
+    sql.append(" p.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" A.APPROVAL_ID \"approvalId\"");
     sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A, RL_PROJECT_TYPE Y");
     sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+)");
     sql.append(" AND P.PROJECT_TYPE_NO=Y.TYPE_NO");
     sql.append(" AND P.PROJECT_TYPE_NO=NVL(:PROJECT_TYPE_NO,P.PROJECT_TYPE_NO)");
+    sql.append(" AND P.PROJECT_TYPE=NVL(:PROJECT_TYPE,P.PROJECT_TYPE)");
+    sql.append(" AND P.PROJECT_REGION=NVL(:PROJECT_REGION,P.PROJECT_REGION)");
+    sql.append(" AND NVL(P.PROJECT_STATUS,'SG')=NVL(:PROJECT_STATUS,NVL(P.PROJECT_STATUS,'SG'))");
     sql.append(" AND P.PROJECT_NO=NVL(:PROJECT_NO,P.PROJECT_NO)");
 
     Map<String, String> params = new HashMap<>();
     params.put("PROJECT_NO", projectNo);
     params.put("PROJECT_TYPE_NO", projectTypeNo);
+    params.put("PROJECT_TYPE", projectType);
+    params.put("PROJECT_STATUS", projectStatus);
+    params.put("PROJECT_REGION", projectRegion);
 
     return db.queryForList(sql.toString(), params);
   }
@@ -101,9 +108,10 @@ public class RLProjectDao {
     sql.append(" P.SS_MODIFIED_ON \"ssModifiedOn\",");
     sql.append(" P.SS_MODIFIER \"ssModifier\",");
     sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
-    sql.append(" Y.project_status \"projectStatus\",");
+    sql.append(" p.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
+    sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" A.APPROVAL_ID \"approvalId\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" F.FACING_NAME \"facingName\"");
