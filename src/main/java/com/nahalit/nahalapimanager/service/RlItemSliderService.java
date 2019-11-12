@@ -33,8 +33,8 @@ public class RlItemSliderService {
     return this.rlItemSliderRepository.findById(sliderNo).orElseThrow(() -> new ResourceNotFoundException("Item Slider not found for this id:" + sliderNo));
   }
 
-  public List<RlItemSlider> getRlItemSliderList(Long itemNO) {
-    return this.rlItemSliderRepository.findAllByItemNo(itemNO);
+  public List<RlItemSlider> getRlItemSliderList(Long itemNo) {
+    return this.rlItemSliderRepository.findAllByItemNo(itemNo);
   }
 
   public RlItemSlider saveRlItemSlider(RlItemSlider reRlItemSlider) throws ParseException {

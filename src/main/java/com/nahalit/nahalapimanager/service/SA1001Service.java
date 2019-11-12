@@ -7,7 +7,9 @@ import com.nahalit.nahalapimanager.repository.SaCompanyRepository;
 import com.nahalit.nahalapimanager.repository.SaCompanySliderRepository;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
+import jdk.management.resource.ResourceRequestDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,11 +23,13 @@ public class SA1001Service {
   private final SaCompanySliderRepository saCompanySliderRepository;
   private final SaCompanyRepository saCompanyRepository;
   private final StorageService storageService;
+  private final AuthService authService;
 
-  public SA1001Service(SaCompanySliderRepository saCompanySliderRepository, SaCompanyRepository saCompanyRepository, StorageService storageService) {
+  public SA1001Service(SaCompanySliderRepository saCompanySliderRepository, SaCompanyRepository saCompanyRepository, StorageService storageService, AuthService authService) {
     this.saCompanySliderRepository = saCompanySliderRepository;
     this.saCompanyRepository = saCompanyRepository;
     this.storageService = storageService;
+    this.authService = authService;
   }
 
 
@@ -71,7 +75,25 @@ public class SA1001Service {
 
   // Company Slider
 
-  public List<SaCompanySlider> getSlider(Long companyNo) {
+  public List<SaCompanySlider> getAllSlider() {
+    return this.saCompanySliderRepository.findAll();
+  }
+
+  public SaCompanySlider getSlider(Long sliderNo) {
+    return this.saCompanySliderRepository.findById(sliderNo).orElseThrow(() -> new ResourceRequestDeniedException("Transaction not found for this id: " + sliderNo));
+  }
+
+  public List<SaCompanySlider> getCompanySlider(Long companyNo) {
     return this.saCompanySliderRepository.getCompanySliderByCompanyNo(companyNo);
   }
+
+  public SaCompanySlider saveCompanySlider(SaCompanySlider saCompanySlider, MultipartFile multipartFile) throws ParseException {
+    saCompanySlider.setCompanyNo(this.authService.getCompanyNo());
+    saCompanySlider.setSsCreator(this.authService.getEmpNo());
+    saCompanySlider.setSsCreatedOn(UtillDate.getDateTime());
+    saCompanySlider.setSsModifiedOn(null);
+    return this.saCompanySliderRepository.save(saCompanySlider);
+  }
+
+
 }
