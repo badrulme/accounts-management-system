@@ -2,10 +2,12 @@ package com.nahalit.nahalapimanager.controller;
 
 import com.nahalit.nahalapimanager.model.SaCompany;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
+import com.nahalit.nahalapimanager.model.SaCompanySlider;
 import com.nahalit.nahalapimanager.service.SA1001Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -46,5 +48,25 @@ public class SA1001Controller {
   @DeleteMapping("/delete")
   public ResponseEntity<Map> deleteSaCompany(@RequestParam Long companyNo) throws IOException {
     return new ResponseEntity<>(this.sa1001Service.deleteSaCompany(companyNo), HttpStatus.OK);
+  }
+
+  @PostMapping("/slider/add")
+  public ResponseEntity<SaCompanySlider> saveCompanySlider(SaCompanySlider saCompanySlider, MultipartFile multipartFile) throws ParseException {
+    return new ResponseEntity<>(this.sa1001Service.saveCompanySlider(saCompanySlider, multipartFile), HttpStatus.CREATED);
+  }
+
+  @GetMapping("/slider/")
+  public ResponseEntity<List<SaCompanySlider>> getAllCompanySlider() {
+    return new ResponseEntity<>(this.sa1001Service.getAllSlider(), HttpStatus.OK);
+  }
+
+  @GetMapping("/slider/company-wise")
+  public ResponseEntity<List<SaCompanySlider>> getCompanySlider(Long companyNo) {
+    return new ResponseEntity<>(this.sa1001Service.getCompanySlider(companyNo), HttpStatus.OK);
+  }
+
+  @DeleteMapping("/slider/delete")
+  public ResponseEntity<Map> deleteCompanySlider(@RequestParam Long sliderNo) throws IOException {
+    return new ResponseEntity<>(this.sa1001Service.deleteCompanySlider(sliderNo), HttpStatus.OK);
   }
 }

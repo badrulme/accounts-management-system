@@ -7,8 +7,8 @@ import com.nahalit.nahalapimanager.repository.SaCompanyRepository;
 import com.nahalit.nahalapimanager.repository.SaCompanySliderRepository;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
-import jdk.management.resource.ResourceRequestDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -79,8 +79,8 @@ public class SA1001Service {
     return this.saCompanySliderRepository.findAll();
   }
 
-  public SaCompanySlider getSlider(Long sliderNo) {
-    return this.saCompanySliderRepository.findById(sliderNo).orElseThrow(() -> new ResourceRequestDeniedException("Transaction not found for this id: " + sliderNo));
+  public SaCompanySlider getSlider(Long sliderNo) throws ResourceNotFoundException {
+    return this.saCompanySliderRepository.findById(sliderNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id: " + sliderNo));
   }
 
   public List<SaCompanySlider> getCompanySlider(Long companyNo) {
@@ -88,12 +88,29 @@ public class SA1001Service {
   }
 
   public SaCompanySlider saveCompanySlider(SaCompanySlider saCompanySlider, MultipartFile multipartFile) throws ParseException {
-    saCompanySlider.setCompanyNo(this.authService.getCompanyNo());
-    saCompanySlider.setSsCreator(this.authService.getEmpNo());
-    saCompanySlider.setSsCreatedOn(UtillDate.getDateTime());
-    saCompanySlider.setSsModifiedOn(null);
+    if (multipartFile != null) {
+      String nowTime = UtillDate.getNowTimeNameForImage();
+      String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+      storageService.store(multipartFile, filename);
+      saCompanySlider.setSliderName(filename);
+      saCompanySlider.setCompanyNo(this.authService.getCompanyNo());
+      saCompanySlider.setSsCreator(this.authService.getEmpNo());
+      saCompanySlider.setSsCreatedOn(UtillDate.getDateTime());
+      saCompanySlider.setSsModifiedOn(null);
+    }
     return this.saCompanySliderRepository.save(saCompanySlider);
   }
 
+  public Map deleteCompanySlider(Long sliderNo) throws IOException {
+    SaCompanySlider saCompanySlider = this.saCompanySliderRepository.findById(sliderNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + sliderNo));
+    try {
+      storageService.deleteFile(saCompanySlider.getSliderName());
+    } catch (Exception e) {
+    }
+    this.saCompanySliderRepository.deleteById(sliderNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
+  }
 
 }
