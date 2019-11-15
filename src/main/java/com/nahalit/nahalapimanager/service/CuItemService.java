@@ -14,8 +14,8 @@ public class CuItemService {
     this.RLItemDao = RLItemDao;
   }
 
-  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo, String itemInventoryFlag) {
-    return this.RLItemDao.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation, itemNoList, projectNo, itemInventoryFlag);
+  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo, String itemInventoryFlag,String projectType,String projectStatus,String projectRegion) {
+    return this.RLItemDao.getItemList(itemNo, itemTypeNo, itemName, bedRoom, priceFrom, priceTo, sizeFrom, sizeTo, projectLocation, itemNoList, projectNo, itemInventoryFlag,projectType,projectStatus,projectRegion);
   }
 
   public Map getItemDetails(String itemNo) {

@@ -34,7 +34,7 @@ public class RLItemDao {
     return mapCustomerId.get("ID").toString();
   }
 
-  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo,String itemInventoryFlag) {
+  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo,String itemInventoryFlag,String projectType,String projectStatus,String projectRegion) {
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_TYPE_NO", itemTypeNo);
     params.put("ITEM_NO", itemNo);
@@ -48,6 +48,9 @@ public class RLItemDao {
     params.put("ITEM_NO_LIST", itemNoList);
     params.put("PROJECT_NO", projectNo);
     params.put("ITEM_INVENTORY_FLAG", itemInventoryFlag);
+    params.put("PROJECT_TYPE", projectType);
+    params.put("PROJECT_STATUS", projectStatus);
+    params.put("PROJECT_REGION", projectRegion);
 
     StringBuilder sql = new StringBuilder();
 
@@ -103,6 +106,8 @@ public class RLItemDao {
     sql.append("        'Residential Cum Commercial') \"projectTypeName\",");
     sql.append(" A.APPROVAL_ID \"approvalId\",");
     sql.append(" P.PROJECT_NAME \"projectName\",");
+    sql.append(" P.PROJECT_STATUS \"projectStatus\",");
+    sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" T.TYPE_NAME \"itemTypeName\"");
     sql.append(" FROM RL_ITEM I,");
     sql.append("      RL_ITEM_TYPE T,");
@@ -115,6 +120,9 @@ public class RLItemDao {
     sql.append("   AND instr(','||nvl(:ITEM_NO_LIST,i.item_no)||',',','||i.item_no||',')>0");
     sql.append("   AND I.ITEM_TYPE_NO = NVL(:ITEM_TYPE_NO, I.ITEM_TYPE_NO)");
     sql.append("   AND I.ITEM_NO = NVL(:ITEM_NO, I.ITEM_NO)");
+    sql.append("   AND P.PROJECT_TYPE = NVL(:PROJECT_TYPE, P.PROJECT_TYPE)");
+    sql.append("   AND NVL(P.PROJECT_STATUS,'-XX') = NVL(:PROJECT_STATUS, NVL(P.PROJECT_STATUS,'-XX'))");
+    sql.append("   AND NVL(P.PROJECT_REGION,'-XX') = NVL(:PROJECT_REGION, NVL(P.PROJECT_REGION,'-XX'))");
     sql.append("   AND NVL(I.BED_ROOM, -9999) = NVL(:BED_ROOM, NVL(I.BED_ROOM, -9999))");
     sql.append("   AND NVL(I.ITEM_INVENTORY_FLAG, 0) = NVL(:ITEM_INVENTORY_FLAG, NVL(I.ITEM_INVENTORY_FLAG, 0))");
     sql.append("   AND NVL(I.TOTAL_PRICE, -9999) BETWEEN NVL(:PRICE_FROM, NVL(I.TOTAL_PRICE, -9999))");
@@ -272,6 +280,8 @@ public class RLItemDao {
     sql.append(" P.PROJECT_ID \"projectId\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
     sql.append(" P.PROJECT_TYPE \"projectType\",");
+    sql.append(" P.PROJECT_STATUS \"projectStatus\",");
+    sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
     sql.append("        'Residential Cum Commercial') \"projectTypeName\",");
     sql.append(" A.APPROVAL_ID \"approvalId\",");
@@ -343,6 +353,8 @@ public class RLItemDao {
     sql.append(" P.PROJECT_LOCATION,");
     sql.append(" P.PROJECT_TYPE,");
     sql.append(" P.PROJECT_TYPE,");
+    sql.append(" P.PROJECT_STATUS,");
+    sql.append(" P.PROJECT_REGION,");
     sql.append(" A.APPROVAL_ID,");
     sql.append(" P.PROJECT_NAME,");
     sql.append(" F.FACING_NAME,");

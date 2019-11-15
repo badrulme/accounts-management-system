@@ -93,7 +93,7 @@ public class SA1001Service {
       String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
       storageService.store(multipartFile, filename);
       saCompanySlider.setSliderName(filename);
-      saCompanySlider.setCompanyNo(this.authService.getCompanyNo());
+//      saCompanySlider.setCompanyNo(this.authService.getCompanyNo());
       saCompanySlider.setSsCreator(this.authService.getEmpNo());
       saCompanySlider.setSsCreatedOn(UtillDate.getDateTime());
       saCompanySlider.setSsModifiedOn(null);
