@@ -60,6 +60,7 @@ public class RlItem {
   private Double netPrice;
   private String termsAndCondition;
   private String termsAndConditionBn;
+  private Integer plotNo;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
