@@ -43,6 +43,7 @@ public class RlTrn {
   private Integer webUserFlag;
   private Integer approveFlag;
   private Date approveDate;
+  private String customerSignatureName;
   private Long approveBy;
   private Long ssCreator;
   private Date ssCreatedOn;

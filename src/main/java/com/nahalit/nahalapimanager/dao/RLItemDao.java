@@ -17,17 +17,18 @@ public class RLItemDao {
 
 
 
-  public String getItemId(String projectNo) {
+  public String getItemId(Long projectNo) {
     StringBuilder sql = new StringBuilder();
-    Map<String, String> params = new HashMap<>();
+    Map<String, Long> params = new HashMap<>();
     params.put("PROJECT_NO", projectNo);
 
-    sql.append(" SELECT MAX(SUBSTR(ITEM_ID, 7)) + 1 ID");
-    sql.append(" FROM RL_ITEM");
-    sql.append(" WHERE SUBSTR(ITEM_ID, 1, 5) = (");
-    sql.append("     SELECT SUBSTR(PROJECT_ID, 1, 7)");
-    sql.append("     FROM RL_PROJECT");
-    sql.append("     WHERE PROJECT_NO = :PROJECT_NO);");
+    sql.append(" SELECT    PROJECT_ID");
+    sql.append("        || '/'");
+    sql.append("        || nvl((SELECT MAX (TO_NUMBER (SUBSTR (ITEM_ID, 7))) + 1");
+    sql.append("              FROM RL_ITEM");
+    sql.append("             WHERE PROJECT_NO = :PROJECT_NO),1) ID");
+    sql.append("   FROM RL_PROJECT");
+    sql.append("  WHERE PROJECT_NO = :PROJECT_NO");
 
     Map mapCustomerId = db.queryForMap(sql.toString(), params);
 
@@ -99,6 +100,7 @@ public class RLItemDao {
     sql.append(" i.INTERNET_FLAG \"internetFlag\",");
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append(" i.net_Price \"netPrice\",");
+    sql.append(" i.plot_no \"plotNo\",");
     sql.append(" P.PROJECT_ID \"projectId\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
     sql.append(" P.PROJECT_TYPE \"projectType\",");
@@ -195,6 +197,7 @@ public class RLItemDao {
     sql.append(" i.INTERNET_FLAG \"internetFlag\",");
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append(" i.net_Price \"netPrice\",");
+    sql.append(" i.plot_no \"plotNo\",");
     sql.append("        P.PROJECT_ID \"projectId\",");
     sql.append("        P.PROJECT_LOCATION \"projectLocation\",");
     sql.append("        P.PROJECT_TYPE \"projectType\",");
@@ -277,6 +280,7 @@ public class RLItemDao {
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append(" LISTAGG(INSTALLMENT_AMOUNT,',') WITHIN GROUP(ORDER BY N.ITEM_NO ) \"installmentNumber\",");
     sql.append(" i.net_Price \"netPrice\",");
+    sql.append(" i.plot_no \"plotNo\",");
     sql.append(" P.PROJECT_ID \"projectId\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
     sql.append(" P.PROJECT_TYPE \"projectType\",");
@@ -349,6 +353,7 @@ public class RLItemDao {
     sql.append(" i.INTERNET_FLAG,");
     sql.append(" i.CABLE_TV_FLAG,");
     sql.append(" i.net_Price,");
+    sql.append(" i.plot_no,");
     sql.append(" P.PROJECT_ID,");
     sql.append(" P.PROJECT_LOCATION,");
     sql.append(" P.PROJECT_TYPE,");
@@ -415,6 +420,7 @@ public class RLItemDao {
     sql.append("                 i.INTERNET_FLAG \"internetFlag\",");
     sql.append("                 i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append("                 i.net_Price \"netPrice\",");
+    sql.append("                  i.plot_no \"plotNo\",");
     sql.append("                 P.PROJECT_ID                             \"projectId\",");
     sql.append("                 P.PROJECT_LOCATION                       \"projectLocation\",");
     sql.append("                 P.PROJECT_TYPE                           \"projectType\",");
