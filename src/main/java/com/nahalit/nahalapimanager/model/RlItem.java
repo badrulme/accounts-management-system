@@ -25,7 +25,7 @@ public class RlItem {
   private Long roadSize;
   private Long facingNo;
   private String blockName;
-  private Long plotSize;
+  private double plotSize;
   private double price;
   private double totalPrice;
   private double flatSize;

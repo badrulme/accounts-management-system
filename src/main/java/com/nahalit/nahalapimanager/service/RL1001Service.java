@@ -1,7 +1,9 @@
 package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
+import com.nahalit.nahalapimanager.model.RlRoadSize;
 import com.nahalit.nahalapimanager.repository.RlFacingRepository;
+import com.nahalit.nahalapimanager.repository.RlRoadSizeRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.model.RlFacing;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,14 @@ import java.util.concurrent.RejectedExecutionException;
 @Service
 public class RL1001Service {
 
-  private RlFacingRepository rlFacingRepository;
-  private AuthService authService;
+  private final RlFacingRepository rlFacingRepository;
+  private final RlRoadSizeRepository rlRoadSizeRepository;
+  private final AuthService authService;
 
   @Autowired
-  public RL1001Service(RlFacingRepository rlFacingRepository, AuthService authService) {
+  public RL1001Service(RlFacingRepository rlFacingRepository, RlRoadSizeRepository rlRoadSizeRepository, AuthService authService) {
     this.rlFacingRepository = rlFacingRepository;
+    this.rlRoadSizeRepository = rlRoadSizeRepository;
     this.authService = authService;
   }
 
@@ -59,6 +63,44 @@ public class RL1001Service {
     this.rlFacingRepository.findById(facingNo).orElseThrow(() -> new RejectedExecutionException("Facing not found for this id: " + facingNo));
 
     this.rlFacingRepository.deleteById(facingNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Facing Deleted Successfully");
+    return deleteMessage;
+  }
+
+  // RL Road Size Setup
+  public List<RlRoadSize> getAllRlRoadSize() {
+    return this.rlRoadSizeRepository.findAll();
+  }
+
+  public RlRoadSize getRlRoadSize(Long sizeNo) throws ResourceNotFoundException {
+    return this.rlRoadSizeRepository.findById(sizeNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + sizeNo));
+  }
+
+  public RlRoadSize saveRlRoadSize(RlRoadSize rlRoadSize) throws ParseException {
+    rlRoadSize.setSsCreatedOn(UtillDate.getDateTime());
+    rlRoadSize.setSsModifiedOn(null);
+    rlRoadSize.setSsCreator(authService.getUserNo());
+    return this.rlRoadSizeRepository.save(rlRoadSize);
+  }
+
+  public List<RlRoadSize> saveRlRoadSizeList(List<RlRoadSize> rlRoadSizeList) {
+    return this.rlRoadSizeRepository.saveAll(rlRoadSizeList);
+  }
+
+  public RlRoadSize updateRlRoadSize(RlRoadSize rlRoadSize) throws ResourceNotFoundException, ParseException {
+    RlRoadSize oldData = this.rlRoadSizeRepository.findById(rlRoadSize.getSizeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this id:" + rlRoadSize.getSizeNo()));
+    rlRoadSize.setSsModifiedOn(UtillDate.getDateTime());
+    rlRoadSize.setSsCreatedOn(oldData.getSsCreatedOn());
+    rlRoadSize.setSsModifier(authService.getUserNo());
+    return this.rlRoadSizeRepository.save(rlRoadSize);
+  }
+
+  public Map deleteRlRoadSize(Long sizeNo) {
+
+    this.rlRoadSizeRepository.findById(sizeNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + sizeNo));
+
+    this.rlRoadSizeRepository.deleteById(sizeNo);
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Facing Deleted Successfully");
     return deleteMessage;

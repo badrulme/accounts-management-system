@@ -21,7 +21,7 @@ public class RlProject {
   private String descr;
   private Long approvalNo;
   private String projectLocation;
-  private Long plotSize;
+  private Double plotSize;
   private String blockNameFrom;
   private String blockNameTo;
   private Long landArea;
@@ -34,12 +34,16 @@ public class RlProject {
   private Long openSpace;
   private Long roadSizeNo;
   private Integer projectTypeNo;
+  private Integer numberOfPlot;
   private String projectLayoutPhoto;
   private String projectStatus;
   private String projectRegion;
+  private String approvalInformation;
+  private Integer generalPlotNo;
+  private Integer commercialPlotNo;
+  private Integer duplexPlotNo;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
   private Long ssModifier;
-
 }
