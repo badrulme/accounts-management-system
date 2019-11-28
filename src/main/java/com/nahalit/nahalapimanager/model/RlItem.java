@@ -25,10 +25,10 @@ public class RlItem {
   private Long roadSize;
   private Long facingNo;
   private String blockName;
-  private double plotSize;
-  private double price;
-  private double totalPrice;
-  private double flatSize;
+  private Double plotSize;
+  private Double price;
+  private Double totalPrice;
+  private Double flatSize;
   private Long flatPlaceofStorid;
   private Long flatNo;
   private Long numberOfLift;
@@ -40,7 +40,7 @@ public class RlItem {
   private Long swimmingPool;
   private Long gym;
   private Long parkingFlag;
-  private double parkingPrice;
+  private Double parkingPrice;
   private Long itemTypeNo;
   private String flatType;
   private Integer itemInventoryFlag;

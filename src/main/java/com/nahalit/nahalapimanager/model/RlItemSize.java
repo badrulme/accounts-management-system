@@ -18,10 +18,9 @@ public class RlItemSize {
   private Long sizeNo;
   private Long projectNo;
   private String flatType;
-  private double flatSize;
+  private Double flatSize;
   private Long ssCreator;
   private Date ssCreatedOn;
   private Long ssModifier;
   private Date ssModifiedOn;
-
 }
