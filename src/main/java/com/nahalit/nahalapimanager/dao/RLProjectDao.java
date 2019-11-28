@@ -57,6 +57,7 @@ public class RLProjectDao {
     sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
+    sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" p.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\"");
@@ -89,7 +90,6 @@ public class RLProjectDao {
     sql.append(" P.PROJECT_NAME \"projectName\",");
     sql.append(" P.PROJECT_TYPE \"projectType\",");
     sql.append(" P.DESCR \"descr\",");
-    sql.append(" P.APPROVAL_NO \"approvalNo\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
     sql.append(" P.PLOT_SIZE \"plotSize\",");
     sql.append(" P.BLOCK_NAME_FROM \"blockNameFrom\",");
@@ -116,11 +116,11 @@ public class RLProjectDao {
     sql.append(" P.DUPLEX_PLOT_NO \"duplexPlotNo\",");
     sql.append(" P.PUBLISH_FLAG \"publishFlag\",");
     sql.append(" P.NUMBER_OF_PLOT \"numberOfPlot\",");
-    sql.append(" A.APPROVAL_ID \"approvalId\",");
+    sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" F.FACING_NAME \"facingName\"");
-    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A,RL_FACING F, RL_PROJECT_TYPE Y");
-    sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+) AND P.FACING_NO=F.FACING_NO(+)");
+    sql.append(" FROM RL_PROJECT P,RL_FACING F, RL_PROJECT_TYPE Y");
+    sql.append(" WHERE P.FACING_NO=F.FACING_NO(+)");
     sql.append(" AND P.PROJECT_TYPE_NO=Y.TYPE_NO");
     sql.append(" AND P.PROJECT_NO=(:PROJECT_NO)");
 
