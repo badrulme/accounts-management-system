@@ -42,6 +42,7 @@ public class RlProject {
   private Integer generalPlotNo;
   private Integer commercialPlotNo;
   private Integer duplexPlotNo;
+  private Integer publishFlag;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;

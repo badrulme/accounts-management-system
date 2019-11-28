@@ -61,6 +61,7 @@ public class RlItem {
   private String termsAndCondition;
   private String termsAndConditionBn;
   private Integer plotNo;
+  private Integer publishFlag;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;

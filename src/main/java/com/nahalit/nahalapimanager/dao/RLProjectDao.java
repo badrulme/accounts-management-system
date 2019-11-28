@@ -59,11 +59,10 @@ public class RLProjectDao {
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" p.project_status \"projectStatus\",");
-    sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
-    sql.append(" A.APPROVAL_ID \"approvalId\"");
-    sql.append(" FROM RL_PROJECT P,RL_RAJUK_APPROVAL A, RL_PROJECT_TYPE Y");
-    sql.append(" WHERE P.APPROVAL_NO=A.APPROVAL_NO(+)");
-    sql.append(" AND P.PROJECT_TYPE_NO=Y.TYPE_NO");
+    sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\"");
+    sql.append(" FROM RL_PROJECT P, RL_PROJECT_TYPE Y");
+    sql.append(" WHERE P.PROJECT_TYPE_NO=Y.TYPE_NO");
+    sql.append(" AND nvl(PUBLISH_FLAG,0)=1");
     sql.append(" AND P.PROJECT_TYPE_NO=NVL(:PROJECT_TYPE_NO,P.PROJECT_TYPE_NO)");
     sql.append(" AND P.PROJECT_TYPE=NVL(:PROJECT_TYPE,P.PROJECT_TYPE)");
     sql.append(" AND nvl(P.PROJECT_REGION,'-XX') = NVL ( :PROJECT_REGION, nvl(P.PROJECT_REGION,'-XX'))");
@@ -112,6 +111,11 @@ public class RLProjectDao {
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
+    sql.append(" P.GENERAL_PLOT_NO \"generalPlotNo\",");
+    sql.append(" P.COMMERCIAL_PLOT_NO \"commercialPlotNo\",");
+    sql.append(" P.DUPLEX_PLOT_NO \"duplexPlotNo\",");
+    sql.append(" P.PUBLISH_FLAG \"publishFlag\",");
+    sql.append(" P.NUMBER_OF_PLOT \"numberOfPlot\",");
     sql.append(" A.APPROVAL_ID \"approvalId\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" F.FACING_NAME \"facingName\"");
