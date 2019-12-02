@@ -20,7 +20,8 @@ public class RLProjectDao {
     Map<String, String> params = new HashMap<>();
     params.put("PROJECT_TYPE_NO", projectTypeNo);
 
-    sql.append(" SELECT 'LP' || LPAD(MAX(TO_NUMBER(SUBSTR(PROJECT_ID, 3))) + 1, 3, 0) ID");
+    sql.append(" SELECT case when :PROJECT_TYPE_NO =1 then 'LP'" +
+        "when :PROJECT_TYPE_NO =2 then 'AP' end || LPAD(nvl(MAX(TO_NUMBER(SUBSTR(PROJECT_ID, 3))),0) + 1, 3, 0) ID");
     sql.append(" FROM RL_PROJECT WHERE PROJECT_TYPE_NO=:PROJECT_TYPE_NO");
 
     Map mapCustomerId = db.queryForMap(sql.toString(), params);

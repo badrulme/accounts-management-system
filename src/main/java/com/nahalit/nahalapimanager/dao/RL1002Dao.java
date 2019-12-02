@@ -25,11 +25,10 @@ public class RL1002Dao {
   public String getCustomerId() {
     StringBuilder sql = new StringBuilder();
     Map<String, String> params = new HashMap<>();
-    sql.append(" SELECT 'CI' || LPAD(MAX(TO_NUMBER(SUBSTR(CUSTOMER_ID, 3))) + 1, 4, 0) ID");
+    sql.append(" SELECT 'CI-' || LPAD(nvl(MAX(TO_NUMBER(SUBSTR(CUSTOMER_ID, 4))),0) + 1, 4, 0) ID");
     sql.append(" FROM RL_CUSTOMER");
 
     Map mapCustomerId = db.queryForMap(sql.toString(), params);
-
     return mapCustomerId.get("ID").toString();
   }
 
