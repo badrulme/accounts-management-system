@@ -201,6 +201,7 @@ public class RLItemDao {
     sql.append(" i.INTERNET_FLAG \"internetFlag\",");
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append(" i.net_Price \"netPrice\",");
+    sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" i.UOM_NO \"uomNo\",");
     sql.append(" f.facing_name \"facingName\",");
     sql.append(" u.UOM_SHORT \"uomShort\",");
@@ -296,6 +297,7 @@ public class RLItemDao {
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
     sql.append(" P.PROJECT_TYPE \"projectType\",");
     sql.append(" P.PROJECT_STATUS \"projectStatus\",");
+    sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
     sql.append("        'Residential Cum Commercial') \"projectTypeName\",");
@@ -373,6 +375,7 @@ public class RLItemDao {
     sql.append(" P.PROJECT_ID,");
     sql.append(" P.PROJECT_LOCATION,");
     sql.append(" P.PROJECT_TYPE,");
+    sql.append(" P.APPROVAL_INFORMATION,");
     sql.append(" P.PROJECT_TYPE,");
     sql.append(" P.PROJECT_STATUS,");
     sql.append(" P.PROJECT_REGION,");
