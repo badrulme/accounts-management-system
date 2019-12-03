@@ -33,11 +33,12 @@ public class RL1004Service {
 
   // RL Land Project Service
   public List getAllProject(Long projectNo) throws ResourceNotFoundException {
-    if (projectNo != null) {
-     return (List) this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
-    } else{
-      return this.rlProjectRepository.findByProjectCategory(1);
-    }
+//    if (projectNo != null) {
+//     return (List) this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
+//    } else{
+//      return this.rlProjectRepository.findByProjectCategory(1);
+//    }
+    return this.rlProjectDao.getProjectList(projectNo!=null?""+projectNo:"",""+1,"","","");
 //    return this.rl1004Dao.getAllProjectRef(projectNo);
   }
 

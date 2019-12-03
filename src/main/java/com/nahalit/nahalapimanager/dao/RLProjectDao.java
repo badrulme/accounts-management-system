@@ -59,11 +59,16 @@ public class RLProjectDao {
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
+    sql.append(" P.UOM_NO \"uomNo\",");
+    sql.append(" U.UOM_SHORT \"uomShort\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
+    sql.append(" F.FACING_NAME \"facingName\",");
     sql.append(" p.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\"");
-    sql.append(" FROM RL_PROJECT P, RL_PROJECT_TYPE Y");
+    sql.append(" FROM RL_PROJECT P, RL_PROJECT_TYPE Y,IN_UOM U,RL_FACING F");
     sql.append(" WHERE P.PROJECT_TYPE_NO=Y.TYPE_NO");
+    sql.append(" AND P.FACING_NO=F.FACING_NO(+)");
+    sql.append(" AND P.UOM_NO=U.UOM_NO(+)");
     sql.append(" AND nvl(PUBLISH_FLAG,0)=1");
     sql.append(" AND P.PROJECT_TYPE_NO=NVL(:PROJECT_TYPE_NO,P.PROJECT_TYPE_NO)");
     sql.append(" AND P.PROJECT_TYPE=NVL(:PROJECT_TYPE,P.PROJECT_TYPE)");
@@ -118,11 +123,14 @@ public class RLProjectDao {
     sql.append(" P.PUBLISH_FLAG \"publishFlag\",");
     sql.append(" P.NUMBER_OF_PLOT \"numberOfPlot\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
+    sql.append(" P.UOM_NO \"uomNo\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
+    sql.append(" U.UOM_SHORT \"uomShort\",");
     sql.append(" F.FACING_NAME \"facingName\"");
-    sql.append(" FROM RL_PROJECT P,RL_FACING F, RL_PROJECT_TYPE Y");
+    sql.append(" FROM RL_PROJECT P,RL_FACING F, RL_PROJECT_TYPE Y,IN_UOM U");
     sql.append(" WHERE P.FACING_NO=F.FACING_NO(+)");
     sql.append(" AND P.PROJECT_TYPE_NO=Y.TYPE_NO");
+    sql.append(" AND P.UOM_NO=U.UOM_NO(+)");
     sql.append(" AND P.PROJECT_NO=(:PROJECT_NO)");
 
     Map<String, String> params = new HashMap<>();

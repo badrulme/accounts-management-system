@@ -2,6 +2,7 @@ package com.nahalit.nahalapimanager.controller;
 
 import com.nahalit.nahalapimanager.AppResponse;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
+import com.nahalit.nahalapimanager.model.InUom;
 import com.nahalit.nahalapimanager.model.RlFacing;
 import com.nahalit.nahalapimanager.model.RlRoadSize;
 import com.nahalit.nahalapimanager.service.RL1001Service;
@@ -83,4 +84,6 @@ public class RL1001Controller {
   public ResponseEntity<Map> deleteRlRoadSize(@RequestParam Long sizeNo) {
     return new ResponseEntity<>(this.rl1001Service.deleteRlRoadSize(sizeNo), HttpStatus.OK);
   }
+
+
 }
