@@ -110,6 +110,7 @@ public class RLItemDao {
     sql.append(" P.PROJECT_NAME \"projectName\",");
     sql.append(" P.PROJECT_STATUS \"projectStatus\",");
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
+    sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" u.UOM_SHORT \"uomShort\",");
     sql.append(" T.TYPE_NAME \"itemTypeName\"");
     sql.append(" FROM RL_ITEM I,");
