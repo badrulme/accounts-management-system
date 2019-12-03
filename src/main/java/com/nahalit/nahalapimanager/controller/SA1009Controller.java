@@ -64,10 +64,10 @@ public class SA1009Controller {
     return new ResponseEntity<>(this.sa1009Service.getAllSubregion(), HttpStatus.OK);
   }
 
-//  @GetMapping("/subregion/list")
-//  public ResponseEntity<List<SaSubregion>> getAllSaSubregionList(@RequestParam Long regionNo) {
-//    return new ResponseEntity<>(this.sa1009Service.getAllSubregion(regionNo), HttpStatus.OK);
-//  }
+  @GetMapping("/subregion/list")
+  public ResponseEntity<List<SaSubregion>> getAllSaSubregionList(@RequestParam Long regionNo) {
+    return new ResponseEntity<>(this.sa1009Service.getAllSubregionList(regionNo), HttpStatus.OK);
+  }
 
   @GetMapping("/subregion/get-Subregion")
   public ResponseEntity<SaSubregion> getSubregion(@RequestParam Long SubregionNo) throws ResourceNotFoundException {

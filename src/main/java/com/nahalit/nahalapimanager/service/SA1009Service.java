@@ -85,9 +85,9 @@ public class SA1009Service {
     return saSubregionRepository.findAll();
   }
 
-//  public List<SaSubregion> getAllSubregionList(Long regionNo) {
-//    return saSubregionRepository.findAllByRegionNo(regionNo);
-//  }
+  public List<SaSubregion> getAllSubregionList(Long regionNo) {
+    return saSubregionRepository.getAllByRegionNo(regionNo);
+  }
 
   public SaSubregion getSubregion(Long regionNo) throws ResourceNotFoundException {
     return saSubregionRepository.findById(regionNo).orElseThrow(() -> new ResourceNotFoundException("Lopokup Not found for this id: " + regionNo));
