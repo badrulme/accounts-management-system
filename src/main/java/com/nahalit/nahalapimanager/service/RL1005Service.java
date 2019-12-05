@@ -32,11 +32,11 @@ public class RL1005Service {
     }
 
     // RL Item For Apartment
-    public List getAllApItem(String itemNo) throws ResourceNotFoundException {
+    public List getAllApItem(String itemNo,String projectNo) throws ResourceNotFoundException {
         if (itemNo != null) {
             this.rlItemRepository.findById(Long.parseLong(itemNo)).orElseThrow(() -> new ResourceNotFoundException("Apartment item not found for this id:" + itemNo));
         }
-        return this.rlItemDao.getAllItemRef(itemNo,"2",null);
+        return this.rlItemDao.getAllItemRef(itemNo,"2",projectNo);
     }
 
 

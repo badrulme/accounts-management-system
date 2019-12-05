@@ -145,6 +145,7 @@ public class RLItemDao {
     sql.append("                           WHEN I.ITEM_TYPE_NO = 2 THEN NVL(I.FLAT_SIZE, -9999) END)");
     sql.append("   AND NVL(I.ITEM_NAME, '-XXX') LIKE '%' || NVL(:ITEM_NAME, NVL(I.ITEM_NAME, '-XXX')) || '%'");
     sql.append("   AND NVL(P.PROJECT_LOCATION, '-XXX') LIKE '%' || NVL(:PROJECT_LOCATION, NVL(P.PROJECT_LOCATION, '-XXX')) || '%'");
+    sql.append("   ORDER BY I.ITEM_NO");
 
 
     return db.queryForList(sql.toString(), params);
@@ -225,6 +226,7 @@ public class RLItemDao {
     sql.append("   AND I.ITEM_TYPE_NO = :ITEM_TYPE_NO");
     sql.append("   AND I.PROJECT_NO = NVL(:PROJECT_NO,I.PROJECT_NO)");
     sql.append("   AND I.ITEM_NO = nvl(:ITEM_NO,I.ITEM_NO)");
+    sql.append(" ORDER BY I.ITEM_NO ASC");
 
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_NO", itemNo);
@@ -299,7 +301,7 @@ public class RLItemDao {
     sql.append(" P.PROJECT_STATUS \"projectStatus\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
-    sql.append(" DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
+    sql.append(" DECODE(P.PROJECT_TYPE,'CO','Condominium', 'R', 'Residential', 'C', 'Commercial', 'RC',");
     sql.append("        'Residential Cum Commercial') \"projectTypeName\",");
     sql.append(" U.UOM_SHORT \"uomShort\",");
     sql.append(" P.PROJECT_NAME \"projectName\",");
@@ -456,9 +458,10 @@ public class RLItemDao {
     sql.append("               RL_ITEM_TYPE T,");
     sql.append("               RL_RAJUK_APPROVAL A");
     sql.append("          WHERE I.PROJECT_NO = P.PROJECT_NO");
-    sql.append("            AND P.APPROVAL_NO = A.APPROVAL_NO");
+    sql.append("            AND P.APPROVAL_NO = A.APPROVAL_NO(+)");
     sql.append("            AND I.ITEM_TYPE_NO=T.TYPE_NO");
     sql.append("            AND NVL(I.INACTIVE_FLAG, 0) = 0");
+    sql.append("            AND NVL(I.PUBLISH_FLAG, 0) = 1");
     sql.append("            AND NVL(I.ITEM_INVENTORY_FLAG, 0) = 0");
     sql.append("            AND I.ITEM_NO<>:ITEM_NO");
     sql.append("            AND I.PROJECT_NO = (SELECT PROJECT_NO FROM RL_ITEM WHERE ITEM_NO = :ITEM_NO)");

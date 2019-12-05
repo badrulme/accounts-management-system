@@ -55,7 +55,9 @@ public class RLProjectDao {
     sql.append(" P.SS_CREATOR \"ssCreator\",");
     sql.append(" P.SS_MODIFIED_ON \"ssModifiedOn\",");
     sql.append(" P.SS_MODIFIER \"ssModifier\",");
-    sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
+    sql.append(" P.ROAD_SIZE \"roadSize\",");
+    sql.append(" P.region_no \"regionNo\",");
+    sql.append(" P.subregion_no \"subregionNo\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
     sql.append(" P.PROJECT_REGION \"projectRegion\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
@@ -112,7 +114,7 @@ public class RLProjectDao {
     sql.append(" P.SS_CREATOR \"ssCreator\",");
     sql.append(" P.SS_MODIFIED_ON \"ssModifiedOn\",");
     sql.append(" P.SS_MODIFIER \"ssModifier\",");
-    sql.append(" P.ROAD_SIZE_NO \"roadSizeNo\",");
+    sql.append(" P.ROAD_SIZE \"roadSize\",");
     sql.append(" p.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\",");
     sql.append(" P.PROJECT_TYPE_NO \"projectTypeNo\",");
@@ -124,6 +126,8 @@ public class RLProjectDao {
     sql.append(" P.NUMBER_OF_PLOT \"numberOfPlot\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" P.UOM_NO \"uomNo\",");
+    sql.append(" P.region_no \"regionNo\",");
+    sql.append(" P.subregion_no \"subregionNo\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" U.UOM_SHORT \"uomShort\",");
     sql.append(" F.FACING_NAME \"facingName\"");

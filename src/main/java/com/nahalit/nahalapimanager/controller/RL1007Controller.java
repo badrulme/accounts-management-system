@@ -24,8 +24,8 @@ public class RL1007Controller {
 
   // RL Item Controller
   @GetMapping("/")
-  public ResponseEntity<List> getAllLandItem(@RequestParam(value = "itemNo", required = false) String itemNo) throws ResourceNotFoundException {
-    return new ResponseEntity<>(this.rl1007Service.getAllLandItem(itemNo), HttpStatus.OK);
+  public ResponseEntity<List> getAllLandItem(@RequestParam(value = "itemNo", required = false) String itemNo,@RequestParam(value = "projectNo", required = false) String projectNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rl1007Service.getAllLandItem(itemNo,projectNo), HttpStatus.OK);
   }
 
   @GetMapping("/get-item")

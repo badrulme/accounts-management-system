@@ -22,7 +22,7 @@ public class RlItem {
   private String descrBn;
   private Long projectNo;
   private Long plotType;
-  private Long roadSize;
+  private String roadSize;
   private Long facingNo;
   private String blockName;
   private Double plotSize;
