@@ -4,6 +4,7 @@ import com.nahalit.nahalapimanager.AppResponse;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.InUom;
 import com.nahalit.nahalapimanager.model.RlFacing;
+import com.nahalit.nahalapimanager.model.RlPlotPosition;
 import com.nahalit.nahalapimanager.model.RlRoadSize;
 import com.nahalit.nahalapimanager.service.RL1001Service;
 import org.springframework.http.HttpStatus;
@@ -85,5 +86,36 @@ public class RL1001Controller {
     return new ResponseEntity<>(this.rl1001Service.deleteRlRoadSize(sizeNo), HttpStatus.OK);
   }
 
+  // RL Plot Position Setup Controller
+  @GetMapping("/position/")
+  public ResponseEntity<List<RlPlotPosition>> getAllPoltPosition() {
+    return new ResponseEntity<>(rl1001Service.getAllPoltPosition(), HttpStatus.OK);
+  }
+
+  @GetMapping("/position/get-item-category")
+  public ResponseEntity<RlPlotPosition> getPoltPosition(@Valid @RequestParam("positionNo") Long positionNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(rl1001Service.getPoltPosition(positionNo), HttpStatus.OK);
+  }
+
+  @PostMapping("/position/add")
+  public ResponseEntity<RlPlotPosition> savePoltPosition(@RequestBody RlPlotPosition rlPlotPosition) throws ParseException {
+    return new ResponseEntity<>(rl1001Service.savePoltPosition(rlPlotPosition), HttpStatus.CREATED);
+  }
+
+  @PostMapping("/position/add-list")
+  public ResponseEntity<List<RlPlotPosition>> savePoltPositionList(@RequestBody List<RlPlotPosition> rlPlotPositionList) {
+    return new ResponseEntity<>(rl1001Service.savePoltPositionList(rlPlotPositionList), HttpStatus.CREATED);
+  }
+
+  @PutMapping("/position/update")
+  public ResponseEntity<RlPlotPosition> updatePoltPosition(@RequestBody RlPlotPosition rlPlotPosition) throws ResourceNotFoundException, ParseException {
+    return new ResponseEntity<>(rl1001Service.updatePoltPosition(rlPlotPosition), HttpStatus.ACCEPTED);
+  }
+
+  @DeleteMapping("/position/delete")
+  public ResponseEntity<Map> deletePoltPosition(@RequestParam Long positionNo) {
+
+    return new ResponseEntity<>(this.rl1001Service.deletePoltPosition(positionNo), HttpStatus.OK);
+  }
 
 }

@@ -63,6 +63,7 @@ public class RlItem {
   private Integer plotNo;
   private Integer publishFlag;
   private Integer uomNo;
+  private Integer roadSide;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;
