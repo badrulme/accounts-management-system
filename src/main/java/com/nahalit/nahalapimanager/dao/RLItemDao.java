@@ -225,7 +225,6 @@ public class RLItemDao {
     sql.append("   AND I.ITEM_TYPE_NO = :ITEM_TYPE_NO");
     sql.append("   AND I.PROJECT_NO = NVL(:PROJECT_NO,I.PROJECT_NO)");
     sql.append("   AND I.ITEM_NO = nvl(:ITEM_NO,I.ITEM_NO)");
-    sql.append("   ORDER BY I.ITEM_NO");
 
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_NO", itemNo);

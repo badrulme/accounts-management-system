@@ -32,12 +32,12 @@ public class RL1007Service {
   }
 
   // RL Item For Land
-  public List getAllLandItem(String itemNo) throws ResourceNotFoundException {
+  public List getAllLandItem(String itemNo,String projectNo) throws ResourceNotFoundException {
 //    return this.rlItemRepository.findAllByItemType(1L);
     if (itemNo != null) {
       this.rlItemRepository.findById(Long.parseLong(itemNo)).orElseThrow(() -> new ResourceNotFoundException("Plot item not found for this id:" + itemNo));
     }
-    return this.rlItemDao.getAllItemRef(itemNo, "1", null);
+    return this.rlItemDao.getAllItemRef(itemNo, "1", projectNo);
   }
 
   public Object getLandItem(String itemNo) {

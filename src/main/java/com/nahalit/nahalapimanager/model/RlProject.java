@@ -32,7 +32,7 @@ public class RlProject {
   private Long carParking;
   private Date handOverTime;
   private Long openSpace;
-  private Long roadSizeNo;
+  private String roadSize;
   private Integer projectTypeNo;
   private Integer numberOfPlot;
   private String projectLayoutPhoto;
@@ -44,6 +44,8 @@ public class RlProject {
   private Integer duplexPlotNo;
   private Integer publishFlag;
   private Integer uomNo;
+  private Integer regionNo;
+  private Integer subregionNo;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;

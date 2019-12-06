@@ -38,16 +38,6 @@ public class SA1009Controller {
     return new ResponseEntity<>(this.sa1009Service.saveRegion(saRegion), HttpStatus.CREATED);
   }
 
-  @PostMapping("/region/add-list")
-  public ResponseEntity<List<SaRegion>> saveSaRegionList(@RequestBody List<SaRegion> saRegions) {
-    return new ResponseEntity<>(this.sa1009Service.saveRegionList(saRegions), HttpStatus.CREATED);
-  }
-
-  @PutMapping("/region/update-list")
-  public ResponseEntity<List<SaRegion>> updateRegionList(@RequestBody List<SaRegion> saRegions) throws ResourceNotFoundException, ParseException {
-    return new ResponseEntity<>(this.sa1009Service.updateRegionList(saRegions), HttpStatus.ACCEPTED);
-  }
-
   @PutMapping("/region/update")
   public ResponseEntity<SaRegion> updateRegion(@RequestBody SaRegion saRegion) throws ResourceNotFoundException, ParseException {
     return new ResponseEntity<>(this.sa1009Service.updateRegion(saRegion), HttpStatus.ACCEPTED);
@@ -64,10 +54,10 @@ public class SA1009Controller {
     return new ResponseEntity<>(this.sa1009Service.getAllSubregion(), HttpStatus.OK);
   }
 
-  @GetMapping("/subregion/list")
-  public ResponseEntity<List<SaSubregion>> getAllSaSubregionList(@RequestParam Long regionNo) {
-    return new ResponseEntity<>(this.sa1009Service.getAllSubregionList(regionNo), HttpStatus.OK);
-  }
+//  @GetMapping("/subregion/list")
+//  public ResponseEntity<List<SaSubregion>> getAllSaSubregionList(@RequestParam Long regionNo) {
+//    return new ResponseEntity<>(this.sa1009Service.getAllSubregionList(regionNo), HttpStatus.OK);
+//  }
 
   @GetMapping("/subregion/get-Subregion")
   public ResponseEntity<SaSubregion> getSubregion(@RequestParam Long SubregionNo) throws ResourceNotFoundException {
