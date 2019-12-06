@@ -29,7 +29,7 @@ public class RLProjectDao {
     return mapCustomerId.get("ID").toString();
   }
 
-  public List getProjectList(String projectNo, String projectTypeNo, String projectType, String projectStatus,String projectRegion) {
+  public List getProjectList(String projectNo, String projectTypeNo, String projectType, String projectStatus, String projectRegion) {
 
     StringBuilder sql = new StringBuilder();
 
@@ -38,7 +38,6 @@ public class RLProjectDao {
     sql.append(" P.PROJECT_NAME \"projectName\",");
     sql.append(" P.PROJECT_TYPE \"projectType\",");
     sql.append(" P.DESCR \"descr\",");
-    sql.append(" P.APPROVAL_NO \"approvalNo\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
     sql.append(" P.PLOT_SIZE \"plotSize\",");
     sql.append(" P.BLOCK_NAME_FROM \"blockNameFrom\",");
@@ -65,11 +64,20 @@ public class RLProjectDao {
     sql.append(" U.UOM_SHORT \"uomShort\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" F.FACING_NAME \"facingName\",");
+    sql.append(" R.REGION_NAME \"regionName\",");
+    sql.append(" S.SUBREGION_NAME \"subregionName\",");
+    sql.append(" PP.POSITION_NAME \"positionName\",");
     sql.append(" p.project_status \"projectStatus\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\"");
-    sql.append(" FROM RL_PROJECT P, RL_PROJECT_TYPE Y,IN_UOM U,RL_FACING F");
+    sql.append(" FROM RL_PROJECT P, RL_PROJECT_TYPE Y,IN_UOM U,RL_FACING F,");
+    sql.append(" RL_PLOT_POSITION PP,");
+    sql.append(" SA_REGION R,");
+    sql.append(" SA_SUBREGION s");
     sql.append(" WHERE P.PROJECT_TYPE_NO=Y.TYPE_NO");
     sql.append(" AND P.FACING_NO=F.FACING_NO(+)");
+    sql.append(" AND P.POSITION_NO=PP.POSITION_NO(+)");
+    sql.append(" AND P.REGION_NO=R.REGION_NO(+)");
+    sql.append(" AND P.SUBREGION_NO=S.SUBREGION_NO(+)");
     sql.append(" AND P.UOM_NO=U.UOM_NO(+)");
     sql.append(" AND nvl(PUBLISH_FLAG,0)=1");
     sql.append(" AND P.PROJECT_TYPE_NO=NVL(:PROJECT_TYPE_NO,P.PROJECT_TYPE_NO)");
@@ -77,6 +85,7 @@ public class RLProjectDao {
     sql.append(" AND nvl(P.PROJECT_REGION,'-XX') = NVL ( :PROJECT_REGION, nvl(P.PROJECT_REGION,'-XX'))");
     sql.append(" AND NVL(P.PROJECT_STATUS,'SG')=NVL(:PROJECT_STATUS,NVL(P.PROJECT_STATUS,'SG'))");
     sql.append(" AND P.PROJECT_NO=NVL(:PROJECT_NO,P.PROJECT_NO)");
+    sql.append(" ORDER BY P.PROJECT_NO");
 
     Map<String, String> params = new HashMap<>();
     params.put("PROJECT_NO", projectNo);
@@ -123,18 +132,28 @@ public class RLProjectDao {
     sql.append(" P.COMMERCIAL_PLOT_NO \"commercialPlotNo\",");
     sql.append(" P.DUPLEX_PLOT_NO \"duplexPlotNo\",");
     sql.append(" P.PUBLISH_FLAG \"publishFlag\",");
+    sql.append(" R.REGION_NAME \"regionName\",");
+    sql.append(" S.SUBREGION_NAME \"subregionName\",");
     sql.append(" P.NUMBER_OF_PLOT \"numberOfPlot\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
+    sql.append(" PP.POSITION_NAME \"positionName\",");
     sql.append(" P.UOM_NO \"uomNo\",");
     sql.append(" P.region_no \"regionNo\",");
     sql.append(" P.subregion_no \"subregionNo\",");
     sql.append(" Y.TYPE_NAME \"projectTypeName\",");
     sql.append(" U.UOM_SHORT \"uomShort\",");
     sql.append(" F.FACING_NAME \"facingName\"");
-    sql.append(" FROM RL_PROJECT P,RL_FACING F, RL_PROJECT_TYPE Y,IN_UOM U");
+    sql.append(" FROM RL_PROJECT P,RL_FACING F,");
+    sql.append(" RL_PROJECT_TYPE Y,IN_UOM U,");
+    sql.append(" RL_PLOT_POSITION PP,");
+    sql.append(" SA_REGION R,");
+    sql.append(" SA_SUBREGION s");
     sql.append(" WHERE P.FACING_NO=F.FACING_NO(+)");
     sql.append(" AND P.PROJECT_TYPE_NO=Y.TYPE_NO");
+    sql.append(" AND P.REGION_NO=R.REGION_NO(+)");
+    sql.append(" AND P.SUBREGION_NO=S.SUBREGION_NO(+)");
     sql.append(" AND P.UOM_NO=U.UOM_NO(+)");
+    sql.append(" AND P.POSITION_NO=PP.POSITION_NO(+)");
     sql.append(" AND P.PROJECT_NO=(:PROJECT_NO)");
 
     Map<String, String> params = new HashMap<>();

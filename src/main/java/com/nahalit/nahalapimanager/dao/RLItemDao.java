@@ -16,7 +16,6 @@ public class RLItemDao {
   }
 
 
-
   public String getItemId(Long projectNo) {
     StringBuilder sql = new StringBuilder();
     Map<String, Long> params = new HashMap<>();
@@ -35,7 +34,7 @@ public class RLItemDao {
     return mapCustomerId.get("ID").toString();
   }
 
-  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo,String itemInventoryFlag,String projectType,String projectStatus,String projectRegion) {
+  public List getItemList(String itemNo, String itemTypeNo, String itemName, String bedRoom, String priceFrom, String priceTo, String sizeFrom, String sizeTo, String projectLocation, String itemNoList, String projectNo, String itemInventoryFlag, String projectType, String projectStatus, String projectRegion) {
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_TYPE_NO", itemTypeNo);
     params.put("ITEM_NO", itemNo);
@@ -101,6 +100,7 @@ public class RLItemDao {
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
     sql.append(" i.net_Price \"netPrice\",");
     sql.append(" i.UOM_NO \"uomNo\",");
+    sql.append(" i.ROAD_SIDE \"roadSide\",");
     sql.append(" i.plot_no \"plotNo\",");
     sql.append(" P.PROJECT_ID \"projectId\",");
     sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
@@ -145,7 +145,7 @@ public class RLItemDao {
     sql.append("                           WHEN I.ITEM_TYPE_NO = 2 THEN NVL(I.FLAT_SIZE, -9999) END)");
     sql.append("   AND NVL(I.ITEM_NAME, '-XXX') LIKE '%' || NVL(:ITEM_NAME, NVL(I.ITEM_NAME, '-XXX')) || '%'");
     sql.append("   AND NVL(P.PROJECT_LOCATION, '-XXX') LIKE '%' || NVL(:PROJECT_LOCATION, NVL(P.PROJECT_LOCATION, '-XXX')) || '%'");
-
+    sql.append("   ORDER BY I.ITEM_NO");
 
     return db.queryForList(sql.toString(), params);
 
@@ -200,6 +200,7 @@ public class RLItemDao {
     sql.append(" i.DISCOUNT_AMOUNT \"discountAmount\",");
     sql.append(" i.INTERNET_FLAG \"internetFlag\",");
     sql.append(" i.CABLE_TV_FLAG \"cableTvFlag\",");
+    sql.append(" i.ROAD_SIDE \"roadSide\",");
     sql.append(" i.net_Price \"netPrice\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
     sql.append(" i.UOM_NO \"uomNo\",");
@@ -209,7 +210,7 @@ public class RLItemDao {
     sql.append("        P.PROJECT_ID \"projectId\",");
     sql.append("        P.PROJECT_LOCATION \"projectLocation\",");
     sql.append("        P.PROJECT_TYPE \"projectType\",");
-    sql.append("        DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
+    sql.append("        DECODE(P.PROJECT_TYPE,'CO','Condominium', 'R', 'Residential', 'C', 'Commercial', 'RC',");
     sql.append("               'Residential Cum Commercial') \"projectTypeName\",");
     sql.append(" P.PROJECT_NAME \"projectName\",");
     sql.append(" T.TYPE_NAME \"itemTypeName\"");
@@ -225,6 +226,7 @@ public class RLItemDao {
     sql.append("   AND I.ITEM_TYPE_NO = :ITEM_TYPE_NO");
     sql.append("   AND I.PROJECT_NO = NVL(:PROJECT_NO,I.PROJECT_NO)");
     sql.append("   AND I.ITEM_NO = nvl(:ITEM_NO,I.ITEM_NO)");
+    sql.append("   ORDER BY I.ITEM_NO");
 
     Map<String, String> params = new HashMap<>();
     params.put("ITEM_NO", itemNo);
@@ -276,6 +278,7 @@ public class RLItemDao {
     sql.append(" I.TERMS_AND_CONDITION_BN \"termsAndConditionBn\",");
     sql.append(" I.DESCR \"descr\",");
     sql.append(" I.uom_no \"uomNo\",");
+    sql.append(" i.ROAD_SIDE \"roadSide\",");
     sql.append(" I.DESCR_BN \"descrBn\",");
     sql.append(" I.INACTIVE_FLAG \"inactiveFlag\",");
     sql.append(" i.SECURITY_FLAG \"securityFlag\",");
@@ -447,18 +450,16 @@ public class RLItemDao {
     sql.append("                 P.PROJECT_TYPE                           \"projectType\",");
     sql.append("                 DECODE(P.PROJECT_TYPE, 'R', 'Residential', 'C', 'Commercial', 'RC',");
     sql.append("                        'Residential Cum Commercial')     \"projectTypeName\",");
-    sql.append("                 A.APPROVAL_ID                            \"approvalId\",");
     sql.append("                 T.TYPE_NAME \"itemTypeName\",");
     sql.append("                 P.PROJECT_NAME                           \"projectName\",");
     sql.append("                 ROW_NUMBER() over (ORDER BY ITEM_NO ASC) SL");
     sql.append("          FROM RL_ITEM I,");
     sql.append("               RL_PROJECT P,");
     sql.append("               RL_ITEM_TYPE T,");
-    sql.append("               RL_RAJUK_APPROVAL A");
     sql.append("          WHERE I.PROJECT_NO = P.PROJECT_NO");
-    sql.append("            AND P.APPROVAL_NO = A.APPROVAL_NO");
     sql.append("            AND I.ITEM_TYPE_NO=T.TYPE_NO");
     sql.append("            AND NVL(I.INACTIVE_FLAG, 0) = 0");
+    sql.append("            AND NVL(I.PUBLISH_FLAG, 0) = 1");
     sql.append("            AND NVL(I.ITEM_INVENTORY_FLAG, 0) = 0");
     sql.append("            AND I.ITEM_NO<>:ITEM_NO");
     sql.append("            AND I.PROJECT_NO = (SELECT PROJECT_NO FROM RL_ITEM WHERE ITEM_NO = :ITEM_NO)");
