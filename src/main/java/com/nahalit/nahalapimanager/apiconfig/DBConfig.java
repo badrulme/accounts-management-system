@@ -18,7 +18,7 @@ public class DBConfig {
   public DataSource mainDataSource() {
     HikariConfig config = new HikariConfig();
 
-    config.setJdbcUrl("jdbc:oracle:thin:@18.136.123.151:1521/xe");
+    config.setJdbcUrl("jdbc:oracle:thin:@18.136.211.60:1521/xe");
     config.setUsername("ssg");
     config.setPassword("ssg");
     config.setDriverClassName("oracle.jdbc.driver.OracleDriver");
