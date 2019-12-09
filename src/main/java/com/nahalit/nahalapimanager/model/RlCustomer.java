@@ -46,17 +46,10 @@ public class RlCustomer {
   private String officeAddress;
   private String customerPictureName;
   private Integer companyNo;
-  //    private String nomineeName;
-//    private String nomineeFatherName;
-//    private String nomineeMotherName;
-//    private String relationWithApplicants;
-//    private String nomineePresentAddress;
-//    private String nomineePermanentAddress;
-//    private String nomineeMobile;
-//    @Email
-//    private String nomineeEmail;
-//    private String nomineePictureName;
   private String password;
+  private String religionName;
+  private String cpAddress;
+  private String cpEmail;
   private Long ssCreator;
   private Date ssCreatedOn;
   private Long ssModifier;

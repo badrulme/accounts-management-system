@@ -124,6 +124,18 @@ public class RL1019Dao {
     sql.append("     T.APPROVE_FLAG \"approveFlag\",");
     sql.append("     T.APPROVE_DATE \"approveDate\",");
     sql.append("     T.APPROVE_BY \"approveBy\",");
+    sql.append("     T.CUSTOMER_SIGNATURE_NAME \"customerSignatureName\",");
+    sql.append("     T.BOOKING_MONEY_DATE \"bookingMoneyDate\",");
+    sql.append("     T.OFFICER_ID \"officerId\",");
+    sql.append("     T.OFFICER_CONTRACT_NO \"officerContractNo\",");
+    sql.append("     T.DOWN_PAYMENT_PCT \"downPaymentPct\",");
+    sql.append("     T.DOWN_PAYMENT_AMOUNT \"downPaymentAmount\",");
+    sql.append("     T.DOWN_PAYMENT_TYPE \"downPaymentType\",");
+    sql.append("     T.MONEY_RECEIPT_NO \"moneyReceiptNo\",");
+    sql.append("     T.DOWN_PAYMENT_DATE \"downPaymentDate\",");
+    sql.append("     T.INSTALLMENTS_NO \"installmentsNo\",");
+    sql.append("     T.PERINSTALLMENT_AMOUNT \"perinstallmentAmount\",");
+    sql.append("     T.INSTALL_START_DATE \"installStartDate\",");
     sql.append("     C.CUSTOMER_ID \"customerId\",");
     sql.append("     C.CUSTOMER_NAME \"customerName\",");
     sql.append("     I.ITEM_ID \"itemId\",");

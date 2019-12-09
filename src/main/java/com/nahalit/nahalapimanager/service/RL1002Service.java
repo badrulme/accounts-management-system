@@ -58,8 +58,6 @@ public class RL1002Service {
     RlCustomer oldData = this.customerRepository.findById(rlCustomer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + rlCustomer.getCustomerNo()));
     if (customerPhoto != null) {
       if (rlCustomer.getCustomerPictureName().length() > 0) {
-//        String filename = StringUtils.cleanPath(customer.getCustomerPictureName());
-//        storageService.store(customerPhoto, filename);
         try {
           storageService.deleteFile(rlCustomer.getCustomerPictureName());
         } catch (Exception e) {
