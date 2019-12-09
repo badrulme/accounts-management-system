@@ -38,7 +38,7 @@ public class RL1004Service {
 //    } else{
 //      return this.rlProjectRepository.findByProjectCategory(1);
 //    }
-    return this.rlProjectDao.getProjectList(projectNo!=null?""+projectNo:"",""+1,"","","");
+    return this.rlProjectDao.getProjectList(projectNo!=null?""+projectNo:"",""+1,"","","","");
 //    return this.rl1004Dao.getAllProjectRef(projectNo);
   }
 

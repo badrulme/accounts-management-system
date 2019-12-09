@@ -12,41 +12,52 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class RlTrn {
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_TRN")
-  @SequenceGenerator(sequenceName = "S_RL_TRN", allocationSize = 1, name = "RL_TRN")
-  private Long trnNo;
-  private String trnId;
-  private Date trnDate;
-  private Long itemNo;
-  private Long customerNo;
-  private Double totalPrice;
-  private Double specialDiscountPct;
-  private Double specialDiscountAmt;
-  private Double settlementPrice;
-  private String bookingRefPerson;
-  private String refContactNo;
-  private String paymentType;
-  private String bookingAmount;
-  private String paymentMode;
-  private String chequeNo;
-  private String ddNo;
-  private String ttNo;
-  private Date chequeDate;
-  private String bankName;
-  private String branchName;
-  private String bankAccNo;
-  private String transactionId;
-  private String payorderNo;
-  private String payMode;
-  private String paidAmount;
-  private Integer webUserFlag;
-  private Integer approveFlag;
-  private Date approveDate;
-  private String customerSignatureName;
-  private Long approveBy;
-  private Long ssCreator;
-  private Date ssCreatedOn;
-  private Long ssModifier;
-  private Date ssModifiedOn;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_TRN")
+    @SequenceGenerator(sequenceName = "S_RL_TRN", allocationSize = 1, name = "RL_TRN")
+    private Long trnNo;
+    private String trnId;
+    private Date trnDate;
+    private Long itemNo;
+    private Long customerNo;
+    private Double totalPrice;
+    private Double specialDiscountPct;
+    private Double specialDiscountAmt;
+    private Double settlementPrice;
+    private String bookingRefPerson;
+    private String refContactNo;
+    private String paymentType;
+    private String bookingAmount;
+    private String paymentMode;
+    private String chequeNo;
+    private String ddNo;
+    private String ttNo;
+    private Date chequeDate;
+    private String bankName;
+    private String branchName;
+    private String bankAccNo;
+    private String transactionId;
+    private String payorderNo;
+    private String payMode;
+    private String paidAmount;
+    private Integer webUserFlag;
+    private Integer approveFlag;
+    private Date approveDate;
+    private String customerSignatureName;
+    private String officerId;
+    private String officerContractNo;
+    private Date bookingMoneyDate;
+    private Double downPaymentPct;
+    private Double downPaymentAmount;
+    private String downPaymentType;
+    private String moneyReceiptNo;
+    private Date downPaymentDate;
+    private Integer installmentsNo;
+    private Double perinstallmentAmount;
+    private Date installStartDate;
+    private Long approveBy;
+    private Long ssCreator;
+    private Date ssCreatedOn;
+    private Long ssModifier;
+    private Date ssModifiedOn;
 }

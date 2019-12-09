@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface RlTrnNomineeRepository extends JpaRepository<RlTrnNominee, Long> {
-    @Query("SELECT N FROM RlTrnNominee N WHERE TRN_NO=:TRN_NO")
-    List<RlTrnNominee> getNomineeByTrnNo(@Param("TRN_NO") String TRN_NO);
+    @Query("SELECT N FROM RlTrnNominee N WHERE N.trnNo=:TRN_NO")
+    RlTrnNominee getNomineeByTrnNo(@Param("TRN_NO") Long TRN_NO);
 }

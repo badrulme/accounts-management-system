@@ -29,7 +29,7 @@ public class RLProjectDao {
     return mapCustomerId.get("ID").toString();
   }
 
-  public List getProjectList(String projectNo, String projectTypeNo, String projectType, String projectStatus, String projectRegion) {
+  public List getProjectList(String projectNo, String projectTypeNo, String projectType, String projectStatus, String regionNo,String subregionNo) {
 
     StringBuilder sql = new StringBuilder();
 
@@ -68,6 +68,26 @@ public class RLProjectDao {
     sql.append(" S.SUBREGION_NAME \"subregionName\",");
     sql.append(" PP.POSITION_NAME \"positionName\",");
     sql.append(" p.project_status \"projectStatus\",");
+    sql.append(" P.MOSQUE_FLAG \"mosqueFlag\",");
+    sql.append(" P.NUMBER_OF_PLOT \"numberOfPlot\",");
+    sql.append(" P.HOSPITAL_FLAG \"hospitalFlag\",");
+    sql.append(" P.power_division_aap_flag \"powerDivisionAapFlag\",");
+    sql.append(" P.municipality_aap_flag \"municipalityAapFlag\",");
+    sql.append(" P.wasa_aap_flag \"wasaAapFlag\",");
+    sql.append(" P.union_councile_aap_flag \"unionCouncileAapFlag\",");
+    sql.append(" P.fire_and_safety_aap_flag \"fireAndSafetyAapFlag\",");
+    sql.append(" P.dept_of_env_aap_flag \"deptOfEnvAapFlag\",");
+    sql.append(" P.civil_aviation_aap_flag \"civilAviationAapFlag\",");
+    sql.append(" P.police_station_aap_flag \"policeStationAapFlag\",");
+    sql.append(" P.traffic_control_auth_aap_flag \"trafficControlAuthAapFlag\",");
+    sql.append(" P.word_comm_aap_flag \"wordCommAapFlag\",");
+    sql.append(" P.MARKET_FLAG \"marketFlag\",");
+    sql.append(" P.CONVENTION_CENTER_FLAG \"conventionCenterFlag\",");
+    sql.append(" P.EDU_INSTITUTE_FLAG \"eduInstituteFlag\",");
+    sql.append(" P.FIRE_STATION_FLAG \"fireStationFlag\",");
+    sql.append(" P.SUBSTATION_FLAG \"substationFlag\",");
+    sql.append(" P.PUMP_HOUSE_FLAG \"pumpHouseFlag\",");
+    sql.append(" P.PROJECT_SECURITY_OFFICE_FLAG \"projectSecurityOfficeFlag\",");
     sql.append(" P.PROJECT_LAYOUT_PHOTO \"projectLayoutPhoto\"");
     sql.append(" FROM RL_PROJECT P, RL_PROJECT_TYPE Y,IN_UOM U,RL_FACING F,");
     sql.append(" RL_PLOT_POSITION PP,");
@@ -82,7 +102,8 @@ public class RLProjectDao {
     sql.append(" AND nvl(PUBLISH_FLAG,0)=1");
     sql.append(" AND P.PROJECT_TYPE_NO=NVL(:PROJECT_TYPE_NO,P.PROJECT_TYPE_NO)");
     sql.append(" AND P.PROJECT_TYPE=NVL(:PROJECT_TYPE,P.PROJECT_TYPE)");
-    sql.append(" AND nvl(P.PROJECT_REGION,'-XX') = NVL ( :PROJECT_REGION, nvl(P.PROJECT_REGION,'-XX'))");
+    sql.append(" AND nvl(P.region_No,-990) = NVL ( :REGION_NO, nvl(P.region_No,-990))");
+    sql.append(" AND nvl(P.SUBREGION_NO,-990) = NVL ( :SUBREGION_NO, nvl(P.SUBREGION_NO,-990))");
     sql.append(" AND NVL(P.PROJECT_STATUS,'SG')=NVL(:PROJECT_STATUS,NVL(P.PROJECT_STATUS,'SG'))");
     sql.append(" AND P.PROJECT_NO=NVL(:PROJECT_NO,P.PROJECT_NO)");
     sql.append(" ORDER BY P.PROJECT_NO");
@@ -92,7 +113,8 @@ public class RLProjectDao {
     params.put("PROJECT_TYPE_NO", projectTypeNo);
     params.put("PROJECT_TYPE", projectType);
     params.put("PROJECT_STATUS", projectStatus);
-    params.put("PROJECT_REGION", projectRegion);
+    params.put("REGION_NO", regionNo);
+    params.put("SUBREGION_NO", subregionNo);
 
     return db.queryForList(sql.toString(), params);
   }
@@ -136,6 +158,25 @@ public class RLProjectDao {
     sql.append(" S.SUBREGION_NAME \"subregionName\",");
     sql.append(" P.NUMBER_OF_PLOT \"numberOfPlot\",");
     sql.append(" P.APPROVAL_INFORMATION \"approvalInformation\",");
+    sql.append(" P.MOSQUE_FLAG \"mosqueFlag\",");
+    sql.append(" P.HOSPITAL_FLAG \"hospitalFlag\",");
+    sql.append(" P.MARKET_FLAG \"marketFlag\",");
+    sql.append(" P.CONVENTION_CENTER_FLAG \"conventionCenterFlag\",");
+    sql.append(" P.EDU_INSTITUTE_FLAG \"eduInstituteFlag\",");
+    sql.append(" P.FIRE_STATION_FLAG \"fireStationFlag\",");
+    sql.append(" P.SUBSTATION_FLAG \"substationFlag\",");
+    sql.append(" P.PUMP_HOUSE_FLAG \"pumpHouseFlag\",");
+    sql.append(" P.PROJECT_SECURITY_OFFICE_FLAG \"projectSecurityOfficeFlag\",");
+    sql.append(" P.power_division_aap_flag \"powerDivisionAapFlag\",");
+    sql.append(" P.municipality_aap_flag \"municipalityAapFlag\",");
+    sql.append(" P.wasa_aap_flag \"wasaAapFlag\",");
+    sql.append(" P.union_councile_aap_flag \"unionCouncileAapFlag\",");
+    sql.append(" P.fire_and_safety_aap_flag \"fireAndSafetyAapFlag\",");
+    sql.append(" P.dept_of_env_aap_flag \"deptOfEnvAapFlag\",");
+    sql.append(" P.civil_aviation_aap_flag \"civilAviationAapFlag\",");
+    sql.append(" P.police_station_aap_flag \"policeStationAapFlag\",");
+    sql.append(" P.traffic_control_auth_aap_flag \"trafficControlAuthAapFlag\",");
+    sql.append(" P.word_comm_aap_flag \"wordCommAapFlag\",");
     sql.append(" PP.POSITION_NAME \"positionName\",");
     sql.append(" P.UOM_NO \"uomNo\",");
     sql.append(" P.region_no \"regionNo\",");

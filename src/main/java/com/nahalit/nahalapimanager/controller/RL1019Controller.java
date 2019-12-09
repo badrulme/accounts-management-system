@@ -70,8 +70,8 @@ public class RL1019Controller {
 //        return new ResponseEntity<>(this.rl1019Service.getRlItemVideo(nomineeNo), HttpStatus.OK);
 //    }
 
-  @GetMapping("/nominee/get-nominee-list")
-  public ResponseEntity<List<RlTrnNominee>> getNomineeByTrnNo(@Valid @RequestParam("itemNo") String trnNo) {
+  @GetMapping("/nominee/get-nominee")
+  public ResponseEntity<RlTrnNominee> getNomineeByTrnNo(@Valid @RequestParam("trnNo") Long trnNo) {
     return new ResponseEntity<>(this.rl1019Service.getNomineeByTrnNo(trnNo), HttpStatus.OK);
   }
 

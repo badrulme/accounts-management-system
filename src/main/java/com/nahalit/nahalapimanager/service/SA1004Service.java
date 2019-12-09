@@ -6,6 +6,7 @@ import com.nahalit.nahalapimanager.model.SaLookup;
 import com.nahalit.nahalapimanager.model.SaLookupdtl;
 import com.nahalit.nahalapimanager.repository.SaLookupRepository;
 import com.nahalit.nahalapimanager.repository.SaLookupdtlRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -56,7 +57,7 @@ public class SA1004Service {
 
   // SA Lookup DTL Information
   public List<SaLookupdtl> getAllLookupdtl() {
-    return saLookupdtlRepository.findAll();
+    return saLookupdtlRepository.findAll(Sort.by("lookupdtlNo").ascending());
   }
 
   public List<SaLookupdtl> getAllLookupdtlList(Long lookupNo) {

@@ -83,7 +83,7 @@ public class RL1019Service {
 //        return this.rlTrnNomineeRepository.findById(nomineeNo);
 //    }
 
-  public List<RlTrnNominee> getNomineeByTrnNo(String trnNo) {
+  public RlTrnNominee getNomineeByTrnNo(Long trnNo) {
     return this.rlTrnNomineeRepository.getNomineeByTrnNo(trnNo);
   }
 

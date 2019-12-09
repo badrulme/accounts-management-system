@@ -64,6 +64,9 @@ public class RlItem {
   private Integer publishFlag;
   private Integer uomNo;
   private Integer roadSide;
+  private Integer positionNo;
+  private Integer roadNo;
+  private String others;
   private Date ssCreatedOn;
   private Long ssCreator;
   private Date ssModifiedOn;

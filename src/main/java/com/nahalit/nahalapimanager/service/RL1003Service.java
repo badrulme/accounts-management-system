@@ -42,7 +42,7 @@ public class RL1003Service {
       this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new ResourceNotFoundException("Land Project not found for this id:" + projectNo));
     }
 //    return this.rl1003Dao.getAllProjectRef(projectNo);
-    return this.rlProjectDao.getProjectList(projectNo!=null?""+projectNo:"",""+2,"","","");
+    return this.rlProjectDao.getProjectList(projectNo!=null?""+projectNo:"",""+2,"","","","");
   }
 
   public Object getProject(Long projectNo) throws ResourceNotFoundException {

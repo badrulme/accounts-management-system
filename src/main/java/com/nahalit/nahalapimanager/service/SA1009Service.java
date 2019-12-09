@@ -59,9 +59,9 @@ public class SA1009Service {
     return saSubregionRepository.findAll();
   }
 
-//  public List<SaSubregion> getAllSubregionList(Long regionNo) {
-//    return saSubregionRepository.findAllByRegionNo(regionNo);
-//  }
+  public List<SaSubregion> getAllSubregionList(Long regionNo) {
+    return saSubregionRepository.findAllByRegionNo(regionNo);
+  }
 
   public SaSubregion getSubregion(Long regionNo) throws ResourceNotFoundException {
     return saSubregionRepository.findById(regionNo).orElseThrow(() -> new ResourceNotFoundException("Lopokup Not found for this id: " + regionNo));
@@ -92,7 +92,7 @@ public class SA1009Service {
     SaSubregion oldData = this.saSubregionRepository.findById(saSubregion.getRegionNo()).orElseThrow(() -> new ResourceNotFoundException("Subregion not found for this id: " + saSubregion.getSubregionNo()));
     saSubregion.setSsCreatedOn(oldData.getSsCreatedOn());
     saSubregion.setSsModifiedOn(UtillDate.getDateTime());
-    return saSubregionRepository.save(saSubregion);
+    return this.saSubregionRepository.save(saSubregion);
   }
 
   public List<SaSubregion> updateSubregionList(List<SaSubregion> saSubregions) throws ResourceNotFoundException, ParseException {
@@ -107,7 +107,7 @@ public class SA1009Service {
   }
 
   public Map deleteSubregion(Long subregionNo) throws ResourceNotFoundException {
-    this.saRegionRepository.findById(subregionNo).orElseThrow(() -> new ResourceNotFoundException("Subregion not found for this id: " + subregionNo));
+    this.saSubregionRepository.findById(subregionNo).orElseThrow(() -> new ResourceNotFoundException("Subregion not found for this id: " + subregionNo));
     this.saSubregionRepository.deleteById(subregionNo);
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Deleted Successfully");
@@ -116,7 +116,7 @@ public class SA1009Service {
 
   public Map deleteSubregionList(List<SaSubregion> saSubregions) throws ResourceNotFoundException {
     for (SaSubregion saSubregion : saSubregions) {
-      this.saRegionRepository.findById(saSubregion.getSubregionNo()).orElseThrow(() -> new ResourceNotFoundException("Subregion not found for this id: " + saSubregion.getSubregionNo()));
+      this.saSubregionRepository.findById(saSubregion.getSubregionNo()).orElseThrow(() -> new ResourceNotFoundException("Subregion not found for this id: " + saSubregion.getSubregionNo()));
       this.saSubregionRepository.deleteById(saSubregion.getSubregionNo());
     }
     Map<String, String> deleteMessage = new HashMap<>();

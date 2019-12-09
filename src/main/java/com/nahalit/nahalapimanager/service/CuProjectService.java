@@ -14,8 +14,8 @@ public class CuProjectService {
     this.rlProjectDao = rlProjectDao;
   }
 
-  public List getProjectList(String projectNo, String projectTypeNo, String projectType, String projectStatus, String projectRegion) {
-    return rlProjectDao.getProjectList(projectNo, projectTypeNo,projectType,projectStatus,projectRegion);
+  public List getProjectList(String projectNo, String projectTypeNo, String projectType, String projectStatus, String regionNo, String subregionNo) {
+    return rlProjectDao.getProjectList(projectNo, projectTypeNo,projectType,projectStatus,regionNo,subregionNo);
   }
 
   public Map getProjectDetails(String projectNo) {
