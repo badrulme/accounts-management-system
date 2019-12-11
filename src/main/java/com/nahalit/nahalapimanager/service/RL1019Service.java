@@ -2,8 +2,10 @@ package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.dao.RL1019Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
+import com.nahalit.nahalapimanager.model.RlTrnInstallment;
 import com.nahalit.nahalapimanager.model.RlTrn;
 import com.nahalit.nahalapimanager.model.RlTrnNominee;
+import com.nahalit.nahalapimanager.repository.RlTrnInstallmentRepository;
 import com.nahalit.nahalapimanager.repository.RlTrnNomineeRepository;
 import com.nahalit.nahalapimanager.repository.RlTrnRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
@@ -17,13 +19,17 @@ import java.util.concurrent.RejectedExecutionException;
 public class RL1019Service {
   private final RlTrnRepository rlTrnRepository;
   private final RlTrnNomineeRepository rlTrnNomineeRepository;
+  private final RlTrnInstallmentRepository rlTrnInstallmentRepository;
   private final RL1019Dao rl1019Dao;
+  private final AuthService authService;
 
 
-  public RL1019Service(RlTrnRepository rlTrnRepository, RlTrnNomineeRepository rlTrnNomineeRepository, RL1019Dao rl1019Dao) {
+  public RL1019Service(RlTrnRepository rlTrnRepository, RlTrnNomineeRepository rlTrnNomineeRepository, RlTrnInstallmentRepository rlTrnInstallmentRepository, RL1019Dao rl1019Dao, AuthService authService) {
     this.rlTrnRepository = rlTrnRepository;
     this.rlTrnNomineeRepository = rlTrnNomineeRepository;
+    this.rlTrnInstallmentRepository = rlTrnInstallmentRepository;
     this.rl1019Dao = rl1019Dao;
+    this.authService = authService;
   }
 
   // RL Trn
@@ -137,6 +143,51 @@ public class RL1019Service {
       this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + rlTrnNominee.getNomineeNo()));
       this.rlTrnNomineeRepository.deleteById(rlTrnNominee.getNomineeNo());
     }
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
+  }
+
+  // RL Trn Installment
+  public List<RlTrnInstallment> getAllRlTrnInstallment() {
+    return this.rlTrnInstallmentRepository.findAll();
+  }
+
+  public RlTrnInstallment getRlTrnInstallment(Long uomNo) throws ResourceNotFoundException {
+    return this.rlTrnInstallmentRepository.findById(uomNo).orElseThrow(() -> new ResourceNotFoundException("Uom not found for this id:" + uomNo));
+  }
+
+  public RlTrnInstallment saveRlTrnInstallment(RlTrnInstallment rlTrnInstallment) throws ParseException {
+    rlTrnInstallment.setSsCreatedOn(UtillDate.getDateTime());
+    rlTrnInstallment.setSsModifiedOn(null);
+    rlTrnInstallment.setSsCreator(authService.getUserNo());
+    return this.rlTrnInstallmentRepository.save(rlTrnInstallment);
+  }
+
+  public List<RlTrnInstallment> saveRlTrnInstallmentList(List<RlTrnInstallment> inUomList) {
+    return this.rlTrnInstallmentRepository.saveAll(inUomList);
+  }
+
+  public RlTrnInstallment updateRlTrnInstallment(RlTrnInstallment rlTrnInstallment) throws ResourceNotFoundException, ParseException {
+    RlTrnInstallment oldData = this.rlTrnInstallmentRepository.findById(rlTrnInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + rlTrnInstallment.getInstallmentNo()));
+    rlTrnInstallment.setSsModifiedOn(UtillDate.getDateTime());
+    rlTrnInstallment.setSsCreatedOn(oldData.getSsCreatedOn());
+    rlTrnInstallment.setSsModifier(authService.getUserNo());
+    return this.rlTrnInstallmentRepository.save(rlTrnInstallment);
+  }
+
+  public Map deleteRlTrnInstallment(Long installmentNo) {
+
+    this.rlTrnInstallmentRepository.findById(installmentNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + installmentNo));
+
+    this.rlTrnInstallmentRepository.deleteById(installmentNo);
+    Map<String, String> deleteMessage = new HashMap<>();
+    deleteMessage.put("deleteStatus", "Deleted Successfully");
+    return deleteMessage;
+  }
+
+  public Map deleteTrnWiseInstallment(Long trnNo) {
+    this.rlTrnInstallmentRepository.deleteByTrnNo(trnNo);
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Deleted Successfully");
     return deleteMessage;

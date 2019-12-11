@@ -2,10 +2,7 @@ package com.nahalit.nahalapimanager.controller;
 
 
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
-import com.nahalit.nahalapimanager.model.RlCustomer;
-import com.nahalit.nahalapimanager.model.RlTrn;
-import com.nahalit.nahalapimanager.model.RlTrnNominee;
-import com.nahalit.nahalapimanager.model.RlUploadVideo;
+import com.nahalit.nahalapimanager.model.*;
 import com.nahalit.nahalapimanager.service.RL1019Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -104,4 +101,41 @@ public class RL1019Controller {
   public ResponseEntity<Map> deleteRlTrnNomineeList(@RequestBody List<RlTrnNominee> rlTrnNominees) {
     return new ResponseEntity<>(this.rl1019Service.deleteRlTrnNomineeList(rlTrnNominees), HttpStatus.OK);
   }
+
+  // RL Trn Installment
+  @GetMapping("/installment/")
+  public ResponseEntity<List<RlTrnInstallment>> getAllRlTrnInstallment() {
+    return new ResponseEntity<>(this.rl1019Service.getAllRlTrnInstallment(), HttpStatus.OK);
+  }
+
+  @GetMapping("/installment/get-installment")
+  public ResponseEntity<RlTrnInstallment> getRlTrnInstallment(@Valid @RequestParam("trnNo") Long trnNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rl1019Service.getRlTrnInstallment(trnNo), HttpStatus.OK);
+  }
+
+  @PostMapping("/installment/add")
+  public ResponseEntity<RlTrnInstallment> saveRlTrnInstallment(@RequestBody RlTrnInstallment inUom) throws ParseException {
+    return new ResponseEntity<>(this.rl1019Service.saveRlTrnInstallment(inUom), HttpStatus.CREATED);
+  }
+
+  @PostMapping("/installment/add-list")
+  public ResponseEntity<List<RlTrnInstallment>> saveRlTrnInstallmentList(@RequestBody List<RlTrnInstallment> inUomList) {
+    return new ResponseEntity<>(this.rl1019Service.saveRlTrnInstallmentList(inUomList), HttpStatus.CREATED);
+  }
+
+  @PutMapping("/installment/update")
+  public ResponseEntity<RlTrnInstallment> updateRlTrnInstallment(@RequestBody RlTrnInstallment inUom) throws ResourceNotFoundException, ParseException {
+    return new ResponseEntity<>(this.rl1019Service.updateRlTrnInstallment(inUom), HttpStatus.ACCEPTED);
+  }
+
+  @DeleteMapping("/installment/delete")
+  public ResponseEntity<Map> deleteRlTrnInstallment(@RequestParam Long trnNo) {
+    return new ResponseEntity<>(this.rl1019Service.deleteRlTrnInstallment(trnNo), HttpStatus.OK);
+  }
+
+  @DeleteMapping("/installment/delete-trn")
+  public ResponseEntity<Map> deleteTrnInstallment(@RequestParam Long trnNo) {
+    return new ResponseEntity<>(this.rl1019Service.deleteTrnWiseInstallment(trnNo), HttpStatus.OK);
+  }
+
 }
