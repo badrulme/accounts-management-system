@@ -171,6 +171,8 @@ public class RLItemDao {
         sql.append(" I.NUMBER_OF_LIFT \"numberOfLift\",");
         sql.append(" I.DECORATION_CONDITION \"decorationCondition\",");
         sql.append(" I.BED_ROOM \"bedRoom\",");
+        sql.append(" i.booking_money \"bookingMoney\",");
+        sql.append(" i.price_negotiable_flag \"priceNegotiableFlag\",");
         sql.append(" I.LIVING_AND_DINING \"livingAndDining\",");
         sql.append(" I.KITCHEN \"kitchen\",");
         sql.append(" I.TOILETS \"toilets\",");
@@ -299,6 +301,8 @@ public class RLItemDao {
         sql.append(" i.ROAD_NO \"roadNo\",");
         sql.append(" i.others \"others\",");
         sql.append(" i.PUBLISH_FLAG \"publishFlag\",");
+        sql.append(" i.booking_money \"bookingMoney\",");
+        sql.append(" i.price_negotiable_flag \"priceNegotiableFlag\",");
         sql.append(" P.PROJECT_ID \"projectId\",");
         sql.append(" P.PROJECT_LOCATION \"projectLocation\",");
         sql.append(" P.PROJECT_TYPE \"projectType\",");
@@ -409,6 +413,8 @@ public class RLItemDao {
         sql.append(" P.fire_and_safety_aap_flag ,");
         sql.append(" P.dept_of_env_aap_flag ,");
         sql.append(" P.civil_aviation_aap_flag ,");
+        sql.append(" i.booking_money,");
+        sql.append(" i.price_negotiable_flag,");
         sql.append(" P.police_station_aap_flag ,");
         sql.append(" P.traffic_control_auth_aap_flag,");
         sql.append(" P.WORD_COMM_AAP_FLAG,");
@@ -460,6 +466,8 @@ public class RLItemDao {
         sql.append("                 I.SS_MODIFIED_ON                         \"ssModifiedOn\",");
         sql.append("                 I.SS_MODIFIER                            \"ssModifier\",");
         sql.append("                 I.ITEM_TYPE_NO                           \"itemTypeNo\",");
+        sql.append("                 i.booking_money \"bookingMoney\",");
+        sql.append("                 i.price_negotiable_flag \"priceNegotiableFlag\",");
         sql.append("                 I.FLAT_TYPE                              \"flatType\",");
         sql.append("                 I.ITEM_BRAND_PHOTO                       \"itemBrandPhoto\",");
         sql.append("                 I.ITEM_INVENTORY_FLAG                    \"itemInventoryFlag\",");
