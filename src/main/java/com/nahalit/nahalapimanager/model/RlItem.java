@@ -66,6 +66,8 @@ public class RlItem {
   private Integer roadSide;
   private Integer positionNo;
   private Integer roadNo;
+  private Integer priceNegotiableFlag;
+  private Double bookingMoney;
   private String others;
   private Date ssCreatedOn;
   private Long ssCreator;
