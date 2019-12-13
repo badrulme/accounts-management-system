@@ -123,6 +123,7 @@ public class RL1019Dao {
     sql.append("     T.PAYORDER_NO \"payorderNo\",");
     sql.append("     T.PAY_MODE \"payMode\",");
     sql.append("     T.PAID_AMOUNT \"paidAmount\",");
+    sql.append("     T.ORDER_STATUS \"orderStatus\",");
     sql.append("     T.WEB_USER_FLAG \"webUserFlag\",");
     sql.append("     T.SS_CREATOR \"ssCreator\",");
     sql.append("     DECODE(nvl(T.APPROVE_FLAG,0),1,'Approved',0,'Pending',2,'Canceled') \"approveFlagName\",");

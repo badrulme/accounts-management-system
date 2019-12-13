@@ -53,6 +53,7 @@ public class RlTrn {
     private String moneyReceiptNo;
     private Date downPaymentDate;
     private Integer installmentsNo;
+    private Integer orderStatus;
     private Double perinstallmentAmount;
     private Date installStartDate;
     private Long approveBy;
