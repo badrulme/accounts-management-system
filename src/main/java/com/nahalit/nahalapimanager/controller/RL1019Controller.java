@@ -107,6 +107,10 @@ public class RL1019Controller {
   public ResponseEntity<List<RlTrnInstallment>> getAllRlTrnInstallment() {
     return new ResponseEntity<>(this.rl1019Service.getAllRlTrnInstallment(), HttpStatus.OK);
   }
+  @GetMapping("/installment/trn-wise")
+  public ResponseEntity<List<RlTrnInstallment>> getAllRlTrnInstallment(@Valid @RequestParam("trnNo") Long trnNo) {
+    return new ResponseEntity<>(this.rl1019Service.getAllRlTrnWiseInstallment(trnNo), HttpStatus.OK);
+  }
 
   @GetMapping("/installment/get-installment")
   public ResponseEntity<RlTrnInstallment> getRlTrnInstallment(@Valid @RequestParam("trnNo") Long trnNo) throws ResourceNotFoundException {
@@ -129,8 +133,8 @@ public class RL1019Controller {
   }
 
   @DeleteMapping("/installment/delete")
-  public ResponseEntity<Map> deleteRlTrnInstallment(@RequestParam Long trnNo) {
-    return new ResponseEntity<>(this.rl1019Service.deleteRlTrnInstallment(trnNo), HttpStatus.OK);
+  public ResponseEntity<Map> deleteRlTrnInstallment(@RequestParam Long installmentNo) {
+    return new ResponseEntity<>(this.rl1019Service.deleteRlTrnInstallment(installmentNo), HttpStatus.OK);
   }
 
   @DeleteMapping("/installment/delete-trn")

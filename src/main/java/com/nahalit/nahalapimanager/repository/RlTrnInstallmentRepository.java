@@ -6,8 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RlTrnInstallmentRepository extends JpaRepository<RlTrnInstallment, Long> {
   @Query("DELETE FROM RlTrnInstallment I WHERE I.trnNo=:TRN_NO")
   void deleteByTrnNo(@Param("TRN_NO") Long TRN_NO);
+
+  @Query ("SELECT I FROM RlTrnInstallment I WHERE I.trnNo=:TRN_NO")
+  List  selectAllByTrnNo(@Param("TRN_NO") Long TRN_NO);
 }

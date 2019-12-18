@@ -56,6 +56,7 @@ public class RlTrn {
     private Integer orderStatus;
     private Double perinstallmentAmount;
     private Date installStartDate;
+    private Date installmentEndDate;
     private Long approveBy;
     private Long ssCreator;
     private Date ssCreatedOn;

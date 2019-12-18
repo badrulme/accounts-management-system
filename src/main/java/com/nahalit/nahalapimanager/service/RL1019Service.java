@@ -152,9 +152,12 @@ public class RL1019Service {
   public List<RlTrnInstallment> getAllRlTrnInstallment() {
     return this.rlTrnInstallmentRepository.findAll();
   }
+  public List<RlTrnInstallment> getAllRlTrnWiseInstallment(Long trnNo) {
+    return this.rlTrnInstallmentRepository.selectAllByTrnNo(trnNo);
+  }
 
-  public RlTrnInstallment getRlTrnInstallment(Long uomNo) throws ResourceNotFoundException {
-    return this.rlTrnInstallmentRepository.findById(uomNo).orElseThrow(() -> new ResourceNotFoundException("Uom not found for this id:" + uomNo));
+  public RlTrnInstallment getRlTrnInstallment(Long installmentNo) throws ResourceNotFoundException {
+    return this.rlTrnInstallmentRepository.findById(installmentNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + installmentNo));
   }
 
   public RlTrnInstallment saveRlTrnInstallment(RlTrnInstallment rlTrnInstallment) throws ParseException {
