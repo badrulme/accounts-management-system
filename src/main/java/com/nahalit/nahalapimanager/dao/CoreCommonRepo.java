@@ -71,7 +71,7 @@ public class CoreCommonRepo {
     sql.append("                                   WHERE SUBMENU_TYPE = 'G'");
     sql.append("                                     AND NVL (WEB_ERP_FLAG, 0) = 1");
     sql.append("                                     AND USER_NO = TO_NUMBER (:USER_NO)");
-    sql.append("                                     AND COMPANY_NO = TO_NUMBER (:COMPANY_NO)))");
+    sql.append("                                    AND COMPANY_NO = TO_NUMBER (:COMPANY_NO)))");
     sql.append("            START WITH PARENT_OBJ_NO = 'M'");
     sql.append("            CONNECT BY PRIOR OBJ_NO = PARENT_OBJ_NO");
     sql.append("              ORDER SIBLINGS BY SL_NO)");

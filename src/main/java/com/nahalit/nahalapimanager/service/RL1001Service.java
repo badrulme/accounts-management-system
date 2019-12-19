@@ -145,6 +145,4 @@ public class RL1001Service {
     deleteMessage.put("deleteStatus", "PoltPosition Deleted Successfully");
     return deleteMessage;
   }
-
-
 }

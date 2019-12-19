@@ -39,10 +39,6 @@ public class AuthController {
     return AppResponse.build(HttpStatus.OK).body(authRepo.findAllCompanyByUserName(userName));
   }
 
-//  @RequestMapping("/login")
-//  public void login(@RequestParam(value = KEY.USER_NAME) String userName){
-//    System.out.println(userName);
-//  }
   @RequestMapping("/login")
   public AppResponse login(
       @RequestParam String userName,

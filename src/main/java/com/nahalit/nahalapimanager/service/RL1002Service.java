@@ -22,78 +22,86 @@ import java.util.Map;
 @Service
 public class RL1002Service {
 
-  private RlCustomerRepository customerRepository;
-  private StorageService storageService;
-  private RL1002Dao rl1002Dao;
+    private RlCustomerRepository customerRepository;
+    private StorageService storageService;
+    private RL1002Dao rl1002Dao;
 
-  public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao) {
-    this.customerRepository = customerRepository;
-    this.storageService = storageService;
-    this.rl1002Dao = rl1002Dao;
-  }
-
-  public List<RlCustomer> getAllCustomer() {
-    return this.customerRepository.findAll(Sort.by("customerNo").ascending());
-  }
-
-  public RlCustomer getCustomer(Long customerNo) throws ResourceNotFoundException {
-    return this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
-  }
-
-  public RlCustomer saveCustomer(RlCustomer customer, MultipartFile customerPhoto) throws ParseException {
-    if (customerPhoto != null) {
-      String nowTime = UtillDate.getNowTimeNameForImage();
-      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-      storageService.store(customerPhoto, filename);
-      customer.setCustomerPictureName(filename);
+    public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao) {
+        this.customerRepository = customerRepository;
+        this.storageService = storageService;
+        this.rl1002Dao = rl1002Dao;
     }
-    customer.setCustomerId(rl1002Dao.getCustomerId());
-    customer.setSsCreatedOn(UtillDate.getDateTime());
-    customer.setSsModifiedOn(null);
 
-    return this.customerRepository.save(customer);
-  }
+    public List<RlCustomer> getAllCustomer() {
+        return this.customerRepository.findAll(Sort.by("customerNo").ascending());
+    }
 
-  public RlCustomer updateCustomer(RlCustomer rlCustomer, MultipartFile customerPhoto) throws ResourceNotFoundException, ParseException {
-    RlCustomer oldData = this.customerRepository.findById(rlCustomer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + rlCustomer.getCustomerNo()));
-    if (customerPhoto != null) {
-      if (rlCustomer.getCustomerPictureName().length() > 0) {
+    public RlCustomer getCustomer(Long customerNo) throws ResourceNotFoundException {
+        return this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
+    }
+
+    public RlCustomer saveCustomer(RlCustomer customer, MultipartFile customerPhoto) throws ParseException {
+        if (customerPhoto != null) {
+            String nowTime = UtillDate.getNowTimeNameForImage();
+            String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+            storageService.store(customerPhoto, filename);
+            customer.setCustomerPictureName(filename);
+        }
+        customer.setCustomerId(rl1002Dao.getCustomerId());
+        customer.setSsCreatedOn(UtillDate.getDateTime());
+        customer.setSsModifiedOn(null);
+
+        return this.customerRepository.save(customer);
+    }
+
+    public RlCustomer updateCustomer(RlCustomer rlCustomer, MultipartFile customerPhoto) throws ResourceNotFoundException, ParseException {
+        RlCustomer oldData = this.customerRepository.findById(rlCustomer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + rlCustomer.getCustomerNo()));
+        if (customerPhoto != null) {
+            if (rlCustomer.getCustomerPictureName().length() > 0) {
+                try {
+                    storageService.deleteFile(rlCustomer.getCustomerPictureName());
+                } catch (Exception e) {
+                }
+            }
+
+            String nowTime = UtillDate.getNowTimeNameForImage();
+            String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
+            storageService.store(customerPhoto, filename);
+            rlCustomer.setCustomerPictureName(filename);
+
+        }
+        rlCustomer.setSsCreatedOn(oldData.getSsCreatedOn());
+        rlCustomer.setSsModifiedOn(UtillDate.getDateTime());
+
+        return this.customerRepository.save(rlCustomer);
+    }
+
+    public Map deleteCustomer(Long customerNo) throws ResourceNotFoundException, IOException {
+        RlCustomer rlCustomer = this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
         try {
-          storageService.deleteFile(rlCustomer.getCustomerPictureName());
+            storageService.deleteFile(rlCustomer.getCustomerPictureName());
         } catch (Exception e) {
         }
-      }
-
-      String nowTime = UtillDate.getNowTimeNameForImage();
-      String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
-      storageService.store(customerPhoto, filename);
-      rlCustomer.setCustomerPictureName(filename);
-
+        this.customerRepository.deleteById(customerNo);
+        Map<String, String> deleteMessage = new HashMap<>();
+        deleteMessage.put("deleteStatus", "Customer Deleted Successfully");
+        return deleteMessage;
     }
-    rlCustomer.setSsCreatedOn(oldData.getSsCreatedOn());
-    rlCustomer.setSsModifiedOn(UtillDate.getDateTime());
 
-    return this.customerRepository.save(rlCustomer);
-  }
-
-  public Map deleteCustomer(Long customerNo) throws ResourceNotFoundException, IOException {
-    RlCustomer rlCustomer = this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
-    try {
-      storageService.deleteFile(rlCustomer.getCustomerPictureName());
-    } catch (Exception e) {
+    public Map<String, Object> customerLogin(String customerUsername, String password) {
+        return rl1002Dao.isCustomerLogin(customerUsername, password);
     }
-    this.customerRepository.deleteById(customerNo);
-    Map<String, String> deleteMessage = new HashMap<>();
-    deleteMessage.put("deleteStatus", "Customer Deleted Successfully");
-    return deleteMessage;
-  }
-
-  public Map<String, Object> customerLogin(String customerUsername, String password) {
-    return rl1002Dao.isCustomerLogin(customerUsername, password);
-  }
 
 
-  public String forgotPasswordByMail(String email) {
-    return rl1002Dao.forgotPasswordByMail(email);
-  }
+    public String forgotPasswordByMail(String email) {
+        return rl1002Dao.forgotPasswordByMail(email);
+    }
+
+    public Map getHasEmail(String email) {
+        return rl1002Dao.getHasEmail(email);
+    }
+    public Map getHasMobile(String mobile) {
+        return rl1002Dao.getHasMobile(mobile);
+    }
+
 }
