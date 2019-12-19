@@ -16,8 +16,9 @@ public class RlTrnInstallment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_TRN_INSTALLMENT")
     @SequenceGenerator(sequenceName = "S_RL_TRN_INSTALLMENT", allocationSize = 1, name = "RL_TRN_INSTALLMENT")
     private Long installmentNo;
-    private int installmentAmount;
+    private Double installmentAmount;
     private Long trnNo;
+    private Long installmentSl;
     private Date installmentDate;
     private Long payFlag;
     private Long ssCreator;

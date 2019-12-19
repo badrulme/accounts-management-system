@@ -29,7 +29,8 @@ public class RL1021Dao {
         sql.append("        SETTLEMENT_PRICE      \"settlementPrice\",");
         sql.append("        BOOKING_AMOUNT        \"bookingAmount\",");
         sql.append("        COLLECTION_AMOUNT     \"collectionAmount\",");
-        sql.append("        DUE_AMOUNt            \"dueAmount\"");
+        sql.append("        DOWN_PAYMENT_AMOUNT     \"downPaymentAmount\",");
+        sql.append("        DUE_AMOUNT            \"dueAmount\"");
         sql.append("   FROM rl_trn_balance_v");
 
         return db.queryForList(sql.toString(), params);
