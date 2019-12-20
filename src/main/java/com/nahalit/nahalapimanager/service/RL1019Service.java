@@ -190,7 +190,7 @@ public class RL1019Service {
   }
 
   public Map deleteTrnWiseInstallment(Long trnNo) {
-    this.rlTrnInstallmentRepository.deleteByTrnNo(trnNo);
+    this.rl1019Dao.deleteByTrnNo(trnNo);
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Deleted Successfully");
     return deleteMessage;
