@@ -45,7 +45,7 @@ public class RL1003Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<Map> deleteApProject(@RequestParam Long projectNo) {
+  public ResponseEntity<Map> deleteApProject(@RequestParam Long projectNo) throws IOException {
     return new ResponseEntity<>(this.rl1003Service.deleteRlProject(projectNo), HttpStatus.OK);
   }
 

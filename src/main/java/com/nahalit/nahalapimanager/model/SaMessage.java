@@ -18,6 +18,7 @@ public class SaMessage {
     private String message;
     private String messengerName;
     private String messengerDesig;
+    private String messengerPhotoName;
     private Integer activeFlag;
     private Integer companyNo;
     private Long ssCreator;

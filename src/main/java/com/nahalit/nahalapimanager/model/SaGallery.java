@@ -17,7 +17,6 @@ public class SaGallery {
     private String galleryTitle;
     private String galleryDescr;
     private String galleryPhotoName;
-    private String messengerPhotoName;
     private Integer slNo;
     private Integer activeStat;
     private Integer companyNo;

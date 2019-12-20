@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -40,12 +41,12 @@ public class SA1011Controller {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<SaMessage> updateSaMessage(@RequestBody SaMessage saGallery) throws ResourceNotFoundException, ParseException {
+    public ResponseEntity<SaMessage> updateSaMessage(@RequestBody SaMessage saGallery) throws ResourceNotFoundException, ParseException, IOException {
         return new ResponseEntity<>(sa1011Service.updateSaMessage(saGallery), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Map> deleteSaMessage(@RequestParam Long messageNo) throws ResourceNotFoundException {
+    public ResponseEntity<Map> deleteSaMessage(@RequestParam Long messageNo) throws ResourceNotFoundException, IOException {
         return new ResponseEntity<>(this.sa1011Service.deleteSaMessage(messageNo), HttpStatus.OK);
     }
 

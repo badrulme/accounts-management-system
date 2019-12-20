@@ -66,10 +66,10 @@ public class RL1004Service {
     return this.rlProjectRepository.save(rlProject);
   }
 
-  public Map deleteRlProject(Long projectNo) {
-    this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new RejectedExecutionException("Land Project not found for this id: " + projectNo));
+  public Map deleteRlProject(Long projectNo) throws IOException {
+  RlProject rlProject=  this.rlProjectRepository.findById(projectNo).orElseThrow(() -> new RejectedExecutionException("Land Project not found for this id: " + projectNo));
     this.rlProjectRepository.deleteById(projectNo);
-
+    this.storageService.deleteFile(rlProject.getProjectLayoutPhoto());
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Deleted Successfully");
     return deleteMessage;

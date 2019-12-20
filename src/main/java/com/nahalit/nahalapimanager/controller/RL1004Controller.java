@@ -45,7 +45,7 @@ public class RL1004Controller {
   }
 
   @DeleteMapping("/delete")
-  public ResponseEntity<Map> deleteLandProject(@RequestParam Long projectNo) {
+  public ResponseEntity<Map> deleteLandProject(@RequestParam Long projectNo) throws IOException {
     return new ResponseEntity<>(this.rl1004Service.deleteRlProject(projectNo), HttpStatus.OK);
   }
 }
