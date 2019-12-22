@@ -154,6 +154,7 @@ public class RL1019Dao {
         sql.append("     T.INSTALLMENTS_NO \"installmentsNo\",");
         sql.append("     T.PERINSTALLMENT_AMOUNT \"perinstallmentAmount\",");
         sql.append("     T.INSTALL_START_DATE \"installStartDate\",");
+        sql.append("     T.INSTALLMENT_END_DATE \"installmentEndDate\",");
         sql.append("     C.CUSTOMER_ID \"customerId\",");
         sql.append("     C.CUSTOMER_NAME \"customerName\",");
         sql.append("     I.ITEM_ID \"itemId\",");
@@ -170,4 +171,39 @@ public class RL1019Dao {
         return db.queryForMap(sql.toString(), params);
     }
 
+    public List getTrnInstallmentList(Long trnNo) {
+        StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT i.INSTALLMENT_NO \"installmentNo\",");
+        sql.append("        i.INSTALLMENT_AMOUNT \"installmentAmount\",");
+        sql.append("        i.paid_amount \"paidAmount\",");
+        sql.append("        NVL (i.INSTALLMENT_AMOUNT, 0) - NVL (i.paid_amount, 0) \"pendingAmount\",");
+        sql.append("        ii.TRN_NO \"trnNo\",");
+        sql.append("        SS_CREATED_ON \"ssCreatedOn\",");
+        sql.append("        SS_CREATOR \"ssCreator\",");
+        sql.append("        SS_MODIFIED_ON \"ssModifiedOn\",");
+        sql.append("        SS_MODIFIER \"ssModifier\",");
+        sql.append("        INSTALLMENT_DATE \"installmentDate\",");
+        sql.append("        PAY_FLAG \"payFlag\",");
+        sql.append("        INSTALLMENT_SL \"installmentSl\"");
+        sql.append("   FROM (  SELECT INSTALLMENT_NO,");
+        sql.append("                  SUM (INSTALLMENT_AMOUNT) INSTALLMENT_AMOUNT,");
+        sql.append("                  SUM (paid_amoun) paid_amount");
+        sql.append("             FROM (SELECT INSTALLMENT_NO, INSTALLMENT_AMOUNT, NULL paid_amoun");
+        sql.append("                     FROM rl_trn_installment");
+        sql.append("                   UNION ALL");
+        sql.append("                     SELECT INSTALLMENT_NO, NULL, SUM (paid_amount) paid_amount");
+        sql.append("                       FROM rl_collection");
+        sql.append("                   GROUP BY INSTALLMENT_NO)");
+        sql.append("         GROUP BY INSTALLMENT_NO) i,");
+        sql.append("        rl_trn_installment ii");
+        sql.append("  WHERE i.INSTALLMENT_NO = ii.INSTALLMENT_NO(+)");
+        sql.append("  AND II.TRN_NO=:TRN_NO");
+        sql.append("   ORDER BY INSTALLMENT_SL");
+
+        Map params = new HashMap();
+        params.put("TRN_NO", trnNo);
+
+        return db.queryForList(sql.toString(), params);
+    }
 }

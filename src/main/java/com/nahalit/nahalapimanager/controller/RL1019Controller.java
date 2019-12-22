@@ -111,10 +111,14 @@ public class RL1019Controller {
   public ResponseEntity<List<RlTrnInstallment>> getAllRlTrnInstallment(@Valid @RequestParam("trnNo") Long trnNo) {
     return new ResponseEntity<>(this.rl1019Service.getAllRlTrnWiseInstallment(trnNo), HttpStatus.OK);
   }
+  @GetMapping("/installment/trn-wise-list")
+  public ResponseEntity<List> getTrnInstallmentList(@Valid @RequestParam("trnNo") Long trnNo) {
+    return new ResponseEntity<>(this.rl1019Service.getTrnInstallmentList(trnNo), HttpStatus.OK);
+  }
 
   @GetMapping("/installment/get-installment")
-  public ResponseEntity<RlTrnInstallment> getRlTrnInstallment(@Valid @RequestParam("trnNo") Long trnNo) throws ResourceNotFoundException {
-    return new ResponseEntity<>(this.rl1019Service.getRlTrnInstallment(trnNo), HttpStatus.OK);
+  public ResponseEntity<RlTrnInstallment> getRlTrnInstallment(@Valid @RequestParam("installmentNo") Long installmentNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.rl1019Service.getRlTrnInstallment(installmentNo), HttpStatus.OK);
   }
 
   @PostMapping("/installment/add")

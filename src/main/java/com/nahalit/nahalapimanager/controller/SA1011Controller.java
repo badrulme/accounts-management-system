@@ -34,6 +34,10 @@ public class SA1011Controller {
     public ResponseEntity<SaMessage> getSaMessage(@Valid @RequestParam("messageNo") Long messageNo) throws ResourceNotFoundException {
         return new ResponseEntity<>(sa1011Service.getSaMessage(messageNo), HttpStatus.OK);
     }
+    @GetMapping("/get-message-by-messenger")
+    public ResponseEntity<SaMessage> getSaMessageByType(@Valid @RequestParam("messengerType") String messengerType) throws ResourceNotFoundException {
+        return new ResponseEntity<>(sa1011Service.getSaMessageByType(messengerType), HttpStatus.OK);
+    }
 
     @PostMapping("add")
     public ResponseEntity<SaMessage> saveSaMessage(@RequestBody SaMessage saGallery) throws ParseException {

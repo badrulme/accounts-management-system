@@ -17,6 +17,7 @@ public class RlCollection {
     private String collId;
     private Date collDate;
     private Long customerNo;
+    private Long installmentNo;
     private Double paidAmount;
     private String descr;
     private String payMode;

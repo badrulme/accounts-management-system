@@ -36,6 +36,10 @@ public class SA1011Service {
         return this.saMessageRepository.findById(messageNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + messageNo));
     }
 
+    public SaMessage getSaMessageByType(String messengerType) throws ResourceNotFoundException {
+        return this.saMessageRepository.findMessageByMessageType(messengerType);
+    }
+
     public SaMessage saveSaMessage(SaMessage saMessage) throws ParseException {
         saMessage.setSsCreatedOn(UtillDate.getDateTime());
         saMessage.setSsModifiedOn(null);
@@ -43,15 +47,12 @@ public class SA1011Service {
         return this.saMessageRepository.save(saMessage);
     }
 
-
     public SaMessage updateSaMessage(SaMessage saMessage) throws ResourceNotFoundException, ParseException, IOException {
         SaMessage oldData = this.saMessageRepository.findById(saMessage.getMessageNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this:" + saMessage.getMessageNo()));
 
         if (oldData.getMessengerPhotoName() != null && saMessage.getMessengerPhotoName() != null && !oldData.getMessengerPhotoName().equalsIgnoreCase(saMessage.getMessengerPhotoName())) {
             this.storageService.deleteFile(oldData.getMessengerPhotoName());
         }
-
-
         saMessage.setSsModifiedOn(UtillDate.getDateTime());
         saMessage.setSsCreatedOn(oldData.getSsCreatedOn());
         saMessage.setSsModifier(authService.getEmpNo());
