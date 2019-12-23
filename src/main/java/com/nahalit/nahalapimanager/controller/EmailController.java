@@ -24,7 +24,7 @@ public class EmailController {
   }
 
   @PostMapping("/send-mail")
-  public void sendEMail(@Valid @RequestParam String[] sendTo, @RequestParam(required = false) String[] sendCC, @RequestParam(required = false) String[] sendBcc, @RequestParam String mailSubject, @RequestParam String messageBody, @RequestParam(required = false) boolean isHTML) {
+  public void sendEMail(@Valid @RequestParam(value = "sendTo") String[] sendTo, @RequestParam(required = false) String[] sendCC, @RequestParam(required = false) String[] sendBcc, @RequestParam String mailSubject, @RequestParam String messageBody, @RequestParam(required = false) boolean isHTML) {
     try {
       emailService.sendEmail(sendTo, sendCC, sendBcc, mailSubject, messageBody, isHTML);
     } catch (MailException | MessagingException e) {
