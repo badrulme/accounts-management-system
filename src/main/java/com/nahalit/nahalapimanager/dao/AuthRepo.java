@@ -90,13 +90,13 @@ public class AuthRepo {
 
   public List findAllCompanyByUserName(String userName){
     StringBuilder sql =new StringBuilder();
-//    sql.append(" SELECT U.USER_NAME, C.COMPANY_NO, C.COMPANY_NAME, M.COMPANY_WEBSITE ");
-//    sql.append("   FROM SA_USER U, SA_GRANTCOMPANY_V C, SA_COMPANY M ");
-//    sql.append("  WHERE U.USER_NO = C.USER_NO ");
-//    sql.append("    AND C.COMPANY_NO = M.COMPANY_NO ");
-//    sql.append("    AND UPPER (U.USER_NAME) = UPPER(:USER_NAME) ");
-    sql.append(" SELECT ''USER_NAME,C.COMPANY_NO, C.COMPANY_NAME");
-    sql.append("        FROM SA_COMPANY C");
+    sql.append(" SELECT U.USER_NAME, C.COMPANY_NO, C.COMPANY_NAME, M.COMPANY_WEBSITE ");
+    sql.append("   FROM SA_USER U, SA_GRANTCOMPANY_V C, SA_COMPANY M ");
+    sql.append("  WHERE U.USER_NO = C.USER_NO ");
+    sql.append("    AND C.COMPANY_NO = M.COMPANY_NO ");
+    sql.append("    AND UPPER (U.USER_NAME) = UPPER(:USER_NAME) ");
+//    sql.append(" SELECT ''USER_NAME,C.COMPANY_NO, C.COMPANY_NAME");
+//    sql.append("        FROM SA_COMPANY C");
     Map<String, Object> params= new HashMap<>();
     params.put("USER_NAME", userName);
     return db.queryForList(sql.toString(), params);

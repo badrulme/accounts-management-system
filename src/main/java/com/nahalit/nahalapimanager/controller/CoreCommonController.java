@@ -26,6 +26,7 @@ public class CoreCommonController {
 
   @RequestMapping("/get-menu")
   public AppResponse getMenu(@RequestParam(value = "menuType") String menuType  ) {
-    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(authService.getCompanyNo(), authService.getUserNo(),menuType));
+//    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(authService.getCompanyNo(), authService.getUserNo(),menuType));
+    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(1L, 221L,menuType));
   }
 }

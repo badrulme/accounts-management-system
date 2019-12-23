@@ -27,7 +27,7 @@ public class RlTrn {
     private String bookingRefPerson;
     private String refContactNo;
     private String paymentType;
-    private String bookingAmount;
+    private Double bookingAmount;
     private String paymentMode;
     private String chequeNo;
     private String ddNo;

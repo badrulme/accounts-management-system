@@ -35,15 +35,15 @@ public class AuthController {
 
   @RequestMapping("/companies")
   public AppResponse companyList(
-      @RequestParam(value = KEY.USER_NAME) String userName) {
+      @RequestParam(value = "userName") String userName) {
     return AppResponse.build(HttpStatus.OK).body(authRepo.findAllCompanyByUserName(userName));
   }
 
   @RequestMapping("/login")
   public AppResponse login(
-      @RequestParam String userName,
-      @RequestParam String password,
-      @RequestParam Long companyNo) {
+      @RequestParam(value = "userName") String userName,
+      @RequestParam(value = "password") String password,
+      @RequestParam(value = "companyNo") Long companyNo) {
 
     User user = authRepo.findUser(userName, password, companyNo);
     if (user != null) {
