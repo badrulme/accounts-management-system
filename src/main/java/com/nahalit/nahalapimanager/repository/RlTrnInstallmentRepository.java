@@ -13,6 +13,6 @@ public interface RlTrnInstallmentRepository extends JpaRepository<RlTrnInstallme
     @Query("DELETE FROM RlTrnInstallment I WHERE I.trnNo=:TRN_NO AND I.payFlag<>1")
     void deleteByTrnNo(@Param("TRN_NO") Long TRN_NO);
 
-    @Query("SELECT I FROM RlTrnInstallment I WHERE I.trnNo=:TRN_NO")
+    @Query("SELECT I FROM RlTrnInstallment I WHERE I.trnNo=:TRN_NO ORDER BY I.installmentSl")
     List selectAllByTrnNo(@Param("TRN_NO") Long TRN_NO);
 }
