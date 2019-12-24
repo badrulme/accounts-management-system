@@ -31,7 +31,7 @@ public class RL1001Controller {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<RlConfig> saveRlConfig(RlConfig rlConfig) {
+    public ResponseEntity<RlConfig> saveRlConfig(@RequestBody RlConfig rlConfig) {
         return new ResponseEntity<>(this.rl1001Service.saveRlConfig(rlConfig), HttpStatus.CREATED);
     }
 

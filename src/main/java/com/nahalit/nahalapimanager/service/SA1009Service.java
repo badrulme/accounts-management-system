@@ -39,6 +39,19 @@ public class SA1009Service {
     return saRegionRepository.save(saRegion);
   }
 
+  public List<SaRegion> saveRegionList(List<SaRegion> saRegions) {
+    List<SaRegion> saRegionList = new ArrayList<>();
+    saRegions.forEach(saRegion -> {
+      try {
+        saRegion.setSsCreatedOn(UtillDate.getDateTime());
+        saRegion.setSsModifiedOn(null);
+        saRegionList.add(this.saRegionRepository.save(saRegion));
+      } catch (ParseException e) {
+      }
+    });
+    return saRegionList;
+  }
+
   public SaRegion updateRegion(SaRegion saRegion) throws ResourceNotFoundException, ParseException {
     SaRegion oldData = this.saRegionRepository.findById(saRegion.getRegionNo()).orElseThrow(() -> new ResourceNotFoundException("Region not found for this id: " + saRegion.getRegionNo()));
     saRegion.setSsCreatedOn(oldData.getSsCreatedOn());
@@ -83,7 +96,6 @@ public class SA1009Service {
         saSubregionList.add(this.saSubregionRepository.save(saSubregion));
       } catch (ParseException e) {
       }
-
     });
     return saSubregionList;
   }

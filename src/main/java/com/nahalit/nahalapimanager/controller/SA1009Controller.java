@@ -38,6 +38,11 @@ public class SA1009Controller {
         return new ResponseEntity<>(this.sa1009Service.saveRegion(saRegion), HttpStatus.CREATED);
     }
 
+    @PostMapping("/region/add-list")
+    public ResponseEntity<List<SaRegion>> saveRegionList(@RequestBody List<SaRegion> saRegions) throws ParseException {
+        return new ResponseEntity<>(this.sa1009Service.saveRegionList(saRegions), HttpStatus.CREATED);
+    }
+
     @PutMapping("/region/update")
     public ResponseEntity<SaRegion> updateRegion(@RequestBody SaRegion saRegion) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(this.sa1009Service.updateRegion(saRegion), HttpStatus.ACCEPTED);
