@@ -12,6 +12,7 @@ import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.RejectedExecutionException;
@@ -61,9 +62,17 @@ public class RL1019Service {
         return this.rl1019Dao.getTrnDetails(trnNo);
     }
 
-    public RlTrn saveRlTrn(RlTrn rlTrn) throws ParseException {
-        rlTrn.setSsCreatedOn(UtillDate.getDateTime());
-        rlTrn.setSsModifiedOn(null);
+    public RlTrn saveRlTrn(RlTrn rlTrn) throws ParseException, ResourceNotFoundException {
+
+        if (rlTrn.getTrnId() == null || rlTrn.getTrnId() == "") {
+            rlTrn.setTrnId(this.rl1019Dao.getTrnId(rlTrn.getTrnDate()));
+            rlTrn.setSsCreatedOn(UtillDate.getDateTime());
+            rlTrn.setSsModifiedOn(null);
+        } else {
+            RlTrn oldData = this.rlTrnRepository.findById(rlTrn.getTrnNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this:" + rlTrn.getTrnNo()));
+            rlTrn.setSsCreatedOn(oldData.getSsCreatedOn());
+            rlTrn.setSsModifiedOn(UtillDate.getDateTime());
+        }
         return this.rlTrnRepository.save(rlTrn);
     }
 
@@ -133,19 +142,20 @@ public class RL1019Service {
         return saveList;
     }
 
-    public Map deleteRlTrnNominee(Long nomineeNo) {
-        this.rlTrnNomineeRepository.findById(nomineeNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + nomineeNo));
+    public Map deleteRlTrnNominee(Long nomineeNo) throws IOException {
+        RlTrnNominee rlTrnNominee = this.rlTrnNomineeRepository.findById(nomineeNo).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + nomineeNo));
         this.rlTrnNomineeRepository.deleteById(nomineeNo);
+        this.storageService.deleteFile(rlTrnNominee.getNomineePictureName());
         Map<String, String> deleteMessage = new HashMap<>();
         deleteMessage.put("deleteStatus", "Deleted Successfully");
         return deleteMessage;
     }
 
-    public Map deleteRlTrnNomineeList(List<RlTrnNominee> rlTrnNominees) {
+    public Map deleteRlTrnNomineeList(List<RlTrnNominee> rlTrnNominees) throws IOException, ResourceNotFoundException {
         for (RlTrnNominee rlTrnNominee : rlTrnNominees) {
-            this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new RejectedExecutionException("Transaction not found for this id: " + rlTrnNominee.getNomineeNo()));
+            this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id: " + rlTrnNominee.getNomineeNo()));
+            this.storageService.deleteFile(rlTrnNominee.getNomineePictureName());
             this.rlTrnNomineeRepository.deleteById(rlTrnNominee.getNomineeNo());
-
         }
         Map<String, String> deleteMessage = new HashMap<>();
         deleteMessage.put("deleteStatus", "Deleted Successfully");
@@ -197,6 +207,11 @@ public class RL1019Service {
         deleteMessage.put("deleteStatus", "Deleted Successfully");
         return deleteMessage;
     }
+
+    public Map getTrnInstallmentCollStatus(Long trnNo) {
+        return this.rl1019Dao.getTrnInstallmentCollStatus(trnNo);
+    }
+
 
     public Map deleteTrnWiseInstallment(Long trnNo) {
         this.rl1019Dao.deleteByTrnNo(trnNo);

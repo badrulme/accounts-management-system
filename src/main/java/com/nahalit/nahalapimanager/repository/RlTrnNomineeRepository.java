@@ -12,4 +12,7 @@ import java.util.List;
 public interface RlTrnNomineeRepository extends JpaRepository<RlTrnNominee, Long> {
     @Query("SELECT N FROM RlTrnNominee N WHERE N.trnNo=:TRN_NO")
     RlTrnNominee getNomineeByTrnNo(@Param("TRN_NO") Long TRN_NO);
+
+    @Query("DELETE FROM RlTrnNominee N WHERE N.trnNo=:TRN_NO")
+    void deleteNomineeByTrnNo(@Param("TRN_NO") Long TRN_NO);
 }

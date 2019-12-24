@@ -99,6 +99,28 @@ public class RL1019Dao {
         db.update("DELETE RL_TRN_INSTALLMENT WHERE TRN_NO=:TRN_NO AND NVL(PAY_FLAG,0)=0", params);
     }
 
+    public Map getTrnInstallmentCollStatus(Long trnNo) {
+        Map<String, Long> params = new HashMap<>();
+        params.put("TRN_NO", trnNo);
+        return db.queryForMap("SELECT COUNT(0) STATUS FROM RL_TRN_INSTALLMENT WHERE TRN_NO=:TRN_NO AND NVL(PAY_FLAG,0)=1", params);
+    }
+
+    public String getTrnId(Date trnDate) {
+        Map<String, Date> params = new HashMap<>();
+        params.put("trn_date", trnDate);
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select 'TID' || TO_CHAR(:trn_date, 'rr') || NVL(id, 1001) ID");
+        sql.append(" from (");
+        sql.append("          SELECT MAX(SUBSTR(trn_id, 6)) + 1 ID");
+        sql.append("          FROM rl_trn");
+        sql.append("          WHERE SUBSTR(trn_id, 4, 2) = TO_CHAR(:trn_date, 'rr'))");
+
+        Map trnId = db.queryForMap(sql.toString(), params);
+        return trnId.get("ID").toString();
+    }
+
+
     public Map getTrnDetails(String trnNo) {
 
         Map<String, String> params = new HashMap();

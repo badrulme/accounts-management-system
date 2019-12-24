@@ -39,7 +39,7 @@ public class RlTrn {
     private String transactionId;
     private String payorderNo;
     private String payMode;
-    private String paidAmount;
+    private Double paidAmount;
     private Integer webUserFlag;
     private Integer approveFlag;
     private Date approveDate;
