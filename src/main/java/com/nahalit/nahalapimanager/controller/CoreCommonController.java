@@ -7,15 +7,12 @@ import com.nahalit.nahalapimanager.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @RestController(value = "coreCommonController")
-@RequestMapping(value = { "/core/common"}, method = RequestMethod.POST,consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+@RequestMapping(value = { "/core/common"}, consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 public class CoreCommonController {
   private @Autowired
   HttpServletRequest request;
@@ -24,9 +21,9 @@ public class CoreCommonController {
   private @Autowired
   AuthService authService;
 
-  @RequestMapping("/get-menu")
+  @GetMapping("/get-menu")
   public AppResponse getMenu(@RequestParam(value = "menuType") String menuType  ) {
-//    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(authService.getCompanyNo(), authService.getUserNo(),menuType));
-    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(1L, 221L,menuType));
+    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(authService.getCompanyNo(), authService.getUserNo(),menuType));
+//    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(1L, 221L,menuType));
   }
 }

@@ -3,9 +3,7 @@ package com.nahalit.nahalapimanager.service;
 import com.nahalit.nahalapimanager.dao.RL1002Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlCustomer;
-import com.nahalit.nahalapimanager.model.SaLookupdtl;
 import com.nahalit.nahalapimanager.repository.RlCustomerRepository;
-import com.nahalit.nahalapimanager.repository.SaLookupdtlRepository;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.data.domain.Sort;
@@ -25,11 +23,13 @@ public class RL1002Service {
     private RlCustomerRepository customerRepository;
     private StorageService storageService;
     private RL1002Dao rl1002Dao;
+    private final AuthService authService;
 
-    public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao) {
+    public RL1002Service(RlCustomerRepository customerRepository, StorageService storageService, RL1002Dao rl1002Dao, AuthService authService) {
         this.customerRepository = customerRepository;
         this.storageService = storageService;
         this.rl1002Dao = rl1002Dao;
+        this.authService = authService;
     }
 
     public List<RlCustomer> getAllCustomer() {
@@ -50,7 +50,7 @@ public class RL1002Service {
         customer.setCustomerId(rl1002Dao.getCustomerId());
         customer.setSsCreatedOn(UtillDate.getDateTime());
         customer.setSsModifiedOn(null);
-
+        customer.setCompanyNo(authService.getCompanyNo());
         return this.customerRepository.save(customer);
     }
 
@@ -68,10 +68,10 @@ public class RL1002Service {
             String filename = StringUtils.cleanPath(customerPhoto.getOriginalFilename()).replaceAll("(?i)(.+?)(\\.\\w+$)", nowTime + "$2");
             storageService.store(customerPhoto, filename);
             rlCustomer.setCustomerPictureName(filename);
-
-        }
+                    }
         rlCustomer.setSsCreatedOn(oldData.getSsCreatedOn());
         rlCustomer.setSsModifiedOn(UtillDate.getDateTime());
+        rlCustomer.setCompanyNo(authService.getCompanyNo());
 
         return this.customerRepository.save(rlCustomer);
     }
@@ -100,6 +100,7 @@ public class RL1002Service {
     public Map getHasEmail(String email) {
         return rl1002Dao.getHasEmail(email);
     }
+
     public Map getHasMobile(String mobile) {
         return rl1002Dao.getHasMobile(mobile);
     }

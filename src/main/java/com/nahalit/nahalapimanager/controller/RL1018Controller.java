@@ -4,6 +4,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlPropertyContact;
 import com.nahalit.nahalapimanager.service.RL1018Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("api/rest/rl/property-contact/")
+@RequestMapping(value = "api/rest/rl/property-contact/",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class RL1018Controller {
   private final RL1018Service rl1018Service;

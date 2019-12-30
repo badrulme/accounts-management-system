@@ -5,6 +5,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.RlCollection;
 import com.nahalit.nahalapimanager.service.RL1021Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/api/rest/rl/trn/collection")
+@RequestMapping(value = "/api/rest/rl/trn/collection",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class RL1021Controller {
 

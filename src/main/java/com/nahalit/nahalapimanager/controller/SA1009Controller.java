@@ -5,6 +5,7 @@ import com.nahalit.nahalapimanager.model.SaRegion;
 import com.nahalit.nahalapimanager.model.SaSubregion;
 import com.nahalit.nahalapimanager.service.SA1009Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("api/rest/sa/setting")
+@RequestMapping(value = "api/rest/sa/setting",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @Controller
 public class SA1009Controller {
     private final SA1009Service sa1009Service;

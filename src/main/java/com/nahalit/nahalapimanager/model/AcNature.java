@@ -9,13 +9,15 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class InUom {
+public class AcNature {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "IN_UOM")
-    @SequenceGenerator(sequenceName = "S_IN_UOM", allocationSize = 1, name = "IN_UOM")
-    private Long uomNo;
-    private String uom;
-    private String uomShort;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AC_NATURE")
+    @SequenceGenerator(sequenceName = "S_AC_NATURE", allocationSize = 1, name = "AC_NATURE")
+    private Long natureNo;
+    private String natureName;
+    private String natureType;
+    private Integer slNo;
     private Long companyNo;
     private Date ssCreatedOn;
     private Long ssCreator;

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@RequestMapping(value = {"api/rest/rl/configuration"})
+@RequestMapping(value = {"api/rest/rl/configuration"},consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class RL1001Controller {
     private final RL1001Service rl1001Service;

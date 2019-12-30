@@ -57,6 +57,7 @@ public class RL1001Service {
         rlFacing.setSsCreatedOn(UtillDate.getDateTime());
         rlFacing.setSsModifiedOn(null);
         rlFacing.setSsCreator(authService.getUserNo());
+        rlFacing.setCompanyNo(authService.getCompanyNo());
         return this.rlFacingRepository.save(rlFacing);
     }
 
@@ -68,6 +69,8 @@ public class RL1001Service {
         RlFacing oldData = this.rlFacingRepository.findById(rlFacing.getFacingNo()).orElseThrow(() -> new ResourceNotFoundException("Facing not for this:" + rlFacing.getFacingNo()));
         rlFacing.setSsModifiedOn(UtillDate.getDateTime());
         rlFacing.setSsCreatedOn(oldData.getSsCreatedOn());
+        rlFacing.setSsCreator(oldData.getSsCreator());
+        rlFacing.setCompanyNo(oldData.getCompanyNo());
         rlFacing.setSsModifier(authService.getUserNo());
         return this.rlFacingRepository.save(rlFacing);
     }
@@ -95,6 +98,7 @@ public class RL1001Service {
         rlRoadSize.setSsCreatedOn(UtillDate.getDateTime());
         rlRoadSize.setSsModifiedOn(null);
         rlRoadSize.setSsCreator(authService.getUserNo());
+        rlRoadSize.setCompanyNo(authService.getCompanyNo());
         return this.rlRoadSizeRepository.save(rlRoadSize);
     }
 
@@ -106,7 +110,9 @@ public class RL1001Service {
         RlRoadSize oldData = this.rlRoadSizeRepository.findById(rlRoadSize.getSizeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this id:" + rlRoadSize.getSizeNo()));
         rlRoadSize.setSsModifiedOn(UtillDate.getDateTime());
         rlRoadSize.setSsCreatedOn(oldData.getSsCreatedOn());
-        rlRoadSize.setSsModifier(authService.getUserNo());
+        rlRoadSize.setSsCreator(oldData.getSsCreator());
+        rlRoadSize.setCompanyNo(oldData.getCompanyNo());
+        rlRoadSize.setSsModifier(authService.getEmpNo());
         return this.rlRoadSizeRepository.save(rlRoadSize);
     }
 
@@ -133,6 +139,7 @@ public class RL1001Service {
         rlPoltPosition.setSsCreatedOn(UtillDate.getDateTime());
         rlPoltPosition.setSsModifiedOn(null);
         rlPoltPosition.setSsCreator(authService.getUserNo());
+        rlPoltPosition.setCompanyNo(authService.getCompanyNo());
         return this.rlPlotPositionRepository.save(rlPoltPosition);
     }
 
@@ -144,7 +151,9 @@ public class RL1001Service {
         RlPlotPosition oldData = this.rlPlotPositionRepository.findById(rlPoltPosition.getPositionNo()).orElseThrow(() -> new ResourceNotFoundException("PoltPosition not for this:" + rlPoltPosition.getPositionNo()));
         rlPoltPosition.setSsModifiedOn(UtillDate.getDateTime());
         rlPoltPosition.setSsCreatedOn(oldData.getSsCreatedOn());
+        rlPoltPosition.setSsCreator(oldData.getSsCreator());
         rlPoltPosition.setSsModifier(authService.getUserNo());
+        rlPoltPosition.setCompanyNo(oldData.getCompanyNo());
         return this.rlPlotPositionRepository.save(rlPoltPosition);
     }
 

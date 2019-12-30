@@ -6,6 +6,7 @@ import com.nahalit.nahalapimanager.service.RlItemSliderService;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("api/rest/rl/item/slider")
+@RequestMapping(value = "api/rest/rl/item/slider",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class RlItemSliderController {
     private final RlItemSliderService rlItemSliderService;

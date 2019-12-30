@@ -3,6 +3,7 @@ package com.nahalit.nahalapimanager.controller;
 import com.nahalit.nahalapimanager.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 
-@RequestMapping("/api/rest/email")
 @RestController
+@RequestMapping(value = "/api/rest/email",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 public class EmailController {
   private final EmailService emailService;
 

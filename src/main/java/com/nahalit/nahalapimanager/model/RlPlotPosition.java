@@ -17,6 +17,7 @@ public class RlPlotPosition {
   @SequenceGenerator(sequenceName = "S_RL_PLOT_POSITION", allocationSize = 1, name = "RL_PLOT_POSITION")
   private Long positionNo;
   private String positionName;
+  private Long companyNo;
   private Long ssCreator;
   private Date ssCreatedOn;
   private Long ssModifier;

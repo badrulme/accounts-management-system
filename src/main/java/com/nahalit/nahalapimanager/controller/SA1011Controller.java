@@ -5,6 +5,7 @@ import com.nahalit.nahalapimanager.model.SaMessage;
 import com.nahalit.nahalapimanager.service.SA1010Service;
 import com.nahalit.nahalapimanager.service.SA1011Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@RequestMapping(value = {"api/rest/sa/message"})
+@RequestMapping(value = {"api/rest/sa/message"},consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class SA1011Controller {
     private final SA1011Service sa1011Service;

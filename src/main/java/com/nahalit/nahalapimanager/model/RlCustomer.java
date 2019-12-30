@@ -45,7 +45,7 @@ public class RlCustomer {
   private String designation;
   private String officeAddress;
   private String customerPictureName;
-  private Integer companyNo;
+  private Long companyNo;
   private String password;
   private String religionName;
   private String cpAddress;

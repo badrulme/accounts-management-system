@@ -18,6 +18,7 @@ public class RlRoadSize {
   private Long sizeNo;
   private Long roadSize;
   private Long activeFlag;
+  private Long companyNo;
   private Long ssCreator;
   private Date ssCreatedOn;
   private Long ssModifier;

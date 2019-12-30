@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@RequestMapping("/api/rest/rl/client/common")
 @RestController
+@RequestMapping("/api/rest/rl/client/common")
 public class RLClientCommonController {
 
   private final RLClientCommonService rlClientCommonService;
@@ -32,14 +32,14 @@ public class RLClientCommonController {
     if (rlCustomer != null) {
       rlCustomer.setPassword(null);
       String token = Jwts.builder()
-          .setId("New Session")
-          .setIssuer(String.valueOf(rlCustomer.getCustomerNo()))
-          .setSubject("custUser")
-          .setAudience(companyNo)
-          .setNotBefore(Calendar.getInstance().getTime())
-          .setIssuedAt(new Date())
-          .signWith(SignatureAlgorithm.HS256, AppConfig.APPLICATION_JWT_PRIVATE_KEY)
-          .compact();
+              .setId("New Session")
+              .setIssuer(String.valueOf(rlCustomer.getCustomerNo()))
+              .setSubject("custUser")
+              .setAudience(companyNo)
+              .setNotBefore(Calendar.getInstance().getTime())
+              .setIssuedAt(new Date())
+              .signWith(SignatureAlgorithm.HS256, AppConfig.APPLICATION_JWT_PRIVATE_KEY)
+              .compact();
       Map<String, String> header = new HashMap<>();
       header.put("TOKEN", token);
       return AppResponse.build(HttpStatus.OK).body(rlCustomer).message("Customer Login successfully").header(header);
@@ -50,3 +50,4 @@ public class RLClientCommonController {
 
 
 }
+

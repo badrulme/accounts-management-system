@@ -4,6 +4,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.SaGallery;
 import com.nahalit.nahalapimanager.service.SA1010Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@RequestMapping(value = {"api/rest/sa/gallery"})
+@RequestMapping(value = {"api/rest/sa/gallery"},consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class SA1010Controller {
     private final SA1010Service sa1010Service;

@@ -17,6 +17,7 @@ public class RlFacing {
   @SequenceGenerator(sequenceName = "s_rl_facing", allocationSize = 1, name = "rl_item_facing")
   private Long facingNo;
   private String facingName;
+  private Long companyNo;
   private Long ssCreator;
   private Date ssCreatedOn;
   private Long ssModifier;

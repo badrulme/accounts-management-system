@@ -37,6 +37,7 @@ public class IN1001Service {
         inUom.setSsCreatedOn(UtillDate.getDateTime());
         inUom.setSsModifiedOn(null);
         inUom.setSsCreator(authService.getUserNo());
+        inUom.setCompanyNo(authService.getCompanyNo());
         return this.inUomRepository.save(inUom);
     }
 
@@ -49,6 +50,8 @@ public class IN1001Service {
         inUom.setSsModifiedOn(UtillDate.getDateTime());
         inUom.setSsCreatedOn(oldData.getSsCreatedOn());
         inUom.setSsModifier(authService.getUserNo());
+        inUom.setSsCreator(oldData.getSsCreator());
+        inUom.setCompanyNo(oldData.getCompanyNo());
         return this.inUomRepository.save(inUom);
     }
 

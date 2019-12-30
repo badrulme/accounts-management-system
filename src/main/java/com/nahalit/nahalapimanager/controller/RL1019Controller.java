@@ -5,6 +5,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.*;
 import com.nahalit.nahalapimanager.service.RL1019Service;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +16,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/api/rest/rl/trn")
+@RequestMapping(value = "/api/rest/rl/trn",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
 @RestController
 public class RL1019Controller {
     private final RL1019Service rl1019Service;
@@ -111,7 +112,7 @@ public class RL1019Controller {
     }
 
     @GetMapping("/installment/trn-wise")
-    public ResponseEntity<List<RlTrnInstallment>> getAllRlTrnInstallment(@Valid @RequestParam("trnNo") Long trnNo) {
+    public ResponseEntity<List<RlTrnInstallment>> getAllRlTrnInstallmentTrnWise(@Valid @RequestParam("trnNo") Long trnNo) {
         return new ResponseEntity<>(this.rl1019Service.getAllRlTrnWiseInstallment(trnNo), HttpStatus.OK);
     }
 
