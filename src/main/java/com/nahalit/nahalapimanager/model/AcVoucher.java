@@ -18,7 +18,7 @@ public class AcVoucher {
     private Integer vtypeNo;
     private Date vDate;
     private String narration;
-    private Integer postFlg;
+    private Integer postFlag;
     private Integer opPeriodno;
     private String module;
     private Integer voidFlag;

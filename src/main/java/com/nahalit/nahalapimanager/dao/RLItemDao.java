@@ -484,7 +484,9 @@ public class RLItemDao {
         sql.append("                 i.INTERNET_FLAG \"internetFlag\",");
         sql.append("                 i.CABLE_TV_FLAG \"cableTvFlag\",");
         sql.append("                 i.net_Price \"netPrice\",");
-        sql.append("                  i.plot_no \"plotNo\",");
+        sql.append("                 i.plot_no \"plotNo\",");
+        sql.append("                 u.UOM_SHORT \"uomShort\",");
+        sql.append("                 u.UOM \"uom\",");
         sql.append("                 P.PROJECT_ID                             \"projectId\",");
         sql.append("                 P.PROJECT_LOCATION                       \"projectLocation\",");
         sql.append("                 P.PROJECT_TYPE                           \"projectType\",");
@@ -495,13 +497,15 @@ public class RLItemDao {
         sql.append("                 ROW_NUMBER() over (ORDER BY ITEM_NO ASC) SL");
         sql.append("          FROM RL_ITEM I,");
         sql.append("               RL_PROJECT P,");
-        sql.append("               RL_ITEM_TYPE T");
+        sql.append("               RL_ITEM_TYPE T,");
+        sql.append("               IN_UOM U T");
         sql.append("          WHERE I.PROJECT_NO = P.PROJECT_NO");
         sql.append("            AND I.ITEM_TYPE_NO=T.TYPE_NO");
         sql.append("            AND NVL(I.INACTIVE_FLAG, 0) = 0");
         sql.append("            AND NVL(I.PUBLISH_FLAG, 0) = 1");
         sql.append("            AND NVL(I.ITEM_INVENTORY_FLAG, 0) = 0");
         sql.append("            AND I.ITEM_NO<>:ITEM_NO");
+        sql.append("            AND I.UOM_NO=U.UOM_NO(+)");
         sql.append("            AND I.PROJECT_NO = (SELECT PROJECT_NO FROM RL_ITEM WHERE ITEM_NO = :ITEM_NO)");
         sql.append("      )");
         sql.append(" WHERE SL <= (SELECT NVL(DISPLAY_FEATURE_LIST_NUMBER, SL) FROM RL_CONFIG)");
