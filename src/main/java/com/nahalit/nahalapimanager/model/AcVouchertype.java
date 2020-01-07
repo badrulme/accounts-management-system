@@ -6,11 +6,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+
 @Getter
 @Setter
+@Entity
 public class AcVouchertype {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AC_VOUCHERTYPE")
     @SequenceGenerator(sequenceName = "S_AC_VOUCHERTYPE", allocationSize = 1, name = "AC_VOUCHERTYPE")
