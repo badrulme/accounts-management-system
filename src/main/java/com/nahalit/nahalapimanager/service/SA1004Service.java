@@ -43,6 +43,21 @@ public class SA1004Service {
         return saLookupRepository.save(saLookup);
     }
 
+    public List<SaLookup> saveLookupList(List<SaLookup> saLookups) {
+        List<SaLookup> saLookupList = new ArrayList<>();
+        saLookups.forEach(saLookup -> {
+            try {
+                saLookup.setSsCreatedOn(UtillDate.getDateTime());
+                saLookup.setSsModifiedOn(null);
+                saLookup.setSsCreator(authService.getEmpNo());
+                saLookupList.add(this.saLookupRepository.save(saLookup));
+            } catch (ParseException e) {
+            }
+
+        });
+        return saLookupList;
+    }
+
     public SaLookup updateLookup(SaLookup saLookup) throws ResourceNotFoundException, ParseException {
         SaLookup oldData = this.saLookupRepository.findById(saLookup.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookup not found for this id: " + saLookup.getLookupNo()));
         saLookup.setSsCreatedOn(oldData.getSsCreatedOn());
@@ -115,7 +130,7 @@ public class SA1004Service {
     }
 
     public Map deleteLookupdtl(Long lookupdtlNo) throws ResourceNotFoundException {
-        this.saLookupRepository.findById(lookupdtlNo).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + lookupdtlNo));
+        this.saLookupdtlRepository.findById(lookupdtlNo).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + lookupdtlNo));
         this.saLookupdtlRepository.deleteById(lookupdtlNo);
         Map<String, String> deleteMessage = new HashMap<>();
         deleteMessage.put("deleteStatus", "Deleted Successfully");
@@ -124,7 +139,7 @@ public class SA1004Service {
 
     public Map deleteLookupdtlList(List<SaLookupdtl> saLookupdtls) throws ResourceNotFoundException {
         for (SaLookupdtl saLookupdtl : saLookupdtls) {
-            this.saLookupRepository.findById(saLookupdtl.getLookupdtlNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
+            this.saLookupdtlRepository.findById(saLookupdtl.getLookupdtlNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
             this.saLookupdtlRepository.deleteById(saLookupdtl.getLookupdtlNo());
         }
         Map<String, String> deleteMessage = new HashMap<>();

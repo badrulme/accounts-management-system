@@ -14,7 +14,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/rl/item/installment",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/rl/item/installment")
 @RestController
 public class RlItemInstallmentController {
 

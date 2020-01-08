@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/rl/property-contact/", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/rl/property-contact/")
 @RestController
 public class RL1018Controller {
     private final RL1018Service rl1018Service;
@@ -46,13 +46,13 @@ public class RL1018Controller {
     }
 
     @PutMapping("/update/read-status")
-    public ResponseEntity<Map> updateReadContact(@RequestParam Long contactNo) {
-        return new ResponseEntity<>(this.rl1018Service.updateReadStatus(contactNo), HttpStatus.ACCEPTED);
+    public ResponseEntity<Map> updateReadContact(@RequestBody RlPropertyContact reItemContact) {
+        return new ResponseEntity<>(this.rl1018Service.updateReadStatus(reItemContact.getContactNo()), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/update/unread-status")
-    public ResponseEntity<Map> updateUnReadContact(@RequestParam Long contactNo) {
-        return new ResponseEntity<>(this.rl1018Service.updateUnReadStatus(contactNo), HttpStatus.ACCEPTED);
+    public ResponseEntity<Map> updateUnReadContact(@RequestBody RlPropertyContact reItemContact) {
+        return new ResponseEntity<>(this.rl1018Service.updateUnReadStatus(reItemContact.getContactNo()), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/delete")

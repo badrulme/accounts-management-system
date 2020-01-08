@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping(value = "api/rest/rl/cu/item",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/rl/cu/item")
 public class CuItemController {
     private final CuItemService cuItemService;
 

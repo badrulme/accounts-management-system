@@ -25,7 +25,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@RequestMapping(value = "api/rest/rl/customer",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/rl/customer")
 @RestController
 public class RL1002Controller {
     private final RL1002Service rl1002Service;

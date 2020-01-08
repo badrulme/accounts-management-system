@@ -17,7 +17,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping(value = {"api/rest/in/configuration"},consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = {"api/rest/in/configuration"})
 public class IN1001Controller {
   private final IN1001Service  in1001Service;
 

@@ -14,7 +14,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/sa/setting",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/sa/setting")
 @Controller
 public class SA1004Controller {
   private SA1004Service sa1004Service;
@@ -37,6 +37,11 @@ public class SA1004Controller {
   @PostMapping("/lookup/add")
   public ResponseEntity<SaLookup> saveLookup(@RequestBody SaLookup saLookup) throws ParseException {
     return new ResponseEntity<>(this.sa1004Service.saveLookup(saLookup), HttpStatus.CREATED);
+  }
+
+  @PostMapping("/lookup/add-list")
+  public ResponseEntity<List<SaLookup>> saveLookupList(@RequestBody List<SaLookup> saLookup) {
+    return new ResponseEntity<>(this.sa1004Service.saveLookupList(saLookup), HttpStatus.CREATED);
   }
 
   @PutMapping("/lookup/update")
@@ -86,8 +91,8 @@ public class SA1004Controller {
   }
 
   @DeleteMapping("/lookupdtl/delete")
-  public ResponseEntity<Map> deleLookupdtl(@RequestParam Long lookupNo) throws ResourceNotFoundException {
-    return new ResponseEntity<>( this.sa1004Service.deleteLookupdtl(lookupNo), HttpStatus.OK);
+  public ResponseEntity<Map> deleLookupdtl(@RequestParam Long lookupdtlNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.sa1004Service.deleteLookupdtl(lookupdtlNo), HttpStatus.OK);
   }
 
   @DeleteMapping("/lookupdtl/delete-list")

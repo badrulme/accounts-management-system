@@ -33,16 +33,16 @@ public class SwaggerConfig {
                 .required(true)                // for compulsory
                 .build();
         //Adding Header
-        ParameterBuilder contentParameterBuilder = new ParameterBuilder();
-        contentParameterBuilder.name("Content-Type")                 // name of header
-                .modelRef(new ModelRef("string"))
-                .parameterType("header")               // type - header
-                .required(true)                // for compulsory
-                .build();
+//        ParameterBuilder contentParameterBuilder = new ParameterBuilder();
+//        contentParameterBuilder.name("Content-Type")                 // name of header
+//                .modelRef(new ModelRef("string"))
+//                .parameterType("header")               // type - header
+//                .required(true)                // for compulsory
+//                .build();
 
         List<Parameter> parameters = new ArrayList<>();
         parameters.add(tokenParameterBuilder.build());
-        parameters.add(contentParameterBuilder.build());
+//        parameters.add(contentParameterBuilder.build());
 
         return new Docket(DocumentationType.SWAGGER_2)
 //                .host("localhost")

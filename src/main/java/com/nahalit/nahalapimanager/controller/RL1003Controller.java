@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/rl/project/ap",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/rl/project/ap")
 @RestController
 public class RL1003Controller {
   private final RL1003Service rl1003Service;

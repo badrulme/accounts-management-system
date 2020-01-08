@@ -25,7 +25,7 @@ public class AC1002Controller {
 
     // Ac Bank
     @GetMapping("/")
-    public ResponseEntity<List<AcBank>> getAllVtype() {
+    public ResponseEntity<List<AcBank>> getAllAcBank() {
         return new ResponseEntity<>(ac1002Service.getAllAcBank(), HttpStatus.OK);
     }
 

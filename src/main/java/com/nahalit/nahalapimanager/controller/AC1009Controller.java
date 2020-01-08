@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/ac/voucehr/", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/ac/voucehr/")
 @RestController
 public class AC1009Controller {
     private final AC1009Service ac1009Service;
@@ -31,6 +31,4 @@ public class AC1009Controller {
     public ResponseEntity<Map> updateContact(@RequestParam Long vNo) {
         return new ResponseEntity<>(this.ac1009Service.updateUnCheckStatus(vNo), HttpStatus.ACCEPTED);
     }
-
-
 }

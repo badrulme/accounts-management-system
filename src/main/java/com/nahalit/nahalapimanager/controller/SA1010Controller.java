@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@RequestMapping(value = {"api/rest/sa/gallery"},consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = {"api/rest/sa/gallery"})
 @RestController
 public class SA1010Controller {
     private final SA1010Service sa1010Service;

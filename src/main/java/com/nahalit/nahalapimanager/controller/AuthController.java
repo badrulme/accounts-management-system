@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController(value = "coreAuthController")
-@RequestMapping(value = {"/core/auth"}, method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+@RequestMapping(value = {"api/rest/core/auth"}, method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 public class AuthController {
 //  private @Autowired
 //  HttpServletRequest request;

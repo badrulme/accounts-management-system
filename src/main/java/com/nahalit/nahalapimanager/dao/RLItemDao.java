@@ -498,7 +498,7 @@ public class RLItemDao {
         sql.append("          FROM RL_ITEM I,");
         sql.append("               RL_PROJECT P,");
         sql.append("               RL_ITEM_TYPE T,");
-        sql.append("               IN_UOM U T");
+        sql.append("               IN_UOM U");
         sql.append("          WHERE I.PROJECT_NO = P.PROJECT_NO");
         sql.append("            AND I.ITEM_TYPE_NO=T.TYPE_NO");
         sql.append("            AND NVL(I.INACTIVE_FLAG, 0) = 0");

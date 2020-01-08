@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@RequestMapping(value = {"api/rest/sa/message"},consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = {"api/rest/sa/message"})
 @RestController
 public class SA1011Controller {
     private final SA1011Service sa1011Service;

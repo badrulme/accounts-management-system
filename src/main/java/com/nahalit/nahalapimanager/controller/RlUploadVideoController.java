@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/rl/video",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/rl/video")
 @RestController
 public class RlUploadVideoController {
     private final RlUploadVideoService rlItemVideoService;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.ParseException;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/ac/voucehr/", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "api/rest/ac/voucehr/")
 @RestController
 public class AC1010Controller {
     private final AC1010Service ac1010Service;
@@ -24,7 +24,7 @@ public class AC1010Controller {
     // AC Voucher Post
 
     @PutMapping("/update/post-status")
-    public ResponseEntity<Map> updateCheckStatus(@RequestParam Long vNo) throws ParseException {
+    public ResponseEntity<Map> updatePostStatus(@RequestParam Long vNo) throws ParseException {
         return new ResponseEntity<>(this.ac1010Service.updatePostStatus(vNo), HttpStatus.ACCEPTED);
     }
 

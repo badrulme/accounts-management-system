@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController(value = "coreCommonController")
-@RequestMapping(value = { "/core/common"}, consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+@RequestMapping(value = { "api/rest/core/common"}, consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 public class CoreCommonController {
   private @Autowired
   HttpServletRequest request;
@@ -21,7 +21,7 @@ public class CoreCommonController {
   private @Autowired
   AuthService authService;
 
-  @GetMapping("/get-menu")
+  @PostMapping("/get-menu")
   public AppResponse getMenu(@RequestParam(value = "menuType") String menuType  ) {
     return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(authService.getCompanyNo(), authService.getUserNo(),menuType));
 //    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(1L, 221L,menuType));

@@ -57,7 +57,7 @@ public class RL1018Service {
         Map<String, String> updateMessage = new HashMap<>();
         updateMessage.put("updateStatus", "Contact Status Updated Successfully.");
 
-        rl1018Dao.updateReadStatus(contactNo);
+        rl1018Dao.updateUnReadStatus(contactNo);
         return updateMessage;
     }
 

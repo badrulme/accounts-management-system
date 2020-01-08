@@ -14,7 +14,7 @@ import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/rest/email",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/api/rest/email")
 public class EmailController {
   private final EmailService emailService;
 

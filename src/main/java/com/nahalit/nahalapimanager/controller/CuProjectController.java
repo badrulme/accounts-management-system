@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
-@RequestMapping(value = "/api/rest/rl/cu/project",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/api/rest/rl/cu/project")
 @RestController
 public class CuProjectController {
   private final CuProjectService cuProjectService;
