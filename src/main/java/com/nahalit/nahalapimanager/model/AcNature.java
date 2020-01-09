@@ -16,6 +16,7 @@ public class AcNature {
     @SequenceGenerator(sequenceName = "S_AC_NATURE", allocationSize = 1, name = "AC_NATURE")
     private Long natureNo;
     private String natureName;
+    private String natureCode;
     private String natureType;
     private Integer slNo;
     private Long companyNo;

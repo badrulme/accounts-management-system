@@ -4,6 +4,7 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.AcNature;
 import com.nahalit.nahalapimanager.repository.AcNatureRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -25,7 +26,7 @@ public class AC1004Service {
 
     // Ac Nature
     public List<AcNature> getAllAcNature() {
-        return this.acNatureRepository.findAll();
+        return this.acNatureRepository.findAll(Sort.by("slNo").ascending());
     }
 
     public AcNature getAcNature(Long natureNo) throws ResourceNotFoundException {
