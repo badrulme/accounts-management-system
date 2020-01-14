@@ -22,7 +22,6 @@ public class AC1007Controller {
         this.ac1007Service = ac1007Service;
     }
 
-
     // Ac Chart
     @GetMapping("/")
     public ResponseEntity<List<AcCostcenter>> getAllAcCostcenter() {
@@ -32,6 +31,11 @@ public class AC1007Controller {
     @GetMapping("/get-cost")
     public ResponseEntity<AcCostcenter> getAcCostcenter(@Valid @RequestParam("costNo") Long costNo) throws ResourceNotFoundException {
         return new ResponseEntity<>(ac1007Service.getAcCostcenter(costNo), HttpStatus.OK);
+    }
+
+    @GetMapping("get-cost-tree-list")
+    public ResponseEntity<List> getCostCenterTree(@Valid @RequestParam(required = false) String costName) {
+        return new ResponseEntity<>(this.ac1007Service.getCostCenterTree(costName), HttpStatus.OK);
     }
 
     @PostMapping("/add")

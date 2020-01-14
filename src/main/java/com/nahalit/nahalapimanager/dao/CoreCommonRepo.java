@@ -48,7 +48,7 @@ public class CoreCommonRepo {
     sql.append("                      ICON,");
     sql.append("                   OBJ_NO,");
     sql.append("                   MENU_ID,");
-    sql.append("                   SUBSTR (SYS_CONNECT_BY_PATH (OBJ_NAME, '/'), 2) MENU_PATH,CONNECT_BY_ISLEAF,PARENT_OBJ_NO");
+    sql.append("                   SUBSTR (SYS_CONNECT_BY_PATH (OBJ_NAME, '/'), 2) MENU_PATH,CONNECT_BY_ISLEAF \"connectByIsleaf\",PARENT_OBJ_NO \"parentObjNo\"");
     sql.append("              FROM (SELECT OBJ_NO,");
     sql.append("                           OBJ_NAME,");
     sql.append("                           SL_NO,");

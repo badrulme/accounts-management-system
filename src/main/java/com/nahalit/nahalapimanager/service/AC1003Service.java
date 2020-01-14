@@ -39,8 +39,8 @@ public class AC1003Service {
         return this.acPeriodRepository.save(acBank);
     }
 
-    public List<AcPeriod> saveAcPeriodList(List<AcPeriod> acBankList) {
-        return this.acPeriodRepository.saveAll(acBankList);
+    public List<AcPeriod> saveAcPeriodList(List<AcPeriod> acPeriods) {
+        return this.acPeriodRepository.saveAll(acPeriods);
     }
 
     public AcPeriod updateAcPeriod(AcPeriod acBank) throws ResourceNotFoundException, ParseException {

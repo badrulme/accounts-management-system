@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.AC1007Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.AcCostcenter;
 import com.nahalit.nahalapimanager.repository.AcCostcenterRepository;
@@ -16,10 +17,12 @@ import java.util.concurrent.RejectedExecutionException;
 public class AC1007Service {
     private final AcCostcenterRepository acCostcenterRepository;
     private final AuthService authService;
+    private final AC1007Dao ac1007Dao;
 
-    public AC1007Service(AcCostcenterRepository acCostcenterRepository, AuthService authService) {
+    public AC1007Service(AcCostcenterRepository acCostcenterRepository, AuthService authService, AC1007Dao ac1007Dao) {
         this.acCostcenterRepository = acCostcenterRepository;
         this.authService = authService;
+        this.ac1007Dao = ac1007Dao;
     }
 
 
@@ -30,6 +33,10 @@ public class AC1007Service {
 
     public AcCostcenter getAcCostcenter(Long costNo) throws ResourceNotFoundException {
         return this.acCostcenterRepository.findById(costNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + costNo));
+    }
+
+    public List getCostCenterTree(String costName) {
+        return ac1007Dao.getCostCenterTree(costName);
     }
 
     public AcCostcenter saveAcCostcenter(AcCostcenter acCostcenter) throws ParseException {

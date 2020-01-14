@@ -61,7 +61,7 @@ public class SA1001Controller {
         return new ResponseEntity<>(this.sa1001Service.getAllSlider(), HttpStatus.OK);
     }
 
-    @GetMapping("/slider/company-wise")
+    @GetMapping("/slider/get-company-wise")
     public ResponseEntity<List<SaCompanySlider>> getCompanySlider(Long companyNo) {
         return new ResponseEntity<>(this.sa1001Service.getCompanySlider(companyNo), HttpStatus.OK);
     }

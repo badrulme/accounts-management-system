@@ -5,7 +5,15 @@ public class AppConfig {
   public static final String SERVER_PORT = "8181";
   public static String[] NONFILTERRING_PATH_PATTERNS = new String[]{
       "/api/rest/rl/client/common/auth/login**",
+      "/api/rest/files/**",
       "/api/rest/core/auth/**",
+      "/api/rest/rl/cu/item/**",
+      "/api/rest/sa/setting/region/",
+      "/api/rest/rl/cu/project/**",
+      "/api/rest/email/send-mail",
+      "/api/rest/sa/message/get-messag**",
+      "/api/rest/sa/gallery/",
+      "/**/*get-**",
       ",/csrf", "/v2/api-docs", "/swagger-resources/configuration/ui",
       "/configuration/ui", "/swagger-resources",
       "/swagger-resources/configuration/security", "/configuration/security",

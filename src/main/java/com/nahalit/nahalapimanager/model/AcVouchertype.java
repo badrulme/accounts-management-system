@@ -22,6 +22,7 @@ public class AcVouchertype {
     private Integer autogenFlag;
     private String genType;
     private Integer genFlag;
+    private Integer vDefault;
     private Long companyNo;
     private Date ssCreatedOn;
     private Long ssCreator;
