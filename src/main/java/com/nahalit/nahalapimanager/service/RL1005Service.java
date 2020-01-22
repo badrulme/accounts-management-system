@@ -39,7 +39,6 @@ public class RL1005Service {
         return this.rlItemDao.getAllItemRef(itemNo,"2",projectNo);
     }
 
-
     public Object getApItem(String itemNo) {
         return this.rlItemDao.getItemDetails(itemNo);
 

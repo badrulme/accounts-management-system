@@ -6,6 +6,7 @@ import com.nahalit.nahalapimanager.model.AcVoucherdtl;
 import com.nahalit.nahalapimanager.repository.AcVoucherRepository;
 import com.nahalit.nahalapimanager.repository.AcVoucherdtlRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -27,10 +28,9 @@ public class AC1008Service {
         this.authService = authService;
     }
 
-
     // Ac Voucher
     public List<AcVoucher> getAllAcVoucher() {
-        return this.acVoucherRepository.findAll();
+        return this.acVoucherRepository.findAll(Sort.by("vNo").ascending());
     }
 
     public AcVoucher getAcVoucher(Long vNo) throws ResourceNotFoundException {
