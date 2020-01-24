@@ -74,7 +74,7 @@ public class RLProjectDao {
         sql.append(" P.power_division_aap_flag \"powerDivisionAapFlag\",");
         sql.append(" P.municipality_aap_flag \"municipalityAapFlag\",");
         sql.append(" P.wasa_aap_flag \"wasaAapFlag\",");
-        sql.append(" P.union_councile_aap_flag \"unionCouncileAapFlag\",");
+        sql.append(" P.gas_aap_flag \"gasAapFlag\",");
         sql.append(" P.fire_and_safety_aap_flag \"fireAndSafetyAapFlag\",");
         sql.append(" P.dept_of_env_aap_flag \"deptOfEnvAapFlag\",");
         sql.append(" P.civil_aviation_aap_flag \"civilAviationAapFlag\",");
@@ -171,7 +171,7 @@ public class RLProjectDao {
         sql.append(" P.power_division_aap_flag \"powerDivisionAapFlag\",");
         sql.append(" P.municipality_aap_flag \"municipalityAapFlag\",");
         sql.append(" P.wasa_aap_flag \"wasaAapFlag\",");
-        sql.append(" P.union_councile_aap_flag \"unionCouncileAapFlag\",");
+        sql.append(" P.gas_aap_flag \"gasAapFlag\",");
         sql.append(" P.fire_and_safety_aap_flag \"fireAndSafetyAapFlag\",");
         sql.append(" P.dept_of_env_aap_flag \"deptOfEnvAapFlag\",");
         sql.append(" P.civil_aviation_aap_flag \"civilAviationAapFlag\",");
