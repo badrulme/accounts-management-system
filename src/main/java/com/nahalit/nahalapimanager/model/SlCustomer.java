@@ -39,12 +39,10 @@ public class SlCustomer {
   private String mobile;
   private String address;
   private String mobile2;
-  private Integer customerType;
+  private Long customerType;
   private String ircNo;
   private String tinNo;
   private String binVat;
   private String ercNo;
   private Long companyNo;
-
-
 }
