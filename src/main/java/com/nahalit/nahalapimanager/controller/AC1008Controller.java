@@ -24,37 +24,36 @@ public class AC1008Controller {
     }
 
     // Ac Voucher
-    @GetMapping("/voucher/")
+    @GetMapping("/")
     public ResponseEntity<List<AcVoucher>> getAllAcVoucher() {
         return new ResponseEntity<>(ac1008Service.getAllAcVoucher(), HttpStatus.OK);
     }
 
-    @GetMapping("/voucher/get-cost")
+    @GetMapping("/get-cost")
     public ResponseEntity<AcVoucher> getAcVoucher(@Valid @RequestParam("costNo") Long costNo) throws ResourceNotFoundException {
         return new ResponseEntity<>(ac1008Service.getAcVoucher(costNo), HttpStatus.OK);
     }
 
-    @PostMapping("/voucher/add")
+    @PostMapping("/add")
     public ResponseEntity<AcVoucher> saveAcVoucher(@RequestBody AcVoucher acCost) throws ParseException {
         return new ResponseEntity<>(ac1008Service.saveAcVoucher(acCost), HttpStatus.CREATED);
     }
 
-    @PostMapping("/voucher/add-list")
+    @PostMapping("/add-list")
     public ResponseEntity<List<AcVoucher>> saveAcVoucherList(@RequestBody List<AcVoucher> acCostList) {
         return new ResponseEntity<>(ac1008Service.saveAcVoucherList(acCostList), HttpStatus.CREATED);
     }
 
-    @PutMapping("/voucher/update")
+    @PutMapping("/update")
     public ResponseEntity<AcVoucher> updateAcVoucher(@RequestBody AcVoucher acCost) throws ResourceNotFoundException, ParseException {
         return new ResponseEntity<>(ac1008Service.updateAcVoucher(acCost), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/voucher/delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<Map> deleteAcVoucher(@RequestParam Long costNo) {
 
         return new ResponseEntity<>(this.ac1008Service.deleteAcVoucher(costNo), HttpStatus.OK);
     }
-
 
     // AC Voucher DTL
     @GetMapping("/voucherdtl/")

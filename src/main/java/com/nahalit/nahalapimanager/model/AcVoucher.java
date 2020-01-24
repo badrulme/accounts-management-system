@@ -21,17 +21,15 @@ public class AcVoucher {
     private Integer postFlag;
     private Integer opPeriodno;
     private String module;
-    private Integer voidFlag;
+    private String voidFlag;
     private Integer checkFlag;
     private Integer checkBy;
     private Date checkDate;
     private Integer postBy;
     private Date postDate;
     private String attachFileName;
-    private Date oldVDate;
     private Long paidTo;
     private Long receiveFrom;
-    private Long refVNo;
     private Long companyNo;
     private Date ssCreatedOn;
     private Long ssCreator;

@@ -29,7 +29,7 @@ public class AC1010Controller {
     }
 
     @PutMapping("/update/unpost-status")
-    public ResponseEntity<Map> updateContact(@RequestParam Long vNo) {
+    public ResponseEntity<Map> updateUnPostStatus(@RequestParam Long vNo) {
         return new ResponseEntity<>(this.ac1010Service.updateUnPostStatus(vNo), HttpStatus.ACCEPTED);
     }
 }
