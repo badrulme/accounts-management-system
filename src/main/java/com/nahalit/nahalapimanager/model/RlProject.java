@@ -58,7 +58,7 @@ public class RlProject {
   private Integer powerDivisionAapFlag;
   private Integer municipalityAapFlag;
   private Integer wasaAapFlag;
-  private Integer unionCouncileAapFlag;
+  private Integer gasAapFlag;
   private Integer fireAndSafetyAapFlag;
   private Integer deptOfEnvAapFlag;
   private Integer civilAviationAapFlag;

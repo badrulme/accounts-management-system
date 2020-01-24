@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface AcVoucherdtlRepository extends JpaRepository<AcVoucherdtl, Long> {
-    @Query("SELECT V FROM AcVoucher V WHERE V.vNo=:V_NO")
+    @Query("SELECT V FROM AcVoucherdtl V WHERE V.vNo=:V_NO ORDER BY V.vdtlNo ")
     List<AcVoucherdtl> findAllByVNo(@Param("V_NO") Long V_NO);
 }
