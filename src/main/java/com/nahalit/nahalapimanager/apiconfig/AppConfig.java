@@ -5,6 +5,7 @@ public class AppConfig {
   public static final String SERVER_PORT = "8181";
   public static String[] NONFILTERRING_PATH_PATTERNS = new String[]{
       "/api/rest/rl/client/common/auth/login**",
+      "/api/rest/rl/customer/add",
       "/api/rest/files/**",
       "/api/rest/core/auth/**",
       "/api/rest/rl/cu/item/**",
