@@ -15,9 +15,9 @@ public class AC1009Dao {
         this.db = db;
     }
 
-    public void updateCheckStatus(Long vNo, Long checkBy, Date checkFate) {
+    public void updateCheckStatus(Long vNo, Long checkBy, Date checkFate,Integer checkFlag) {
         StringBuilder sql = new StringBuilder();
-        sql.append(" UPDATE AC_VOUCHER SET CHECK_FLAG  = 1,");
+        sql.append(" UPDATE AC_VOUCHER SET CHECK_FLAG  = :CHECK_FLAG,");
         sql.append(" CHECK_BY=:CHECK_BY, CHECK_DATE=:CHECK_DATE");
         sql.append(" WHERE V_NO=:V_NO");
 
@@ -25,21 +25,9 @@ public class AC1009Dao {
         params.put("V_NO", vNo);
         params.put("CHECK_BY", checkBy);
         params.put("CHECK_DATE", checkFate);
+        params.put("CHECK_FLAG", checkFlag);
 
         db.update(sql.toString(), params);
-
     }
 
-    public void updateUnCheckStatus(Long vNo) {
-        StringBuilder sql = new StringBuilder();
-        sql.append(" UPDATE AC_VOUCHER SET CHECK_FLAG  = 0,");
-        sql.append(" CHECK_BY=null, CHECK_DATE=null");
-        sql.append(" WHERE V_NO=:V_NO");
-
-        Map params = new HashMap<>();
-        params.put("V_NO", vNo);
-
-        db.update(sql.toString(), params);
-
-    }
 }

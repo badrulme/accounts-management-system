@@ -11,30 +11,23 @@ import java.util.Map;
 
 @Service
 public class AC1009Service {
-    private final AC1009Dao ac1009Dao;
-    private final AuthService authService;
+  private final AC1009Dao ac1009Dao;
+  private final AuthService authService;
 
-    public AC1009Service(AC1009Dao ac1009Dao, AuthService authService) {
-        this.ac1009Dao = ac1009Dao;
-        this.authService = authService;
-    }
+  public AC1009Service(AC1009Dao ac1009Dao, AuthService authService) {
+    this.ac1009Dao = ac1009Dao;
+    this.authService = authService;
+  }
 
-    public Map updateCheckStatus(Long vNo) throws ParseException {
+  public Map updateCheckStatus(Long vNo, Integer checkFlag) throws ParseException {
 
-        Map<String, String> updateMessage = new HashMap<>();
-        updateMessage.put("updateStatus", "Voucher Checked Successfully.");
+    Map<String, String> updateMessage = new HashMap<>();
+    updateMessage.put("updateStatus", "Voucher Checked Successfully.");
 
-        ac1009Dao.updateCheckStatus(vNo, authService.getEmpNo(), UtillDate.getDateTime());
-        return updateMessage;
-    }
+    ac1009Dao.updateCheckStatus(vNo, authService.getEmpNo(), UtillDate.getDateTime(), checkFlag);
+    return updateMessage;
+  }
 
-    public Map updateUnCheckStatus(Long vNo) {
 
-        Map<String, String> updateMessage = new HashMap<>();
-        updateMessage.put("updateStatus", "Voucher Unchecked Successfully.");
-
-        ac1009Dao.updateUnCheckStatus(vNo);
-        return updateMessage;
-    }
 
 }
