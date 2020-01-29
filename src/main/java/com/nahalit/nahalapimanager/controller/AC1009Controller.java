@@ -10,25 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.Map;
 
-@RequestMapping(value = "api/rest/ac/voucehr/")
+@RequestMapping(value = "api/rest/ac/voucher/")
 @RestController
 public class AC1009Controller {
-    private final AC1009Service ac1009Service;
+  private final AC1009Service ac1009Service;
 
-    public AC1009Controller(AC1009Service ac1009Service) {
-        this.ac1009Service = ac1009Service;
+  public AC1009Controller(AC1009Service ac1009Service) {
+    this.ac1009Service = ac1009Service;
 
-    }
+  }
 
-    // AC Voucher Check
+  // AC Voucher Check
 
-    @PutMapping("/update/check-status")
-    public ResponseEntity<Map> updateCheckStatus(@RequestParam Long vNo) throws ParseException {
-        return new ResponseEntity<>(this.ac1009Service.updateCheckStatus(vNo), HttpStatus.ACCEPTED);
-    }
+  @PutMapping("/update/check-status")
+  public ResponseEntity<Map> updateCheckStatus(@RequestParam Long vNo,@RequestParam Integer checkFlag) throws ParseException {
+    return new ResponseEntity<>(this.ac1009Service.updateCheckStatus(vNo, checkFlag), HttpStatus.ACCEPTED);
+  }
 
-    @PutMapping("/update/uncheck-status")
-    public ResponseEntity<Map> updateContact(@RequestParam Long vNo) {
-        return new ResponseEntity<>(this.ac1009Service.updateUnCheckStatus(vNo), HttpStatus.ACCEPTED);
-    }
 }

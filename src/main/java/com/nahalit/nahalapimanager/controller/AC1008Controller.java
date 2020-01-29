@@ -29,6 +29,11 @@ public class AC1008Controller {
     return new ResponseEntity<>(ac1008Service.getAllAcVoucher(), HttpStatus.OK);
   }
 
+  @GetMapping("/ref-list")
+  public ResponseEntity<List<AcVoucher>> getAllAcVoucherRefList() {
+    return new ResponseEntity<>(this.ac1008Service.getAllAcVoucherRefList(), HttpStatus.OK);
+  }
+
   @GetMapping("/get-voucher")
   public ResponseEntity<AcVoucher> getAcVoucher(@Valid @RequestParam("vNo") Long vNo) throws ResourceNotFoundException {
     return new ResponseEntity<>(ac1008Service.getAcVoucher(vNo), HttpStatus.OK);
@@ -67,10 +72,17 @@ public class AC1008Controller {
     return new ResponseEntity<>(this.ac1008Service.getAllAcVoucherdtlList(vNo), HttpStatus.OK);
   }
 
+  @GetMapping("/voucherdtl/list-ref")
+  public ResponseEntity<List> getAcVoucherdtlRefList(@RequestParam Long vNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.ac1008Service.getAcVoucherdtlRefList(vNo), HttpStatus.OK);
+  }
+
+
   @GetMapping("/voucherdtl/get-voucherdtl")
   public ResponseEntity<AcVoucherdtl> getAcVoucherdtl(@RequestParam Long vdtlNo) throws ResourceNotFoundException {
     return new ResponseEntity<>(this.ac1008Service.getAcVoucherdtl(vdtlNo), HttpStatus.OK);
   }
+
 
   @PostMapping("/voucherdtl/add")
   public ResponseEntity<AcVoucherdtl> saveAcVoucherdtl(@RequestBody AcVoucherdtl acVoucherdtl) throws ParseException {

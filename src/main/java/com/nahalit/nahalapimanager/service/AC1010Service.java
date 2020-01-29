@@ -11,30 +11,20 @@ import java.util.Map;
 
 @Service
 public class AC1010Service {
-    private final AC1010Dao ac1010Dao;
-    private final AuthService authService;
+  private final AC1010Dao ac1010Dao;
+  private final AuthService authService;
 
-    public AC1010Service(AC1010Dao ac1010Dao, AuthService authService) {
-        this.ac1010Dao = ac1010Dao;
-        this.authService = authService;
-    }
+  public AC1010Service(AC1010Dao ac1010Dao, AuthService authService) {
+    this.ac1010Dao = ac1010Dao;
+    this.authService = authService;
+  }
 
-    public Map updatePostStatus(Long vNo) throws ParseException {
+  public Map updatePostStatus(Long vNo, Integer postFlag) throws ParseException {
 
-        Map<String, String> updateMessage = new HashMap<>();
-        updateMessage.put("updateStatus", "Voucher Posted Successfully.");
+    Map<String, String> updateMessage = new HashMap<>();
+    updateMessage.put("updateStatus", "Voucher Posted Successfully.");
 
-        ac1010Dao.updatePostStatus(vNo, authService.getEmpNo(), UtillDate.getDateTime());
-        return updateMessage;
-    }
-
-    public Map updateUnPostStatus(Long vNo) {
-
-        Map<String, String> updateMessage = new HashMap<>();
-        updateMessage.put("updateStatus", "Voucher Unposted Successfully.");
-
-        ac1010Dao.updateUnPostStatus(vNo);
-        return updateMessage;
-    }
-
+    ac1010Dao.updatePostStatus(vNo, authService.getEmpNo(), UtillDate.getDateTime(), postFlag);
+    return updateMessage;
+  }
 }

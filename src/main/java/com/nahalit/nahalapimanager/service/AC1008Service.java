@@ -36,6 +36,10 @@ public class AC1008Service {
     return this.acVoucherRepository.findAll(Sort.by("vNo").ascending());
   }
 
+  public List<AcVoucher> getAllAcVoucherRefList() {
+    return this.ac1008Dao.getVoucherRefList();
+  }
+
   public AcVoucher getAcVoucher(Long vNo) throws ResourceNotFoundException {
     return this.acVoucherRepository.findById(vNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + vNo));
   }
@@ -85,6 +89,10 @@ public class AC1008Service {
 
   public AcVoucherdtl getAcVoucherdtl(Long vdtlNo) throws ResourceNotFoundException {
     return acVoucherdtlRepository.findById(vdtlNo).orElseThrow(() -> new ResourceNotFoundException("Voucherdtl Not found for this id: " + vdtlNo));
+  }
+
+  public List getAcVoucherdtlRefList(Long vNo) throws ResourceNotFoundException {
+    return this.ac1008Dao.getVoucherdtlRef(vNo);
   }
 
   public AcVoucherdtl saveAcVoucherdtl(AcVoucherdtl acVoucherdtl) throws ParseException {
