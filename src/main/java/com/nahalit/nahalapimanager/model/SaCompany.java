@@ -48,6 +48,18 @@ public class SaCompany {
   private String officeTime;
   private Integer groupFlag;
   private Integer activeStat;
+  private String office1Address;
+  private String office1TelephoneNo;
+  private String office1MobileNo;
+  private String office1Email;
+  private String office2Address;
+  private String office2TelephoneNo;
+  private String office2MobileNo;
+  private String office2Email;
+  private String office3Address;
+  private String office3TelephoneNo;
+  private String office3MobileNo;
+  private String office3Email;
   private Long ssCompanyNo;
   private Long ssCreator;
   private Date ssCreatedOn;
