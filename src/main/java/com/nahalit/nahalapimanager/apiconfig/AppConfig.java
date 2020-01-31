@@ -6,6 +6,7 @@ public class AppConfig {
   public static String[] NONFILTERRING_PATH_PATTERNS = new String[]{
       "/api/rest/rl/client/common/auth/login**",
       "/api/rest/rl/customer/add",
+      "/api/rest/rl/property-contact/add",
       "/api/rest/files/**",
       "/api/rest/core/auth/**",
       "/api/rest/rl/cu/item/**",
