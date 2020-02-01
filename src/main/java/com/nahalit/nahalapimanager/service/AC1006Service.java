@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.AC1006Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.AcChart;
 import com.nahalit.nahalapimanager.repository.AcChartRepository;
@@ -15,13 +16,14 @@ import java.util.concurrent.RejectedExecutionException;
 @Service
 public class AC1006Service {
     private final AcChartRepository acChartRepository;
+    private final AC1006Dao ac1006Dao;
     private final AuthService authService;
 
-    public AC1006Service(AcChartRepository acChartRepository, AuthService authService) {
+    public AC1006Service(AcChartRepository acChartRepository, AC1006Dao ac1006Dao, AuthService authService) {
         this.acChartRepository = acChartRepository;
+        this.ac1006Dao = ac1006Dao;
         this.authService = authService;
     }
-
 
     // Ac Nature
     public List<AcChart> getAllAcChart() {
@@ -62,6 +64,10 @@ public class AC1006Service {
         Map<String, String> deleteMessage = new HashMap<>();
         deleteMessage.put("deleteStatus", "Transaction Deleted Successfully");
         return deleteMessage;
+    }
+
+    public List getAccTreeList() {
+      return this.ac1006Dao.getAccTreeList();
     }
 
 }

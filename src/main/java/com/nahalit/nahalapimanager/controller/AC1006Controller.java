@@ -23,6 +23,12 @@ public class AC1006Controller {
     }
 
 
+    // Ac Chart List
+    @PostMapping("/acc-tree-list")
+    public ResponseEntity<List> getAccTreeList() {
+        return new ResponseEntity<>(ac1006Service.getAccTreeList(), HttpStatus.OK);
+    }
+
     // Ac Chart
     @GetMapping("/")
     public ResponseEntity<List<AcChart>> getAllAcChart() {
