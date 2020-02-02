@@ -60,6 +60,9 @@ public class SaCompany {
   private String office3TelephoneNo;
   private String office3MobileNo;
   private String office3Email;
+  private String office1AddrName;
+  private String office2AddrName;
+  private String office3AddrName;
   private Long ssCompanyNo;
   private Long ssCreator;
   private Date ssCreatedOn;
