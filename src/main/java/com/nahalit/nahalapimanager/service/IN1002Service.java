@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.IN1002Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.InItem;
 import com.nahalit.nahalapimanager.repository.InItemRepository;
@@ -16,10 +17,12 @@ import java.util.concurrent.RejectedExecutionException;
 public class IN1002Service {
     private final InItemRepository inItemRepository;
     private final AuthService authService;
+    private final IN1002Dao in1002Dao;
 
-    public IN1002Service(InItemRepository inItemRepository, AuthService authService) {
+    public IN1002Service(InItemRepository inItemRepository, AuthService authService, IN1002Dao in1002Dao) {
         this.inItemRepository = inItemRepository;
         this.authService = authService;
+        this.in1002Dao = in1002Dao;
     }
 
 
@@ -30,6 +33,10 @@ public class IN1002Service {
 
     public InItem getInItem(Long itemNo) throws ResourceNotFoundException {
         return this.inItemRepository.findById(itemNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + itemNo));
+    }
+
+    public List getTrnItemList() {
+        return in1002Dao.getTrnItemList();
     }
 
     public InItem saveInItem(InItem inItem) throws ParseException {
