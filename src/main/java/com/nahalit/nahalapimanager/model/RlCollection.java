@@ -26,6 +26,7 @@ public class RlCollection {
     private Date cqDate;
     private String cqNo;
     private String mrNo;
+    private String refTrnNo;
     private Date ssCreatedOn;
     private Long ssCreator;
     private Date ssModifiedOn;
