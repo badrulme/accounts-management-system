@@ -1,11 +1,9 @@
 package com.nahalit.nahalapimanager.controller;
 
-import com.nahalit.nahalapimanager.AppResponse;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.*;
 import com.nahalit.nahalapimanager.service.RL1001Service;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

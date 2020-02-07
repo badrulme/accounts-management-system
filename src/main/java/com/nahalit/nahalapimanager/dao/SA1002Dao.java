@@ -49,12 +49,6 @@ public class SA1002Dao {
       sql.append(" LEVEL                                                LVL,");
       sql.append(" MENU_NAME,");
       sql.append(" MENU_ID,");
-//                  CASE
-//                      WHEN SUBSTR (OBJ_NO, 1, 1) = 'M' AND LEVEL = 1 THEN 'SIT1'
-//                      WHEN SUBSTR (OBJ_NO, 1, 1) = 'M' AND LEVEL > 1 THEN 'SIT2'
-//                      ELSE 'YELLOW_DOT'
-//                  END
-//                      ICON,
       sql.append(" OBJ_NO                                               MENU_NO,");
       sql.append(" SUBSTR (SYS_CONNECT_BY_PATH (MENU_NAME, '/'), 2)     PATH");
       sql.append(" FROM (SELECT OBJ_NO, MENU_NAME, MENU_ID, SL_NO, PARENT_OBJ_NO FROM MENU");

@@ -22,7 +22,6 @@ public class AC1001Service {
         this.authService = authService;
     }
 
-
     // Ac Voucher Type
     public List<AcVouchertype> getAllAcVouchertype() {
         return this.acVouchertypeRepository.findAll();

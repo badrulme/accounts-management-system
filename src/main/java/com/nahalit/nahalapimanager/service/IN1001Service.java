@@ -2,8 +2,6 @@ package com.nahalit.nahalapimanager.service;
 
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.InUom;
-import com.nahalit.nahalapimanager.model.RlFacing;
-import com.nahalit.nahalapimanager.model.RlRoadSize;
 import com.nahalit.nahalapimanager.repository.InUomRepository;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;

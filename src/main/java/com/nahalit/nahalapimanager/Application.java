@@ -30,18 +30,7 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
         return application.sources(Application.class);
     }
 
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
-//            }
-//        };
-//    }
-
-
-
+// Initialization action for file
 //  @Bean
 //  CommandLineRunner init(StorageService storageService) {
 //    return (args) -> {

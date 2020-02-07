@@ -1,10 +1,8 @@
 package com.nahalit.nahalapimanager.dao;
 
-import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;

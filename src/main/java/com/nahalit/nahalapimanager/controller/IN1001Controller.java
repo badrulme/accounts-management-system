@@ -4,7 +4,6 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.InUom;
 import com.nahalit.nahalapimanager.service.IN1001Service;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +11,6 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
-
-
-
 
 @RestController
 @RequestMapping(value = {"api/rest/in/configuration"})

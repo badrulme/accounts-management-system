@@ -1,7 +1,6 @@
 package com.nahalit.nahalapimanager.controller;
 
 import com.nahalit.nahalapimanager.AppResponse;
-import com.nahalit.nahalapimanager.constant.KEY;
 import com.nahalit.nahalapimanager.dao.CoreCommonRepo;
 import com.nahalit.nahalapimanager.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,5 @@ public class CoreCommonController {
   @PostMapping("/console-menu")
   public AppResponse getMenu(@RequestParam(value = "menuType") String menuType  ) {
     return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(authService.getCompanyNo(), authService.getUserNo(),menuType));
-//    return AppResponse.build(HttpStatus.OK).body(commonRepo.getMenu(1L, 221L,menuType));
   }
 }

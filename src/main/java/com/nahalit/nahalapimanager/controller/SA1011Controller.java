@@ -2,10 +2,8 @@ package com.nahalit.nahalapimanager.controller;
 
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.SaMessage;
-import com.nahalit.nahalapimanager.service.SA1010Service;
 import com.nahalit.nahalapimanager.service.SA1011Service;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,5 +52,4 @@ public class SA1011Controller {
     public ResponseEntity<Map> deleteSaMessage(@RequestParam Long messageNo) throws ResourceNotFoundException, IOException {
         return new ResponseEntity<>(this.sa1011Service.deleteSaMessage(messageNo), HttpStatus.OK);
     }
-
 }

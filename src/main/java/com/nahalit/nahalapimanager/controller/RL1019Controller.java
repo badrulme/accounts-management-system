@@ -5,10 +5,8 @@ import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.*;
 import com.nahalit.nahalapimanager.service.RL1019Service;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -64,11 +62,6 @@ public class RL1019Controller {
         return new ResponseEntity<>(this.rl1019Service.getAllNominee(), HttpStatus.OK);
     }
 
-//    @GetMapping("/nominee/get-nominee")
-//    public ResponseEntity<RlUploadVideo> getItemVideo(@Valid @RequestParam("nomineeNo") Long nomineeNo) throws ResourceNotFoundException {
-//        return new ResponseEntity<>(this.rl1019Service.getRlItemVideo(nomineeNo), HttpStatus.OK);
-//    }
-
     @GetMapping("/nominee/get-nominee")
     public ResponseEntity<RlTrnNominee> getNomineeByTrnNo(@Valid @RequestParam("trnNo") Long trnNo) {
         return new ResponseEntity<>(this.rl1019Service.getNomineeByTrnNo(trnNo), HttpStatus.OK);
@@ -98,7 +91,6 @@ public class RL1019Controller {
     public ResponseEntity<Map> deleteRlTrnNominee(@RequestParam Long nomineeNo) throws IOException {
         return new ResponseEntity<>(this.rl1019Service.deleteRlTrnNominee(nomineeNo), HttpStatus.OK);
     }
-
 
     @DeleteMapping("/nominee/delete-list")
     public ResponseEntity<Map> deleteRlTrnNomineeList(@RequestBody List<RlTrnNominee> rlTrnNominees) throws IOException, ResourceNotFoundException {

@@ -1,6 +1,5 @@
 package com.nahalit.nahalapimanager.service;
 
-import com.nahalit.nahalapimanager.dao.RL1007Dao;
 import com.nahalit.nahalapimanager.dao.RLItemDao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.repository.RlItemRepository;
@@ -9,7 +8,6 @@ import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import com.nahalit.nahalapimanager.model.RlItem;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;

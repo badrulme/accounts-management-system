@@ -1,6 +1,5 @@
 package com.nahalit.nahalapimanager.service;
 
-import com.nahalit.nahalapimanager.dao.RL1005Dao;
 import com.nahalit.nahalapimanager.dao.RLItemDao;
 import com.nahalit.nahalapimanager.storage.StorageService;
 import com.nahalit.nahalapimanager.utillibrary.UtillDate;
@@ -20,16 +19,15 @@ import java.util.concurrent.RejectedExecutionException;
 @Service
 public class RL1005Service {
     private final RlItemRepository rlItemRepository;
-    private final RL1005Dao rl1005Dao;
     private final StorageService storageService;
     private final RLItemDao rlItemDao;
 
-    public RL1005Service(RlItemRepository rlItemRepository, RL1005Dao rl1005Dao, StorageService storageService, RLItemDao rlItemDao) {
+    public RL1005Service(RlItemRepository rlItemRepository, StorageService storageService, RLItemDao rlItemDao) {
         this.rlItemRepository = rlItemRepository;
-        this.rl1005Dao = rl1005Dao;
         this.storageService = storageService;
         this.rlItemDao = rlItemDao;
     }
+
 
     // RL Item For Apartment
     public List getAllApItem(String itemNo,String projectNo) throws ResourceNotFoundException {

@@ -1,6 +1,5 @@
 package com.nahalit.nahalapimanager.repository;
 
-import com.nahalit.nahalapimanager.model.RlItemSlider;
 import com.nahalit.nahalapimanager.model.RlProjectSlider;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

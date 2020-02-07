@@ -16,7 +16,6 @@ public class AC1008Dao {
     this.db = db;
   }
 
-
   public String getVoucherId(Integer vtypeNo) {
     StringBuilder sql = new StringBuilder();
     Map<String, Integer> params = new HashMap<>();

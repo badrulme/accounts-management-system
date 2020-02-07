@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,10 +23,6 @@ import java.util.Map;
 @RestController(value = "coreAuthController")
 @RequestMapping(value = {"api/rest/core/auth"}, method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 public class AuthController {
-//  private @Autowired
-//  HttpServletRequest request;
-//  private @Autowired
-//  HttpServletResponse response;
 
   @Autowired
   AuthRepo authRepo;

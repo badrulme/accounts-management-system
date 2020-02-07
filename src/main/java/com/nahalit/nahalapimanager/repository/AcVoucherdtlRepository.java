@@ -1,6 +1,5 @@
 package com.nahalit.nahalapimanager.repository;
 
-import com.nahalit.nahalapimanager.model.AcVoucher;
 import com.nahalit.nahalapimanager.model.AcVoucherdtl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

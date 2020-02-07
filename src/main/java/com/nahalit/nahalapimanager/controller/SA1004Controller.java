@@ -5,7 +5,6 @@ import com.nahalit.nahalapimanager.model.SaLookup;
 import com.nahalit.nahalapimanager.model.SaLookupdtl;
 import com.nahalit.nahalapimanager.service.SA1004Service;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

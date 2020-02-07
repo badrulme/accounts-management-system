@@ -3,7 +3,6 @@ package com.nahalit.nahalapimanager.controller;
 import com.nahalit.nahalapimanager.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

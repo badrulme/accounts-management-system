@@ -6,7 +6,6 @@ import com.nahalit.nahalapimanager.service.AC1003Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
