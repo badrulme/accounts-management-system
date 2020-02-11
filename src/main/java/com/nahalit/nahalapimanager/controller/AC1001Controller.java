@@ -34,23 +34,22 @@ public class AC1001Controller {
     }
 
     @PostMapping("/vtype/add")
-    public ResponseEntity<AcVouchertype> saveAcVouchertype(@RequestBody AcVouchertype inUom) throws ParseException {
-        return new ResponseEntity<>(ac1001Service.saveAcVouchertype(inUom), HttpStatus.CREATED);
+    public ResponseEntity<AcVouchertype> saveAcVouchertype(@RequestBody AcVouchertype acVouchertype) throws ParseException {
+        return new ResponseEntity<>(ac1001Service.saveAcVouchertype(acVouchertype), HttpStatus.CREATED);
     }
 
     @PostMapping("/vtype/add-list")
-    public ResponseEntity<List<AcVouchertype>> saveAcVouchertypeList(@RequestBody List<AcVouchertype> inUomList) {
-        return new ResponseEntity<>(ac1001Service.saveAcVouchertypeList(inUomList), HttpStatus.CREATED);
+    public ResponseEntity<List<AcVouchertype>> saveAcVouchertypeList(@RequestBody List<AcVouchertype> acVouchertypeList) {
+        return new ResponseEntity<>(ac1001Service.saveAcVouchertypeList(acVouchertypeList), HttpStatus.CREATED);
     }
 
     @PutMapping("/vtype/update")
-    public ResponseEntity<AcVouchertype> updateAcVouchertype(@RequestBody AcVouchertype inUom) throws ResourceNotFoundException, ParseException {
-        return new ResponseEntity<>(ac1001Service.updateAcVouchertype(inUom), HttpStatus.ACCEPTED);
+    public ResponseEntity<AcVouchertype> updateAcVouchertype(@RequestBody AcVouchertype acVouchertype) throws ResourceNotFoundException, ParseException {
+        return new ResponseEntity<>(ac1001Service.updateAcVouchertype(acVouchertype), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/vtype/delete")
     public ResponseEntity<Map> deleteAcVouchertype(@RequestParam Long vtypeNo) {
-
         return new ResponseEntity<>(this.ac1001Service.deleteAcVouchertype(vtypeNo), HttpStatus.OK);
     }
 

@@ -62,5 +62,4 @@ public class AC1001Service {
         deleteMessage.put("deleteStatus", "Transaction Deleted Successfully");
         return deleteMessage;
     }
-
 }

@@ -55,6 +55,7 @@ public class SA1010Service {
     saGallery.setSsModifiedOn(UtillDate.getDateTime());
     saGallery.setSsCreatedOn(oldData.getSsCreatedOn());
     saGallery.setSsModifier(authService.getEmpNo());
+    int a = saGallery.getGalleryDescr().length();
     return this.saGalleryRepository.save(saGallery);
   }
 
