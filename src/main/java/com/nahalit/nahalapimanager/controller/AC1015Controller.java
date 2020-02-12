@@ -34,6 +34,11 @@ public class AC1015Controller {
         return new ResponseEntity<>(ac1015Service.getAcBa(baNo), HttpStatus.OK);
     }
 
+    @PostMapping("ba-tree-list")
+    public ResponseEntity<List> getCostCenterTree() {
+        return new ResponseEntity<>(this.ac1015Service.getBaTree(), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<AcBa> saveAcBa(@RequestBody AcBa acCost) throws ParseException {
         return new ResponseEntity<>(ac1015Service.saveAcBa(acCost), HttpStatus.CREATED);

@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.SA1003Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.SaSubmenu;
 import com.nahalit.nahalapimanager.repository.SaSubmenuRepository;
@@ -17,10 +18,12 @@ public class SA1003Service {
 
   private final SaSubmenuRepository saSubmenuRepository;
   private final AuthService authService;
+  private final SA1003Dao sa1003Dao;
 
-  public SA1003Service(SaSubmenuRepository saSubmenuRepository, AuthService authService) {
+  public SA1003Service(SaSubmenuRepository saSubmenuRepository, AuthService authService, SA1003Dao sa1003Dao) {
     this.saSubmenuRepository = saSubmenuRepository;
     this.authService = authService;
+    this.sa1003Dao = sa1003Dao;
   }
 
 // SA SUBMENU Service
@@ -61,5 +64,9 @@ public class SA1003Service {
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Transaction Deleted Successfully");
     return deleteMessage;
+  }
+
+  public List getMenuList(String submenuType) {
+    return this.sa1003Dao.getMenuList(submenuType);
   }
 }

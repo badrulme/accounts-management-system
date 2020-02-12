@@ -33,9 +33,9 @@ public class AC1007Controller {
         return new ResponseEntity<>(ac1007Service.getAcCostcenter(costNo), HttpStatus.OK);
     }
 
-    @GetMapping("get-cost-tree-list")
-    public ResponseEntity<List> getCostCenterTree(@Valid @RequestParam(required = false) String costName) {
-        return new ResponseEntity<>(this.ac1007Service.getCostCenterTree(costName), HttpStatus.OK);
+    @PostMapping("cost-tree-list")
+    public ResponseEntity<List> getCostCenterTree() {
+        return new ResponseEntity<>(this.ac1007Service.getCostCenterTree(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
