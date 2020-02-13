@@ -98,8 +98,9 @@ public class SA1005Dao {
       sql.append("                 and nvl(sm.my_desk, 0) = 0");
       sql.append("                 and sm.menu_no = m.menu_no");
       sql.append("                 and sm.submenu_type = 'F')");
-      sql.append("                  || ')'         menu_name,");
-      sql.append("              to_char(m.menu_no) menu_no");
+      sql.append("                  || ')'    \"menuName\",");
+      sql.append("              m.menu_no \"menuNo\",");
+      sql.append("        CONNECT_BY_ISLEAF \"connectByIsleaf\"");
       sql.append("       from sa_menu m");
       sql.append("       where m.active_stat = 1");
       sql.append("       START WITH m.parent_menu_no is null");

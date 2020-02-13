@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "api/rest/sa/role")
+@RequestMapping(value = "api/rest/sa")
 public class SA1005Controller {
 
   private final SA1005Service sa1005Service;

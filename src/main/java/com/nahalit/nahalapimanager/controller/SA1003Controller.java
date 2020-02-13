@@ -33,9 +33,14 @@ public class SA1003Controller {
     return new ResponseEntity<>(sa1003Service.getSaSubmenu(submenuNo), HttpStatus.OK);
   }
 
-  @GetMapping("/get-sa-menu-list")
-  public ResponseEntity<List> getMenuList(@Valid @RequestParam("submenuType") String submenuType) throws ResourceNotFoundException {
+  @GetMapping("/sa-menu-list")
+  public ResponseEntity<List> getMenuList(@Valid @RequestParam("submenuType") String submenuType){
     return new ResponseEntity<>(this.sa1003Service.getMenuList(submenuType), HttpStatus.OK);
+  }
+
+  @GetMapping("/sa-submenu-list")
+  public ResponseEntity<List> getAllByMenuNo(@Valid @RequestParam("menuNo") Integer menuNo)  {
+    return new ResponseEntity<>(this.sa1003Service.getAllByMenuNo(menuNo), HttpStatus.OK);
   }
 
   @PostMapping("/add")

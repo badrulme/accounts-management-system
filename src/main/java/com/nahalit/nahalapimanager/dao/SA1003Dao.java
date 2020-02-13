@@ -25,14 +25,15 @@ public class SA1003Dao {
         sql.append("         from sa_submenu sm");
         sql.append("         where sm.active_stat = 1");
         sql.append("           and sm.menu_no = m.menu_no");
-        sql.append("           and sm.submenu_type = :submenu_type)");
+        sql.append("           and sm.submenu_type = 'F')");
         sql.append("            || ')'         \"menuName\",");
-        sql.append("        to_char(m.menu_no) \"menuNo\"");
+        sql.append("     m.menu_no \"menuNo\",");
+        sql.append("        CONNECT_BY_ISLEAF \"connectByIsleaf\"");
         sql.append(" from sa_menu m");
         sql.append(" where m.active_stat = 1");
         sql.append(" START WITH m.parent_menu_no is null");
-        sql.append(" CONNECT BY PRIOR m.menu_no = m.parent_menu_no");
-        sql.append(" ORDER SIBLINGS BY m.sl_no");
+        sql.append("       CONNECT BY PRIOR m.menu_no = m.parent_menu_no");
+        sql.append("       ORDER SIBLINGS BY m.sl_no");
 
         Map param = new HashMap();
         param.put("submenu_type",submenuType);

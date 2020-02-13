@@ -69,4 +69,8 @@ public class SA1003Service {
   public List getMenuList(String submenuType) {
     return this.sa1003Dao.getMenuList(submenuType);
   }
+
+  public List getAllByMenuNo(Integer menuNo){
+    return this.saSubmenuRepository.getAllByMenuNo(menuNo);
+  }
 }

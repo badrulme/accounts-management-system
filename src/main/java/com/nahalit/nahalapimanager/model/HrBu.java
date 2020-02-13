@@ -50,7 +50,7 @@ public class HrBu {
   private Long rootBuNo;
   private Long refCompanyNo;
   private Integer treeLevel;
-  private String buAddress2;
+  private String buAddress_2;
   private String fax;
   private String eMail;
   private String web;
