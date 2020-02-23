@@ -15,7 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "api/rest/sa/sa-submenu")
 public class SA1003Controller {
-  
+
   private final SA1003Service sa1003Service;
 
   public SA1003Controller(SA1003Service sa1003Service) {
@@ -31,6 +31,16 @@ public class SA1003Controller {
   @GetMapping("/get-sa-submenu")
   public ResponseEntity<SaSubmenu> getSaSubmenu(@Valid @RequestParam("submenuNo") Long submenuNo) throws ResourceNotFoundException {
     return new ResponseEntity<>(sa1003Service.getSaSubmenu(submenuNo), HttpStatus.OK);
+  }
+
+  @GetMapping("/sa-menu-list")
+  public ResponseEntity<List> getMenuList(@Valid @RequestParam("submenuType") String submenuType){
+    return new ResponseEntity<>(this.sa1003Service.getMenuList(submenuType), HttpStatus.OK);
+  }
+
+  @GetMapping("/sa-submenu-list")
+  public ResponseEntity<List> getAllByMenuNo(@Valid @RequestParam("menuNo") Integer menuNo)  {
+    return new ResponseEntity<>(this.sa1003Service.getAllByMenuNo(menuNo), HttpStatus.OK);
   }
 
   @PostMapping("/add")

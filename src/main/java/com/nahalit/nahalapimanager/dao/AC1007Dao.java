@@ -16,7 +16,7 @@ public class AC1007Dao {
         this.db = db;
     }
 
-    public List getCostCenterTree(String costName) {
+    public List getCostCenterTree() {
         StringBuilder sql = new StringBuilder();
         sql.append("            SELECT 1 \"init\",");
         sql.append("                   LEVEL \"level\",");
@@ -25,13 +25,11 @@ public class AC1007Dao {
         sql.append("                   cost_no \"costNo\",");
         sql.append("                   COST_NO_PARENT \"costNoParent\"");
         sql.append("              FROM ac_costcenter");
-        sql.append("             WHERE UPPER (cost_name) LIKE UPPER ('%' || :COST_NAME || '%')");
         sql.append("        START WITH cost_no_parent IS NULL");
         sql.append("        CONNECT BY PRIOR cost_no = cost_no_parent");
         sql.append(" ORDER SIBLINGS BY cost_name");
 
         Map<String, String> params = new HashMap<>();
-        params.put("COST_NAME", costName);
 
         return db.queryForList(sql.toString(), params);
     }

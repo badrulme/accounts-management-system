@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.SA1007Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.SaUser;
 import com.nahalit.nahalapimanager.repository.SaUserRepository;
@@ -16,12 +17,15 @@ import java.util.concurrent.RejectedExecutionException;
 public class SA1007Service {
 
   private final SaUserRepository saUserRepository;
+  private final SA1007Dao sa1007Dao;
   private final AuthService authService;
 
-  public SA1007Service(SaUserRepository saUserRepository, AuthService authService) {
+  public SA1007Service(SaUserRepository saUserRepository, SA1007Dao sa1007Dao, AuthService authService) {
     this.saUserRepository = saUserRepository;
+    this.sa1007Dao = sa1007Dao;
     this.authService = authService;
   }
+
 // SA USER Service
 
   public List<SaUser> getAllSaUser() {
@@ -29,12 +33,15 @@ public class SA1007Service {
   }
 
   public SaUser getSaUser(Long userNo) throws ResourceNotFoundException {
-    return this.saUserRepository.findById(userNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + userNo));
+    SaUser saUser = this.saUserRepository.findById(userNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + userNo));
+    saUser.setUserPwd(null);
+    return saUser;
   }
 
   public SaUser saveSaUser(SaUser saUser) throws ParseException {
     saUser.setSsCreatedOn(UtillDate.getDateTime());
     saUser.setSsModifiedOn(null);
+    saUser.setUserPwd(this.sa1007Dao.getUserPwd(saUser.getUserPwd()));
     saUser.setSsCreator(authService.getUserNo());
     saUser.setCompanyNo(authService.getCompanyNo());
     return this.saUserRepository.save(saUser);
@@ -51,6 +58,7 @@ public class SA1007Service {
     saUser.setSsModifier(authService.getUserNo());
     saUser.setSsCreator(oldData.getSsCreator());
     saUser.setCompanyNo(oldData.getCompanyNo());
+    saUser.setUserPwd(this.sa1007Dao.getUserPwd(saUser.getUserPwd()));
     return this.saUserRepository.save(saUser);
   }
 

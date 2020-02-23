@@ -35,8 +35,8 @@ public class AC1007Service {
         return this.acCostcenterRepository.findById(costNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + costNo));
     }
 
-    public List getCostCenterTree(String costName) {
-        return ac1007Dao.getCostCenterTree(costName);
+    public List getCostCenterTree() {
+        return ac1007Dao.getCostCenterTree();
     }
 
     public AcCostcenter saveAcCostcenter(AcCostcenter acCostcenter) throws ParseException {

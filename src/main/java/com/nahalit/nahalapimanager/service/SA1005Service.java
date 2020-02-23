@@ -1,5 +1,6 @@
 package com.nahalit.nahalapimanager.service;
 
+import com.nahalit.nahalapimanager.dao.SA1005Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.SaRole;
 import com.nahalit.nahalapimanager.model.SaRoledtl;
@@ -19,11 +20,13 @@ public class SA1005Service {
 
   private final SaRoleRepository saRoleRepository;
   private final SaRoledtlRepository saRoledtlRepository;
+  private final SA1005Dao sa1005Dao;
   private final AuthService authService;
 
-  public SA1005Service(SaRoleRepository saRoleRepository, SaRoledtlRepository saRoledtlRepository, AuthService authService) {
+  public SA1005Service(SaRoleRepository saRoleRepository, SaRoledtlRepository saRoledtlRepository, SA1005Dao sa1005Dao, AuthService authService) {
     this.saRoleRepository = saRoleRepository;
     this.saRoledtlRepository = saRoledtlRepository;
+    this.sa1005Dao = sa1005Dao;
     this.authService = authService;
   }
 
@@ -108,5 +111,9 @@ public class SA1005Service {
     Map<String, String> deleteMessage = new HashMap<>();
     deleteMessage.put("deleteStatus", "Transaction Deleted Successfully");
     return deleteMessage;
+  }
+
+  public List getMenuList(String submenuType,Long roleNo) {
+    return this.sa1005Dao.getMenuList(submenuType,roleNo);
   }
 }

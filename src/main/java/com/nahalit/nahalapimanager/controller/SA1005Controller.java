@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "api/rest/sa/role")
+@RequestMapping(value = "api/rest/sa")
 public class SA1005Controller {
-  
+
   private final SA1005Service sa1005Service;
 
   public SA1005Controller(SA1005Service sa1005Service) {
@@ -27,6 +27,11 @@ public class SA1005Controller {
   @GetMapping("/role/")
   public ResponseEntity<List<SaRole>> getAllSaRole() {
     return new ResponseEntity<>(sa1005Service.getAllSaRole(), HttpStatus.OK);
+  }
+
+  @GetMapping("/get-sa-menu-list")
+  public ResponseEntity<List> getMenuList(@Valid @RequestParam("submenuType") String submenuType, @Valid @RequestParam(value = "roleNo", required = false) Long roleNo) throws ResourceNotFoundException {
+    return new ResponseEntity<>(this.sa1005Service.getMenuList(submenuType, roleNo), HttpStatus.OK);
   }
 
   @GetMapping("/role/get-sa-role")
