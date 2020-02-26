@@ -19,8 +19,8 @@ public class RlPlotPosition {
   private String positionName;
   private Long companyNo;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 
 }

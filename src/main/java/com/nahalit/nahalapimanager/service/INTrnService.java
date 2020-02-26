@@ -38,8 +38,8 @@ public class INTrnService {
   }
 
   public InTrn saveInTrn(InTrn inTrn) throws ParseException {
-    inTrn.setSsCreatedOn(UtillDate.getDateTime());
-    inTrn.setSsModifiedOn(null);
+
+
     inTrn.setSsCreator(authService.getUserNo());
     return this.inTrnRepository.save(inTrn);
   }
@@ -50,8 +50,8 @@ public class INTrnService {
 
   public InTrn updateInTrn(InTrn inTrn) throws ResourceNotFoundException, ParseException {
     InTrn oldData = this.inTrnRepository.findById(inTrn.getTrnNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + inTrn.getTrnNo()));
-    inTrn.setSsModifiedOn(UtillDate.getDateTime());
-    inTrn.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     inTrn.setSsModifier(authService.getUserNo());
     inTrn.setSsCreator(oldData.getSsCreator());
     return this.inTrnRepository.save(inTrn);
@@ -82,8 +82,8 @@ public class INTrnService {
 
 
   public InTrndtl saveTrndtl(InTrndtl inTrndtl) throws ParseException {
-    inTrndtl.setSsCreatedOn(UtillDate.getDateTime());
-    inTrndtl.setSsModifiedOn(null);
+
+
     inTrndtl.setSsCreator(authService.getEmpNo());
     return inTrndtlRepository.save(inTrndtl);
   }
@@ -91,13 +91,10 @@ public class INTrnService {
   public List<InTrndtl> saveTrndtlList(List<InTrndtl> inTrndtls) {
     List<InTrndtl> inTrndtlList = new ArrayList<>();
     inTrndtls.forEach(inTrndtl -> {
-      try {
-        inTrndtl.setSsCreatedOn(UtillDate.getDateTime());
-        inTrndtl.setSsModifiedOn(null);
-        inTrndtl.setSsCreator(authService.getEmpNo());
-        inTrndtlList.add(this.inTrndtlRepository.save(inTrndtl));
-      } catch (ParseException e) {
-      }
+
+
+      inTrndtl.setSsCreator(authService.getEmpNo());
+      inTrndtlList.add(this.inTrndtlRepository.save(inTrndtl));
 
     });
     return inTrndtlList;
@@ -105,8 +102,8 @@ public class INTrnService {
 
   public InTrndtl updateTrndtl(InTrndtl inTrndtl) throws ResourceNotFoundException, ParseException {
     InTrndtl oldData = this.inTrndtlRepository.findById(inTrndtl.getTrndtlNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id: " + inTrndtl.getTrndtlNo()));
-    inTrndtl.setSsCreatedOn(oldData.getSsCreatedOn());
-    inTrndtl.setSsModifiedOn(UtillDate.getDateTime());
+
+
     return inTrndtlRepository.save(inTrndtl);
   }
 
@@ -114,8 +111,8 @@ public class INTrnService {
     List<InTrndtl> saveData = new ArrayList<>();
     for (InTrndtl inTrndtl : inTrndtls) {
       InTrndtl oldData = this.inTrndtlRepository.findById(inTrndtl.getTrndtlNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id: " + inTrndtl.getTrndtlNo()));
-      inTrndtl.setSsCreatedOn(oldData.getSsCreatedOn());
-      inTrndtl.setSsModifiedOn(UtillDate.getDateTime());
+
+
       saveData.add(inTrndtlRepository.save(inTrndtl));
     }
     return saveData;

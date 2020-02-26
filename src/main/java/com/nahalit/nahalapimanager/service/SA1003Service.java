@@ -37,8 +37,8 @@ public class SA1003Service {
   }
 
   public SaSubmenu saveSaSubmenu(SaSubmenu saSubmenu) throws ParseException {
-    saSubmenu.setSsCreatedOn(UtillDate.getDateTime());
-    saSubmenu.setSsModifiedOn(null);
+
+
     saSubmenu.setSsCreator(authService.getUserNo());
     return this.saSubmenuRepository.save(saSubmenu);
   }
@@ -49,8 +49,8 @@ public class SA1003Service {
 
   public SaSubmenu updateSaSubmenu(SaSubmenu saSubmenu) throws ResourceNotFoundException, ParseException {
     SaSubmenu oldData = this.saSubmenuRepository.findById(saSubmenu.getSubmenuNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + saSubmenu.getSubmenuNo()));
-    saSubmenu.setSsModifiedOn(UtillDate.getDateTime());
-    saSubmenu.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     saSubmenu.setSsModifier(authService.getUserNo());
     saSubmenu.setSsCreator(oldData.getSsCreator());
     return this.saSubmenuRepository.save(saSubmenu);

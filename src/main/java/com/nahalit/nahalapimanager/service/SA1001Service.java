@@ -51,15 +51,15 @@ public class SA1001Service {
     }
 
     public SaCompany saveSaCompany(SaCompany saCompany) throws ParseException {
-        saCompany.setSsCreatedOn(UtillDate.getDateTime());
-        saCompany.setSsModifiedOn(null);
+
+
         return this.saCompanyRepository.save(saCompany);
     }
 
     public SaCompany updateSaCompany(SaCompany saCompany) throws ParseException, ResourceNotFoundException {
         SaCompany oldData = this.saCompanyRepository.findById(saCompany.getCompanyNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + saCompany.getCompanyNo()));
-        saCompany.setSsCreatedOn(oldData.getSsCreatedOn());
-        saCompany.setSsModifiedOn(UtillDate.getDateTime());
+
+
         return this.saCompanyRepository.save(saCompany);
     }
 
@@ -98,8 +98,8 @@ public class SA1001Service {
             saCompanySlider.setSliderName(filename);
 //      saCompanySlider.setCompanyNo(this.authService.getCompanyNo());
             saCompanySlider.setSsCreator(this.authService.getEmpNo());
-            saCompanySlider.setSsCreatedOn(UtillDate.getDateTime());
-            saCompanySlider.setSsModifiedOn(null);
+
+
         }
         return this.saCompanySliderRepository.save(saCompanySlider);
     }

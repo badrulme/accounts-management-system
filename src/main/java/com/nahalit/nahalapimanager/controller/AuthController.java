@@ -47,7 +47,6 @@ public class AuthController {
           .setIssuer(String.valueOf(user.getEMP_NO()))
           .setSubject("erpUser")
           .setAudience(String.valueOf(user.getCOMPANY_NO()))
-          .setIssuedAt(Calendar.getInstance().getTime())
           .setNotBefore(Calendar.getInstance().getTime())
           .setIssuedAt(new Date())
           .signWith(SignatureAlgorithm.HS256, AppConfig.APPLICATION_JWT_PRIVATE_KEY)

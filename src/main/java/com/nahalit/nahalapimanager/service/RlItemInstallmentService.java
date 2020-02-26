@@ -35,28 +35,25 @@ public class RlItemInstallmentService {
   }
 
   public RlItemInstallment saveRlItemInstallment(RlItemInstallment reRlItemInstallment) throws ParseException {
-    reRlItemInstallment.setSsCreatedOn(UtillDate.getDateTime());
-    reRlItemInstallment.setSsModifiedOn(null);
+
+
     return this.rlItemInstallmentRepository.save(reRlItemInstallment);
   }
 
   public List<RlItemInstallment> saveRlItemInstallmentList(List<RlItemInstallment> rlItemInstallments) {
     List<RlItemInstallment> rlItemInstallmentList = new ArrayList<>();
     rlItemInstallments.forEach(rlItemInstallment -> {
-      try {
-        rlItemInstallment.setSsCreatedOn(UtillDate.getDateTime());
-        rlItemInstallment.setSsModifiedOn(null);
-        rlItemInstallmentList.add(this.rlItemInstallmentRepository.save(rlItemInstallment));
-      } catch (ParseException e) {
-      }
+
+
+      rlItemInstallmentList.add(this.rlItemInstallmentRepository.save(rlItemInstallment));
     });
     return rlItemInstallmentList;
   }
 
   public RlItemInstallment updateRlItemInstallment(RlItemInstallment rlItemInstallment) throws ResourceNotFoundException, ParseException {
     RlItemInstallment oldData = this.rlItemInstallmentRepository.findById(rlItemInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Item Installment not for this:" + rlItemInstallment.getInstallmentNo()));
-    rlItemInstallment.setSsCreatedOn(oldData.getSsCreatedOn());
-    rlItemInstallment.setSsModifiedOn(UtillDate.getDateTime());
+
+
     return this.rlItemInstallmentRepository.save(rlItemInstallment);
   }
 
@@ -64,8 +61,8 @@ public class RlItemInstallmentService {
     List<RlItemInstallment> saveList = new ArrayList<>();
     for (RlItemInstallment rlItemInstallment : rlItemInstallments) {
       RlItemInstallment oldData = this.rlItemInstallmentRepository.findById(rlItemInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Item Installment not for this:" + rlItemInstallment.getInstallmentNo()));
-      rlItemInstallment.setSsCreatedOn(oldData.getSsCreatedOn());
-      rlItemInstallment.setSsModifiedOn(UtillDate.getDateTime());
+
+
       saveList.add(this.rlItemInstallmentRepository.save(rlItemInstallment));
     }
     return saveList;

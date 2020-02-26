@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class InTrn {
+public class InTrn extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "IN_TRN")
   @SequenceGenerator(sequenceName = "S_IN_TRN", allocationSize = 1, name = "IN_TRN")
@@ -35,8 +35,8 @@ public class InTrn {
   private String payMode;
   private Double paidAmount;
   private Long payNo;
-  private Date ssCreatedOn;
-  private Date ssModifiedOn;
+  
+  
   private Integer issuedFlag;
   private Integer rcvFlag;
   private Long refTrnNo;

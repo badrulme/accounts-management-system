@@ -10,7 +10,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class SaCompanySlider {
+public class SaCompanySlider extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMPANY_SLIDER")
     @SequenceGenerator(sequenceName = "S_SA_COMPANY_SLIDER", allocationSize = 1, name = "COMPANY_SLIDER")
@@ -18,8 +18,8 @@ public class SaCompanySlider {
     private String sliderName;
     private Long companyNo;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 }
 

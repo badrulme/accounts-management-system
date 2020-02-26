@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class AcNature {
+public class AcNature extends Audit{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AC_NATURE")
@@ -20,8 +20,8 @@ public class AcNature {
     private String natureType;
     private Integer slNo;
     private Long companyNo;
-    private Date ssCreatedOn;
+    
     private Long ssCreator;
-    private Date ssModifiedOn;
+    
     private Long ssModifier;
 }

@@ -10,7 +10,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlProject {
+public class RlProject extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_PROJECT")
   @SequenceGenerator(sequenceName = "S_RL_PROJECT", allocationSize = 1, name = "RL_PROJECT")
@@ -65,8 +65,8 @@ public class RlProject {
   private Integer policeStationAapFlag;
   private Integer trafficControlAuthAapFlag;
   private Integer wordCommAapFlag;
-  private Date ssCreatedOn;
+  
   private Long ssCreator;
-  private Date ssModifiedOn;
+  
   private Long ssModifier;
 }

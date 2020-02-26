@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class AcHeadidentity {
+public class AcHeadidentity extends Audit{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AC_COSTCENTER")
@@ -22,8 +22,8 @@ public class AcHeadidentity {
     private Integer recurringFlag;
     private Long accNo;
     private Long companyNo;
-    private Date ssCreatedOn;
+    
     private Long ssCreator;
-    private Date ssModifiedOn;
+    
     private Long ssModifier;
 }

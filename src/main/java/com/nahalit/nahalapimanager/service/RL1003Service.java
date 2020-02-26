@@ -53,8 +53,8 @@ public class RL1003Service {
 
     public RlProject saveRlProject(RlProject rlProject) throws ParseException {
         rlProject.setProjectTypeNo(2);
-        rlProject.setSsCreatedOn(UtillDate.getDateTime());
-        rlProject.setSsModifiedOn(null);
+
+
         rlProject.setProjectId(rlProjectDao.getProjectId("2"));
         return this.rlProjectRepository.save(rlProject);
     }
@@ -64,8 +64,8 @@ public class RL1003Service {
         if (oldData.getProjectLayoutPhoto() != null && rlProject.getProjectLayoutPhoto() != null && !oldData.getProjectLayoutPhoto().equalsIgnoreCase(rlProject.getProjectLayoutPhoto())) {
             this.storageService.deleteFile(oldData.getProjectLayoutPhoto());
         }
-        rlProject.setSsCreatedOn(oldData.getSsCreatedOn());
-        rlProject.setSsModifiedOn(UtillDate.getDateTime());
+
+
         return this.rlProjectRepository.save(rlProject);
     }
 
@@ -93,28 +93,25 @@ public class RL1003Service {
     }
 
     public RlItemSize saveItemSize(RlItemSize rlItemSize) throws ParseException {
-        rlItemSize.setSsCreatedOn(UtillDate.getDateTime());
-        rlItemSize.setSsModifiedOn(null);
+
+
         return this.rlItemSizeRepository.save(rlItemSize);
     }
 
     public List<RlItemSize> saveItemSizeList(List<RlItemSize> rlItemSizes) {
         List<RlItemSize> rlItemSizeList = new ArrayList<>();
         rlItemSizes.forEach(rlItemSize -> {
-            try {
-                rlItemSize.setSsCreatedOn(UtillDate.getDateTime());
-                rlItemSize.setSsModifiedOn(null);
-                rlItemSizeList.add(this.rlItemSizeRepository.save(rlItemSize));
-            } catch (ParseException e) {
-            }
+
+
+            rlItemSizeList.add(this.rlItemSizeRepository.save(rlItemSize));
         });
         return rlItemSizeList;
     }
 
     public RlItemSize updateItemSize(RlItemSize rlItemSize) throws ParseException {
         RlItemSize oldData = this.rlItemSizeRepository.findById(rlItemSize.getSizeNo()).orElseThrow(() -> new RejectedExecutionException("Item size not found for this id: " + rlItemSize.getSizeNo()));
-        rlItemSize.setSsCreatedOn(oldData.getSsCreatedOn());
-        rlItemSize.setSsModifiedOn(UtillDate.getDateTime());
+
+
         return this.rlItemSizeRepository.save(rlItemSize);
     }
 
@@ -122,8 +119,8 @@ public class RL1003Service {
         List<RlItemSize> saveList = new ArrayList<>();
         for (RlItemSize rlItemSize : rlItemSizes) {
             RlItemSize oldData = this.rlItemSizeRepository.findById(rlItemSize.getSizeNo()).orElseThrow(() -> new RejectedExecutionException("Item size not found for this id: " + rlItemSize.getSizeNo()));
-            rlItemSize.setSsCreatedOn(oldData.getSsCreatedOn());
-            rlItemSize.setSsModifiedOn(UtillDate.getDateTime());
+
+
             saveList.add(this.rlItemSizeRepository.save(rlItemSize));
         }
         return saveList;

@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class InTrndtl {
+public class InTrndtl extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "IN_TRN")
   @SequenceGenerator(sequenceName = "S_IN_TRN", allocationSize = 1, name = "IN_TRN")
@@ -24,8 +24,8 @@ public class InTrndtl {
   private Double salePrice;
   private Long ssCreator;
   private Long ssModifier;
-  private Date ssCreatedOn;
-  private Date ssModifiedOn;
+  
+  
   private Long wodtlNo;
 
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class SaGallery {
+public class SaGallery extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_GALLERY")
     @SequenceGenerator(sequenceName = "S_SA_GALLERY", allocationSize = 1, name = "SA_GALLERY")
@@ -22,8 +22,8 @@ public class SaGallery {
     private Integer activeStat;
     private Integer companyNo;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 }
 

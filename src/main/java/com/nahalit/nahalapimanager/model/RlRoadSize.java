@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlRoadSize {
+public class RlRoadSize extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_ROAD_SIZE")
   @SequenceGenerator(sequenceName = "S_RL_ROAD_SIZE", allocationSize = 1, name = "RL_ROAD_SIZE")
@@ -20,7 +20,7 @@ public class RlRoadSize {
   private Long activeFlag;
   private Long companyNo;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 }

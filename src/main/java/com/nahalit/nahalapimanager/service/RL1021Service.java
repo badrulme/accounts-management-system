@@ -41,8 +41,8 @@ public class RL1021Service {
 
     public RlCollection saveRlCollection(RlCollection rlCollection) throws ParseException {
         rlCollection.setCollId(rl1021Dao.getCollId(rlCollection.getCollDate()));
-        rlCollection.setSsCreatedOn(UtillDate.getDateTime());
-        rlCollection.setSsModifiedOn(null);
+
+
         rlCollection.setSsCreator(authService.getUserNo());
         return this.rlCollectionRepository.save(rlCollection);
     }
@@ -53,8 +53,8 @@ public class RL1021Service {
 
     public RlCollection updateRlCollection(RlCollection rlCollection) throws ResourceNotFoundException, ParseException {
         RlCollection oldData = this.rlCollectionRepository.findById(rlCollection.getCollNo()).orElseThrow(() -> new ResourceNotFoundException("Uom not for this:" + rlCollection.getCollNo()));
-        rlCollection.setSsModifiedOn(UtillDate.getDateTime());
-        rlCollection.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         rlCollection.setSsModifier(authService.getUserNo());
         return this.rlCollectionRepository.save(rlCollection);
     }

@@ -30,15 +30,15 @@ public class RL1012Service {
   }
 
   public RlRajukApproval saveRajukApproval(RlRajukApproval rlRajukApproval) throws ParseException {
-    rlRajukApproval.setSsCreatedOn(UtillDate.getDateTime());
-    rlRajukApproval.setSsModifiedOn(null);
+
+
     return this.rlRajukApprovalRepository.save(rlRajukApproval);
   }
 
   public RlRajukApproval updateRajukApproval(RlRajukApproval rlRajukApproval) throws ResourceNotFoundException, ParseException {
     RlRajukApproval oldData = this.rlRajukApprovalRepository.findById(rlRajukApproval.getApprovalNo()).orElseThrow(() -> new ResourceNotFoundException("Rajuk Approval not for this:" + rlRajukApproval.getApprovalNo()));
-    rlRajukApproval.setSsCreatedOn(oldData.getSsCreatedOn());
-    rlRajukApproval.setSsModifiedOn(UtillDate.getDateTime());
+
+
     return this.rlRajukApprovalRepository.save(rlRajukApproval);
   }
 

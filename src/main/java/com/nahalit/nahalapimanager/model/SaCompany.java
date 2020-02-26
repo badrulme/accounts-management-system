@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class SaCompany {
+public class SaCompany extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_COMPANY")
   @SequenceGenerator(sequenceName = "S_SA_COMPANY", allocationSize = 1, name = "SA_COMPANY")
@@ -65,7 +65,7 @@ public class SaCompany {
   private String office3AddrName;
   private Long ssCompanyNo;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 }

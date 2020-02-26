@@ -10,7 +10,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlUploadVideo {
+public class RlUploadVideo extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_upload_video")
     @SequenceGenerator(sequenceName = "S_RL_UPLOAD_VIDEO", allocationSize = 1, name = "rl_upload_video")
@@ -20,8 +20,8 @@ public class RlUploadVideo {
     private Long itemNo;
     private Long projectNo;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 
 }

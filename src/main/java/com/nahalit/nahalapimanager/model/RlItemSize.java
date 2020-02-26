@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RlItemSize {
+public class RlItemSize extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item_size")
   @SequenceGenerator(sequenceName = "s_rl_item_size", allocationSize = 1, name = "rl_item_size")
@@ -20,7 +20,7 @@ public class RlItemSize {
   private String flatType;
   private Double flatSize;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 }

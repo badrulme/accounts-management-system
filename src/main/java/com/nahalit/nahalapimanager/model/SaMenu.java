@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class SaMenu {
+public class SaMenu extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_MENU")
     @SequenceGenerator(sequenceName = "S_SA_MENU", allocationSize = 1, name = "SA_MENU")
@@ -28,7 +28,7 @@ public class SaMenu {
     private String menuNameNls;
     private Integer webErpFlag;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 }

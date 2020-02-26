@@ -37,8 +37,8 @@ public class SA1004Service {
     }
 
     public SaLookup saveLookup(SaLookup saLookup) throws ParseException {
-        saLookup.setSsCreatedOn(UtillDate.getDateTime());
-        saLookup.setSsModifiedOn(null);
+
+
         saLookup.setSsCreator(authService.getEmpNo());
         return saLookupRepository.save(saLookup);
     }
@@ -46,13 +46,10 @@ public class SA1004Service {
     public List<SaLookup> saveLookupList(List<SaLookup> saLookups) {
         List<SaLookup> saLookupList = new ArrayList<>();
         saLookups.forEach(saLookup -> {
-            try {
-                saLookup.setSsCreatedOn(UtillDate.getDateTime());
-                saLookup.setSsModifiedOn(null);
-                saLookup.setSsCreator(authService.getEmpNo());
-                saLookupList.add(this.saLookupRepository.save(saLookup));
-            } catch (ParseException e) {
-            }
+
+
+            saLookup.setSsCreator(authService.getEmpNo());
+            saLookupList.add(this.saLookupRepository.save(saLookup));
 
         });
         return saLookupList;
@@ -60,8 +57,8 @@ public class SA1004Service {
 
     public SaLookup updateLookup(SaLookup saLookup) throws ResourceNotFoundException, ParseException {
         SaLookup oldData = this.saLookupRepository.findById(saLookup.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookup not found for this id: " + saLookup.getLookupNo()));
-        saLookup.setSsCreatedOn(oldData.getSsCreatedOn());
-        saLookup.setSsModifiedOn(UtillDate.getDateTime());
+
+
         saLookup.setSsCreator(oldData.getSsCreator());
         saLookup.setSsModifier(authService.getEmpNo());
         return saLookupRepository.save(saLookup);
@@ -90,8 +87,8 @@ public class SA1004Service {
 
 
     public SaLookupdtl saveLookupdtl(SaLookupdtl saLookupdtl) throws ParseException {
-        saLookupdtl.setSsCreatedOn(UtillDate.getDateTime());
-        saLookupdtl.setSsModifiedOn(null);
+
+
         saLookupdtl.setSsCreator(authService.getEmpNo());
         return saLookupdtlRepository.save(saLookupdtl);
     }
@@ -99,13 +96,10 @@ public class SA1004Service {
     public List<SaLookupdtl> saveLookupdtlList(List<SaLookupdtl> saLookupdtls) {
         List<SaLookupdtl> saLookupdtlList = new ArrayList<>();
         saLookupdtls.forEach(saLookupdtl -> {
-            try {
-                saLookupdtl.setSsCreatedOn(UtillDate.getDateTime());
-                saLookupdtl.setSsModifiedOn(null);
-                saLookupdtl.setSsCreator(authService.getEmpNo());
-                saLookupdtlList.add(this.saLookupdtlRepository.save(saLookupdtl));
-            } catch (ParseException e) {
-            }
+
+
+            saLookupdtl.setSsCreator(authService.getEmpNo());
+            saLookupdtlList.add(this.saLookupdtlRepository.save(saLookupdtl));
 
         });
         return saLookupdtlList;
@@ -113,8 +107,8 @@ public class SA1004Service {
 
     public SaLookupdtl updateLookupdtl(SaLookupdtl saLookupdtl) throws ResourceNotFoundException, ParseException {
         SaLookupdtl oldData = this.saLookupdtlRepository.findById(saLookupdtl.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
-        saLookupdtl.setSsCreatedOn(oldData.getSsCreatedOn());
-        saLookupdtl.setSsModifiedOn(UtillDate.getDateTime());
+
+
         return saLookupdtlRepository.save(saLookupdtl);
     }
 
@@ -122,8 +116,8 @@ public class SA1004Service {
         List<SaLookupdtl> saveData = new ArrayList<>();
         for (SaLookupdtl saLookupdtl : saLookupdtls) {
             SaLookupdtl oldData = this.saLookupdtlRepository.findById(saLookupdtl.getLookupNo()).orElseThrow(() -> new ResourceNotFoundException("Lookupdtl not found for this id: " + saLookupdtl.getLookupdtlNo()));
-            saLookupdtl.setSsCreatedOn(oldData.getSsCreatedOn());
-            saLookupdtl.setSsModifiedOn(UtillDate.getDateTime());
+
+
             saveData.add(saLookupdtlRepository.save(saLookupdtl));
         }
         return saveData;

@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class SaGrantadminpriv {
+public class SaGrantadminpriv extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_GRANTADMINPRIV")
   @SequenceGenerator(sequenceName = "S_SA_GRANTADMINPRIV", allocationSize = 1, name = "SA_GRANTADMINPRIV")
@@ -20,8 +20,8 @@ public class SaGrantadminpriv {
   private Long companyNo;
   private Date grantDt;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
   private Long empNo;
 }

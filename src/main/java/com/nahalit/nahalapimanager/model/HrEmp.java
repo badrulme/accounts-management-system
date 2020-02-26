@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class HrEmp {
+public class HrEmp extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HR_EMP")
   @SequenceGenerator(sequenceName = "S_HR_EMP", allocationSize = 1, name = "HR_EMP")
@@ -43,9 +43,9 @@ public class HrEmp {
   private Long saRoleNo;
   private String ssOsIp;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
   private Integer attnSchedulePol;
   private Integer insecBeforegrace;
   private Integer insecAftergrace;

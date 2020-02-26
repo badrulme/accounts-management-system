@@ -37,8 +37,8 @@ public class HR1001Service {
   }
 
   public HrJobtitle saveHrJobtitle(HrJobtitle hrJobtitle) throws ParseException {
-    hrJobtitle.setSsCreatedOn(UtillDate.getDateTime());
-    hrJobtitle.setSsModifiedOn(null);
+
+
     hrJobtitle.setSsCreator(authService.getUserNo());
     return this.hrJobtitleRepository.save(hrJobtitle);
   }
@@ -49,8 +49,8 @@ public class HR1001Service {
 
   public HrJobtitle updateHrJobtitle(HrJobtitle hrJobtitle) throws ResourceNotFoundException, ParseException {
     HrJobtitle oldData = this.hrJobtitleRepository.findById(hrJobtitle.getJobtitleNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + hrJobtitle.getJobtitleNo()));
-    hrJobtitle.setSsModifiedOn(UtillDate.getDateTime());
-    hrJobtitle.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     hrJobtitle.setSsModifier(authService.getUserNo());
     hrJobtitle.setSsCreator(oldData.getSsCreator());
     return this.hrJobtitleRepository.save(hrJobtitle);
@@ -77,8 +77,8 @@ public class HR1001Service {
   }
 
   public HrBu saveHrBu(HrBu hrBu) throws ParseException {
-    hrBu.setSsCreatedOn(UtillDate.getDateTime());
-    hrBu.setSsModifiedOn(null);
+
+
     hrBu.setSsCreator(authService.getUserNo());
     hrBu.setCompanyNo(authService.getCompanyNo());
     return this.hrBuRepository.save(hrBu);
@@ -90,8 +90,8 @@ public class HR1001Service {
 
   public HrBu updateHrBu(HrBu hrBu) throws ResourceNotFoundException, ParseException {
     HrBu oldData = this.hrBuRepository.findById(hrBu.getBuNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + hrBu.getBuNo()));
-    hrBu.setSsModifiedOn(UtillDate.getDateTime());
-    hrBu.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     hrBu.setSsModifier(authService.getUserNo());
     hrBu.setSsCreator(oldData.getSsCreator());
     hrBu.setCompanyNo(oldData.getCompanyNo());

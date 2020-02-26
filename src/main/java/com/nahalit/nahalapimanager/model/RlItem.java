@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RlItem {
+public class RlItem extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item")
   @SequenceGenerator(sequenceName = "s_rl_item", allocationSize = 1, name = "rl_item")
@@ -69,8 +69,8 @@ public class RlItem {
   private Integer priceNegotiableFlag;
   private Double bookingMoney;
   private String others;
-  private Date ssCreatedOn;
+  
   private Long ssCreator;
-  private Date ssModifiedOn;
+  
   private Long ssModifier;
 }

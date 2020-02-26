@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class SaLookupdtl {
+public class SaLookupdtl extends Audit{
   @Id
   private Long lookupdtlNo;
   private Long lookupNo;
@@ -24,8 +24,8 @@ public class SaLookupdtl {
   private String shortName;
   private String nls_name;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 
 }

@@ -46,8 +46,8 @@ public class AC1008Service {
 
   public AcVoucher saveAcVoucher(AcVoucher acVoucher) throws ParseException {
     acVoucher.setVId(this.ac1008Dao.getVoucherId(acVoucher.getVtypeNo()));
-    acVoucher.setSsCreatedOn(UtillDate.getDateTime());
-    acVoucher.setSsModifiedOn(null);
+
+
     acVoucher.setSsCreator(authService.getUserNo());
     acVoucher.setCompanyNo(authService.getCompanyNo());
     return this.acVoucherRepository.save(acVoucher);
@@ -59,8 +59,8 @@ public class AC1008Service {
 
   public AcVoucher updateAcVoucher(AcVoucher acVoucher) throws ResourceNotFoundException, ParseException {
     AcVoucher oldData = this.acVoucherRepository.findById(acVoucher.getVNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + acVoucher.getVNo()));
-    acVoucher.setSsModifiedOn(UtillDate.getDateTime());
-    acVoucher.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     acVoucher.setSsModifier(authService.getUserNo());
     acVoucher.setSsCreator(oldData.getSsCreator());
     acVoucher.setCompanyNo(oldData.getCompanyNo());
@@ -96,8 +96,8 @@ public class AC1008Service {
   }
 
   public AcVoucherdtl saveAcVoucherdtl(AcVoucherdtl acVoucherdtl) throws ParseException {
-    acVoucherdtl.setSsCreatedOn(UtillDate.getDateTime());
-    acVoucherdtl.setSsModifiedOn(null);
+
+
     acVoucherdtl.setCompanyNo(authService.getCompanyNo());
     acVoucherdtl.setSsCreator(authService.getUserNo());
     return acVoucherdtlRepository.save(acVoucherdtl);
@@ -106,22 +106,19 @@ public class AC1008Service {
   public List<AcVoucherdtl> saveAcVoucherdtlList(List<AcVoucherdtl> acVoucherdtls) {
     List<AcVoucherdtl> acVoucherdtlList = new ArrayList<>();
     acVoucherdtls.forEach(acVoucherdtl -> {
-      try {
-        acVoucherdtl.setSsCreatedOn(UtillDate.getDateTime());
-        acVoucherdtl.setSsModifiedOn(null);
-        acVoucherdtl.setCompanyNo(authService.getCompanyNo());
-        acVoucherdtl.setSsCreator(authService.getUserNo());
-        acVoucherdtlList.add(this.acVoucherdtlRepository.save(acVoucherdtl));
-      } catch (ParseException e) {
-      }
+
+
+      acVoucherdtl.setCompanyNo(authService.getCompanyNo());
+      acVoucherdtl.setSsCreator(authService.getUserNo());
+      acVoucherdtlList.add(this.acVoucherdtlRepository.save(acVoucherdtl));
     });
     return acVoucherdtlList;
   }
 
   public AcVoucherdtl updateAcVoucherdtl(AcVoucherdtl acVoucherdtl) throws ResourceNotFoundException, ParseException {
     AcVoucherdtl oldData = this.acVoucherdtlRepository.findById(acVoucherdtl.getVdtlNo()).orElseThrow(() -> new ResourceNotFoundException("AcVoucherdtl not found for this id: " + acVoucherdtl.getVdtlNo()));
-    acVoucherdtl.setSsCreatedOn(oldData.getSsCreatedOn());
-    acVoucherdtl.setSsModifiedOn(UtillDate.getDateTime());
+
+
     acVoucherdtl.setCompanyNo(oldData.getCompanyNo());
     acVoucherdtl.setSsModifier(authService.getUserNo());
     return this.acVoucherdtlRepository.save(acVoucherdtl);
@@ -131,8 +128,8 @@ public class AC1008Service {
     List<AcVoucherdtl> saveData = new ArrayList<>();
     for (AcVoucherdtl acVoucherdtl : acVoucherdtls) {
       AcVoucherdtl oldData = this.acVoucherdtlRepository.findById(acVoucherdtl.getVNo()).orElseThrow(() -> new ResourceNotFoundException("AcVoucherdtl not found for this id: " + acVoucherdtl.getVdtlNo()));
-      acVoucherdtl.setSsCreatedOn(oldData.getSsCreatedOn());
-      acVoucherdtl.setSsModifiedOn(UtillDate.getDateTime());
+
+
       acVoucherdtl.setCompanyNo(oldData.getCompanyNo());
       acVoucherdtl.setSsModifier(authService.getUserNo());
       saveData.add(acVoucherdtlRepository.save(acVoucherdtl));

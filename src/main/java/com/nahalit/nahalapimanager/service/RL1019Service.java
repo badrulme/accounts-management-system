@@ -66,20 +66,20 @@ public class RL1019Service {
 
         if (rlTrn.getTrnId() == null || rlTrn.getTrnId() == "") {
             rlTrn.setTrnId(this.rl1019Dao.getTrnId(rlTrn.getTrnDate()));
-            rlTrn.setSsCreatedOn(UtillDate.getDateTime());
-            rlTrn.setSsModifiedOn(null);
+
+
         } else {
             RlTrn oldData = this.rlTrnRepository.findById(rlTrn.getTrnNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this:" + rlTrn.getTrnNo()));
-            rlTrn.setSsCreatedOn(oldData.getSsCreatedOn());
-            rlTrn.setSsModifiedOn(UtillDate.getDateTime());
+
+
         }
         return this.rlTrnRepository.save(rlTrn);
     }
 
     public RlTrn updateRlTrn(RlTrn rlTrn) throws ResourceNotFoundException, ParseException {
         RlTrn oldData = this.rlTrnRepository.findById(rlTrn.getTrnNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this:" + rlTrn.getTrnNo()));
-        rlTrn.setSsCreatedOn(oldData.getSsCreatedOn());
-        rlTrn.setSsModifiedOn(UtillDate.getDateTime());
+
+
         return this.rlTrnRepository.save(rlTrn);
     }
 
@@ -106,28 +106,25 @@ public class RL1019Service {
     }
 
     public RlTrnNominee saveRlTrnNominee(RlTrnNominee rlTrnNominee) throws ParseException {
-        rlTrnNominee.setSsCreatedOn(UtillDate.getDateTime());
-        rlTrnNominee.setSsModifiedOn(null);
+
+
         return this.rlTrnNomineeRepository.save(rlTrnNominee);
     }
 
     public List<RlTrnNominee> saveRlTrnNomineeList(List<RlTrnNominee> rlTrnNominees) {
         List<RlTrnNominee> rlTrnNomineeList = new ArrayList<>();
         rlTrnNominees.forEach(rlTrnNominee -> {
-            try {
-                rlTrnNominee.setSsCreatedOn(UtillDate.getDateTime());
-                rlTrnNominee.setSsModifiedOn(null);
-                rlTrnNomineeList.add(this.rlTrnNomineeRepository.save(rlTrnNominee));
-            } catch (ParseException e) {
-            }
+
+
+            rlTrnNomineeList.add(this.rlTrnNomineeRepository.save(rlTrnNominee));
         });
         return rlTrnNomineeList;
     }
 
     public RlTrnNominee updateRlTrnNominee(RlTrnNominee rlTrnNominee) throws ResourceNotFoundException, ParseException {
         RlTrnNominee oldData = this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + rlTrnNominee.getNomineeNo()));
-        rlTrnNominee.setSsCreatedOn(oldData.getSsCreatedOn());
-        rlTrnNominee.setSsModifiedOn(UtillDate.getDateTime());
+
+
         return this.rlTrnNomineeRepository.save(rlTrnNominee);
     }
 
@@ -135,8 +132,8 @@ public class RL1019Service {
         List<RlTrnNominee> saveList = new ArrayList<>();
         for (RlTrnNominee rlTrnNominee : rlTrnNominees) {
             RlTrnNominee oldData = this.rlTrnNomineeRepository.findById(rlTrnNominee.getNomineeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + rlTrnNominee.getNomineeNo()));
-            rlTrnNominee.setSsCreatedOn(oldData.getSsCreatedOn());
-            rlTrnNominee.setSsModifiedOn(UtillDate.getDateTime());
+
+
             saveList.add(this.rlTrnNomineeRepository.save(rlTrnNominee));
         }
         return saveList;
@@ -180,8 +177,8 @@ public class RL1019Service {
     }
 
     public RlTrnInstallment saveRlTrnInstallment(RlTrnInstallment rlTrnInstallment) throws ParseException {
-        rlTrnInstallment.setSsCreatedOn(UtillDate.getDateTime());
-        rlTrnInstallment.setSsModifiedOn(null);
+
+
         rlTrnInstallment.setSsCreator(authService.getUserNo());
         return this.rlTrnInstallmentRepository.save(rlTrnInstallment);
     }
@@ -192,8 +189,8 @@ public class RL1019Service {
 
     public RlTrnInstallment updateRlTrnInstallment(RlTrnInstallment rlTrnInstallment) throws ResourceNotFoundException, ParseException {
         RlTrnInstallment oldData = this.rlTrnInstallmentRepository.findById(rlTrnInstallment.getInstallmentNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + rlTrnInstallment.getInstallmentNo()));
-        rlTrnInstallment.setSsModifiedOn(UtillDate.getDateTime());
-        rlTrnInstallment.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         rlTrnInstallment.setSsModifier(authService.getUserNo());
         return this.rlTrnInstallmentRepository.save(rlTrnInstallment);
     }

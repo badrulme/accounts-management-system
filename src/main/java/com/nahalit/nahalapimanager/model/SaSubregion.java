@@ -9,7 +9,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-public class SaSubregion {
+public class SaSubregion extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_SUBREGION")
   @SequenceGenerator(sequenceName = "S_SA_SUBREGION", allocationSize = 1, name = "SA_SUBREGION")
@@ -18,7 +18,7 @@ public class SaSubregion {
   private String subregionName;
   private Long activeFlag;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 }

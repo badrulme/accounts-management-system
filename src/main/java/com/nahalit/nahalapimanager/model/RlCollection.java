@@ -8,7 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class RlCollection {
+public class RlCollection extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_COLLECTION")
     @SequenceGenerator(sequenceName = "S_RL_COLLECTION", allocationSize = 1, name = "RL_COLLECTION")
@@ -27,8 +27,8 @@ public class RlCollection {
     private String cqNo;
     private String mrNo;
     private String refTrnNo;
-    private Date ssCreatedOn;
+    
     private Long ssCreator;
-    private Date ssModifiedOn;
+    
     private Long ssModifier;
 }

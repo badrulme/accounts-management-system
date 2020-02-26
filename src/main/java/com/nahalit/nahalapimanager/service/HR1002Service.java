@@ -33,8 +33,8 @@ public class HR1002Service {
   }
 
   public HrEmp saveHrEmp(HrEmp hrEmp) throws ParseException {
-    hrEmp.setSsCreatedOn(UtillDate.getDateTime());
-    hrEmp.setSsModifiedOn(null);
+
+
     hrEmp.setSsCreator(authService.getUserNo());
     hrEmp.setCompanyNo(authService.getCompanyNo());
     return this.hrEmpRepository.save(hrEmp);
@@ -46,8 +46,8 @@ public class HR1002Service {
 
   public HrEmp updateHrEmp(HrEmp hrEmp) throws ResourceNotFoundException, ParseException {
     HrEmp oldData = this.hrEmpRepository.findById(hrEmp.getEmpNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + hrEmp.getEmpNo()));
-    hrEmp.setSsModifiedOn(UtillDate.getDateTime());
-    hrEmp.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     hrEmp.setSsModifier(authService.getUserNo());
     hrEmp.setSsCreator(oldData.getSsCreator());
     hrEmp.setCompanyNo(oldData.getCompanyNo());
