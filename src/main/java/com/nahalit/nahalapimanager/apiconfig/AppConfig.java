@@ -2,7 +2,7 @@ package com.nahalit.nahalapimanager.apiconfig;
 
 public class AppConfig {
   public static final String CONTEXT_PATH = "/nahal/v1";
-  public static final String SERVER_PORT = "8181";
+  public static final String SERVER_PORT = "8444";
   public static String[] NONFILTERRING_PATH_PATTERNS = new String[]{
       "/api/rest/rl/client/common/auth/login**",
       "/api/rest/core/auth/login**",

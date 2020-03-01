@@ -3,6 +3,7 @@ package com.nahalit.nahalapimanager;
 import com.nahalit.nahalapimanager.apiconfig.AppConfig;
 import com.nahalit.nahalapimanager.interceptor.AuthInterceptor;
 import com.nahalit.nahalapimanager.storage.StorageProperties;
+import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,6 +25,7 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
         System.setProperty("server.port", AppConfig.SERVER_PORT);
         SpringApplication.run(Application.class, args);
     }
+
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -53,5 +55,14 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+    }
+
+    private Connector redirectConnector() {
+        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+        connector.setScheme("http");
+        connector.setPort(8080);
+        connector.setSecure(false);
+        connector.setRedirectPort(8443);
+        return connector;
     }
 }
