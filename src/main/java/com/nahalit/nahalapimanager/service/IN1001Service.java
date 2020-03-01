@@ -32,8 +32,8 @@ public class IN1001Service {
     }
 
     public InUom saveInUom(InUom inUom) throws ParseException {
-        inUom.setSsCreatedOn(UtillDate.getDateTime());
-        inUom.setSsModifiedOn(null);
+
+
         inUom.setSsCreator(authService.getUserNo());
         inUom.setCompanyNo(authService.getCompanyNo());
         return this.inUomRepository.save(inUom);
@@ -45,8 +45,8 @@ public class IN1001Service {
 
     public InUom updateInUom(InUom inUom) throws ResourceNotFoundException, ParseException {
         InUom oldData = this.inUomRepository.findById(inUom.getUomNo()).orElseThrow(() -> new ResourceNotFoundException("Uom not for this:" + inUom.getUomNo()));
-        inUom.setSsModifiedOn(UtillDate.getDateTime());
-        inUom.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         inUom.setSsModifier(authService.getUserNo());
         inUom.setSsCreator(oldData.getSsCreator());
         inUom.setCompanyNo(oldData.getCompanyNo());

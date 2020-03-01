@@ -34,8 +34,8 @@ public class AC1004Service {
     }
 
     public AcNature saveAcNature(AcNature acNature) throws ParseException {
-        acNature.setSsCreatedOn(UtillDate.getDateTime());
-        acNature.setSsModifiedOn(null);
+
+
         acNature.setSsCreator(authService.getUserNo());
         acNature.setCompanyNo(authService.getCompanyNo());
         return this.acNatureRepository.save(acNature);
@@ -47,8 +47,8 @@ public class AC1004Service {
 
     public AcNature updateAcNature(AcNature acNature) throws ResourceNotFoundException, ParseException {
         AcNature oldData = this.acNatureRepository.findById(acNature.getNatureNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + acNature.getNatureNo()));
-        acNature.setSsModifiedOn(UtillDate.getDateTime());
-        acNature.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         acNature.setSsModifier(authService.getUserNo());
         acNature.setSsCreator(oldData.getSsCreator());
         acNature.setCompanyNo(oldData.getCompanyNo());

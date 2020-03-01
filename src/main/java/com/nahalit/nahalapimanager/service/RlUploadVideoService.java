@@ -39,28 +39,25 @@ public class RlUploadVideoService {
   }
 
   public RlUploadVideo saveRlItemVideo(RlUploadVideo rlItemVideo) throws ParseException {
-    rlItemVideo.setSsCreatedOn(UtillDate.getDateTime());
-    rlItemVideo.setSsModifiedOn(null);
+
+
     return this.rlItemVideoRepository.save(rlItemVideo);
   }
 
   public List<RlUploadVideo> saveRlItemVideoList(List<RlUploadVideo> rlItemVideos) {
     List<RlUploadVideo> rlItemVideoList = new ArrayList<>();
     rlItemVideos.forEach(rlItemVideo -> {
-      try {
-        rlItemVideo.setSsCreatedOn(UtillDate.getDateTime());
-        rlItemVideo.setSsModifiedOn(null);
-        rlItemVideoList.add(this.rlItemVideoRepository.save(rlItemVideo));
-      } catch (ParseException e) {
-      }
+
+
+      rlItemVideoList.add(this.rlItemVideoRepository.save(rlItemVideo));
     });
     return rlItemVideoList;
   }
 
   public RlUploadVideo updateRlItemVideo(RlUploadVideo reRlItemVideo) throws ResourceNotFoundException, ParseException {
     RlUploadVideo oldData = this.rlItemVideoRepository.findById(reRlItemVideo.getVideoNo()).orElseThrow(() -> new ResourceNotFoundException("Item Video not for this:" + reRlItemVideo.getVideoNo()));
-    reRlItemVideo.setSsCreatedOn(oldData.getSsCreatedOn());
-    reRlItemVideo.setSsModifiedOn(UtillDate.getDateTime());
+
+
     return this.rlItemVideoRepository.save(reRlItemVideo);
   }
 
@@ -68,8 +65,8 @@ public class RlUploadVideoService {
     List<RlUploadVideo> saveList = new ArrayList<>();
     for (RlUploadVideo reRlItemVideo : reRlItemVideos) {
       RlUploadVideo oldData = this.rlItemVideoRepository.findById(reRlItemVideo.getVideoNo()).orElseThrow(() -> new ResourceNotFoundException("Item Video not for this:" + reRlItemVideo.getVideoNo()));
-      reRlItemVideo.setSsCreatedOn(oldData.getSsCreatedOn());
-      reRlItemVideo.setSsModifiedOn(UtillDate.getDateTime());
+
+
       saveList.add(this.rlItemVideoRepository.save(reRlItemVideo));
     }
     return saveList;

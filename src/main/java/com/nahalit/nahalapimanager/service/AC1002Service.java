@@ -33,8 +33,8 @@ public class AC1002Service {
     }
 
     public AcBank saveAcBank(AcBank acBank) throws ParseException {
-        acBank.setSsCreatedOn(UtillDate.getDateTime());
-        acBank.setSsModifiedOn(null);
+
+
         acBank.setSsCreator(authService.getUserNo());
         acBank.setCompanyNo(authService.getCompanyNo());
         return this.acBankRepository.save(acBank);
@@ -46,8 +46,8 @@ public class AC1002Service {
 
     public AcBank updateAcBank(AcBank acBank) throws ResourceNotFoundException, ParseException {
         AcBank oldData = this.acBankRepository.findById(acBank.getBankNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + acBank.getBankNo()));
-        acBank.setSsModifiedOn(UtillDate.getDateTime());
-        acBank.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         acBank.setSsModifier(authService.getUserNo());
         acBank.setSsCreator(oldData.getSsCreator());
         acBank.setCompanyNo(oldData.getCompanyNo());

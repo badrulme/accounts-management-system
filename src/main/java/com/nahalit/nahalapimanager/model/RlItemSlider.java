@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlItemSlider {
+public class RlItemSlider extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item_slider")
     @SequenceGenerator(sequenceName = "s_rl_item_slider", allocationSize = 1, name = "rl_item_slider")
@@ -25,8 +25,8 @@ public class RlItemSlider {
 //    @JsonBackReference
 //    private RlItem rlItem;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 
 }

@@ -43,8 +43,8 @@ public class RL1007Service {
 
 
   public RlItem saveLandRlItem(RlItem rlItem) throws ParseException {
-    rlItem.setSsCreatedOn(UtillDate.getDateTime());
-    rlItem.setSsModifiedOn(null);
+
+
     rlItem.setItemTypeNo(1L);
     rlItem.setItemId(rlItemDao.getItemId(rlItem.getProjectNo()));
     return this.rlItemRepository.save(rlItem);
@@ -55,8 +55,8 @@ public class RL1007Service {
     if (oldData.getItemBrandPhoto() != null && rlItem.getItemBrandPhoto() != null && !oldData.getItemBrandPhoto().equalsIgnoreCase(rlItem.getItemBrandPhoto())) {
       this.storageService.deleteFile(oldData.getItemBrandPhoto());
     }
-    rlItem.setSsCreatedOn(oldData.getSsCreatedOn());
-    rlItem.setSsModifiedOn(UtillDate.getDateTime());
+
+
     return this.rlItemRepository.save(rlItem);
   }
 

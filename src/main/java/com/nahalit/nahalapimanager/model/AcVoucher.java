@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class AcVoucher {
+public class AcVoucher extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AC_VOUCHER")
     @SequenceGenerator(sequenceName = "S_AC_VOUCHER", allocationSize = 1, name = "AC_VOUCHER")
@@ -31,8 +31,8 @@ public class AcVoucher {
     private Long paidTo;
     private Long receiveFrom;
     private Long companyNo;
-    private Date ssCreatedOn;
+    
     private Long ssCreator;
-    private Date ssModifiedOn;
+    
     private Long ssModifier;
 }

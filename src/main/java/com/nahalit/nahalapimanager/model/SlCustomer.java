@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class SlCustomer {
+public class SlCustomer extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SL_CUSTOMER")
   @SequenceGenerator(sequenceName = "S_SL_CUSTOMER", allocationSize = 1, name = "SL_CUSTOMER")
@@ -33,9 +33,7 @@ public class SlCustomer {
   private String remarks;
   private Integer activeStat;
   private Long ssCreator;
-  private Date ssCreatedOn;
   private Long ssModifier;
-  private Date ssModifiedOn;
   private String mobile;
   private String address;
   private String mobile2;

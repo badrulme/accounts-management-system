@@ -41,8 +41,8 @@ public class SA1005Service {
   }
 
   public SaRole saveSaRole(SaRole saRole) throws ParseException {
-    saRole.setSsCreatedOn(UtillDate.getDateTime());
-    saRole.setSsModifiedOn(null);
+
+
     saRole.setSsCreator(authService.getUserNo());
     saRole.setCompanyNo(authService.getCompanyNo());
     return this.saRoleRepository.save(saRole);
@@ -54,8 +54,8 @@ public class SA1005Service {
 
   public SaRole updateSaRole(SaRole saRole) throws ResourceNotFoundException, ParseException {
     SaRole oldData = this.saRoleRepository.findById(saRole.getRoleNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + saRole.getRoleNo()));
-    saRole.setSsModifiedOn(UtillDate.getDateTime());
-    saRole.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     saRole.setSsModifier(authService.getUserNo());
     saRole.setSsCreator(oldData.getSsCreator());
     saRole.setCompanyNo(oldData.getCompanyNo());
@@ -82,8 +82,8 @@ public class SA1005Service {
   }
 
   public SaRoledtl saveSaRoledtl(SaRoledtl saRoledtl) throws ParseException {
-    saRoledtl.setSsCreatedOn(UtillDate.getDateTime());
-    saRoledtl.setSsModifiedOn(null);
+
+
     saRoledtl.setSsCreator(authService.getUserNo());
     saRoledtl.setCompanyNo(authService.getCompanyNo());
     return this.saRoledtlRepository.save(saRoledtl);
@@ -95,8 +95,8 @@ public class SA1005Service {
 
   public SaRoledtl updateSaRoledtl(SaRoledtl saRoledtl) throws ResourceNotFoundException, ParseException {
     SaRoledtl oldData = this.saRoledtlRepository.findById(saRoledtl.getRoledtlNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + saRoledtl.getRoledtlNo()));
-    saRoledtl.setSsModifiedOn(UtillDate.getDateTime());
-    saRoledtl.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     saRoledtl.setSsModifier(authService.getUserNo());
     saRoledtl.setSsCreator(oldData.getSsCreator());
     saRoledtl.setCompanyNo(oldData.getCompanyNo());

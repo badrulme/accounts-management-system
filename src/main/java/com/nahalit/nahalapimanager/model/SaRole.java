@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 @Setter
 @Getter
-public class SaRole {
+public class SaRole extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_ROLE")
   @SequenceGenerator(sequenceName = "S_SA_ROLE", allocationSize = 1, name = "SA_ROLE")
@@ -19,7 +19,7 @@ public class SaRole {
   private Integer activeStat;
   private Long companyNo;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 }

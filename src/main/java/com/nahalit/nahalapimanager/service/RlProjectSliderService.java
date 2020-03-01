@@ -38,8 +38,8 @@ public class RlProjectSliderService {
   }
 
   public RlProjectSlider saveRlProjectSlider(RlProjectSlider reRlProjectSlider) throws ParseException {
-    reRlProjectSlider.setSsCreatedOn(UtillDate.getDateTime());
-    reRlProjectSlider.setSsModifiedOn(null);
+
+
     return this.rlProjectSliderRepository.save(reRlProjectSlider);
   }
 

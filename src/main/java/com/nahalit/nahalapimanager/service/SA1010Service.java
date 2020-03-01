@@ -35,8 +35,8 @@ public class SA1010Service {
   }
 
   public SaGallery saveSaGallery(SaGallery saGallery) throws ParseException {
-    saGallery.setSsCreatedOn(UtillDate.getDateTime());
-    saGallery.setSsModifiedOn(null);
+
+
     saGallery.setSsCreator(authService.getEmpNo());
     return this.saGalleryRepository.save(saGallery);
   }
@@ -52,8 +52,8 @@ public class SA1010Service {
       this.storageService.deleteFile(oldData.getGalleryThumbName());
     }
 
-    saGallery.setSsModifiedOn(UtillDate.getDateTime());
-    saGallery.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     saGallery.setSsModifier(authService.getEmpNo());
     int a = saGallery.getGalleryDescr().length();
     return this.saGalleryRepository.save(saGallery);

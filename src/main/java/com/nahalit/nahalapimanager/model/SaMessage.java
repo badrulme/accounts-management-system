@@ -1,15 +1,16 @@
 package com.nahalit.nahalapimanager.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
-public class SaMessage {
+public class SaMessage extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_MESSAGE")
     @SequenceGenerator(sequenceName = "S_SA_MESSAGE", allocationSize = 1, name = "SA_MESSAGE")
@@ -22,8 +23,8 @@ public class SaMessage {
     private Integer activeFlag;
     private Integer companyNo;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 }
 

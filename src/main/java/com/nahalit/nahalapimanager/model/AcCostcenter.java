@@ -4,12 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Entity
 @Getter
 @Setter
-public class AcCostcenter {
+public class AcCostcenter extends Audit{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AC_COSTCENTER")
@@ -22,8 +22,8 @@ public class AcCostcenter {
     private Integer recurringFlag;
     private Long accNo;
     private Long companyNo;
-    private Date ssCreatedOn;
+    
     private Long ssCreator;
-    private Date ssModifiedOn;
+    
     private Long ssModifier;
 }

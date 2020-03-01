@@ -48,8 +48,8 @@ public class RL1002Service {
             customer.setCustomerPictureName(filename);
         }
         customer.setCustomerId(rl1002Dao.getCustomerId());
-        customer.setSsCreatedOn(UtillDate.getDateTime());
-        customer.setSsModifiedOn(null);
+
+
         customer.setCompanyNo(authService.getCompanyNo());
         return this.customerRepository.save(customer);
     }
@@ -69,8 +69,8 @@ public class RL1002Service {
             storageService.store(customerPhoto, filename);
             rlCustomer.setCustomerPictureName(filename);
                     }
-        rlCustomer.setSsCreatedOn(oldData.getSsCreatedOn());
-        rlCustomer.setSsModifiedOn(UtillDate.getDateTime());
+
+
         rlCustomer.setCompanyNo(authService.getCompanyNo());
 
         return this.customerRepository.save(rlCustomer);

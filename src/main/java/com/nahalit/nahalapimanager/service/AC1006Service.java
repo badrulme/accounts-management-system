@@ -35,8 +35,8 @@ public class AC1006Service {
     }
 
     public AcChart saveAcChart(AcChart acChart) throws ParseException {
-        acChart.setSsCreatedOn(UtillDate.getDateTime());
-        acChart.setSsModifiedOn(null);
+
+
         acChart.setSsCreator(authService.getUserNo());
         acChart.setCompanyNo(authService.getCompanyNo());
         return this.acChartRepository.save(acChart);
@@ -48,8 +48,8 @@ public class AC1006Service {
 
     public AcChart updateAcChart(AcChart acChart) throws ResourceNotFoundException, ParseException {
         AcChart oldData = this.acChartRepository.findById(acChart.getAccNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + acChart.getAccNo()));
-        acChart.setSsModifiedOn(UtillDate.getDateTime());
-        acChart.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         acChart.setSsModifier(authService.getUserNo());
         acChart.setSsCreator(oldData.getSsCreator());
         acChart.setCompanyNo(oldData.getCompanyNo());

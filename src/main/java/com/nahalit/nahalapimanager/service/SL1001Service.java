@@ -32,8 +32,8 @@ public class SL1001Service {
     }
 
     public SlCustomer saveSlCustomer(SlCustomer slCustomer) throws ParseException {
-        slCustomer.setSsCreatedOn(UtillDate.getDateTime());
-        slCustomer.setSsModifiedOn(null);
+
+
         slCustomer.setSsCreator(authService.getUserNo());
         slCustomer.setCompanyNo(authService.getCompanyNo());
         return this.slCustomerRepository.save(slCustomer);
@@ -45,8 +45,8 @@ public class SL1001Service {
 
     public SlCustomer updateSlCustomer(SlCustomer slCustomer) throws ResourceNotFoundException, ParseException {
         SlCustomer oldData = this.slCustomerRepository.findById(slCustomer.getCustomerNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + slCustomer.getCustomerNo()));
-        slCustomer.setSsModifiedOn(UtillDate.getDateTime());
-        slCustomer.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         slCustomer.setSsModifier(authService.getUserNo());
         slCustomer.setSsCreator(oldData.getSsCreator());
         slCustomer.setCompanyNo(oldData.getCompanyNo());

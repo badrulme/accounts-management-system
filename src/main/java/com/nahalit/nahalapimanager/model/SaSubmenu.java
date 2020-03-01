@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class SaSubmenu {
+public class SaSubmenu extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SA_SUBMENU")
     @SequenceGenerator(sequenceName = "S_SA_SUBMENU", allocationSize = 1, name = "SA_SUBMENU")
@@ -37,8 +37,8 @@ public class SaSubmenu {
     private Integer myDesk;
     private Integer webErpFlag;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 
 }

@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlTrnInstallment {
+public class RlTrnInstallment extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_TRN_INSTALLMENT")
     @SequenceGenerator(sequenceName = "S_RL_TRN_INSTALLMENT", allocationSize = 1, name = "RL_TRN_INSTALLMENT")
@@ -22,7 +22,7 @@ public class RlTrnInstallment {
     private Date installmentDate;
     private Long payFlag;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 }

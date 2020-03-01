@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlTrn {
+public class RlTrn extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_TRN")
     @SequenceGenerator(sequenceName = "S_RL_TRN", allocationSize = 1, name = "RL_TRN")
@@ -59,7 +59,7 @@ public class RlTrn {
     private Date installmentEndDate;
     private Long approveBy;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 }

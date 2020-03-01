@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlProjectSlider {
+public class RlProjectSlider extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_project_slider")
   @SequenceGenerator(sequenceName = "s_rl_project_slider", allocationSize = 1, name = "rl_project_slider")
@@ -20,7 +20,7 @@ public class RlProjectSlider {
   @NotNull
   private Long projectNo;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 }

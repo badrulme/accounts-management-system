@@ -40,8 +40,8 @@ public class IN1002Service {
     }
 
     public InItem saveInItem(InItem inItem) throws ParseException {
-        inItem.setSsCreatedOn(UtillDate.getDateTime());
-        inItem.setSsModifiedOn(null);
+
+
         inItem.setSsCreator(authService.getUserNo());
         return this.inItemRepository.save(inItem);
     }
@@ -52,8 +52,8 @@ public class IN1002Service {
 
     public InItem updateInItem(InItem inItem) throws ResourceNotFoundException, ParseException {
         InItem oldData = this.inItemRepository.findById(inItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + inItem.getItemNo()));
-        inItem.setSsModifiedOn(UtillDate.getDateTime());
-        inItem.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         inItem.setSsModifier(authService.getUserNo());
         inItem.setSsCreator(oldData.getSsCreator());
         return this.inItemRepository.save(inItem);

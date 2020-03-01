@@ -40,8 +40,8 @@ public class AC1007Service {
     }
 
     public AcCostcenter saveAcCostcenter(AcCostcenter acCostcenter) throws ParseException {
-        acCostcenter.setSsCreatedOn(UtillDate.getDateTime());
-        acCostcenter.setSsModifiedOn(null);
+
+
         acCostcenter.setSsCreator(authService.getUserNo());
         acCostcenter.setCompanyNo(authService.getCompanyNo());
         return this.acCostcenterRepository.save(acCostcenter);
@@ -53,8 +53,8 @@ public class AC1007Service {
 
     public AcCostcenter updateAcCostcenter(AcCostcenter acCostcenter) throws ResourceNotFoundException, ParseException {
         AcCostcenter oldData = this.acCostcenterRepository.findById(acCostcenter.getCostNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + acCostcenter.getCostNo()));
-        acCostcenter.setSsModifiedOn(UtillDate.getDateTime());
-        acCostcenter.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         acCostcenter.setSsModifier(authService.getUserNo());
         acCostcenter.setSsCreator(oldData.getSsCreator());
         acCostcenter.setCompanyNo(oldData.getCompanyNo());

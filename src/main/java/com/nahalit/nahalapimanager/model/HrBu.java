@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class HrBu {
+public class HrBu extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HR_BU")
   @SequenceGenerator(sequenceName = "S_HR_BU", allocationSize = 1, name = "HR_BU")
@@ -21,9 +21,9 @@ public class HrBu {
   private String loc;
   private Long buTypeNo;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
   private Long ssOgNo;
   private Integer activeStat;
   private Long lookupdtlNo;

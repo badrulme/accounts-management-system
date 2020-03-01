@@ -38,8 +38,8 @@ public class RlItemSliderService {
   }
 
   public RlItemSlider saveRlItemSlider(RlItemSlider reRlItemSlider) throws ParseException {
-    reRlItemSlider.setSsCreatedOn(UtillDate.getDateTime());
-    reRlItemSlider.setSsModifiedOn(null);
+
+
     return this.rlItemSliderRepository.save(reRlItemSlider);
   }
 

@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RlFacing {
+public class RlFacing extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rl_item_facing")
   @SequenceGenerator(sequenceName = "s_rl_facing", allocationSize = 1, name = "rl_item_facing")
@@ -19,8 +19,8 @@ public class RlFacing {
   private String facingName;
   private Long companyNo;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 
 }

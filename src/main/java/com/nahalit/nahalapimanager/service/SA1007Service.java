@@ -39,8 +39,8 @@ public class SA1007Service {
   }
 
   public SaUser saveSaUser(SaUser saUser) throws ParseException {
-    saUser.setSsCreatedOn(UtillDate.getDateTime());
-    saUser.setSsModifiedOn(null);
+
+
     saUser.setUserPwd(this.sa1007Dao.getUserPwd(saUser.getUserPwd()));
     saUser.setSsCreator(authService.getUserNo());
     saUser.setCompanyNo(authService.getCompanyNo());
@@ -53,8 +53,8 @@ public class SA1007Service {
 
   public SaUser updateSaUser(SaUser saUser) throws ResourceNotFoundException, ParseException {
     SaUser oldData = this.saUserRepository.findById(saUser.getUserNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + saUser.getUserNo()));
-    saUser.setSsModifiedOn(UtillDate.getDateTime());
-    saUser.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
     saUser.setSsModifier(authService.getUserNo());
     saUser.setSsCreator(oldData.getSsCreator());
     saUser.setCompanyNo(oldData.getCompanyNo());

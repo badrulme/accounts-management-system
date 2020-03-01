@@ -14,7 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RlCustomer {
+public class RlCustomer extends Audit{
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
   @SequenceGenerator(sequenceName = "S_RL_CUSTOMER", allocationSize = 1, name = "CUST_SEQ")
@@ -51,7 +51,7 @@ public class RlCustomer {
   private String cpAddress;
   private String cpEmail;
   private Long ssCreator;
-  private Date ssCreatedOn;
+  
   private Long ssModifier;
-  private Date ssModifiedOn;
+  
 }

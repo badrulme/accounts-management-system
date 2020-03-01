@@ -4,7 +4,6 @@ import com.nahalit.nahalapimanager.dao.AC1015Dao;
 import com.nahalit.nahalapimanager.exception.ResourceNotFoundException;
 import com.nahalit.nahalapimanager.model.AcBa;
 import com.nahalit.nahalapimanager.repository.AcBaRepository;
-import com.nahalit.nahalapimanager.utillibrary.UtillDate;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -26,7 +25,7 @@ public class AC1015Service {
   }
 
 
-  // Ac Costcenter
+  // Ac Ba
   public List<AcBa> getAllAcBa() {
     return this.acBaRepository.findAll();
   }
@@ -35,9 +34,7 @@ public class AC1015Service {
     return this.acBaRepository.findById(baNo).orElseThrow(() -> new ResourceNotFoundException("Transaction not found for this id:" + baNo));
   }
 
-  public AcBa saveAcBa(AcBa acBa) throws ParseException {
-    acBa.setSsCreatedOn(UtillDate.getDateTime());
-    acBa.setSsModifiedOn(null);
+  public AcBa saveAcBa(AcBa acBa){
     acBa.setSsCreator(authService.getUserNo());
     acBa.setCompanyNo(authService.getCompanyNo());
     return this.acBaRepository.save(acBa);
@@ -47,10 +44,8 @@ public class AC1015Service {
     return this.acBaRepository.saveAll(acBaList);
   }
 
-  public AcBa updateAcBa(AcBa acBa) throws ResourceNotFoundException, ParseException {
+  public AcBa updateAcBa(AcBa acBa) throws ResourceNotFoundException {
     AcBa oldData = this.acBaRepository.findById(acBa.getBaNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + acBa.getBaNo()));
-    acBa.setSsModifiedOn(UtillDate.getDateTime());
-    acBa.setSsCreatedOn(oldData.getSsCreatedOn());
     acBa.setSsModifier(authService.getUserNo());
     acBa.setSsCreator(oldData.getSsCreator());
     acBa.setCompanyNo(oldData.getCompanyNo());

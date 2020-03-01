@@ -42,21 +42,21 @@ public class RL1005Service {
 
     }
 
-    public RlItem saveApRlItem(RlItem rlItem) throws ParseException {
-        rlItem.setSsCreatedOn(UtillDate.getDateTime());
-        rlItem.setSsModifiedOn(null);
+    public RlItem saveApRlItem(RlItem rlItem) {
+
+
         rlItem.setItemTypeNo(2L);
         rlItem.setItemId(rlItemDao.getItemId(rlItem.getProjectNo()));
         return this.rlItemRepository.save(rlItem);
     }
 
-    public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException, ParseException, IOException {
+    public RlItem updateApRlItem(RlItem rlItem) throws ResourceNotFoundException, IOException {
         RlItem oldData = this.rlItemRepository.findById(rlItem.getItemNo()).orElseThrow(() -> new ResourceNotFoundException("Apartment Item not found for this id:" + rlItem.getItemNo()));
         if(oldData.getItemBrandPhoto()!=null && rlItem.getItemBrandPhoto()!=null && !oldData.getItemBrandPhoto().equalsIgnoreCase(rlItem.getItemBrandPhoto())){
             this.storageService.deleteFile(oldData.getItemBrandPhoto());
         }
-        rlItem.setSsCreatedOn(oldData.getSsCreatedOn());
-        rlItem.setSsModifiedOn(UtillDate.getDateTime());
+
+
         return this.rlItemRepository.save(rlItem);
     }
 

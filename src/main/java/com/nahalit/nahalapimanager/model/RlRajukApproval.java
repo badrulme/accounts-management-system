@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class RlRajukApproval {
+public class RlRajukApproval extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_RAJUK")
     @SequenceGenerator(sequenceName = "S_RL_RAJUK_APPROVAL", allocationSize = 1, name = "RL_RAJUK")
@@ -20,7 +20,7 @@ public class RlRajukApproval {
     private String approvalId;
     private String descr;
     private Long ssCreator;
-    private Date ssCreatedOn;
+    
     private Long ssModifier;
-    private Date ssModifiedOn;
+    
 }

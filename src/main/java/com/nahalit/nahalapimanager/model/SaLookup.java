@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-public class SaLookup {
+public class SaLookup extends Audit{
   @Id
   private Long lookupNo;
   @NotNull
@@ -19,8 +19,5 @@ public class SaLookup {
   private String descr;
   private Long canChange;
   private Long ssCreator;
-  private Date ssCreatedOn;
   private Long ssModifier;
-  private Date ssModifiedOn;
-
 }

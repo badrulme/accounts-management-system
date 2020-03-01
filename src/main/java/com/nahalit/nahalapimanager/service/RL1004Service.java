@@ -49,8 +49,8 @@ public class RL1004Service {
   }
 
   public RlProject saveRlProject(RlProject rlProject) throws ParseException {
-    rlProject.setSsCreatedOn(UtillDate.getDateTime());
-    rlProject.setSsModifiedOn(null);
+
+
     rlProject.setProjectTypeNo(1);
     rlProject.setProjectId(rlProjectDao.getProjectId("1"));
     return this.rlProjectRepository.save(rlProject);
@@ -61,8 +61,8 @@ public class RL1004Service {
     if (oldData.getProjectLayoutPhoto() != null && rlProject.getProjectLayoutPhoto() != null && !oldData.getProjectLayoutPhoto().equalsIgnoreCase(rlProject.getProjectLayoutPhoto())) {
       this.storageService.deleteFile(oldData.getProjectLayoutPhoto());
     }
-    rlProject.setSsCreatedOn(oldData.getSsCreatedOn());
-    rlProject.setSsModifiedOn(UtillDate.getDateTime());
+
+
     return this.rlProjectRepository.save(rlProject);
   }
 

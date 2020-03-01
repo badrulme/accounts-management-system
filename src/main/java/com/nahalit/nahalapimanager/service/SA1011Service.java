@@ -41,8 +41,8 @@ public class SA1011Service {
     }
 
     public SaMessage saveSaMessage(SaMessage saMessage) throws ParseException {
-        saMessage.setSsCreatedOn(UtillDate.getDateTime());
-        saMessage.setSsModifiedOn(null);
+
+
         saMessage.setSsCreator(authService.getEmpNo());
         return this.saMessageRepository.save(saMessage);
     }
@@ -53,8 +53,8 @@ public class SA1011Service {
         if (oldData.getMessengerPhotoName() != null && saMessage.getMessengerPhotoName() != null && !oldData.getMessengerPhotoName().equalsIgnoreCase(saMessage.getMessengerPhotoName())) {
             this.storageService.deleteFile(oldData.getMessengerPhotoName());
         }
-        saMessage.setSsModifiedOn(UtillDate.getDateTime());
-        saMessage.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         saMessage.setSsModifier(authService.getEmpNo());
         return this.saMessageRepository.save(saMessage);
     }

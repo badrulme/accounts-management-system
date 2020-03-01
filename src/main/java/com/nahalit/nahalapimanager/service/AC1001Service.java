@@ -32,8 +32,8 @@ public class AC1001Service {
     }
 
     public AcVouchertype saveAcVouchertype(AcVouchertype acVouchertype) throws ParseException {
-        acVouchertype.setSsCreatedOn(UtillDate.getDateTime());
-        acVouchertype.setSsModifiedOn(null);
+
+
         acVouchertype.setSsCreator(authService.getUserNo());
         acVouchertype.setCompanyNo(authService.getCompanyNo());
         return this.acVouchertypeRepository.save(acVouchertype);
@@ -45,8 +45,8 @@ public class AC1001Service {
 
     public AcVouchertype updateAcVouchertype(AcVouchertype acVouchertype) throws ResourceNotFoundException, ParseException {
         AcVouchertype oldData = this.acVouchertypeRepository.findById(acVouchertype.getVtypeNo()).orElseThrow(() -> new ResourceNotFoundException("Transaction not for this:" + acVouchertype.getVtypeNo()));
-        acVouchertype.setSsModifiedOn(UtillDate.getDateTime());
-        acVouchertype.setSsCreatedOn(oldData.getSsCreatedOn());
+
+
         acVouchertype.setSsModifier(authService.getUserNo());
         acVouchertype.setSsCreator(oldData.getSsCreator());
         acVouchertype.setCompanyNo(oldData.getCompanyNo());

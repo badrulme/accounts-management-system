@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class AcOpenperiod {
+public class AcOpenperiod extends Audit{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AC_OPENPERIOD")
@@ -30,8 +30,8 @@ public class AcOpenperiod {
     private Integer processBySystemFlag;
     private String descr;
     private Long companyNo;
-    private Date ssCreatedOn;
+    
     private Long ssCreator;
-    private Date ssModifiedOn;
+    
     private Long ssModifier;
 }

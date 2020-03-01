@@ -8,7 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class RlTrnNominee {
+public class RlTrnNominee extends Audit{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RL_TRN_NOMINEE")
     @SequenceGenerator(sequenceName = "S_RL_TRN_NOMINEE", allocationSize = 1, name = "RL_TRN_NOMINEE")
@@ -26,8 +26,8 @@ public class RlTrnNominee {
     private String nomineeNid;
     private Double percentage;
     private Date nomineeDob;
-    private Date ssCreatedOn;
+    
     private Long ssCreator;
-    private Date ssModifiedOn;
+    
     private Long ssModifier;
     }
