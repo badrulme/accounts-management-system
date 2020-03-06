@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface InTrndtlRepository extends JpaRepository<InTrndtl, Long> {
-  @Query("SELECT T FROM InTrndtl T WHERE T.trnNo=:TRN_NO")
-  List<InTrndtl> getAllTrnByTrnNo(@Param("TRN_NO") Long TRN_NO);
+    @Query("SELECT T FROM InTrndtl T WHERE T.trnNo=:TRN_NO")
+    List<InTrndtl> getAllTrnByTrnNo(@Param("TRN_NO") Long TRN_NO);
+
 }

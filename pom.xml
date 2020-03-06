@@ -80,6 +80,11 @@
             <version>1.2.0.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
         <!-- HikariCP connection pool -->
         <dependency>
             <groupId>com.zaxxer</groupId>
