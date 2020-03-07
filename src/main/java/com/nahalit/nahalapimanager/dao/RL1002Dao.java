@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,22 +69,20 @@ public class RL1002Dao {
 
     }
 
-    public String forgotPasswordByMail(String email) {
+    public String forgotPasswordByMail(String email) throws MessagingException {
         Map<String, String> params = new HashMap();
-        String randomPassword = RandomString.randomAlphaNumeric(8);
-        params.put("EMAIL", email);
-        params.put("NEWPASSWORD", randomPassword);
-        try {
-            int executeStatus = db.update("UPDATE RL_CUSTOMER SET PASSWORD=:NEWPASSWORD WHERE EMAIL=:EMAIL", params);
-            if (executeStatus == 1) {
-                String[] sendTo = email.trim().split(" ");
-                emailService.sendEmail(sendTo, null, null, "Forgot Your Password", "Your updated password: " + randomPassword, false);
-                return "Send New Password to " + email;
-            } else {
-                return "User not found for this email " + email;
-            }
-        } catch (Exception e) {
+        params.put("EMAIL", "email");
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT PASSWORD FROM RL_CUSTOMER WHERE EMAIL=:EMAIL");
+        Map<String, Object> userPwd = db.queryForMap(sql.toString(), params);
+
+        if (userPwd.get("PASSWORD") != null) {
+            String[] sendTo = email.trim().split(" ");
+            emailService.sendEmail(sendTo, null, null, "Forgot Your Password", "Your updated password: " + userPwd.get("PASSWORD"), false);
+            return "Send New Password to " + email;
+        } else {
             return "User not found for this email " + email;
         }
+
     }
 }

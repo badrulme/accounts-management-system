@@ -65,8 +65,6 @@ public class RlProject extends Audit{
   private Integer policeStationAapFlag;
   private Integer trafficControlAuthAapFlag;
   private Integer wordCommAapFlag;
-  
   private Long ssCreator;
-  
   private Long ssModifier;
 }

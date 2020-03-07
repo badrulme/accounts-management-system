@@ -29,6 +29,12 @@ public class AC1008Controller {
     return new ResponseEntity<>(ac1008Service.getAllAcVoucher(), HttpStatus.OK);
   }
 
+  // Ac Voucher
+  @GetMapping("/list")
+  public ResponseEntity<List> getAcVoucherList() {
+    return new ResponseEntity<>(ac1008Service.getAcVoucherList(), HttpStatus.OK);
+  }
+
   @GetMapping("/ref-list")
   public ResponseEntity<List<AcVoucher>> getAllAcVoucherRefList() {
     return new ResponseEntity<>(this.ac1008Service.getAllAcVoucherRefList(), HttpStatus.OK);

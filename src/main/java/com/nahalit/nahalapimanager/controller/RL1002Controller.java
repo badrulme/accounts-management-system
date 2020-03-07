@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.text.ParseException;
@@ -67,7 +68,7 @@ public class RL1002Controller {
 
 
     @PostMapping("/forgot-password")
-    public String forgotPassword(@Valid @RequestParam String forgotMailOrMobile) {
+    public String forgotPassword(@Valid @RequestParam String forgotMailOrMobile) throws MessagingException {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         if (forgotMailOrMobile.matches(regex)) {
             return rl1002Service.forgotPasswordByMail(forgotMailOrMobile);

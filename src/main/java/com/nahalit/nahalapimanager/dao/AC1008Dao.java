@@ -75,6 +75,25 @@ public class AC1008Dao {
     return db.queryForList(sql.toString(), params);
   }
 
+  public List getAcVoucherList() {
+    StringBuilder sql = new StringBuilder();
+    sql.append(" SELECT v_no \"vno\",");
+    sql.append("        v_id \"vid\",");
+    sql.append("        v_date \"vdate\",");
+    sql.append("        vtype_no \"vtypeNo\",");
+    sql.append("        prepared_by \"preparedBy\",");
+    sql.append("        TYPE_NAME \"typeName\",");
+    sql.append("        narration \"narration\",");
+    sql.append("        module \"module\",");
+    sql.append("        dr \"dr\",");
+    sql.append("        cr \"cr\"");
+    sql.append("   FROM ac_voucher_v");
+
+    Map params = new HashMap();
+
+    return db.queryForList(sql.toString(), params);
+  }
+
   public List getVoucherdtlRef(Long vNo) {
 
     StringBuilder sql = new StringBuilder();

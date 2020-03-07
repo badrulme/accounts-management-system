@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ public class RL1002Service {
     }
 
 
-    public String forgotPasswordByMail(String email) {
+    public String forgotPasswordByMail(String email) throws MessagingException {
         return rl1002Dao.forgotPasswordByMail(email);
     }
 
