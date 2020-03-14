@@ -22,4 +22,7 @@ public interface RlCustomerRepository extends JpaRepository<RlCustomer, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByMobile(String mobile);
+
+    @Query("SELECT DISTINCT C FROM RlCustomer C,RlTrn T WHERE C.customerNo=T.customerNo")
+    List<RlCustomer> getAllTrnCustomer();
 }

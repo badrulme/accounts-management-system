@@ -41,6 +41,11 @@ public class RL1002Controller {
         return new ResponseEntity<>(rl1002Service.getAllCustomer(), HttpStatus.OK);
     }
 
+    @GetMapping("/trn-customer")
+    public ResponseEntity<List<RlCustomer>> getAllTrnCustomer() {
+        return new ResponseEntity<>(rl1002Service.getAllTrnCustomer(), HttpStatus.OK);
+    }
+
     @GetMapping("/get-customer")
     public ResponseEntity<RlCustomer> getCustomer(@RequestParam(value = "customerNo", required = false) Long customerNo) throws ResourceNotFoundException {
         return new ResponseEntity<>(rl1002Service.getCustomer(customerNo), HttpStatus.OK);

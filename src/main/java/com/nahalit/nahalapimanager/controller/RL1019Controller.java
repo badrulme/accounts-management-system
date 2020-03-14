@@ -35,6 +35,11 @@ public class RL1019Controller {
         return new ResponseEntity<>(this.rl1019Service.getAllTrnRef(trnNo, customerNo, itemNo, ssCreartor), HttpStatus.OK);
     }
 
+    @GetMapping("/balance-list")
+    public ResponseEntity<List> getAllCustomerTrn() {
+        return new ResponseEntity<>(this.rl1019Service.getAllTrnBalanceRef(), HttpStatus.OK);
+    }
+
 
     @GetMapping("/get-trn")
     public ResponseEntity<Map> getTrnDetails(@RequestParam String trnNo) {

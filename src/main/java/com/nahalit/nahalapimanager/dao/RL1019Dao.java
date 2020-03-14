@@ -56,6 +56,8 @@ public class RL1019Dao {
         sql.append("     T.DD_NO \"ddNo\",");
         sql.append("     T.TT_NO \"ttNo\",");
         sql.append("     T.APPROVE_FLAG \"approveFlag\",");
+        sql.append("     T.ORDER_STATUS \"orderStatus\",");
+        sql.append("     DECODE(nvl(T.ORDER_STATUS,0),1,'Approved',2,'Draft',3,'Reject',4,'Pending') \"orderStatusName\",");
         sql.append("     DECODE(nvl(T.APPROVE_FLAG,0),1,'Approved',0,'Pending',2,'Canceled') \"approveFlagName\",");
         sql.append("     T.APPROVE_DATE \"approveDate\",");
         sql.append("     T.APPROVE_BY \"approveBy\",");
@@ -85,8 +87,35 @@ public class RL1019Dao {
         sql.append(" AND T.TRN_NO=NVL(:TRN_NO,T.TRN_NO)");
         sql.append(" AND T.CUSTOMER_NO = NVL(:CUSTOMER_NO,T.CUSTOMER_NO)");
         sql.append(" order by t.trn_no");
-//    sql.append(" AND T.ITEM_NO = NVL(:ITEM_NO,T.ITEM_NO)");
-//    sql.append(" AND T.SS_CREATOR = NVL(:ITEM_NO,T.SS_CREATOR)");
+
+        return db.queryForList(sql.toString(), params);
+    }
+
+    public List getTrnBalanceList() {
+
+        Map<String, String> params = new HashMap();
+
+        StringBuilder sql = new StringBuilder();
+
+        sql.append(" SELECT ");
+        sql.append(" TRN_NO \"trnNo\",");
+        sql.append(" TRN_ID \"trnId\",");
+        sql.append(" TRN_DATE \"trnDate\",");
+        sql.append(" CUSTOMER_NAME \"customerName\",");
+        sql.append(" CUSTOMER_ID \"customerId\",");
+        sql.append(" MOBILE \"mobile\",");
+        sql.append(" CUSTOMER_NO \"customerNo\",");
+        sql.append(" SETTLEMENT_PRICE \"settlementPrice\",");
+        sql.append(" BOOKING_AMOUNT \"bookingAmount\",");
+        sql.append(" DOWN_PAYMENT_AMOUNT \"downPaymentAmount\",");
+        sql.append(" COLLECTION_AMOUNT \"collectionAmount\",");
+        sql.append(" DUE_AMOUNT \"dueAmount\",");
+        sql.append(" PAYMENT_STATUS \"paymentStatus\",");
+        sql.append(" ITEM_ID \"itemId\",");
+        sql.append(" ITEM_NAME \"itemName\",");
+        sql.append(" TYPE_NAME \"typeName\",");
+        sql.append(" ORDER_STATUS_NAME \"orderStatusName\"");
+        sql.append(" from rl_trn_balance_v");
 
         return db.queryForList(sql.toString(), params);
     }
@@ -150,9 +179,9 @@ public class RL1019Dao {
         sql.append("     T.PAY_MODE \"payMode\",");
         sql.append("     T.PAID_AMOUNT \"paidAmount\",");
         sql.append("     T.ORDER_STATUS \"orderStatus\",");
+        sql.append("     DECODE(nvl(T.ORDER_STATUS,0),1,'Approved',2,'Draft',3,'Reject',4,'Pending') \"orderStatusName\",");
         sql.append("     T.WEB_USER_FLAG \"webUserFlag\",");
         sql.append("     T.SS_CREATOR \"ssCreator\",");
-        sql.append("     DECODE(nvl(T.APPROVE_FLAG,0),1,'Approved',0,'Pending',2,'Canceled') \"approveFlagName\",");
         sql.append("     y.TYPE_NAME \"itemTypeName\",");
         sql.append("     T.SS_CREATED_ON \"ssCreatedOn\",");
         sql.append("     T.SS_MODIFIER \"ssModifier\",");

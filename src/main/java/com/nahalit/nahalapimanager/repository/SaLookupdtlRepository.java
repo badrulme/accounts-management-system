@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface SaLookupdtlRepository extends JpaRepository<SaLookupdtl, Long> {
-  @Query("SELECT L FROM SaLookupdtl L WHERE LOOKUP_NO=:LOOKUP_NO")
+  @Query("SELECT L FROM SaLookupdtl L WHERE L.lookupNo=:LOOKUP_NO order by L.lookupdtlNo")
   List<SaLookupdtl> findAllByLookupNo(@Param("LOOKUP_NO") Long LOOKUP_NO);
 }

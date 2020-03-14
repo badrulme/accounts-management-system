@@ -37,6 +37,10 @@ public class RL1002Service {
         return this.customerRepository.findAll(Sort.by("customerNo").ascending());
     }
 
+    public List<RlCustomer> getAllTrnCustomer() {
+        return this.customerRepository.getAllTrnCustomer();
+    }
+
     public RlCustomer getCustomer(Long customerNo) throws ResourceNotFoundException {
         return this.customerRepository.findById(customerNo).orElseThrow(() -> new ResourceNotFoundException("RlCustomer not found for this id: " + customerNo));
     }

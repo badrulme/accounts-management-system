@@ -56,7 +56,6 @@ public class RL1018Controller {
 
     @DeleteMapping("/delete")
     public ResponseEntity<Map> deleteContact(@RequestParam Long contactNo) {
-
         return new ResponseEntity<>(this.rl1018Service.deleteRlContact(contactNo), HttpStatus.OK);
     }
 

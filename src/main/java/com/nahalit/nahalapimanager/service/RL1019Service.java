@@ -58,6 +58,10 @@ public class RL1019Service {
         return this.rl1019Dao.getTrnList(trnNo, customerNo, itemNo, ssCreartor);
     }
 
+    public List getAllTrnBalanceRef() {
+        return this.rl1019Dao.getTrnBalanceList();
+    }
+
     public Map getTrnDetailsRef(String trnNo) {
         return this.rl1019Dao.getTrnDetails(trnNo);
     }
